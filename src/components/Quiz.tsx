@@ -22,7 +22,8 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
         .normalize("NFD")
         .replace(/\p{Diacritic}/gu, "")
         .replace(/-/gu, " ")
-        .toLowerCase();
+        .toLowerCase()
+        .trim();
 
     const answers = [country.name, ...(country.alias ?? [])].map(normalize);
     const guess = normalize(_guess);
