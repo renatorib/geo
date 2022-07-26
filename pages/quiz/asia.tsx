@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 
 import { QuizLayout } from "~/components/QuizLayout";
 import { Quiz } from "~/components/Quiz";
-import { countries, Continent } from "~/countries";
+import { countries } from "~/countries";
+import { Continent } from "~/countries/enums";
 
 const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
 

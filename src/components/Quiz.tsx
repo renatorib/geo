@@ -1,7 +1,30 @@
 import React from "react";
-import { Card, Image, Text, Button, Group, Input, Box, AspectRatio, Stack, useMantineTheme, Grid } from "@mantine/core";
+import {
+  Card,
+  Image,
+  Text,
+  Button,
+  Group,
+  Input,
+  Box,
+  AspectRatio,
+  Stack,
+  useMantineTheme,
+  Grid,
+  ActionIcon,
+  Menu,
+  Switch,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { RiCheckLine, RiShuffleFill, RiEyeLine } from "react-icons/ri";
+import {
+  RiCheckLine,
+  RiShuffleFill,
+  RiEyeLine,
+  RiMore2Fill,
+  RiMicLine,
+  RiEyeCloseLine,
+  RiRestartLine,
+} from "react-icons/ri";
 import { Country } from "../countries";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
@@ -14,6 +37,16 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
   const shuffleCountries = () => {
     setCountries((c) => shuffle(c));
     rerender((r) => r + 1);
+  };
+
+  const toggleSpoiler = () => {
+    setSpoiler((s) => !s);
+  };
+
+  const reset = () => {
+    setSpoiler(false);
+    setChecked({});
+    shuffleCountries();
   };
 
   const handleGuess = (country: Country, _guess: string) => {
@@ -62,20 +95,31 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
             </Text>
           </Box>
           <Group ml="auto" spacing="xs">
-            {large && (
-              <Button onClick={shuffleCountries} size="xs" variant="filled" leftIcon={<RiShuffleFill />}>
-                Shuffle
-              </Button>
-            )}
-            <Button
-              onClick={() => setSpoiler((s) => !s)}
-              size="xs"
-              variant={spoiler ? "filled" : "outline"}
-              color="red"
-              leftIcon={<RiEyeLine />}
-            >
-              Answers
-            </Button>
+            <Menu shadow="md" width={200} position="bottom-end" withArrow>
+              <Menu.Target>
+                <ActionIcon variant="outline" radius="xl">
+                  <RiMore2Fill />
+                </ActionIcon>
+              </Menu.Target>
+
+              <Menu.Dropdown>
+                <Menu.Label>Quiz</Menu.Label>
+                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
+                  Shuffle
+                </Menu.Item>
+                <Menu.Item icon={<RiRestartLine />} onClick={reset}>
+                  Reset
+                </Menu.Item>
+                <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
+                  {spoiler ? "Hide" : "Show"} answers
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Label>Settings</Menu.Label>
+                <Menu.Item icon={<RiMicLine />} rightSection={<Switch size="xs" />}>
+                  Enable speech
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           </Group>
         </Group>
       </Box>
