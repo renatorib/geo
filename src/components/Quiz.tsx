@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Image, Text, Button, Group, Input, Box, AspectRatio, Stack, useMantineTheme } from "@mantine/core";
-import { RiQuestionMark, RiCheckLine, RiShuffleFill, RiEyeLine } from "react-icons/ri";
+import { useMediaQuery } from "@mantine/hooks";
+import { RiCheckLine, RiShuffleFill, RiEyeLine } from "react-icons/ri";
 import { Country } from "../countries";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
@@ -8,6 +9,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [spoiler, setSpoiler] = React.useState(false);
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
   const [countries, setCountries] = React.useState(() => shuffle(props.countries));
+  const large = useMediaQuery("(min-width: 1023px)");
 
   const shuffleCountries = () => {
     setCountries((c) => shuffle(c));
@@ -66,12 +68,14 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
       <form>
         <Group>
           {countries.map((country) => (
-            <CountryCard
-              key={country.id}
-              {...country}
-              checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
-              onGuess={(guess) => handleGuess(country, guess)}
-            />
+            <React.Fragment key={country.id}>
+              <CountryCard
+                {...country}
+                checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
+                onGuess={(guess) => handleGuess(country, guess)}
+                width={large ? 300 : 180}
+              />
+            </React.Fragment>
           ))}
         </Group>
       </form>
@@ -83,8 +87,9 @@ const CountryCard: React.FC<
   Country & {
     checked: "correct" | "spoiler" | false;
     onGuess: (guess: string) => void;
+    width?: number;
   }
-> = ({ id, name, flag, checked, onGuess }) => {
+> = ({ id, name, flag, checked, onGuess, width = 200 }) => {
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
 
@@ -125,10 +130,10 @@ const CountryCard: React.FC<
         withBorder
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          <AspectRatio ratio={45 / 30} style={{ width: 200 }}>
+          <AspectRatio ratio={45 / 30} style={{ width }}>
             <Image
               src={flag.src}
-              width={200}
+              width={width}
               alt={checked ? `Flag of ${name}` : "Flag of unknown"}
               title={checked ? name : undefined}
             />
@@ -150,7 +155,7 @@ const CountryCard: React.FC<
                 color: color[1],
               },
               input: {
-                width: "200px",
+                width: `${width - 2}px`,
                 border: "none",
                 textOverflow: "ellipsis",
                 "&:disabled": {
