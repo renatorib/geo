@@ -1,16 +1,6 @@
 import React from "react";
 import NextLink from "next/link";
-import {
-  AppShell,
-  Group,
-  Header,
-  Navbar,
-  Text,
-  UnstyledButton,
-  Divider,
-  Stack,
-  Box,
-} from "@mantine/core";
+import { AppShell, Group, Header, Navbar, Text, UnstyledButton, Divider, Stack, Box } from "@mantine/core";
 import cn from "classnames";
 import { useRouter } from "next/router";
 

@@ -1,31 +1,13 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Text,
-  Button,
-  Group,
-  Input,
-  Box,
-  AspectRatio,
-  Stack,
-  useMantineTheme,
-} from "@mantine/core";
-import {
-  RiQuestionMark,
-  RiCheckLine,
-  RiShuffleFill,
-  RiEyeLine,
-} from "react-icons/ri";
+import { Card, Image, Text, Button, Group, Input, Box, AspectRatio, Stack, useMantineTheme } from "@mantine/core";
+import { RiQuestionMark, RiCheckLine, RiShuffleFill, RiEyeLine } from "react-icons/ri";
 import { Country } from "../countries";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [, rerender] = React.useState(0);
   const [spoiler, setSpoiler] = React.useState(false);
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const [countries, setCountries] = React.useState(() =>
-    shuffle(props.countries)
-  );
+  const [countries, setCountries] = React.useState(() => shuffle(props.countries));
 
   const shuffleCountries = () => {
     setCountries((c) => shuffle(c));
@@ -45,16 +27,10 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
 
     if (answers.includes(guess)) {
       // Focus next element
-      const elements = document.querySelectorAll(
-        '[data-country-id][data-checked="false"]'
-      );
-      const current = document.querySelector(
-        `[data-country-id="${country.id}"]`
-      );
+      const elements = document.querySelectorAll('[data-country-id][data-checked="false"]');
+      const current = document.querySelector(`[data-country-id="${country.id}"]`);
       const index = [...elements].indexOf(current!);
-      elements[index === elements.length - 1 ? 0 : index + 1]
-        ?.querySelector<HTMLInputElement>("input")
-        ?.focus();
+      elements[index === elements.length - 1 ? 0 : index + 1]?.querySelector<HTMLInputElement>("input")?.focus();
 
       // Set checked
       setChecked((c) => ({ ...c, [country.name]: true }));
@@ -63,10 +39,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
 
   return (
     <Stack>
-      <Box
-        sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa" }}
-        py="xs"
-      >
+      <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa" }} py="xs">
         <Group>
           <Text weight={700}>{props.title}</Text>
           <Box>
@@ -75,12 +48,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
             </Text>
           </Box>
           <Group ml="auto" spacing="xs">
-            <Button
-              onClick={shuffleCountries}
-              size="xs"
-              variant="filled"
-              leftIcon={<RiShuffleFill />}
-            >
+            <Button onClick={shuffleCountries} size="xs" variant="filled" leftIcon={<RiShuffleFill />}>
               Shuffle
             </Button>
             <Button
@@ -101,13 +69,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
             <CountryCard
               key={country.id}
               {...country}
-              checked={
-                !!checked[country.name]
-                  ? "correct"
-                  : spoiler
-                  ? "spoiler"
-                  : false
-              }
+              checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
               onGuess={(guess) => handleGuess(country, guess)}
             />
           ))}
@@ -117,18 +79,18 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
   );
 };
 
-const CountryCard: React.FC<
-  Country & {
-    checked: "correct" | "spoiler" | false;
-    onGuess: (guess: string) => void;
-  }
-> = ({ id, name, flag, checked, onGuess }) => {
+const CountryCard = ({
+  id,
+  name,
+  flag,
+  checked,
+  onGuess,
+}: Country & {
+  checked: "correct" | "spoiler" | false;
+  onGuess: (guess: string) => void;
+}) => {
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
-  const image = React.useMemo(
-    () => <Image src={flag.src} width={280} alt="Country" />,
-    [flag.src]
-  );
 
   const getStateProps = () => {
     switch (checked) {
@@ -168,7 +130,7 @@ const CountryCard: React.FC<
       >
         <Card.Section withBorder>
           <AspectRatio ratio={45 / 30} style={{ width: 280 }}>
-            {image}
+            <Image src={flag.src} width={280} alt="Country" />
           </AspectRatio>
         </Card.Section>
         <Card.Section p="lg" sx={{ backgroundColor: color[0] }}>
@@ -176,9 +138,7 @@ const CountryCard: React.FC<
             icon={icon}
             value={checked ? name : undefined}
             placeholder="Your guess"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onGuess(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onGuess(e.target.value)}
             readOnly={!!checked}
             disabled={!!checked}
             onFocus={() => setFocused(true)}
@@ -220,10 +180,7 @@ function shuffle(array: any[]) {
     currentIndex--;
 
     // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
 
   return array;

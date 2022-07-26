@@ -34,7 +34,5 @@ for (const folder of folders) {
 
   await $`touch src/countries/${folder}/index.ts`;
   await $`echo ${template} > src/countries/${folder}/index.ts`;
-  console.log(
-    chalk.green(`${chalk.bold("Generated:")} src/countries/${folder}/index.ts`)
-  );
+  console.log(chalk.green(`${chalk.bold("Generated:")} src/countries/${folder}/index.ts`));
 }
