@@ -605,7 +605,7 @@ export const asia = [
   },
   {
     id: id(),
-    name: "Myanmnar",
+    name: "Myanmar",
     alias: ["Burma", "Birmânia"],
     flag: flags.birmania,
     continent: Continent.Asia,
