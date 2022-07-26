@@ -79,16 +79,12 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
   );
 };
 
-const CountryCard = ({
-  id,
-  name,
-  flag,
-  checked,
-  onGuess,
-}: Country & {
-  checked: "correct" | "spoiler" | false;
-  onGuess: (guess: string) => void;
-}) => {
+const CountryCard: React.FC<
+  Country & {
+    checked: "correct" | "spoiler" | false;
+    onGuess: (guess: string) => void;
+  }
+> = ({ id, name, flag, checked, onGuess }) => {
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
 
@@ -107,7 +103,7 @@ const CountryCard = ({
       default:
         return {
           color: [undefined, undefined],
-          icon: <RiQuestionMark />,
+          icon: undefined,
         };
     }
   };
@@ -120,47 +116,50 @@ const CountryCard = ({
   return (
     <Wrapper data-country-id={id} data-checked={checked}>
       <Card
-        withBorder
         p="lg"
         radius="md"
         shadow={focused ? "lg" : undefined}
         sx={(t) => ({
           outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
         })}
+        withBorder
       >
-        <Card.Section withBorder>
-          <AspectRatio ratio={45 / 30} style={{ width: 280 }}>
-            <Image src={flag.src} width={280} alt="Country" />
+        <Card.Section sx={{ backgroundColor: checked ? color[0] : "#f2f2f2" }}>
+          <AspectRatio ratio={45 / 30} style={{ width: 260 }}>
+            <Image
+              src={flag.src}
+              width={260}
+              alt={checked ? `Flag of ${name}` : "Flag of unknown"}
+              title={checked ? name : undefined}
+            />
           </AspectRatio>
         </Card.Section>
-        <Card.Section p="lg" sx={{ backgroundColor: color[0] }}>
+        <Card.Section sx={{ backgroundColor: color[0] }}>
           <Input
             icon={icon}
             value={checked ? name : undefined}
+            title={checked ? name : undefined}
             placeholder="Your guess"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onGuess(e.target.value)}
             readOnly={!!checked}
             disabled={!!checked}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            styles={(theme) => {
-              const styles = {
-                icon: {
+            styles={{
+              icon: {
+                color: color[1],
+              },
+              input: {
+                border: "none",
+                textOverflow: "ellipsis",
+                "&:disabled": {
                   color: color[1],
-                },
-                input: {
+                  background: "none",
                   border: "none",
-                  "&:disabled": {
-                    color: color[1],
-                    background: "none",
-                    border: "none",
-                    opacity: 1,
-                    cursor: "default",
-                  },
+                  opacity: 1,
+                  cursor: "default",
                 },
-              };
-
-              return styles;
+              },
             }}
           />
         </Card.Section>
@@ -173,9 +172,13 @@ function shuffle(array: any[]) {
   let currentIndex = array.length,
     randomIndex;
 
+  // While there remain elements to shuffle.
   while (currentIndex != 0) {
+    // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
+
+    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
 
