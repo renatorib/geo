@@ -1,6 +1,7 @@
 import React from "react";
 import NextLink from "next/link";
 import { AppShell, Group, Header, Navbar, Text, UnstyledButton, Divider, Stack, Box } from "@mantine/core";
+import { GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope } from "react-icons/gi";
 import cn from "classnames";
 import { useRouter } from "next/router";
 
@@ -13,12 +14,24 @@ export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
         <Navbar width={{ base: 300 }} p="xs">
           <Navbar.Section grow mt="xs">
             <Stack spacing="xs">
-              <NavbarLink href="/quiz/all">Todos os países</NavbarLink>
-              <NavbarLink href="/quiz/africa">África</NavbarLink>
-              <NavbarLink href="/quiz/america">América</NavbarLink>
-              <NavbarLink href="/quiz/asia">Ásia</NavbarLink>
-              <NavbarLink href="/quiz/europe">Europa</NavbarLink>
-              <NavbarLink href="/quiz/oceania">Oceania</NavbarLink>
+              <NavbarLink href="/quiz/all" icon={<GiEarthAmerica />}>
+                Todos os países
+              </NavbarLink>
+              <NavbarLink href="/quiz/africa" icon={<GiEarthAfricaEurope />}>
+                África
+              </NavbarLink>
+              <NavbarLink href="/quiz/america" icon={<GiEarthAmerica />}>
+                América
+              </NavbarLink>
+              <NavbarLink href="/quiz/asia" icon={<GiEarthAsiaOceania />}>
+                Ásia
+              </NavbarLink>
+              <NavbarLink href="/quiz/europe" icon={<GiEarthAfricaEurope />}>
+                Europa
+              </NavbarLink>
+              <NavbarLink href="/quiz/oceania" icon={<GiEarthAsiaOceania />}>
+                Oceania
+              </NavbarLink>
             </Stack>
           </Navbar.Section>
         </Navbar>
@@ -39,7 +52,7 @@ export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
-const NavbarLink = (props: { href: string; children: React.ReactNode }) => {
+const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: React.ReactNode }) => {
   const router = useRouter();
   const selected = router.asPath === props.href;
 
@@ -61,7 +74,12 @@ const NavbarLink = (props: { href: string; children: React.ReactNode }) => {
           },
         })}
       >
-        <Text size="sm">{props.children}</Text>
+        <Group align="center">
+          <Text color="blue">
+            <Group align="center">{props.icon}</Group>
+          </Text>
+          <Text size="sm">{props.children}</Text>
+        </Group>
       </UnstyledButton>
     </NextLink>
   );

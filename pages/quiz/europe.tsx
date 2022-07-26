@@ -2,12 +2,12 @@ import React from "react";
 
 import { QuizLayout } from "~/components/QuizLayout";
 import { Quiz } from "~/components/Quiz";
-import { europe } from "~/countries";
+import { countries, Continent } from "~/countries";
 
 const Europe = () => {
   return (
     <QuizLayout>
-      <Quiz title="Europa" countries={europe} />
+      <Quiz title="Europa" countries={countries.filter(({ continent }) => continent === Continent.Europe)} />
     </QuizLayout>
   );
 };
