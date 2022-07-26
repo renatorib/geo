@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Text, Button, Group, Input, Box, AspectRatio, Stack, useMantineTheme } from "@mantine/core";
+import { Card, Image, Text, Button, Group, Input, Box, AspectRatio, Stack, useMantineTheme, Grid } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { RiCheckLine, RiShuffleFill, RiEyeLine } from "react-icons/ri";
 import { Country } from "../countries";
@@ -39,6 +39,17 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
     }
   };
 
+  const cards = countries.map((country) => (
+    <React.Fragment key={country.id}>
+      <CountryCard
+        {...country}
+        checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
+        onGuess={(guess) => handleGuess(country, guess)}
+        width={large ? 300 : 180}
+      />
+    </React.Fragment>
+  ));
+
   return (
     <Stack>
       <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa", width: "100%" }} py="xs">
@@ -66,18 +77,23 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
         </Group>
       </Box>
       <form>
-        <Group>
-          {countries.map((country) => (
-            <React.Fragment key={country.id}>
-              <CountryCard
-                {...country}
-                checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
-                onGuess={(guess) => handleGuess(country, guess)}
-                width={large ? 300 : 180}
-              />
-            </React.Fragment>
-          ))}
-        </Group>
+        {large ? (
+          <Group spacing="xs">
+            {cards.map((card) => (
+              <Box key={card.key} sx={{ width: 300 }}>
+                {card}
+              </Box>
+            ))}
+          </Group>
+        ) : (
+          <Grid columns={2}>
+            {cards.map((card) => (
+              <Grid.Col span={1} key={card.key}>
+                {card}
+              </Grid.Col>
+            ))}
+          </Grid>
+        )}
       </form>
     </Stack>
   );
@@ -89,7 +105,7 @@ const CountryCard: React.FC<
     onGuess: (guess: string) => void;
     width?: number;
   }
-> = ({ id, name, flag, checked, onGuess, width = 200 }) => {
+> = ({ id, name, flag, checked, onGuess }) => {
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
 
@@ -119,7 +135,7 @@ const CountryCard: React.FC<
   const Wrapper = checked ? "div" : "label";
 
   return (
-    <Wrapper data-country-id={id} data-checked={checked}>
+    <Wrapper data-country-id={id} data-checked={checked} style={{ width: "100%" }}>
       <Card
         p="lg"
         radius="md"
@@ -130,10 +146,9 @@ const CountryCard: React.FC<
         withBorder
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          <AspectRatio ratio={45 / 30} style={{ width }}>
+          <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
             <Image
               src={flag.src}
-              width={width}
               alt={checked ? `Flag of ${name}` : "Flag of unknown"}
               title={checked ? name : undefined}
             />
@@ -155,7 +170,7 @@ const CountryCard: React.FC<
                 color: color[1],
               },
               input: {
-                width: `${width - 2}px`,
+                width: `100%`,
                 border: "none",
                 textOverflow: "ellipsis",
                 "&:disabled": {
