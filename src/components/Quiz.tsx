@@ -58,7 +58,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
               color="red"
               leftIcon={<RiEyeLine />}
             >
-              {spoiler ? "Hide" : "Show"} answers
+              Answers
             </Button>
           </Group>
         </Group>
@@ -125,10 +125,10 @@ const CountryCard: React.FC<
         withBorder
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          <AspectRatio ratio={45 / 30} style={{ width: 260 }}>
+          <AspectRatio ratio={45 / 30} style={{ width: 200 }}>
             <Image
               src={flag.src}
-              width={260}
+              width={200}
               alt={checked ? `Flag of ${name}` : "Flag of unknown"}
               title={checked ? name : undefined}
             />
@@ -150,6 +150,7 @@ const CountryCard: React.FC<
                 color: color[1],
               },
               input: {
+                width: "200px",
                 border: "none",
                 textOverflow: "ellipsis",
                 "&:disabled": {
