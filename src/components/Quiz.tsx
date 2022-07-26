@@ -39,7 +39,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
 
   return (
     <Stack>
-      <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa" }} py="xs">
+      <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa", width: "100%" }} py="xs">
         <Group>
           <Text weight={700}>{props.title}</Text>
           <Box>
@@ -124,7 +124,7 @@ const CountryCard: React.FC<
         })}
         withBorder
       >
-        <Card.Section sx={{ backgroundColor: checked ? color[0] : "#f2f2f2" }}>
+        <Card.Section sx={{ backgroundColor: color[0] }}>
           <AspectRatio ratio={45 / 30} style={{ width: 260 }}>
             <Image
               src={flag.src}

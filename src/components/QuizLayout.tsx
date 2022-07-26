@@ -22,7 +22,7 @@ export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
     <AppShell
       padding="md"
       navbar={
-        <Navbar width={{ base: 300 }} p="xs">
+        <Navbar width={{ base: 0, sm: 220 }} p="xs" hiddenBreakpoint="sm" hidden={true}>
           <Navbar.Section>
             <Box p={10}>
               <Group align="center">
