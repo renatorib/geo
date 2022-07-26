@@ -17,12 +17,17 @@ import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope }
 import cn from "classnames";
 import { useRouter } from "next/router";
 
-export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
+export const QuizLayout = ({ children, hideNavbar }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
   return (
     <AppShell
       padding="md"
       navbar={
-        <Navbar width={{ base: 0, sm: 220 }} p="xs" hiddenBreakpoint="sm" hidden={true}>
+        <Navbar
+          p="xs"
+          {...(hideNavbar
+            ? { hiddenBreakpoint: "sm", hidden: true, width: { base: 0, sm: 220 } }
+            : { width: { base: 200 } })}
+        >
           <Navbar.Section>
             <Box p={10}>
               <Group align="center">
