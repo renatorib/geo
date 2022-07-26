@@ -17,7 +17,7 @@ import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope }
 import cn from "classnames";
 import { useRouter } from "next/router";
 
-export const QuizLayout = ({ children, hideNavbar }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
+export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
   return (
     <AppShell
       padding="md"
