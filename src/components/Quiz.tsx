@@ -62,9 +62,11 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
             </Text>
           </Box>
           <Group ml="auto" spacing="xs">
-            <Button onClick={shuffleCountries} size="xs" variant="filled" leftIcon={<RiShuffleFill />}>
-              Shuffle
-            </Button>
+            {large && (
+              <Button onClick={shuffleCountries} size="xs" variant="filled" leftIcon={<RiShuffleFill />}>
+                Shuffle
+              </Button>
+            )}
             <Button
               onClick={() => setSpoiler((s) => !s)}
               size="xs"
