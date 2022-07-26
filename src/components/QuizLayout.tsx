@@ -14,7 +14,7 @@ import {
 import cn from "classnames";
 import { useRouter } from "next/router";
 
-export const QuizzesLayout = ({ children }: { children?: React.ReactNode }) => {
+export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
   return (
     <AppShell
       padding="md"
@@ -23,12 +23,12 @@ export const QuizzesLayout = ({ children }: { children?: React.ReactNode }) => {
         <Navbar width={{ base: 300 }} p="xs">
           <Navbar.Section grow mt="xs">
             <Stack spacing="xs">
-              <NavbarLink href="/quizz/all">Todos os países</NavbarLink>
-              <NavbarLink href="/quizz/africa">África</NavbarLink>
-              <NavbarLink href="/quizz/america">América</NavbarLink>
-              <NavbarLink href="/quizz/asia">Ásia</NavbarLink>
-              <NavbarLink href="/quizz/europe">Europa</NavbarLink>
-              <NavbarLink href="/quizz/oceania">Oceania</NavbarLink>
+              <NavbarLink href="/quiz/all">Todos os países</NavbarLink>
+              <NavbarLink href="/quiz/africa">África</NavbarLink>
+              <NavbarLink href="/quiz/america">América</NavbarLink>
+              <NavbarLink href="/quiz/asia">Ásia</NavbarLink>
+              <NavbarLink href="/quiz/europe">Europa</NavbarLink>
+              <NavbarLink href="/quiz/oceania">Oceania</NavbarLink>
             </Stack>
           </Navbar.Section>
         </Navbar>
@@ -36,7 +36,7 @@ export const QuizzesLayout = ({ children }: { children?: React.ReactNode }) => {
       header={
         <Header height={60}>
           <Group sx={{ height: "100%" }} px={20} position="apart">
-            <Text weight={700}>Flagquizz</Text>
+            <Text weight={700}>Guess the Flag</Text>
           </Group>
         </Header>
       }

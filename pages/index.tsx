@@ -1,9 +1,9 @@
 import React from "react";
 
-import { QuizzesLayout } from "~/components/QuizzesLayout";
+import { QuizLayout } from "~/components/QuizLayout";
 
 const Index = () => {
-  return <QuizzesLayout />;
+  return <QuizLayout />;
 };
 
 export default Index;

@@ -19,7 +19,7 @@ import {
 } from "react-icons/ri";
 import { Country } from "../countries";
 
-export const Quizz = (props: { countries: Country[]; title: string }) => {
+export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [, rerender] = React.useState(0);
   const [spoiler, setSpoiler] = React.useState(false);
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
