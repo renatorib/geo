@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Flagquizz</title>
+        <title>Guess the Flag</title>
       </Head>
 
       <MantineProvider withGlobalStyles withNormalizeCSS>
