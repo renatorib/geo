@@ -1,7 +1,19 @@
 import React from "react";
 import NextLink from "next/link";
-import { AppShell, Group, Header, Navbar, Text, UnstyledButton, Divider, Stack, Box } from "@mantine/core";
-import { GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope } from "react-icons/gi";
+import {
+  AppShell,
+  Group,
+  Header,
+  Navbar,
+  Text,
+  UnstyledButton,
+  Divider,
+  Stack,
+  Box,
+  ThemeIcon,
+  ScrollArea,
+} from "@mantine/core";
+import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope } from "react-icons/gi";
 import cn from "classnames";
 import { useRouter } from "next/router";
 
@@ -9,10 +21,18 @@ export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
   return (
     <AppShell
       padding="md"
-      fixed={false}
       navbar={
         <Navbar width={{ base: 300 }} p="xs">
-          <Navbar.Section grow mt="xs">
+          <Navbar.Section>
+            <Box p={10}>
+              <Group align="center">
+                <GiFlyingFlag size={26} />
+                <Text weight={700}>Guess the Flag</Text>
+              </Group>
+            </Box>
+          </Navbar.Section>
+          <Box py={10} />
+          <Navbar.Section grow component={ScrollArea}>
             <Stack spacing="xs">
               <NavbarLink href="/quiz/all" icon={<GiEarthAmerica />}>
                 Todos os países
@@ -35,13 +55,6 @@ export const QuizLayout = ({ children }: { children?: React.ReactNode }) => {
             </Stack>
           </Navbar.Section>
         </Navbar>
-      }
-      header={
-        <Header height={60}>
-          <Group sx={{ height: "100%" }} px={20} position="apart">
-            <Text weight={700}>Guess the Flag</Text>
-          </Group>
-        </Header>
       }
       styles={(t) => ({
         main: { backgroundColor: "#f9f9f9" },
