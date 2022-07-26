@@ -1,18 +1,6 @@
 import React from "react";
 import NextLink from "next/link";
-import {
-  AppShell,
-  Group,
-  Header,
-  Navbar,
-  Text,
-  UnstyledButton,
-  Divider,
-  Stack,
-  Box,
-  ThemeIcon,
-  ScrollArea,
-} from "@mantine/core";
+import { AppShell, Group, Navbar, Text, UnstyledButton, Stack, Box, ScrollArea } from "@mantine/core";
 import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope } from "react-icons/gi";
 import cn from "classnames";
 import { useRouter } from "next/router";
