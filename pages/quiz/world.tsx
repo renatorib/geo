@@ -7,12 +7,12 @@ import { countries } from "~/countries";
 
 const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
 
-const All = () => {
+const World = () => {
   return (
     <QuizLayout>
-      <QuizNoSSR title="Todos os países" countries={countries} />
+      <QuizNoSSR title="World" countries={countries} />
     </QuizLayout>
   );
 };
 
-export default All;
+export default World;

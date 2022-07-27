@@ -64,6 +64,7 @@ import FJ from "./FJ.png";
 import FM from "./FM.png";
 import FR from "./FR.png";
 import GA from "./GA.png";
+import GB from "./GB.png";
 import GD from "./GD.png";
 import GE from "./GE.png";
 import GH from "./GH.png";
@@ -185,7 +186,6 @@ import TW from "./TW.png";
 import TZ from "./TZ.png";
 import UA from "./UA.png";
 import UG from "./UG.png";
-import UK from "./UK.png";
 import US from "./US.png";
 import UY from "./UY.png";
 import UZ from "./UZ.png";
@@ -262,6 +262,7 @@ export {
   FM,
   FR,
   GA,
+  GB,
   GD,
   GE,
   GH,
@@ -383,7 +384,6 @@ export {
   TZ,
   UA,
   UG,
-  UK,
   US,
   UY,
   UZ,
@@ -399,3 +399,4 @@ export {
   ZM,
   ZW,
 };
+

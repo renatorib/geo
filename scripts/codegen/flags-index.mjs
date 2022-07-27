@@ -1,8 +1,8 @@
 import "zx/globals";
+$.verbose = false;
+
 import prettier from "prettier";
 import chalk from "chalk";
-
-$.verbose = false;
 
 const ls = await $`ls src/countries/flags`;
 

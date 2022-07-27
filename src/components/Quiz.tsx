@@ -1,9 +1,9 @@
 import React from "react";
+import NextImage, { StaticImageData } from "next/image";
+import * as flags from "../countries/flags";
 import {
   Card,
-  Image,
   Text,
-  Button,
   Group,
   Input,
   Box,
@@ -14,8 +14,9 @@ import {
   ActionIcon,
   Menu,
   Switch,
+  UnstyledButton,
 } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
   RiCheckLine,
   RiShuffleFill,
@@ -24,15 +25,17 @@ import {
   RiMicLine,
   RiEyeCloseLine,
   RiRestartLine,
+  RiArrowDownSLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [, rerender] = React.useState(0);
+  const [lang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-us" });
+  const large = useMediaQuery("(min-width: 1023px)");
   const [spoiler, setSpoiler] = React.useState(false);
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
   const [countries, setCountries] = React.useState(() => shuffle(props.countries));
-  const large = useMediaQuery("(min-width: 1023px)");
 
   const shuffleCountries = () => {
     setCountries((c) => shuffle(c));
@@ -50,6 +53,24 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
   };
 
   const handleGuess = (country: Country, _guess: string) => {
+    const getLangProps = () => {
+      switch (lang) {
+        case "pt-br":
+          return {
+            name: country.name.pt,
+            alias: country.alias.pt,
+          };
+        case "en-us":
+        default:
+          return {
+            name: country.name.en,
+            alias: country.alias.en,
+          };
+      }
+    };
+
+    const { name, alias } = getLangProps();
+
     const normalize = (input: string) =>
       input
         .normalize("NFD")
@@ -58,7 +79,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
         .toLowerCase()
         .trim();
 
-    const answers = [country.name, ...(country.alias ?? [])].map(normalize);
+    const answers = [name, ...alias].map(normalize);
     const guess = normalize(_guess);
 
     if (answers.includes(guess)) {
@@ -69,7 +90,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
       elements[index === elements.length - 1 ? 0 : index + 1]?.querySelector<HTMLInputElement>("input")?.focus();
 
       // Set checked
-      setChecked((c) => ({ ...c, [country.name]: true }));
+      setChecked((c) => ({ ...c, [country.id]: true }));
     }
   };
 
@@ -77,7 +98,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
     <React.Fragment key={country.id}>
       <CountryCard
         {...country}
-        checked={!!checked[country.name] ? "correct" : spoiler ? "spoiler" : false}
+        checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
         onGuess={(guess) => handleGuess(country, guess)}
         width={large ? 300 : 180}
       />
@@ -95,10 +116,11 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
             </Text>
           </Box>
           <Group ml="auto" spacing="xs">
+            <LanguageSelector />
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
-                <ActionIcon variant="outline" radius="xl">
-                  <RiMore2Fill />
+                <ActionIcon radius="xl" color="dark">
+                  <RiMore2Fill size={20} />
                 </ActionIcon>
               </Menu.Target>
 
@@ -152,12 +174,13 @@ const CountryCard: React.FC<
     onGuess: (guess: string) => void;
     width?: number;
   }
-> = ({ id, name, flag, checked, onGuess }) => {
+> = (props) => {
+  const [lang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-us" });
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
 
   const getStateProps = () => {
-    switch (checked) {
+    switch (props.checked) {
       case "correct":
         return {
           color: [theme.colors.green[2], theme.colors.green[9]],
@@ -176,13 +199,28 @@ const CountryCard: React.FC<
     }
   };
 
+  const getLangProps = () => {
+    switch (lang) {
+      case "pt-br":
+        return {
+          name: props.name.pt,
+        };
+      case "en-us":
+      default:
+        return {
+          name: props.name.en,
+        };
+    }
+  };
+
   const { color, icon } = getStateProps();
+  const { name } = getLangProps();
 
   // Wrapper
-  const Wrapper = checked ? "div" : "label";
+  const Wrapper = props.checked ? "div" : "label";
 
   return (
-    <Wrapper data-country-id={id} data-checked={checked} style={{ width: "100%" }}>
+    <Wrapper data-country-id={props.id} data-checked={props.checked} style={{ width: "100%" }}>
       <Card
         p="lg"
         radius="md"
@@ -194,22 +232,24 @@ const CountryCard: React.FC<
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
           <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-            <Image
-              src={flag.src}
-              alt={checked ? `Flag of ${name}` : "Flag of unknown"}
-              title={checked ? name : undefined}
+            <NextImage
+              src={props.flag}
+              alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
+              title={props.checked ? name : undefined}
+              objectFit="contain"
+              layout="fill"
             />
           </AspectRatio>
         </Card.Section>
         <Card.Section sx={{ backgroundColor: color[0] }}>
           <Input
             icon={icon}
-            value={checked ? name : undefined}
-            title={checked ? name : undefined}
+            value={props.checked ? name : undefined}
+            title={props.checked ? name : undefined}
             placeholder="Your guess"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onGuess(e.target.value)}
-            readOnly={!!checked}
-            disabled={!!checked}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
+            readOnly={!!props.checked}
+            disabled={!!props.checked}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             styles={{
@@ -233,6 +273,66 @@ const CountryCard: React.FC<
         </Card.Section>
       </Card>
     </Wrapper>
+  );
+};
+
+const Flag = ({ src, width, height }: { src: StaticImageData; width?: string | number; height?: string | number }) => {
+  return (
+    <AspectRatio ratio={45 / 30} style={{ width, height, borderRadius: 2, overflow: "hidden" }}>
+      <NextImage src={src} layout="fill" />
+    </AspectRatio>
+  );
+};
+
+const FlagButton = (props: { selected: boolean; children: React.ReactNode; onClick: () => any }) => {
+  return (
+    <UnstyledButton
+      sx={{
+        opacity: props.selected ? 1 : 0.2,
+        transition: "opacity 300ms ease",
+        cursor: props.selected ? "default" : "pointer",
+        "&:hover": {
+          opacity: props.selected ? 1 : 0.7,
+        },
+      }}
+      {...props}
+    />
+  );
+};
+
+const LanguageSelector = () => {
+  const [lang, setLang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-us" });
+
+  return (
+    <Menu shadow="md" width={200} position="bottom-end" withArrow>
+      <Menu.Target>
+        <Box sx={(t) => ({ display: "flex", alignItems: "center", gap: 2, color: t.colors.dark[9] })}>
+          <RiArrowDownSLine size={16} />
+          <Flag src={lang === "pt-br" ? flags.BR : lang === "en-us" ? flags.US : flags.US} width={18} />
+        </Box>
+      </Menu.Target>
+
+      <Menu.Dropdown>
+        <Menu.Item icon={<Flag src={flags.US} width={20} />} onClick={() => setLang("en-us")}>
+          English (US)
+        </Menu.Item>
+        <Menu.Item icon={<Flag src={flags.BR} width={20} />} onClick={() => setLang("pt-br")}>
+          Português (BR)
+        </Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
+  );
+
+  return (
+    <Group spacing="xs">
+      <FlagButton selected={lang === "en-us"} onClick={() => setLang("en-us")}>
+        <Flag src={flags.US} width={25} />
+      </FlagButton>
+
+      <FlagButton selected={lang === "pt-br"} onClick={() => setLang("pt-br")}>
+        <Flag src={flags.BR} width={25} />
+      </FlagButton>
+    </Group>
   );
 };
 

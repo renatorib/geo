@@ -11,7 +11,7 @@ const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
 const Europe = () => {
   return (
     <QuizLayout>
-      <QuizNoSSR title="Europa" countries={countries.filter(({ continent }) => continent === Continent.Europe)} />
+      <QuizNoSSR title="Europe" countries={countries.filter(({ continent }) => continent === Continent.Europe)} />
     </QuizLayout>
   );
 };
