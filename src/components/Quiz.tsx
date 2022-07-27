@@ -18,8 +18,9 @@ import {
   Switch,
   UnstyledButton,
   Alert,
+  Transition,
 } from "@mantine/core";
-import { useLocalStorage, useMediaQuery } from "@mantine/hooks";
+import { useInterval, useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
   RiCheckLine,
   RiShuffleFill,
@@ -33,6 +34,7 @@ import {
   RiAlertLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
+import { useEvent } from "~/hooks/useEvent";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [, rerender] = React.useState(0);
@@ -165,20 +167,24 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
           </Group>
         </Group>
       </Box>
-      {speech === "true" && (
-        <Box>
-          <Alert variant="light" title="Speech is enabled!" icon={<RiMicLine />}>
-            The <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon means that we are listening to your
-            guesses through your mic. <br />
-            If you are focusing a card but not see the icon, you can {large ? "press enter" : "touch the card again"} to
-            turn it on again.
-            <br />
-            <br />
-            Remember you can always disable <em>speech guesses</em> in your settings{" "}
-            <RiMore2Fill style={{ verticalAlign: "middle" }} />.
-          </Alert>
-        </Box>
-      )}
+      <Transition mounted={speech === "true"} transition="fade" duration={200}>
+        {(styles) => (
+          <Box style={{ ...styles }}>
+            <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
+              <Text color="dimmed">
+                The <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon means that we are listening to
+                your guesses through your mic.
+                <br />
+                If you are focusing a card but not see the icon, you can{" "}
+                <strong>{large ? "press enter" : "touch the card again"}</strong> to turn it on again.
+                <br />
+                Remember you can always disable <em>speech guesses</em> in your settings{" "}
+                <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+              </Text>
+            </Alert>
+          </Box>
+        )}
+      </Transition>
       <form>
         {large ? (
           <Group spacing="xs">
@@ -211,17 +217,44 @@ const CountryCard: React.FC<
 > = (props) => {
   const { lang } = useLang();
   const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
-  const { transcript, listening, isMicrophoneAvailable } = useSpeechRecognition();
+  const { interimTranscript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
 
-  const useSpeech = isMicrophoneAvailable && speech === "true";
+  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
+
+  const startListening = () => {
+    if (useSpeech && !listening) {
+      SpeechRecognition.startListening({ language: lang, continuous: true });
+    }
+  };
+
+  const stopListening = () => {
+    if (useSpeech || listening) {
+      SpeechRecognition.stopListening();
+    }
+  };
+
+  const tick = useEvent(() => {
+    if (useSpeech && focused && !listening) {
+      startListening();
+    }
+  });
+
+  const interval = useInterval(tick, 1000);
 
   React.useEffect(() => {
-    if (useSpeech && transcript && focused) {
-      props.onGuess(transcript);
+    interval.start();
+    return interval.stop;
+  }, []); // eslint-disable-line
+
+  React.useEffect(() => {
+    if (useSpeech && interimTranscript && focused) {
+      console.log(interimTranscript);
+      props.onGuess(interimTranscript);
     }
-  }, [transcript, focused, useSpeech]); // eslint-disable-line
+  }, [interimTranscript, focused, useSpeech]); // eslint-disable-line
 
   const getStateProps = () => {
     switch (props.checked) {
@@ -296,21 +329,15 @@ const CountryCard: React.FC<
             disabled={!!props.checked}
             onFocus={() => {
               setFocused(true);
-              if (useSpeech) {
-                setTimeout(() => SpeechRecognition.startListening({ language: lang ?? "en-US" }), 100);
-              }
+              startListening();
             }}
             onBlur={() => {
               setFocused(false);
-              if (useSpeech || listening) {
-                SpeechRecognition.stopListening();
-              }
+              stopListening();
             }}
             onKeyPress={(ev: React.KeyboardEvent) => {
               if (ev.code === "Enter") {
-                if (useSpeech && !listening) {
-                  SpeechRecognition.startListening({ language: lang ?? "en-US" });
-                }
+                startListening();
               }
             }}
             styles={{

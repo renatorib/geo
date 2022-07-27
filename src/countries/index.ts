@@ -1086,7 +1086,7 @@ export const countries = [
   {
     id: "LI",
     name: { pt: "Liechtenstein", en: "Liechtenstein" },
-    alias: { pt: [], en: [] },
+    alias: { pt: ["Lichtenstein"], en: [] },
     shape:
       "M1024.4 273.6v-.2l.1-.2-.1-.1-.1-.2-.1-.1v-.2l-.1-.1v-.2l-.1-.1-.2.6v.5l.1.2h.1l.4.1z",
     alpha2: "LI",
@@ -2147,7 +2147,7 @@ export const countries = [
   {
     id: "ZW",
     name: { pt: "Zimbábue", en: "Zimbabwe" },
-    alias: { pt: [], en: [] },
+    alias: { pt: ["Zimbabwe"], en: [] },
     shape:
       "M1148.2 713.7l6.2-7.2 1.6-4.6.9-.6.8-3.7-.8-1.9.5-4.7 1.3-4.4.3-8.1-2.8-2-2.6-.5-1.1-1.6-2.6-1.3-4.6.1-.3-2.4-4.2.9-3.3 2.5-.7 2.2-2 .5-5.1 5.3-3.2 4.1-1.9.1-1.7-.7-6.2-.7 1.9 5.1 1.1 1.1 1.6 3.7 6 7 2.3.7-.1 2.2 1.5 4.1 4.2.9 3.4 2.9 2.2.1 2.6 1.1 1.9-.8 2.9.6z",
     alpha2: "ZW",
