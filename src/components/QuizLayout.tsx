@@ -27,22 +27,22 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
           <Box py={10} />
           <Navbar.Section grow component={ScrollArea}>
             <Stack spacing="xs">
-              <NavbarLink href="/quiz/world" icon={<GiEarthAmerica />}>
+              <NavbarLink href="/flags/world" icon={<GiEarthAmerica />}>
                 World
               </NavbarLink>
-              <NavbarLink href="/quiz/africa" icon={<GiEarthAfricaEurope />}>
+              <NavbarLink href="/flags/africa" icon={<GiEarthAfricaEurope />}>
                 Africa
               </NavbarLink>
-              <NavbarLink href="/quiz/america" icon={<GiEarthAmerica />}>
+              <NavbarLink href="/flags/america" icon={<GiEarthAmerica />}>
                 America
               </NavbarLink>
-              <NavbarLink href="/quiz/asia" icon={<GiEarthAsiaOceania />}>
+              <NavbarLink href="/flags/asia" icon={<GiEarthAsiaOceania />}>
                 Asia
               </NavbarLink>
-              <NavbarLink href="/quiz/europe" icon={<GiEarthAfricaEurope />}>
+              <NavbarLink href="/flags/europe" icon={<GiEarthAfricaEurope />}>
                 Europe
               </NavbarLink>
-              <NavbarLink href="/quiz/oceania" icon={<GiEarthAsiaOceania />}>
+              <NavbarLink href="/flags/oceania" icon={<GiEarthAsiaOceania />}>
                 Oceania
               </NavbarLink>
             </Stack>

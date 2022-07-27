@@ -36,7 +36,13 @@ import {
 import { Country } from "../countries";
 import { useEvent } from "~/hooks/useEvent";
 
-export const Quiz = (props: { countries: Country[]; title: string }) => {
+type QuizProps = {
+  type?: "flag" | "shape";
+  countries: Country[];
+  title: string;
+};
+
+export const Quiz = (props: QuizProps) => {
   const [, rerender] = React.useState(0);
   const { lang } = useLang();
   const [speech, setSpeech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
@@ -117,6 +123,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
         checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
         onGuess={(guess) => handleGuess(country, guess)}
         width={large ? 300 : 180}
+        type={props.type ?? "flag"}
       />
     </React.Fragment>
   ));
@@ -210,6 +217,7 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
 
 const CountryCard: React.FC<
   Country & {
+    type: "flag" | "shape";
     checked: "correct" | "spoiler" | false;
     onGuess: (guess: string) => void;
     width?: number;
@@ -221,6 +229,7 @@ const CountryCard: React.FC<
     useSpeechRecognition();
   const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
+  const type = props.type ?? "flag";
 
   const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
 
@@ -308,15 +317,28 @@ const CountryCard: React.FC<
         withBorder
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-            <NextImage
-              src={props.flag}
-              alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
-              title={props.checked ? name : undefined}
-              objectFit="contain"
-              layout="fill"
-            />
-          </AspectRatio>
+          {type === "flag" && (
+            <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+              <NextImage
+                src={props.flag}
+                alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
+                title={props.checked ? name : undefined}
+                objectFit="contain"
+                layout="fill"
+              />
+            </AspectRatio>
+          )}
+          {type === "shape" && (
+            <Box>
+              {props.shape ? (
+                <svg viewBox="0 0 2048 1024" width="100%" height="100%">
+                  <path d={props.shape} fill="#888" stroke="#222" strokeWidth="1px" />
+                </svg>
+              ) : (
+                "Country shape not found"
+              )}
+            </Box>
+          )}
         </Card.Section>
         <Card.Section sx={{ backgroundColor: color[0] }}>
           <Input
