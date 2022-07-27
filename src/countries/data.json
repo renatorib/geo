@@ -13,7 +13,7 @@
   {
     "id": "AE",
     "name": { "pt": "Emirados Árabes Unidos", "en": "United Arab Emirates" },
-    "alias": { "pt": ["EAU"], "en": [] },
+    "alias": { "pt": ["EAU"], "en": ["UAE"] },
     "flag": "AE",
     "continent": "Asia",
     "alpha2": "AE",
@@ -35,7 +35,7 @@
   {
     "id": "AG",
     "name": { "pt": "Antígua e Barbuda", "en": "Antigua and Barbuda" },
-    "alias": { "pt": ["Antígua", "Barbuda"], "en": [] },
+    "alias": { "pt": ["Antígua", "Barbuda"], "en": ["Antigua", "Barbuda"] },
     "flag": "AG",
     "continent": "America",
     "alpha2": "AG",
@@ -123,7 +123,7 @@
   {
     "id": "BA",
     "name": { "pt": "Bósnia e Herzegovina", "en": "Bosnia and Herzegovina" },
-    "alias": { "pt": ["Bósnia", "Herzegovina"], "en": [] },
+    "alias": { "pt": ["Bósnia", "Herzegovina"], "en": ["Bosnia", "Herzegovina"] },
     "flag": "BA",
     "continent": "Europe",
     "alpha2": "BA",
@@ -220,8 +220,8 @@
   },
   {
     "id": "BN",
-    "name": { "pt": "Brunei", "en": "Brunei Darussalam" },
-    "alias": { "pt": ["Darussalam", "Darussalã"], "en": [] },
+    "name": { "pt": "Brunei", "en": "Brunei" },
+    "alias": { "pt": ["Darussalam", "Darussalã"], "en": ["Brunei Darussalam", "Brunei", "Darussalam"] },
     "flag": "BN",
     "continent": "Asia",
     "alpha2": "BN",
@@ -231,7 +231,7 @@
   },
   {
     "id": "BO",
-    "name": { "pt": "Bolívia", "en": "Bolivia (Plurinational State of)" },
+    "name": { "pt": "Bolívia", "en": "Bolivia" },
     "flag": "BO",
     "continent": "America",
     "alias": { "pt": [], "en": [] },
@@ -319,11 +319,8 @@
   },
   {
     "id": "CD",
-    "name": {
-      "pt": "República Democrática do Congo",
-      "en": "Congo, Democratic Republic of the"
-    },
-    "alias": { "pt": ["DR Congo", "Congo", "DROC"], "en": [] },
+    "name": { "pt": "República Democrática do Congo", "en": "D.R. Congo" },
+    "alias": { "pt": ["DR Congo", "Congo", "DROC"], "en": ["DR Congo", "Congo"] },
     "flag": "CD",
     "continent": "Africa",
     "alpha2": "CD",
@@ -337,7 +334,7 @@
       "pt": "República Centro Africana",
       "en": "Central African Republic"
     },
-    "alias": { "pt": ["África Central"], "en": [] },
+    "alias": { "pt": ["África Central"], "en": ["Central Africa"] },
     "flag": "CF",
     "continent": "Africa",
     "alpha2": "CF",
@@ -369,10 +366,10 @@
   },
   {
     "id": "CI",
-    "name": { "pt": "Costa do Marfim", "en": "Côte d'Ivoire" },
+    "name": { "pt": "Costa do Marfim", "en": "Ivory Coast" },
     "flag": "CI",
     "continent": "Africa",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": [], "en": ["Côte d'Ivoire", "Côte divoire", "Côte Ivoire"] },
     "alpha2": "CI",
     "alpha3": "CIV",
     "code": "384",
@@ -449,7 +446,7 @@
     "name": { "pt": "Cabo Verde", "en": "Cabo Verde" },
     "flag": "CV",
     "continent": "Africa",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": [], "en": ["Cape Verde"] },
     "alpha2": "CV",
     "alpha3": "CPV",
     "code": "132",
@@ -468,8 +465,8 @@
   },
   {
     "id": "CZ",
-    "name": { "pt": "República Tcheca", "en": "Czechia" },
-    "alias": { "pt": ["Chéquia", "Tchéquia", "Tcheca"], "en": [] },
+    "name": { "pt": "República Tcheca", "en": "Czech Republic" },
+    "alias": { "pt": ["Chéquia", "Tchéquia", "Tcheca"], "en": ["Czechia"] },
     "flag": "CZ",
     "continent": "Europe",
     "alpha2": "CZ",
@@ -493,7 +490,7 @@
     "name": { "pt": "Djibouti", "en": "Djibouti" },
     "flag": "DJ",
     "continent": "Africa",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Dibuti", "Dibouti", "Jibuti"], "en": [] },
     "alpha2": "DJ",
     "alpha3": "DJI",
     "code": "262",
@@ -524,7 +521,7 @@
   {
     "id": "DO",
     "name": { "pt": "República Dominicana", "en": "Dominican Republic" },
-    "alias": { "pt": ["Dominicana"], "en": [] },
+    "alias": { "pt": ["Dominicana"], "en": ["Dominican"] },
     "flag": "DO",
     "continent": "America",
     "alpha2": "DO",
@@ -635,9 +632,9 @@
     "id": "FM",
     "name": {
       "pt": "Estados Federados da Micronésia",
-      "en": "Micronesia (Federated States of)"
+      "en": "Federated States of Micronesia"
     },
-    "alias": { "pt": ["Micronésia", "EFM"], "en": [] },
+    "alias": { "pt": ["Micronésia", "EFM"], "en": ["Micronesia", "FSM"] },
     "flag": "FM",
     "continent": "Oceania",
     "alpha2": "FM",
@@ -877,7 +874,7 @@
   },
   {
     "id": "IR",
-    "name": { "pt": "Iran", "en": "Iran (Islamic Republic of)" },
+    "name": { "pt": "Irã", "en": "Iran" },
     "alias": { "pt": ["Irão"], "en": [] },
     "flag": "IR",
     "continent": "Asia",
@@ -957,7 +954,7 @@
     "name": { "pt": "Quirguistão", "en": "Kyrgyzstan" },
     "alias": {
       "pt": ["Quirguizistão", "Quirguízia", "República Quirguiz"],
-      "en": []
+      "en": ["Kirghizia", "Kyrgyz Republic"]
     },
     "flag": "KG",
     "continent": "Asia",
@@ -1001,7 +998,7 @@
   {
     "id": "KN",
     "name": { "pt": "São Cristóvão e Nevis", "en": "Saint Kitts and Nevis" },
-    "alias": { "pt": ["São Cristóvão", "Nevis"], "en": [] },
+    "alias": { "pt": ["São Cristóvão", "Nevis"], "en": ["Saint Kitts", "Nevis"] },
     "flag": "KN",
     "continent": "America",
     "alpha2": "KN",
@@ -1011,13 +1008,10 @@
   },
   {
     "id": "KP",
-    "name": {
-      "pt": "Coréia do Norte",
-      "en": "Korea (Democratic People's Republic of)"
-    },
+    "name": { "pt": "Coréia do Norte", "en": "North Korea" },
     "flag": "KP",
     "continent": "Asia",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Coréia"], "en": ["Korea"] },
     "alpha2": "KP",
     "alpha3": "PRK",
     "code": "408",
@@ -1025,10 +1019,10 @@
   },
   {
     "id": "KR",
-    "name": { "pt": "Coréia do Sul", "en": "Korea, Republic of" },
+    "name": { "pt": "Coréia do Sul", "en": "South Korea" },
     "flag": "KR",
     "continent": "Asia",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Coréia"], "en": ["Korea"] },
     "alpha2": "KR",
     "alpha3": "KOR",
     "code": "410",
@@ -1037,7 +1031,7 @@
   {
     "id": "KW",
     "name": { "pt": "Kuwait", "en": "Kuwait" },
-    "alias": { "pt": ["Kuaite", "Cuaite"], "en": [] },
+    "alias": { "pt": ["Kuaite", "Cuaite", "Kureyn"], "en": ["Kureyn"] },
     "flag": "KW",
     "continent": "Asia",
     "alpha2": "KW",
@@ -1058,10 +1052,10 @@
   },
   {
     "id": "LA",
-    "name": { "pt": "Laos", "en": "Lao People's Democratic Republic" },
+    "name": { "pt": "Laos", "en": "Laos" },
     "flag": "LA",
     "continent": "Asia",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Lao"], "en": ["Lao"] },
     "alpha2": "LA",
     "alpha3": "LAO",
     "code": "418",
@@ -1200,7 +1194,7 @@
   },
   {
     "id": "MD",
-    "name": { "pt": "Moldávia", "en": "Moldova, Republic of" },
+    "name": { "pt": "Moldávia", "en": "Moldova" },
     "flag": "MD",
     "continent": "Europe",
     "alias": { "pt": [], "en": [] },
@@ -1234,7 +1228,7 @@
   {
     "id": "MH",
     "name": { "pt": "Ilhas Marshall", "en": "Marshall Islands" },
-    "alias": { "pt": ["Marshall"], "en": [] },
+    "alias": { "pt": ["Marshall"], "en": ["Marshall"] },
     "flag": "MH",
     "continent": "Oceania",
     "alpha2": "MH",
@@ -1334,7 +1328,7 @@
     "name": { "pt": "Malawi", "en": "Malawi" },
     "flag": "MW",
     "continent": "Africa",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Malaui"], "en": [] },
     "alpha2": "MW",
     "alpha3": "MWI",
     "code": "454",
@@ -1420,7 +1414,7 @@
   {
     "id": "NL",
     "name": { "pt": "Países Baixos", "en": "Netherlands" },
-    "alias": { "pt": ["Holanda"], "en": [] },
+    "alias": { "pt": ["Holanda"], "en": ["Holland"] },
     "flag": "NL",
     "continent": "Europe",
     "alpha2": "NL",
@@ -1508,7 +1502,7 @@
   {
     "id": "PG",
     "name": { "pt": "Papua-Nova Guiné", "en": "Papua New Guinea" },
-    "alias": { "pt": ["Papuásia-Nova Guiné"], "en": [] },
+    "alias": { "pt": ["Papuásia-Nova Guiné", "Papua"], "en": ["Papua"] },
     "flag": "PG",
     "continent": "Oceania",
     "alpha2": "PG",
@@ -1616,7 +1610,7 @@
   },
   {
     "id": "RU",
-    "name": { "pt": "Rússia", "en": "Russian Federation" },
+    "name": { "pt": "Rússia", "en": "Russia" },
     "flag": "RU",
     "continent": "Europe",
     "alias": { "pt": [], "en": [] },
@@ -1792,7 +1786,7 @@
   {
     "id": "ST",
     "name": { "pt": "São Tomé e Príncipe", "en": "Sao Tome and Principe" },
-    "alias": { "pt": ["São Tomé"], "en": [] },
+    "alias": { "pt": ["São Tomé", "Príncipe"], "en": ["Sao Tome", "Principe"] },
     "flag": "ST",
     "continent": "Africa",
     "alpha2": "ST",
@@ -1813,10 +1807,10 @@
   },
   {
     "id": "SY",
-    "name": { "pt": "Síria", "en": "Syrian Arab Republic" },
+    "name": { "pt": "Síria", "en": "Syria" },
     "flag": "SY",
     "continent": "Asia",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": [], "en": ["Syrian Arab Republic"] },
     "alpha2": "SY",
     "alpha3": "SYR",
     "code": "760",
@@ -1824,8 +1818,8 @@
   },
   {
     "id": "SZ",
-    "name": { "pt": "Suazilândia", "en": "Eswatini" },
-    "alias": { "pt": ["Essuatíni"], "en": [] },
+    "name": { "pt": "Essuatíni", "en": "Eswatini" },
+    "alias": { "pt": ["Suazilândia"], "en": ["Swaziland"] },
     "flag": "SZ",
     "continent": "Africa",
     "alpha2": "SZ",
@@ -1869,7 +1863,7 @@
   {
     "id": "TJ",
     "name": { "pt": "Tajiquistão", "en": "Tajikistan" },
-    "alias": { "pt": ["Tadjiquistão"], "en": [] },
+    "alias": { "pt": ["Tadjiquistão"], "en": ["Tadjikistan"] },
     "flag": "TJ",
     "continent": "Asia",
     "alpha2": "TJ",
@@ -1935,7 +1929,7 @@
   {
     "id": "TT",
     "name": { "pt": "Trinidad e Tobago", "en": "Trinidad and Tobago" },
-    "alias": { "pt": ["Trinidad", "Tobago"], "en": [] },
+    "alias": { "pt": ["Trinidad", "Tobago"], "en": ["Trinidad", "Tobago"] },
     "flag": "TT",
     "continent": "America",
     "alpha2": "TT",
@@ -1955,7 +1949,7 @@
   },
   {
     "id": "TW",
-    "name": { "pt": "Taiwan", "en": "Taiwan, Province of China" },
+    "name": { "pt": "Taiwan", "en": "Taiwan" },
     "flag": "TW",
     "continent": "Asia",
     "alias": { "pt": [], "en": [] },
@@ -1966,7 +1960,7 @@
   },
   {
     "id": "TZ",
-    "name": { "pt": "Tanzânia", "en": "Tanzania, United Republic of" },
+    "name": { "pt": "Tanzânia", "en": "Tanzania" },
     "flag": "TZ",
     "continent": "Africa",
     "alias": { "pt": [], "en": [] },
@@ -1999,13 +1993,10 @@
   },
   {
     "id": "GB",
-    "name": {
-      "pt": "Reino Unido",
-      "en": "United Kingdom of Great Britain and Northern Ireland"
-    },
+    "name": { "pt": "Reino Unido", "en": "United Kingdom" },
     "flag": "GB",
     "continent": "Europe",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": [], "en": ["Great Britain"] },
     "alpha2": "GB",
     "alpha3": "GBR",
     "code": "826",
@@ -2017,7 +2008,7 @@
       "pt": "Estados Unidos da América",
       "en": "United States of America"
     },
-    "alias": { "pt": ["Estados Unidos", "EUA"], "en": [] },
+    "alias": { "pt": ["Estados Unidos", "EUA"], "en": ["USA", "United States"] },
     "flag": "US",
     "continent": "America",
     "alpha2": "US",
@@ -2049,10 +2040,10 @@
   },
   {
     "id": "VA",
-    "name": { "pt": "Vaticano", "en": "Holy See" },
+    "name": { "pt": "Vaticano", "en": "Vatican City" },
     "flag": "VA",
     "continent": "Europe",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": [], "en": ["Holy See", "Vatican"] },
     "alpha2": "VA",
     "alpha3": "VAT",
     "code": "336"
@@ -2063,7 +2054,7 @@
       "pt": "São Vicente e Granadinas",
       "en": "Saint Vincent and the Grenadines"
     },
-    "alias": { "pt": ["São Vicente", "Granadinas"], "en": [] },
+    "alias": { "pt": ["São Vicente", "Granadinas"], "en": ["Saint Vincent", "Grenadines"] },
     "flag": "VC",
     "continent": "America",
     "alpha2": "VC",
@@ -2073,7 +2064,7 @@
   },
   {
     "id": "VE",
-    "name": { "pt": "Venezuela", "en": "Venezuela (Bolivarian Republic of)" },
+    "name": { "pt": "Venezuela", "en": "Venezuela" },
     "flag": "VE",
     "continent": "America",
     "alias": { "pt": [], "en": [] },
@@ -2084,8 +2075,8 @@
   },
   {
     "id": "VN",
-    "name": { "pt": "Vietnã", "en": "Viet Nam" },
-    "alias": { "pt": ["Vietname"], "en": [] },
+    "name": { "pt": "Vietnã", "en": "Vietnam" },
+    "alias": { "pt": ["Vietname"], "en": ["Viet Nam"] },
     "flag": "VN",
     "continent": "Asia",
     "alpha2": "VN",

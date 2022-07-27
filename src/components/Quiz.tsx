@@ -1,6 +1,7 @@
 import React from "react";
 import NextImage, { StaticImageData } from "next/image";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { useLang } from "~/hooks";
 import * as flags from "../countries/flags";
 import {
   Card,
@@ -16,6 +17,7 @@ import {
   Menu,
   Switch,
   UnstyledButton,
+  Alert,
 } from "@mantine/core";
 import { useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
@@ -28,12 +30,13 @@ import {
   RiRestartLine,
   RiArrowDownSLine,
   RiMic2Line,
+  RiAlertLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
 
 export const Quiz = (props: { countries: Country[]; title: string }) => {
   const [, rerender] = React.useState(0);
-  const [lang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-US" });
+  const { lang } = useLang();
   const [speech, setSpeech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
   const large = useMediaQuery("(min-width: 1023px)");
@@ -87,8 +90,8 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
     const guess = normalize(_guess);
 
     if (answers.includes(guess)) {
-      const elements = document.querySelectorAll('[data-country-id][data-checked="false"]');
-      const current = document.querySelector(`[data-country-id="${country.id}"]`);
+      const elements = document.querySelectorAll('[data-quiz-card-id][data-quiz-card-status="false"]');
+      const current = document.querySelector(`[data-quiz-card-id="${country.id}"]`);
       const index = [...elements].indexOf(current!);
 
       const currInput = current?.querySelector<HTMLInputElement>("input");
@@ -162,6 +165,20 @@ export const Quiz = (props: { countries: Country[]; title: string }) => {
           </Group>
         </Group>
       </Box>
+      {speech === "true" && (
+        <Box>
+          <Alert variant="light" title="Speech is enabled!" icon={<RiMicLine />}>
+            The <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon means that we are listening to your
+            guesses through your mic. <br />
+            If you are focusing a card but not see the icon, you can {large ? "press enter" : "touch the card again"} to
+            turn it on again.
+            <br />
+            <br />
+            Remember you can always disable <em>speech guesses</em> in your settings{" "}
+            <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+          </Alert>
+        </Box>
+      )}
       <form>
         {large ? (
           <Group spacing="xs">
@@ -192,7 +209,7 @@ const CountryCard: React.FC<
     width?: number;
   }
 > = (props) => {
-  const [lang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-US" });
+  const { lang } = useLang();
   const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
   const { transcript, listening, isMicrophoneAvailable } = useSpeechRecognition();
   const theme = useMantineTheme();
@@ -247,7 +264,7 @@ const CountryCard: React.FC<
   const Wrapper = props.checked ? "div" : "label";
 
   return (
-    <Wrapper data-country-id={props.id} data-checked={props.checked} style={{ width: "100%" }}>
+    <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
       <Card
         p="lg"
         radius="md"
@@ -280,7 +297,7 @@ const CountryCard: React.FC<
             onFocus={() => {
               setFocused(true);
               if (useSpeech) {
-                setTimeout(() => SpeechRecognition.startListening({ language: lang ?? "en-US" }), 50);
+                setTimeout(() => SpeechRecognition.startListening({ language: lang ?? "en-US" }), 100);
               }
             }}
             onBlur={() => {
@@ -328,41 +345,26 @@ const Flag = ({ src, width, height }: { src: StaticImageData; width?: string | n
   );
 };
 
-const FlagButton = (props: { selected: boolean; children: React.ReactNode; onClick: () => any }) => {
-  return (
-    <UnstyledButton
-      sx={{
-        opacity: props.selected ? 1 : 0.2,
-        transition: "opacity 300ms ease",
-        cursor: props.selected ? "default" : "pointer",
-        "&:hover": {
-          opacity: props.selected ? 1 : 0.7,
-        },
-      }}
-      {...props}
-    />
-  );
-};
-
 const LanguageSelector = () => {
-  const [lang, setLang] = useLocalStorage({ key: "gtf:lang", defaultValue: "en-US" });
+  const { lang, setLang, langs } = useLang();
 
   return (
     <Menu shadow="md" width={200} position="bottom-end" withArrow>
       <Menu.Target>
         <UnstyledButton sx={(t) => ({ display: "flex", alignItems: "center", gap: 2, color: t.colors.dark[9] })}>
           <RiArrowDownSLine size={16} />
-          <Flag src={lang === "pt-BR" ? flags.BR : lang === "en-US" ? flags.US : flags.US} width={18} />
+          <Flag src={langs[lang].flag} width={18} />
         </UnstyledButton>
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item icon={<Flag src={flags.US} width={20} />} onClick={() => setLang("en-US")}>
-          English (US)
-        </Menu.Item>
-        <Menu.Item icon={<Flag src={flags.BR} width={20} />} onClick={() => setLang("pt-BR")}>
-          Português (BR)
-        </Menu.Item>
+        {Object.values(langs).map((l) => {
+          return (
+            <Menu.Item key={l.code} icon={<Flag src={l.flag} width={20} />} onClick={() => setLang(l.code)}>
+              {l.name}
+            </Menu.Item>
+          );
+        })}
       </Menu.Dropdown>
     </Menu>
   );

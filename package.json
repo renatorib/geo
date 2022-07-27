@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "yarn codegen:countries",
-    "codegen:countries": "zx scripts/codegen/flags-index.mjs"
+    "codegen": "yarn codegen:flags-index && yarn codegen:countries-index",
+    "codegen:flags-index": "zx scripts/codegen/flags-index.mjs",
+    "codegen:countries-index": "zx scripts/codegen/countries-index.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
