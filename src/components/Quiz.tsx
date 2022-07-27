@@ -2,7 +2,6 @@ import React from "react";
 import NextImage, { StaticImageData } from "next/image";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { useLang } from "~/hooks";
-import * as flags from "../countries/flags";
 import {
   Card,
   Text,
@@ -30,11 +29,10 @@ import {
   RiEyeCloseLine,
   RiRestartLine,
   RiArrowDownSLine,
-  RiMic2Line,
-  RiAlertLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
 import { useEvent } from "~/hooks/useEvent";
+import { calcViewBox } from "~/modules/svg/calcViewBox";
 
 type QuizProps = {
   type?: "flag" | "shape";
@@ -231,6 +229,10 @@ const CountryCard: React.FC<
   const [focused, setFocused] = React.useState(false);
   const type = props.type ?? "flag";
 
+  const shapeViewbox = React.useMemo(() => {
+    return type === "shape" && props.shape ? calcViewBox(props.shape) : null;
+  }, [type, props.shape]);
+
   const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
 
   const startListening = () => {
@@ -330,9 +332,9 @@ const CountryCard: React.FC<
           )}
           {type === "shape" && (
             <Box>
-              {props.shape ? (
-                <svg viewBox="0 0 2048 1024" width="100%" height="100%">
-                  <path d={props.shape} fill="#888" stroke="#222" strokeWidth="1px" />
+              {props.shape && shapeViewbox ? (
+                <svg viewBox={shapeViewbox} width="100%" height="100%">
+                  <path d={props.shape} fill="#222" />
                 </svg>
               ) : (
                 "Country shape not found"
