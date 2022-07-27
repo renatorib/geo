@@ -18,6 +18,7 @@ import {
   UnstyledButton,
   Alert,
   Transition,
+  Center,
 } from "@mantine/core";
 import { useInterval, useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
@@ -225,8 +226,8 @@ const CountryCard: React.FC<
   const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
   const { interimTranscript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
-  const theme = useMantineTheme();
   const [focused, setFocused] = React.useState(false);
+  const theme = useMantineTheme();
   const type = props.type ?? "flag";
 
   const shapeViewbox = React.useMemo(() => {
@@ -334,10 +335,16 @@ const CountryCard: React.FC<
             <Box>
               {props.shape && shapeViewbox ? (
                 <svg viewBox={shapeViewbox} width="100%" height="100%">
-                  <path d={props.shape} fill="#222" />
+                  <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
                 </svg>
               ) : (
-                "Country shape not found"
+                <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+                  <Center>
+                    <Text color="red" size="xs">
+                      Country shape not found
+                    </Text>
+                  </Center>
+                </AspectRatio>
               )}
             </Box>
           )}

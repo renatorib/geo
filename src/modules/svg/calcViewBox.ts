@@ -119,15 +119,12 @@ export const calcViewBox = (pathData: string) => {
     points.y.add(pointer.y);
   }
 
-  const margin = 0;
-
-  const bounds = {
-    x: [Math.min(...points.x) - margin, Math.max(...points.x) + margin],
-    y: [Math.min(...points.y) - margin, Math.max(...points.y) + margin],
+  let bounds = {
+    x: [Math.min(...points.x), Math.max(...points.x)],
+    y: [Math.min(...points.y), Math.max(...points.y)],
   };
-
-  const width = bounds.x[1] - bounds.x[0];
-  const height = bounds.y[1] - bounds.y[0];
+  let width = bounds.x[1] - bounds.x[0];
+  let height = bounds.y[1] - bounds.y[0];
 
   // Output
 
@@ -144,6 +141,15 @@ export const calcViewBox = (pathData: string) => {
     viewboxWidth = height * aspectRatio;
     viewboxX = viewboxX - (viewboxWidth - width) / 2;
   }
+
+  // Add margins
+  const MARGIN = 0.5;
+  const offsetWidth = viewboxWidth * MARGIN;
+  const offsetHeight = viewboxHeight * MARGIN;
+  viewboxX -= offsetWidth / 2;
+  viewboxY -= offsetHeight / 2;
+  viewboxWidth += offsetWidth;
+  viewboxHeight += offsetHeight;
 
   return `${viewboxX} ${viewboxY} ${viewboxWidth} ${viewboxHeight}`;
 };
