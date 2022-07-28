@@ -5,12 +5,16 @@ import { QuizNoSSR } from "~/components/Quiz";
 import { countries } from "~/countries";
 import { Continent } from "~/countries/enums";
 
-const Africa = () => {
+const Oceania = () => {
   return (
     <QuizLayout>
-      <QuizNoSSR title="Africa Flags" countries={countries.filter(({ continent }) => continent === Continent.Africa)} />
+      <QuizNoSSR
+        type="shape"
+        title="Oceania Shapes"
+        countries={countries.filter((c) => c.continent === Continent.Oceania && c.shape != null)}
+      />
     </QuizLayout>
   );
 };
 
-export default Africa;
+export default Oceania;

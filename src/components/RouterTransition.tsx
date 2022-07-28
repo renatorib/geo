@@ -6,8 +6,14 @@ export function RouterTransition() {
   const router = useRouter();
 
   React.useEffect(() => {
-    const handleStart = (url: string) => url !== router.asPath && startNavigationProgress();
-    const handleComplete = () => resetNavigationProgress();
+    const handleStart = (url: string) => {
+      if (url !== router.asPath) {
+        startNavigationProgress();
+      }
+    };
+    const handleComplete = () => {
+      resetNavigationProgress();
+    };
 
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);

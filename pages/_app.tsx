@@ -4,7 +4,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-import { RouterTransition } from "~/components/RouterTransition";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <NotificationsProvider>
-          <RouterTransition />
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>

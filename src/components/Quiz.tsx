@@ -22,7 +22,7 @@ import {
   keyframes,
   createStyles,
 } from "@mantine/core";
-import { useInterval, useLocalStorage, useMediaQuery } from "@mantine/hooks";
+import { useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
   RiCheckLine,
   RiShuffleFill,
@@ -31,12 +31,13 @@ import {
   RiMicLine,
   RiEyeCloseLine,
   RiRestartLine,
-  RiArrowDownSLine,
   RiVolumeUpLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useLang, useEvent, usePrevious, usePooling } from "~/hooks";
+import { useLang, usePrevious, usePooling } from "~/hooks";
+import { Chevron } from "~/components";
 import { calcViewBox } from "~/modules/svg/calcViewBox";
+import dynamic from "next/dynamic";
 
 type QuizProps = {
   type?: "flag" | "shape";
@@ -274,6 +275,8 @@ export const Quiz = (props: QuizProps) => {
   );
 };
 
+export const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
+
 const CountryCard: React.FC<{
   country: Country;
   checked: "correct" | "spoiler" | false;
@@ -420,12 +423,24 @@ const Flag = ({ src, width, height }: { src: StaticImageData; width?: string | n
 
 const LanguageSelector = () => {
   const { lang, setLang, langs } = useLang();
+  const [opened, setOpened] = React.useState(false);
 
   return (
-    <Menu shadow="md" width={200} position="bottom-end" withArrow>
+    <Menu opened={opened} onChange={setOpened} shadow="md" width={200} position="bottom-end" withArrow>
       <Menu.Target>
-        <UnstyledButton sx={(t) => ({ display: "flex", alignItems: "center", gap: 2, color: t.colors.dark[9] })}>
-          <RiArrowDownSLine size={16} />
+        <UnstyledButton
+          sx={(t) => ({
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            color: t.colors.dark[9],
+            padding: "4px 8px",
+            borderRadius: 3,
+            "&:hover": { background: t.colors.dark[0] },
+            "&:active": { transform: "translateY(1px)" },
+          })}
+        >
+          <Chevron opened={opened} />
           <Flag src={langs[lang].flag} width={18} />
         </UnstyledButton>
       </Menu.Target>
