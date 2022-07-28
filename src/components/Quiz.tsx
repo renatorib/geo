@@ -60,7 +60,7 @@ export const Quiz = (props: QuizProps) => {
 
   React.useEffect(() => {
     const SpeechGrammarList =
-      window.SpeechGrammarList ||
+      (window as any).SpeechGrammarList ||
       (window as any).webkitSpeechGrammarList ||
       (window as any).mozSpeechGrammarList ||
       (window as any).webkitSpeechGrammarList;
