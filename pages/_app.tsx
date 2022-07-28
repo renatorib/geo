@@ -1,8 +1,10 @@
 import "regenerator-runtime/runtime";
 import React from "react";
-import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
+import { RouterTransition } from "~/components/RouterTransition";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <MantineProvider withGlobalStyles withNormalizeCSS>
-        <Component {...pageProps} />
+        <NotificationsProvider>
+          <RouterTransition />
+          <Component {...pageProps} />
+        </NotificationsProvider>
       </MantineProvider>
     </>
   );

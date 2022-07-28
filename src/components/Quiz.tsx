@@ -1,7 +1,6 @@
 import React from "react";
 import NextImage, { StaticImageData } from "next/image";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import { useLang } from "~/hooks";
 import {
   Card,
   Text,
@@ -19,6 +18,9 @@ import {
   Alert,
   Transition,
   Center,
+  Dialog,
+  keyframes,
+  createStyles,
 } from "@mantine/core";
 import { useInterval, useLocalStorage, useMediaQuery } from "@mantine/hooks";
 import {
@@ -32,7 +34,7 @@ import {
   RiArrowDownSLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useEvent } from "~/hooks/useEvent";
+import { useLang, useEvent, usePrevious } from "~/hooks";
 import { calcViewBox } from "~/modules/svg/calcViewBox";
 
 type QuizProps = {
@@ -178,13 +180,8 @@ export const Quiz = (props: QuizProps) => {
           <Box style={{ ...styles }}>
             <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
               <Text color="dimmed">
-                The <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon means that we are listening to
-                your guesses through your mic.
-                <br />
-                If you are focusing a card but not see the icon, you can{" "}
-                <strong>{large ? "press enter" : "touch the card again"}</strong> to turn it on again.
-                <br />
-                Remember you can always disable <em>speech guesses</em> in your settings{" "}
+                When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
+                listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
                 <RiMore2Fill style={{ verticalAlign: "middle" }} />.
               </Text>
             </Alert>
@@ -224,8 +221,8 @@ const CountryCard: React.FC<
 > = (props) => {
   const { lang } = useLang();
   const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
-  const { interimTranscript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } =
-    useSpeechRecognition();
+  const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
+  const prevTranscript = usePrevious(transcript);
   const [focused, setFocused] = React.useState(false);
   const theme = useMantineTheme();
   const type = props.type ?? "flag";
@@ -238,7 +235,7 @@ const CountryCard: React.FC<
 
   const startListening = () => {
     if (useSpeech && !listening) {
-      SpeechRecognition.startListening({ language: lang, continuous: true });
+      SpeechRecognition.startListening({ language: lang });
     }
   };
 
@@ -254,7 +251,7 @@ const CountryCard: React.FC<
     }
   });
 
-  const interval = useInterval(tick, 1000);
+  const interval = useInterval(tick, 500);
 
   React.useEffect(() => {
     interval.start();
@@ -262,11 +259,10 @@ const CountryCard: React.FC<
   }, []); // eslint-disable-line
 
   React.useEffect(() => {
-    if (useSpeech && interimTranscript && focused) {
-      console.log(interimTranscript);
-      props.onGuess(interimTranscript);
+    if (useSpeech && transcript && focused) {
+      props.onGuess(transcript);
     }
-  }, [interimTranscript, focused, useSpeech]); // eslint-disable-line
+  }, [transcript, focused, useSpeech]); // eslint-disable-line
 
   const getStateProps = () => {
     switch (props.checked) {
@@ -309,89 +305,107 @@ const CountryCard: React.FC<
   const Wrapper = props.checked ? "div" : "label";
 
   return (
-    <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
-      <Card
-        p="lg"
-        radius="md"
-        shadow={focused ? "lg" : undefined}
-        sx={(t) => ({
-          outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
-        })}
-        withBorder
+    <>
+      <Dialog
+        opened={focused && listening && Boolean(transcript || prevTranscript)}
+        position={{ top: 20, left: "calc(50vw - 150px)" }}
+        transition="slide-down"
+        styles={{
+          root: {
+            width: 300,
+            textAlign: "center",
+            boxShadow: "none",
+            background: "rgba(0, 0, 0, 0.7)",
+            color: "white",
+          },
+        }}
       >
-        <Card.Section sx={{ backgroundColor: color[0] }}>
-          {type === "flag" && (
-            <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-              <NextImage
-                src={props.flag}
-                alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
-                title={props.checked ? name : undefined}
-                objectFit="contain"
-                layout="fill"
-              />
-            </AspectRatio>
-          )}
-          {type === "shape" && (
-            <Box>
-              {props.shape && shapeViewbox ? (
-                <svg viewBox={shapeViewbox} width="100%" height="100%">
-                  <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
-                </svg>
-              ) : (
-                <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-                  <Center>
-                    <Text color="red" size="xs">
-                      Country shape not found
-                    </Text>
-                  </Center>
-                </AspectRatio>
-              )}
-            </Box>
-          )}
-        </Card.Section>
-        <Card.Section sx={{ backgroundColor: color[0] }}>
-          <Input
-            icon={listening && focused ? <RiMicLine color="red" /> : icon}
-            value={props.checked ? name : undefined}
-            title={props.checked ? name : undefined}
-            placeholder="Your guess"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
-            readOnly={!!props.checked}
-            disabled={!!props.checked}
-            onFocus={() => {
-              setFocused(true);
-              startListening();
-            }}
-            onBlur={() => {
-              setFocused(false);
-              stopListening();
-            }}
-            onKeyPress={(ev: React.KeyboardEvent) => {
-              if (ev.code === "Enter") {
+        {transcript || prevTranscript}
+      </Dialog>
+      <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
+        <Card
+          p="lg"
+          radius="md"
+          shadow={focused ? "lg" : undefined}
+          sx={(t) => ({
+            outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
+          })}
+          withBorder
+        >
+          <Card.Section sx={{ backgroundColor: color[0] }}>
+            {type === "flag" && (
+              <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+                <NextImage
+                  src={props.flag}
+                  alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
+                  title={props.checked ? name : undefined}
+                  objectFit="contain"
+                  layout="fill"
+                />
+              </AspectRatio>
+            )}
+            {type === "shape" && (
+              <Box>
+                {props.shape && shapeViewbox ? (
+                  <svg viewBox={shapeViewbox} width="100%" height="100%">
+                    <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
+                  </svg>
+                ) : (
+                  <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+                    <Center>
+                      <Text color="red" size="xs">
+                        Country shape not found
+                      </Text>
+                    </Center>
+                  </AspectRatio>
+                )}
+              </Box>
+            )}
+          </Card.Section>
+          <Card.Section sx={{ backgroundColor: color[0] }}>
+            <Input
+              icon={listening && focused ? <MicOn /> : icon}
+              value={props.checked ? name : undefined}
+              title={props.checked ? name : undefined}
+              placeholder="Your guess"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
+              readOnly={!!props.checked}
+              disabled={!!props.checked}
+              onFocus={() => {
+                setFocused(true);
                 startListening();
-              }
-            }}
-            styles={{
-              icon: {
-                color: color[1],
-              },
-              input: {
-                width: `100%`,
-                border: "none",
-                textOverflow: "ellipsis",
-                "&:disabled": {
+              }}
+              onBlur={() => {
+                setFocused(false);
+                stopListening();
+              }}
+              onKeyPress={(ev: React.KeyboardEvent) => {
+                if (ev.code === "Enter") {
+                  startListening();
+                }
+              }}
+              styles={{
+                icon: {
                   color: color[1],
-                  background: "none",
-                  border: "none",
-                  opacity: 1,
-                  cursor: "default",
                 },
-              },
-            }}
-          />
-        </Card.Section>
-      </Card>
-    </Wrapper>
+                input: {
+                  width: `100%`,
+                  border: "none",
+                  textOverflow: "ellipsis",
+                  "&:disabled": {
+                    color: color[1],
+                    background: "none",
+                    border: "none",
+                    opacity: 1,
+                    cursor: "default",
+                  },
+                },
+              }}
+            />
+          </Card.Section>
+        </Card>
+      </Wrapper>
+    </>
   );
 };
 
@@ -426,6 +440,22 @@ const LanguageSelector = () => {
       </Menu.Dropdown>
     </Menu>
   );
+};
+
+const blink = keyframes({
+  "0, 100&": { opacity: 1 },
+  "50%": { opacity: 0.2 },
+});
+
+const useBlinkStyles = createStyles((theme) => ({
+  blink: {
+    animation: `${blink} 1.5s ease-in-out infinite`,
+  },
+}));
+
+const MicOn = () => {
+  const { classes } = useBlinkStyles();
+  return <RiMicLine color="red" className={classes.blink} />;
 };
 
 function shuffle(array: any[]) {
