@@ -212,7 +212,7 @@
     "name": { "pt": "Benim", "en": "Benin" },
     "flag": "BJ",
     "continent": "Africa",
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Benin"], "en": ["Benim"] },
     "alpha2": "BJ",
     "alpha3": "BEN",
     "code": "204",

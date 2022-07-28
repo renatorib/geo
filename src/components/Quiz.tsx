@@ -35,7 +35,7 @@ import {
   RiVolumeUpLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useLang, useEvent, usePrevious } from "~/hooks";
+import { useLang, useEvent, usePrevious, usePooling } from "~/hooks";
 import { calcViewBox } from "~/modules/svg/calcViewBox";
 
 type QuizProps = {
@@ -48,11 +48,41 @@ export const Quiz = (props: QuizProps) => {
   const [, rerender] = React.useState(0);
   const { lang } = useLang();
   const [speech, setSpeech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
-  const { browserSupportsSpeechRecognition } = useSpeechRecognition();
+  const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const large = useMediaQuery("(min-width: 1023px)");
   const [spoiler, setSpoiler] = React.useState(false);
+  const [focusedCountryId, setFocusedCountryId] = React.useState<string>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const [countries, setCountries] = React.useState(() => shuffle(props.countries));
+  const [countries, setCountries] = React.useState<Country[]>(() => shuffle(props.countries));
+
+  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
+
+  const startListening = () => {
+    if (useSpeech && !listening) {
+      SpeechRecognition.startListening({ language: lang });
+    }
+  };
+
+  const stopListening = () => {
+    if (useSpeech || listening) {
+      SpeechRecognition.stopListening();
+    }
+  };
+
+  usePooling(() => {
+    if (useSpeech && focusedCountryId && !listening) {
+      startListening();
+    } else if (useSpeech && listening && !focusedCountryId) {
+      stopListening();
+    }
+  }, 100);
+
+  React.useEffect(() => {
+    const country = countries.find((c) => c.id === focusedCountryId);
+    if (useSpeech && transcript && focusedCountryId && country) {
+      handleGuess(country, transcript);
+    }
+  }, [transcript, focusedCountryId, useSpeech]); // eslint-disable-line
 
   const shuffleCountries = () => {
     setCountries((c) => shuffle(c));
@@ -120,13 +150,19 @@ export const Quiz = (props: QuizProps) => {
 
   const cards = countries.map((country) => (
     <React.Fragment key={country.id}>
-      <CountryCard
-        {...country}
-        checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
-        onGuess={(guess) => handleGuess(country, guess)}
-        width={large ? 300 : 180}
-        type={props.type ?? "flag"}
-      />
+      <div
+        onFocusCapture={() => setFocusedCountryId(country.id)}
+        onBlurCapture={() => setFocusedCountryId((c) => (c === country.id ? undefined : c))}
+      >
+        <CountryCard
+          country={country}
+          listening={listening}
+          checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
+          onGuess={(guess) => handleGuess(country, guess)}
+          width={large ? 300 : 180}
+          type={props.type ?? "flag"}
+        />
+      </div>
     </React.Fragment>
   ));
 
@@ -215,60 +251,25 @@ export const Quiz = (props: QuizProps) => {
   );
 };
 
-const CountryCard: React.FC<
-  Country & {
-    type: "flag" | "shape";
-    checked: "correct" | "spoiler" | false;
-    onGuess: (guess: string) => void;
-    width?: number;
-  }
-> = (props) => {
-  const { lang } = useLang();
-  const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
-  const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const prevTranscript = usePrevious(transcript);
+const CountryCard: React.FC<{
+  country: Country;
+  checked: "correct" | "spoiler" | false;
+  onGuess: (guess: string) => void;
+  type?: "flag" | "shape";
+  width?: number;
+  listening?: boolean;
+}> = (props) => {
   const [focused, setFocused] = React.useState(false);
+  const { lang } = useLang();
   const theme = useMantineTheme();
-  const type = props.type ?? "flag";
+
+  const { country, checked, onGuess, type = "flag", width, listening } = props;
 
   const shapeViewbox = React.useMemo(() => {
-    return type === "shape" && props.shape ? calcViewBox(props.shape) : null;
-  }, [type, props.shape]);
+    return type === "shape" && country.shape ? calcViewBox(country.shape) : null;
+  }, [type, country.shape]);
 
-  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
-
-  const startListening = () => {
-    if (useSpeech && !listening) {
-      SpeechRecognition.startListening({ language: lang });
-    }
-  };
-
-  const stopListening = () => {
-    if (useSpeech || listening) {
-      SpeechRecognition.stopListening();
-    }
-  };
-
-  const tick = useEvent(() => {
-    if (useSpeech && focused && !listening) {
-      startListening();
-    }
-  });
-
-  const interval = useInterval(tick, 500);
-
-  React.useEffect(() => {
-    interval.start();
-    return interval.stop;
-  }, []); // eslint-disable-line
-
-  React.useEffect(() => {
-    if (useSpeech && transcript && focused) {
-      props.onGuess(transcript);
-    }
-  }, [transcript, focused, useSpeech]); // eslint-disable-line
-
-  const getStateProps = () => {
+  const stateProps = React.useMemo(() => {
     switch (props.checked) {
       case "correct":
         return {
@@ -286,44 +287,46 @@ const CountryCard: React.FC<
           icon: undefined,
         };
     }
-  };
+  }, [props.checked]); // eslint-disable-line
 
-  const getLangProps = () => {
+  const langProps = React.useMemo(() => {
     switch (lang) {
       case "pt-BR":
         return {
-          name: props.name.pt,
+          name: country.name.pt,
         };
       case "en-US":
       default:
         return {
-          name: props.name.en,
+          name: country.name.en,
         };
     }
-  };
+  }, [lang]); // eslint-disable-line
 
-  const { color, icon } = getStateProps();
-  const { name } = getLangProps();
-
-  // Wrapper
-  const Wrapper = props.checked ? "div" : "label";
+  const { color, icon } = stateProps;
+  const { name } = langProps;
 
   return (
-    <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
+    <Box
+      component={props.checked ? "div" : "label"}
+      data-quiz-card-id={country.id}
+      data-quiz-card-status={props.checked}
+      style={{ width: "100%" }}
+    >
       <Card
+        withBorder
         p="lg"
         radius="md"
         shadow={focused ? "lg" : undefined}
         sx={(t) => ({
           outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
         })}
-        withBorder
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
           {type === "flag" && (
             <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
               <NextImage
-                src={props.flag}
+                src={country.flag}
                 alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
                 title={props.checked ? name : undefined}
                 objectFit="contain"
@@ -333,9 +336,9 @@ const CountryCard: React.FC<
           )}
           {type === "shape" && (
             <Box>
-              {props.shape && shapeViewbox ? (
+              {country.shape && shapeViewbox ? (
                 <svg viewBox={shapeViewbox} width="100%" height="100%">
-                  <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
+                  <path d={country.shape} fill={props.checked ? color[1] : "#222"} />
                 </svg>
               ) : (
                 <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
@@ -350,27 +353,16 @@ const CountryCard: React.FC<
           )}
         </Card.Section>
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          <Input
-            icon={listening && focused ? <MicOn /> : icon}
+          <Input<"input">
+            icon={props.listening && focused ? <MicOn /> : icon}
             value={props.checked ? name : undefined}
             title={props.checked ? name : undefined}
             placeholder="Your guess"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
+            onChange={(e) => props.onGuess(e.target.value)}
             readOnly={!!props.checked}
             disabled={!!props.checked}
-            onFocus={() => {
-              setFocused(true);
-              startListening();
-            }}
-            onBlur={() => {
-              setFocused(false);
-              stopListening();
-            }}
-            onKeyPress={(ev: React.KeyboardEvent) => {
-              if (ev.code === "Enter") {
-                startListening();
-              }
-            }}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
             styles={{
               icon: {
                 color: color[1],
@@ -391,7 +383,7 @@ const CountryCard: React.FC<
           />
         </Card.Section>
       </Card>
-    </Wrapper>
+    </Box>
   );
 };
 
@@ -438,7 +430,7 @@ const TranscriptDialog = () => {
   React.useEffect(() => {
     setShow(true);
     clearTimeout(dismissTimeout.current);
-    dismissTimeout.current = setTimeout(() => setShow(false), 2000);
+    dismissTimeout.current = setTimeout(() => setShow(false), 3000);
     return () => clearTimeout(dismissTimeout.current);
   }, [transcript]);
 
