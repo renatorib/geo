@@ -8,27 +8,32 @@ import {
   UnstyledButton,
   Stack,
   Box,
-  ScrollArea,
   Header,
   ActionIcon,
   Burger,
-  MediaQuery,
   Divider,
   ThemeIcon,
   Collapse,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope, GiBrazil } from "react-icons/gi";
+import {
+  GiFlyingFlag,
+  GiEarthAmerica,
+  GiEarthAsiaOceania,
+  GiEarthAfricaEurope,
+  GiBrazil,
+  GiWorld,
+} from "react-icons/gi";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { RiArrowDownSLine } from "react-icons/ri";
 import { useIsMounted } from "~/hooks";
 import { Chevron } from "~/components";
 
 export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
   const [navbarOpened, setNavbarOpened] = React.useState(false);
   const [flagsOpened, setFlagsOpened] = React.useState(true);
-  const [shapesOpened, setShapesOpened] = React.useState(false);
+  const [shapesOpened, setShapesOpened] = React.useState(true);
+  const [othersOpened, setOthersOpened] = React.useState(true);
   const large = useMediaQuery("(min-width: 1023px)");
   const isMounted = useIsMounted();
 
@@ -57,12 +62,13 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
             ? { hiddenBreakpoint: "sm", hidden: !navbarOpened, width: { base: 0, sm: 220 } }
             : { width: { base: 200 } })}
         >
-          <Navbar.Section grow component={ScrollArea}>
+          <Navbar.Section grow>
             <Stack>
               <Text weight={700} align="center" my={18} color="violet">
                 Guess the Flag!
               </Text>
 
+              {/* Flags */}
               <Divider
                 label={
                   <UnstyledButton
@@ -100,6 +106,8 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </NavbarLink>
                 </Stack>
               </Collapse>
+
+              {/* Shapes */}
               <Divider
                 label={
                   <UnstyledButton
@@ -134,6 +142,30 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </NavbarLink>
                   <NavbarLink href="/shapes/oceania" icon={<GiEarthAsiaOceania />}>
                     Oceania
+                  </NavbarLink>
+                </Stack>
+              </Collapse>
+
+              {/* Others */}
+              <Divider
+                label={
+                  <UnstyledButton
+                    px="xs"
+                    onClick={() => setOthersOpened((o) => !o)}
+                    sx={(t) => ({ fontSize: "inherit", "&:hover": { background: t.colors.gray[0] } })}
+                  >
+                    <Group spacing="xs">
+                      <GiWorld />
+                      <Text weight="bold">Others</Text>
+                      <Chevron opened={othersOpened} />
+                    </Group>
+                  </UnstyledButton>
+                }
+              />
+              <Collapse in={othersOpened}>
+                <Stack spacing="xs" pl="md" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
+                  <NavbarLink href="/others/world-map" icon={<GiEarthAmerica />}>
+                    Word Map
                   </NavbarLink>
                 </Stack>
               </Collapse>

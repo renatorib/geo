@@ -1,5 +1,6 @@
 import React from "react";
-import NextImage, { StaticImageData } from "next/image";
+import NextImage from "next/image";
+import dynamic from "next/dynamic";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import {
   Card,
@@ -14,7 +15,6 @@ import {
   ActionIcon,
   Menu,
   Switch,
-  UnstyledButton,
   Alert,
   Transition,
   Center,
@@ -35,9 +35,8 @@ import {
 } from "react-icons/ri";
 import { Country } from "../countries";
 import { useLang, usePrevious, usePooling } from "~/hooks";
-import { Chevron } from "~/components";
 import { calcViewBox } from "~/modules/svg/calcViewBox";
-import dynamic from "next/dynamic";
+import { LangSelector } from "./LangSelector";
 
 type QuizProps = {
   type?: "flag" | "shape";
@@ -203,7 +202,7 @@ export const Quiz = (props: QuizProps) => {
               </Text>
             </Box>
             <Group ml="auto" spacing="xs">
-              <LanguageSelector />
+              <LangSelector />
               <Menu shadow="md" width={200} position="bottom-end" withArrow>
                 <Menu.Target>
                   <ActionIcon radius="xl" color="dark">
@@ -410,51 +409,6 @@ const CountryCard: React.FC<{
         </Card.Section>
       </Card>
     </Box>
-  );
-};
-
-const Flag = ({ src, width, height }: { src: StaticImageData; width?: string | number; height?: string | number }) => {
-  return (
-    <AspectRatio ratio={45 / 30} style={{ width, height, borderRadius: 2, overflow: "hidden" }}>
-      <NextImage src={src} layout="fill" />
-    </AspectRatio>
-  );
-};
-
-const LanguageSelector = () => {
-  const { lang, setLang, langs } = useLang();
-  const [opened, setOpened] = React.useState(false);
-
-  return (
-    <Menu opened={opened} onChange={setOpened} shadow="md" width={200} position="bottom-end" withArrow>
-      <Menu.Target>
-        <UnstyledButton
-          sx={(t) => ({
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-            color: t.colors.dark[9],
-            padding: "4px 8px",
-            borderRadius: 3,
-            "&:hover": { background: t.colors.dark[0] },
-            "&:active": { transform: "translateY(1px)" },
-          })}
-        >
-          <Chevron opened={opened} />
-          <Flag src={langs[lang].flag} width={18} />
-        </UnstyledButton>
-      </Menu.Target>
-
-      <Menu.Dropdown>
-        {Object.values(langs).map((l) => {
-          return (
-            <Menu.Item key={l.code} icon={<Flag src={l.flag} width={20} />} onClick={() => setLang(l.code)}>
-              {l.name}
-            </Menu.Item>
-          );
-        })}
-      </Menu.Dropdown>
-    </Menu>
   );
 };
 

@@ -1,6 +1,6 @@
-import { parsePathData } from "./path";
+import { parsePathData } from "../path";
 
-export const calcViewBox = (pathData: string, aspectRatio = 45 / 30) => {
+export const zoomIntoPath = (pathData: string, aspectRatio = 45 / 30) => {
   const data = parsePathData(pathData);
   const points = { x: new Set<number>(), y: new Set<number>() };
   const pointer = { x: 0, y: 0 };
@@ -150,5 +150,13 @@ export const calcViewBox = (pathData: string, aspectRatio = 45 / 30) => {
   viewboxWidth += offsetWidth;
   viewboxHeight += offsetHeight;
 
-  return `${viewboxX} ${viewboxY} ${viewboxWidth} ${viewboxHeight}`;
+  const viewbox = `${viewboxX} ${viewboxY} ${viewboxWidth} ${viewboxHeight}`;
+
+  return {
+    viewboxX,
+    viewboxY,
+    viewboxHeight,
+    viewboxWidth,
+    viewbox,
+  };
 };
