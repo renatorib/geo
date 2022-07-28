@@ -57,9 +57,32 @@ export const Quiz = (props: QuizProps) => {
 
   const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
 
+  React.useEffect(() => {
+    const SpeechGrammarList =
+      globalThis.SpeechGrammarList ||
+      (globalThis as any).webkitSpeechGrammarList ||
+      (globalThis as any).mozSpeechGrammarList ||
+      (globalThis as any).webkitSpeechGrammarList;
+
+    if (useSpeech && SpeechGrammarList) {
+      const recognition = SpeechRecognition.getRecognition() as any as typeof globalThis.SpeechRecognition.prototype;
+
+      if ("grammars" in recognition) {
+        const property = lang === "en-US" ? "en" : lang === "pt-BR" ? "pt" : "en";
+        const grammar = `#JSGF V1.0; grammar countries; public <countries> = ${countries
+          .flatMap((c) => [c.name[property], ...c.alias[property]])
+          .join(" | ")} ;`;
+        const list = new SpeechGrammarList();
+        list.addFromString(grammar, 10);
+        recognition.grammars = list;
+      }
+    }
+  }, [useSpeech, lang]); // eslint-disable-line
+
   const startListening = () => {
     if (useSpeech && !listening) {
       SpeechRecognition.startListening({ language: lang });
+      console.log(SpeechRecognition.getRecognition());
     }
   };
 

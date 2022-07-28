@@ -1088,7 +1088,7 @@
     "name": { "pt": "Liechtenstein", "en": "Liechtenstein" },
     "flag": "LI",
     "continent": "Europe",
-    "alias": { "pt": ["Lichtenstein"], "en": [] },
+    "alias": { "pt": ["Lichtenstein"], "en": ["Lichtenstein"] },
     "alpha2": "LI",
     "alpha3": "LIE",
     "code": "438",
