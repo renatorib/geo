@@ -32,6 +32,7 @@ import {
   RiEyeCloseLine,
   RiRestartLine,
   RiArrowDownSLine,
+  RiVolumeUpLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
 import { useLang, useEvent, usePrevious } from "~/hooks";
@@ -130,84 +131,87 @@ export const Quiz = (props: QuizProps) => {
   ));
 
   return (
-    <Stack>
-      <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa", width: "100%" }} py="xs">
-        <Group>
-          <Text weight={700}>{props.title}</Text>
-          <Box>
-            <Text>
-              {Object.values(checked).length} / {countries.length}
-            </Text>
-          </Box>
-          <Group ml="auto" spacing="xs">
-            <LanguageSelector />
-            <Menu shadow="md" width={200} position="bottom-end" withArrow>
-              <Menu.Target>
-                <ActionIcon radius="xl" color="dark">
-                  <RiMore2Fill size={20} />
-                </ActionIcon>
-              </Menu.Target>
-
-              <Menu.Dropdown>
-                <Menu.Label>Quiz</Menu.Label>
-                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
-                  Shuffle
-                </Menu.Item>
-                <Menu.Item icon={<RiRestartLine />} onClick={reset}>
-                  Reset
-                </Menu.Item>
-                <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
-                  {spoiler ? "Hide" : "Show"} answers
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Label>Settings</Menu.Label>
-                <Group px={12} py={6} position="apart">
-                  <Switch
-                    size="xs"
-                    checked={speech === "true" ? true : false}
-                    onChange={(ev) => setSpeech(String(ev.currentTarget.checked))}
-                    disabled={!browserSupportsSpeechRecognition}
-                    label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
-                  />
-                </Group>
-              </Menu.Dropdown>
-            </Menu>
-          </Group>
-        </Group>
-      </Box>
-      <Transition mounted={speech === "true"} transition="fade" duration={200}>
-        {(styles) => (
-          <Box style={{ ...styles }}>
-            <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
-              <Text color="dimmed">
-                When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
-                listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
-                <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+    <>
+      <TranscriptDialog />
+      <Stack>
+        <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa", width: "100%" }} py="xs">
+          <Group>
+            <Text weight={700}>{props.title}</Text>
+            <Box>
+              <Text>
+                {Object.values(checked).length} / {countries.length}
               </Text>
-            </Alert>
-          </Box>
-        )}
-      </Transition>
-      <form>
-        {large ? (
-          <Group spacing="xs">
-            {cards.map((card) => (
-              <Box key={card.key} sx={{ width: 300 }}>
-                {card}
-              </Box>
-            ))}
+            </Box>
+            <Group ml="auto" spacing="xs">
+              <LanguageSelector />
+              <Menu shadow="md" width={200} position="bottom-end" withArrow>
+                <Menu.Target>
+                  <ActionIcon radius="xl" color="dark">
+                    <RiMore2Fill size={20} />
+                  </ActionIcon>
+                </Menu.Target>
+
+                <Menu.Dropdown>
+                  <Menu.Label>Quiz</Menu.Label>
+                  <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
+                    Shuffle
+                  </Menu.Item>
+                  <Menu.Item icon={<RiRestartLine />} onClick={reset}>
+                    Reset
+                  </Menu.Item>
+                  <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
+                    {spoiler ? "Hide" : "Show"} answers
+                  </Menu.Item>
+                  <Menu.Divider />
+                  <Menu.Label>Settings</Menu.Label>
+                  <Group px={12} py={6} position="apart">
+                    <Switch
+                      size="xs"
+                      checked={speech === "true" ? true : false}
+                      onChange={(ev) => setSpeech(String(ev.currentTarget.checked))}
+                      disabled={!browserSupportsSpeechRecognition}
+                      label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
+                    />
+                  </Group>
+                </Menu.Dropdown>
+              </Menu>
+            </Group>
           </Group>
-        ) : (
-          <Grid columns={2}>
-            {cards.map((card) => (
-              <Grid.Col span={1} key={card.key}>
-                {card}
-              </Grid.Col>
-            ))}
-          </Grid>
-        )}
-      </form>
-    </Stack>
+        </Box>
+        <Transition mounted={speech === "true"} transition="fade" duration={200}>
+          {(styles) => (
+            <Box style={{ ...styles }}>
+              <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
+                <Text color="dimmed">
+                  When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
+                  listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
+                  <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+                </Text>
+              </Alert>
+            </Box>
+          )}
+        </Transition>
+        <form>
+          {large ? (
+            <Group spacing="xs">
+              {cards.map((card) => (
+                <Box key={card.key} sx={{ width: 300 }}>
+                  {card}
+                </Box>
+              ))}
+            </Group>
+          ) : (
+            <Grid columns={2}>
+              {cards.map((card) => (
+                <Grid.Col span={1} key={card.key}>
+                  {card}
+                </Grid.Col>
+              ))}
+            </Grid>
+          )}
+        </form>
+      </Stack>
+    </>
   );
 };
 
@@ -305,107 +309,89 @@ const CountryCard: React.FC<
   const Wrapper = props.checked ? "div" : "label";
 
   return (
-    <>
-      <Dialog
-        opened={focused && listening && Boolean(transcript || prevTranscript)}
-        position={{ top: 20, left: "calc(50vw - 150px)" }}
-        transition="slide-down"
-        styles={{
-          root: {
-            width: 300,
-            textAlign: "center",
-            boxShadow: "none",
-            background: "rgba(0, 0, 0, 0.7)",
-            color: "white",
-          },
-        }}
+    <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
+      <Card
+        p="lg"
+        radius="md"
+        shadow={focused ? "lg" : undefined}
+        sx={(t) => ({
+          outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
+        })}
+        withBorder
       >
-        {transcript || prevTranscript}
-      </Dialog>
-      <Wrapper data-quiz-card-id={props.id} data-quiz-card-status={props.checked} style={{ width: "100%" }}>
-        <Card
-          p="lg"
-          radius="md"
-          shadow={focused ? "lg" : undefined}
-          sx={(t) => ({
-            outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
-          })}
-          withBorder
-        >
-          <Card.Section sx={{ backgroundColor: color[0] }}>
-            {type === "flag" && (
-              <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-                <NextImage
-                  src={props.flag}
-                  alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
-                  title={props.checked ? name : undefined}
-                  objectFit="contain"
-                  layout="fill"
-                />
-              </AspectRatio>
-            )}
-            {type === "shape" && (
-              <Box>
-                {props.shape && shapeViewbox ? (
-                  <svg viewBox={shapeViewbox} width="100%" height="100%">
-                    <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
-                  </svg>
-                ) : (
-                  <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-                    <Center>
-                      <Text color="red" size="xs">
-                        Country shape not found
-                      </Text>
-                    </Center>
-                  </AspectRatio>
-                )}
-              </Box>
-            )}
-          </Card.Section>
-          <Card.Section sx={{ backgroundColor: color[0] }}>
-            <Input
-              icon={listening && focused ? <MicOn /> : icon}
-              value={props.checked ? name : undefined}
-              title={props.checked ? name : undefined}
-              placeholder="Your guess"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
-              readOnly={!!props.checked}
-              disabled={!!props.checked}
-              onFocus={() => {
-                setFocused(true);
+        <Card.Section sx={{ backgroundColor: color[0] }}>
+          {type === "flag" && (
+            <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+              <NextImage
+                src={props.flag}
+                alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
+                title={props.checked ? name : undefined}
+                objectFit="contain"
+                layout="fill"
+              />
+            </AspectRatio>
+          )}
+          {type === "shape" && (
+            <Box>
+              {props.shape && shapeViewbox ? (
+                <svg viewBox={shapeViewbox} width="100%" height="100%">
+                  <path d={props.shape} fill={props.checked ? color[1] : "#222"} />
+                </svg>
+              ) : (
+                <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
+                  <Center>
+                    <Text color="red" size="xs">
+                      Country shape not found
+                    </Text>
+                  </Center>
+                </AspectRatio>
+              )}
+            </Box>
+          )}
+        </Card.Section>
+        <Card.Section sx={{ backgroundColor: color[0] }}>
+          <Input
+            icon={listening && focused ? <MicOn /> : icon}
+            value={props.checked ? name : undefined}
+            title={props.checked ? name : undefined}
+            placeholder="Your guess"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onGuess(e.target.value)}
+            readOnly={!!props.checked}
+            disabled={!!props.checked}
+            onFocus={() => {
+              setFocused(true);
+              startListening();
+            }}
+            onBlur={() => {
+              setFocused(false);
+              stopListening();
+            }}
+            onKeyPress={(ev: React.KeyboardEvent) => {
+              if (ev.code === "Enter") {
                 startListening();
-              }}
-              onBlur={() => {
-                setFocused(false);
-                stopListening();
-              }}
-              onKeyPress={(ev: React.KeyboardEvent) => {
-                if (ev.code === "Enter") {
-                  startListening();
-                }
-              }}
-              styles={{
-                icon: {
+              }
+            }}
+            styles={{
+              icon: {
+                color: color[1],
+              },
+              input: {
+                width: `100%`,
+                border: "none",
+                textOverflow: "ellipsis",
+                "&:disabled": {
                   color: color[1],
-                },
-                input: {
-                  width: `100%`,
+                  background: "none",
                   border: "none",
-                  textOverflow: "ellipsis",
-                  "&:disabled": {
-                    color: color[1],
-                    background: "none",
-                    border: "none",
-                    opacity: 1,
-                    cursor: "default",
-                  },
+                  opacity: 1,
+                  cursor: "default",
                 },
-              }}
-            />
-          </Card.Section>
-        </Card>
-      </Wrapper>
-    </>
+              },
+            }}
+          />
+        </Card.Section>
+      </Card>
+    </Wrapper>
   );
 };
 
@@ -439,6 +425,44 @@ const LanguageSelector = () => {
         })}
       </Menu.Dropdown>
     </Menu>
+  );
+};
+
+const TranscriptDialog = () => {
+  const [show, setShow] = React.useState(false);
+  const { transcript } = useSpeechRecognition();
+  const prevTranscript = usePrevious(transcript);
+  const dismissTimeout = React.useRef<NodeJS.Timeout>();
+  const message = transcript || prevTranscript;
+
+  React.useEffect(() => {
+    setShow(true);
+    clearTimeout(dismissTimeout.current);
+    dismissTimeout.current = setTimeout(() => setShow(false), 2000);
+    return () => clearTimeout(dismissTimeout.current);
+  }, [transcript]);
+
+  return (
+    <Dialog
+      opened={show && !!message}
+      position={{ top: 20, left: "calc(50vw - 150px)" }}
+      transition="slide-down"
+      styles={{
+        root: {
+          width: 300,
+          textAlign: "center",
+          boxShadow: "none",
+          background: "rgba(0, 0, 0, 0.5)",
+          color: "white",
+          border: "none",
+        },
+      }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <RiVolumeUpLine style={{ flexShrink: "0" }} />
+        <Text size="lg">{message}</Text>
+      </Box>
+    </Dialog>
   );
 };
 
