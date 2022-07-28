@@ -66,7 +66,7 @@ export const Quiz = (props: QuizProps) => {
       (window as any).webkitSpeechGrammarList;
 
     if (useSpeech && SpeechGrammarList) {
-      const recognition = SpeechRecognition.getRecognition() as any as typeof window.SpeechRecognition.prototype;
+      const recognition = SpeechRecognition.getRecognition() as any;
 
       if ("grammars" in recognition) {
         const property = lang === "en-US" ? "en" : lang === "pt-BR" ? "pt" : "en";
@@ -74,7 +74,7 @@ export const Quiz = (props: QuizProps) => {
           .flatMap((c) => [c.name[property], ...c.alias[property]])
           .join(" | ")} ;`;
         const list = new SpeechGrammarList();
-        list.addFromString(grammar, 10);
+        list?.addFromString?.(grammar, 10);
         recognition.grammars = list;
       }
     }
