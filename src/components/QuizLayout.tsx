@@ -1,30 +1,55 @@
 import React from "react";
 import NextLink from "next/link";
-import { AppShell, Group, Navbar, Text, UnstyledButton, Stack, Box, ScrollArea } from "@mantine/core";
+import {
+  AppShell,
+  Group,
+  Navbar,
+  Text,
+  UnstyledButton,
+  Stack,
+  Box,
+  ScrollArea,
+  Header,
+  ActionIcon,
+  Burger,
+  MediaQuery,
+} from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { GiFlyingFlag, GiEarthAmerica, GiEarthAsiaOceania, GiEarthAfricaEurope } from "react-icons/gi";
 import cn from "classnames";
 import { useRouter } from "next/router";
+import { useIsMounted } from "~/hooks";
 
 export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
+  const [opened, setOpened] = React.useState(false);
+  const large = useMediaQuery("(min-width: 1023px)");
+  const isMounted = useIsMounted();
+
   return (
     <AppShell
       padding="md"
+      fixed={opened}
+      header={
+        !large && isMounted ? (
+          <Header height={50}>
+            <Box sx={{ display: "flex", height: "100%", alignItems: "center" }}>
+              <Box p={10}>
+                <ActionIcon onClick={() => setOpened((op) => !op)}>
+                  <Burger opened={opened} />
+                </ActionIcon>
+              </Box>
+              <GiFlyingFlag size={26} style={{ margin: "auto" }} />
+            </Box>
+          </Header>
+        ) : undefined
+      }
       navbar={
         <Navbar
           p="xs"
           {...(hideNavbar
-            ? { hiddenBreakpoint: "sm", hidden: true, width: { base: 0, sm: 220 } }
+            ? { hiddenBreakpoint: "sm", hidden: !opened, width: { base: 0, sm: 220 } }
             : { width: { base: 200 } })}
         >
-          <Navbar.Section>
-            <Box p={10}>
-              <Group align="center">
-                <GiFlyingFlag size={26} />
-                <Text weight={700}>Guess the Flag</Text>
-              </Group>
-            </Box>
-          </Navbar.Section>
-          <Box py={10} />
           <Navbar.Section grow component={ScrollArea}>
             <Stack spacing="xs">
               <NavbarLink href="/flags/world" icon={<GiEarthAmerica />}>

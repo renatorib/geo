@@ -59,13 +59,13 @@ export const Quiz = (props: QuizProps) => {
 
   React.useEffect(() => {
     const SpeechGrammarList =
-      globalThis.SpeechGrammarList ||
-      (globalThis as any).webkitSpeechGrammarList ||
-      (globalThis as any).mozSpeechGrammarList ||
-      (globalThis as any).webkitSpeechGrammarList;
+      window.SpeechGrammarList ||
+      (window as any).webkitSpeechGrammarList ||
+      (window as any).mozSpeechGrammarList ||
+      (window as any).webkitSpeechGrammarList;
 
     if (useSpeech && SpeechGrammarList) {
-      const recognition = SpeechRecognition.getRecognition() as any as typeof globalThis.SpeechRecognition.prototype;
+      const recognition = SpeechRecognition.getRecognition() as any as typeof window.SpeechRecognition.prototype;
 
       if ("grammars" in recognition) {
         const property = lang === "en-US" ? "en" : lang === "pt-BR" ? "pt" : "en";
