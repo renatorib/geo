@@ -75,10 +75,10 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
         <Navbar
           p="xs"
           {...(hideNavbar
-            ? { hiddenBreakpoint: "sm", hidden: !navbarOpened, width: { base: 0, sm: 220 } }
-            : { width: { base: 200 } })}
+            ? { hiddenBreakpoint: "sm", hidden: !navbarOpened, width: { base: 0, sm: 250 } }
+            : { width: { base: 250 } })}
         >
-          <Navbar.Section grow component={ScrollArea} sx={{ height: "calc(100vh - 50px)" }}>
+          <Navbar.Section grow component={ScrollArea}>
             <Stack>
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                 <Box m={18}>
