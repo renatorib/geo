@@ -147,6 +147,7 @@ import MM from "./MM.png";
 import MN from "./MN.png";
 import MO from "./MO.png";
 import MP from "./MP.png";
+import MQ from "./MQ.png";
 import MR from "./MR.png";
 import MS from "./MS.png";
 import MT from "./MT.png";
@@ -157,6 +158,7 @@ import MX from "./MX.png";
 import MY from "./MY.png";
 import MZ from "./MZ.png";
 import NA from "./NA.png";
+import NC from "./NC.png";
 import NE from "./NE.png";
 import NF from "./NF.png";
 import NG from "./NG.png";
@@ -170,10 +172,12 @@ import NZ from "./NZ.png";
 import OM from "./OM.png";
 import PA from "./PA.png";
 import PE from "./PE.png";
+import PF from "./PF.png";
 import PG from "./PG.png";
 import PH from "./PH.png";
 import PK from "./PK.png";
 import PL from "./PL.png";
+import PM from "./PM.png";
 import PN from "./PN.png";
 import PR from "./PR.png";
 import PS from "./PS.png";
@@ -181,6 +185,7 @@ import PT from "./PT.png";
 import PW from "./PW.png";
 import PY from "./PY.png";
 import QA from "./QA.png";
+import RE from "./RE.png";
 import RO from "./RO.png";
 import RS from "./RS.png";
 import RU from "./RU.png";
@@ -207,6 +212,7 @@ import SY from "./SY.png";
 import SZ from "./SZ.png";
 import TC from "./TC.png";
 import TD from "./TD.png";
+import TF from "./TF.png";
 import TG from "./TG.png";
 import TH from "./TH.png";
 import TJ from "./TJ.png";
@@ -232,9 +238,11 @@ import VG from "./VG.png";
 import VI from "./VI.png";
 import VN from "./VN.png";
 import VU from "./VU.png";
+import WF from "./WF.png";
 import WS from "./WS.png";
 import XK from "./XK.png";
 import YE from "./YE.png";
+import YT from "./YT.png";
 import ZA from "./ZA.png";
 import ZM from "./ZM.png";
 import ZW from "./ZW.png";
@@ -386,6 +394,7 @@ export {
   MN,
   MO,
   MP,
+  MQ,
   MR,
   MS,
   MT,
@@ -396,6 +405,7 @@ export {
   MY,
   MZ,
   NA,
+  NC,
   NE,
   NF,
   NG,
@@ -409,10 +419,12 @@ export {
   OM,
   PA,
   PE,
+  PF,
   PG,
   PH,
   PK,
   PL,
+  PM,
   PN,
   PR,
   PS,
@@ -420,6 +432,7 @@ export {
   PW,
   PY,
   QA,
+  RE,
   RO,
   RS,
   RU,
@@ -446,6 +459,7 @@ export {
   SZ,
   TC,
   TD,
+  TF,
   TG,
   TH,
   TJ,
@@ -471,9 +485,11 @@ export {
   VI,
   VN,
   VU,
+  WF,
   WS,
   XK,
   YE,
+  YT,
   ZA,
   ZM,
   ZW,
