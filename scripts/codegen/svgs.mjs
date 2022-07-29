@@ -3,24 +3,32 @@ $.verbose = false;
 
 import fs from "node:fs";
 import prettier from "prettier";
+import parser from "node-html-parser";
 import data from "../../src/countries/data.json" assert { type: "json" };
 
-const ls = await $`ls src/countries/svgs`;
+const world = parser.default(fs.readFileSync("src/countries/world.svg"));
+const paths = world.childNodes[0].childNodes.filter((n) => n.rawTagName === "path");
 
-const svgs = ls.stdout
-  .split("\n")
-  .filter(Boolean)
-  .filter((c) => c.endsWith(".svg"))
-  .map((c) => c.slice(0, -".svg".length));
+for (const path of paths) {
+  const attr = path.attributes;
+  const index = data.findIndex((c) => c.id.toLocaleLowerCase() === attr.id.toLocaleLowerCase());
 
-for (const svg of svgs) {
-  const content = await $`cat src/countries/svgs/${svg}.svg`;
-  const shape = content.stdout.match(/path d=\"([^"]*)\"/)?.[1];
-  if (shape) {
-    const index = data.findIndex((c) => c.id === svg);
-    if (data[index]) {
-      data[index].shape = shape;
-    }
+  if (index >= 0) {
+    data[index].independent = true;
+    data[index].shape = attr.d;
+  } else {
+    data.push({
+      id: attr.id.toUpperCase(),
+      name: { pt: attr.name, en: attr.name },
+      alias: { pt: [], en: [] },
+      flag: null,
+      continent: null,
+      alpha2: attr.id.toUpperCase(),
+      alpha3: null,
+      code: null,
+      shape: attr.d,
+      independent: false,
+    });
   }
 }
 

@@ -7,7 +7,7 @@ import { countries } from "~/countries";
 const World = () => {
   return (
     <QuizLayout>
-      <QuizNoSSR type="shape" title="World Shapes" countries={countries} />
+      <QuizNoSSR type="shape" title="World Shapes" countries={countries.filter((c) => c.shape != null)} />
     </QuizLayout>
   );
 };
