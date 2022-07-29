@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
-import { ActionIcon, Text, Box, Center, Group, Input, createStyles, Menu } from "@mantine/core";
+import { ActionIcon, Text, Box, Center, Group, Input, createStyles, Menu, Badge } from "@mantine/core";
 import { QuizLayout } from "~/components";
 import { Country } from "~/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
@@ -93,10 +93,10 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
     <QuizLayout>
       <Box sx={{ position: "relative" }} m="-md">
         <Center sx={{ position: "absolute", width: "100%", zIndex: 1 }} pt="xs">
-          <Group sx={{ maxWidth: 420, background: "rgba(0, 0, 0, 0.1)", borderRadius: 8 }} p="xs" spacing="xs">
+          <Group sx={{ background: "rgba(255, 255, 255, 0.7)", borderRadius: 8, maxWidth: 420 }} p="xs" spacing="xs">
             <Menu withinPortal withArrow width={200}>
               <Menu.Target>
-                <ActionIcon color="dark" radius="xl">
+                <ActionIcon color="gray" radius="xl">
                   <RiMore2Fill size={18} />
                 </ActionIcon>
               </Menu.Target>
@@ -107,7 +107,7 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
               </Menu.Dropdown>
             </Menu>
             <Box>
-              <Text size="xs" color="dark">
+              <Text size="sm" color="dimmed" weight={400}>
                 {Object.keys(checked).length} / {countriesToPlay.length}
               </Text>
             </Box>

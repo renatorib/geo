@@ -16,7 +16,6 @@ export const LangSelector = () => {
           sx={(t) => ({
             display: "flex",
             alignItems: "center",
-            gap: 2,
             color: t.colors.dark[9],
             padding: "2px",
             borderRadius: 3,
@@ -24,8 +23,8 @@ export const LangSelector = () => {
             "&:active": { transform: "translateY(1px)" },
           })}
         >
-          <Chevron opened={opened} />
           <Flag src={langs[lang].flag} width={18} />
+          <Chevron opened={opened} size={14} />
         </UnstyledButton>
       </Menu.Target>
 
