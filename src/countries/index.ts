@@ -3622,7 +3622,7 @@ export const countries = [
     emoji: "🇵🇸",
     independent: true,
     sovereignty: null,
-    disputed: false,
+    disputed: true,
     flag: flags.PS,
     region: enums.Region.Asia,
   },

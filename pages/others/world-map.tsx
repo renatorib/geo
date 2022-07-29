@@ -1,10 +1,10 @@
 import React from "react";
 
-import { WorldMap } from "~/components";
+import { WorldMap, NoSSR } from "~/components";
 import { countries } from "~/countries";
 
 const Page = () => {
-  return <WorldMap countries={countries.filter((c) => c.shape != null)} />;
+  return <NoSSR>{() => <WorldMap countries={countries.filter((c) => c.shape != null)} />}</NoSSR>;
 };
 
 export default Page;

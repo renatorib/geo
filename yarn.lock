@@ -549,6 +549,13 @@
   resolved "https://registry.yarnpkg.com/@types/react-speech-recognition/-/react-speech-recognition-3.9.0.tgz#645e5de99c0837cc928b607979cc6c66a01e64c3"
   integrity sha512-GstxYfAs4kFPPTQ3p2RU2NmRni5CnxUCHPioq4UytitootYa7iA4aEvXEXHH7S330kMcBY1MuhJ6CV696++0PQ==
 
+"@types/react-svg-pan-zoom@^3.3.5":
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/@types/react-svg-pan-zoom/-/react-svg-pan-zoom-3.3.5.tgz#33a1009dfaaf4897011c6328ec7daa3936628f39"
+  integrity sha512-W8GRFCDy7raSDr5OXGjSyvX5KmdWlIQfv0NLa1jfAYVUO4ClVbgorWeAAom7nY3Pl+4h9blXE1Bnu2CW1iMEvQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@18.0.15":
   version "18.0.15"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.15.tgz#d355644c26832dc27f3e6cbf0c4f4603fc4ab7fe"
@@ -2226,7 +2233,7 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.8.0, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2279,6 +2286,14 @@ react-speech-recognition@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/react-speech-recognition/-/react-speech-recognition-3.9.1.tgz#dea4c4163e7cfb8e8c9e523abc99127eee7bcd43"
   integrity sha512-HzhHydSvLcpaCW7q9HZamNg4XQaKXEMGBT9rYP/rGhbwBRj6dgrCZsHcoV3Lr3WSDyFw0svXeoRzbG/cneFGnQ==
+
+react-svg-pan-zoom@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/react-svg-pan-zoom/-/react-svg-pan-zoom-3.11.0.tgz#48e5d092b88e99e330ccadd96bde0ed7ca71c898"
+  integrity sha512-xK2tpfp4YksHOfyMZH5zXP52ARLSBgkoJgWNJmJ1B+6O1tkuf23TQp7Q4m9GG5IRSK5KWO0JEGEWlNYG9+iiug==
+  dependencies:
+    prop-types "^15.8.0"
+    transformation-matrix "^2.11.1"
 
 react-textarea-autosize@8.3.4:
   version "8.3.4"
@@ -2625,6 +2640,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+transformation-matrix@^2.11.1:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/transformation-matrix/-/transformation-matrix-2.12.0.tgz#cb826a23aa5d675d18940215ccb7613b8587830f"
+  integrity sha512-BbzXM7el7rNwIr1s87m8tcffH5qgY+HYROLn3BStRU9Y6vYTL37YZKadfNPEvGbP813iA1h8qflo4pa2TomkyQ==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
