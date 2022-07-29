@@ -61,9 +61,10 @@ for (const tr of trs) {
           return v;
       }
     })[0];
-  const alpha2 = sanitizeCodes(td_alpha2.querySelector("span").textContent.trim());
-  const alpha3 = sanitizeCodes(td_alpha3.textContent.trim());
-  const numericCode = sanitizeCodes(td_numericCode.textContent.trim());
+  const alpha2 = sanitizeCodes(td_alpha2.querySelector("span").textContent);
+  const alpha3 = sanitizeCodes(td_alpha3.textContent);
+  const numericCode = sanitizeCodes(td_numericCode.textContent);
+  const domain = sanitizeCodes(td_domain.textContent);
 
   const index = data.findIndex((c) => c.id === alpha2);
 
@@ -80,6 +81,9 @@ for (const tr of trs) {
     }
     if (!snapshot.sovereignty) {
       data[index].sovereignty = sovereignty;
+    }
+    if (!snapshot.domain) {
+      data[index].domain = domain;
     }
   }
 }

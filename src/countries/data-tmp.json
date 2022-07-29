@@ -10,7 +10,8 @@
     "numericCode": "020",
     "sovereignty": null,
     "emoji": "🇦🇩",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ad"
   },
   {
     "id": "AE",
@@ -23,7 +24,8 @@
     "numericCode": "784",
     "sovereignty": null,
     "emoji": "🇦🇪",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ae"
   },
   {
     "id": "AF",
@@ -36,7 +38,8 @@
     "numericCode": "004",
     "sovereignty": null,
     "emoji": "🇦🇫",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".af"
   },
   {
     "id": "AG",
@@ -49,7 +52,8 @@
     "numericCode": "028",
     "sovereignty": null,
     "emoji": "🇦🇬",
-    "region": "America"
+    "region": "America",
+    "domain": ".ag"
   },
   {
     "id": "AL",
@@ -62,7 +66,8 @@
     "numericCode": "008",
     "sovereignty": null,
     "emoji": "🇦🇱",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".al"
   },
   {
     "id": "AM",
@@ -75,7 +80,8 @@
     "numericCode": "051",
     "sovereignty": null,
     "emoji": "🇦🇲",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".am"
   },
   {
     "id": "AO",
@@ -88,7 +94,8 @@
     "numericCode": "024",
     "sovereignty": null,
     "emoji": "🇦🇴",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ao"
   },
   {
     "id": "AR",
@@ -101,7 +108,8 @@
     "numericCode": "032",
     "sovereignty": null,
     "emoji": "🇦🇷",
-    "region": "America"
+    "region": "America",
+    "domain": ".ar"
   },
   {
     "id": "AT",
@@ -114,7 +122,8 @@
     "numericCode": "040",
     "sovereignty": null,
     "emoji": "🇦🇹",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".at"
   },
   {
     "id": "AU",
@@ -127,7 +136,8 @@
     "numericCode": "036",
     "sovereignty": null,
     "emoji": "🇦🇺",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".au"
   },
   {
     "id": "AZ",
@@ -140,7 +150,8 @@
     "numericCode": "031",
     "sovereignty": null,
     "emoji": "🇦🇿",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".az"
   },
   {
     "id": "BA",
@@ -156,7 +167,8 @@
     "numericCode": "070",
     "sovereignty": null,
     "emoji": "🇧🇦",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ba"
   },
   {
     "id": "BB",
@@ -169,7 +181,8 @@
     "numericCode": "052",
     "sovereignty": null,
     "emoji": "🇧🇧",
-    "region": "America"
+    "region": "America",
+    "domain": ".bb"
   },
   {
     "id": "BD",
@@ -182,7 +195,8 @@
     "numericCode": "050",
     "sovereignty": null,
     "emoji": "🇧🇩",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".bd"
   },
   {
     "id": "BE",
@@ -195,7 +209,8 @@
     "numericCode": "056",
     "sovereignty": null,
     "emoji": "🇧🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".be"
   },
   {
     "id": "BF",
@@ -208,7 +223,8 @@
     "numericCode": "854",
     "sovereignty": null,
     "emoji": "🇧🇫",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".bf"
   },
   {
     "id": "BG",
@@ -221,7 +237,8 @@
     "numericCode": "100",
     "sovereignty": null,
     "emoji": "🇧🇬",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".bg"
   },
   {
     "id": "BH",
@@ -234,7 +251,8 @@
     "numericCode": "048",
     "sovereignty": null,
     "emoji": "🇧🇭",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".bh"
   },
   {
     "id": "BI",
@@ -247,7 +265,8 @@
     "numericCode": "108",
     "sovereignty": null,
     "emoji": "🇧🇮",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".bi"
   },
   {
     "id": "BJ",
@@ -260,7 +279,8 @@
     "numericCode": "204",
     "sovereignty": null,
     "emoji": "🇧🇯",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".bj"
   },
   {
     "id": "BN",
@@ -276,7 +296,8 @@
     "numericCode": "096",
     "sovereignty": null,
     "emoji": "🇧🇳",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".bn"
   },
   {
     "id": "BO",
@@ -289,7 +310,8 @@
     "numericCode": "068",
     "sovereignty": null,
     "emoji": "🇧🇴",
-    "region": "America"
+    "region": "America",
+    "domain": ".bo"
   },
   {
     "id": "BR",
@@ -302,7 +324,8 @@
     "numericCode": "076",
     "sovereignty": null,
     "emoji": "🇧🇷",
-    "region": "America"
+    "region": "America",
+    "domain": ".br"
   },
   {
     "id": "BS",
@@ -315,7 +338,8 @@
     "numericCode": "044",
     "sovereignty": null,
     "emoji": "🇧🇸",
-    "region": "America"
+    "region": "America",
+    "domain": ".bs"
   },
   {
     "id": "BT",
@@ -328,7 +352,8 @@
     "numericCode": "064",
     "sovereignty": null,
     "emoji": "🇧🇹",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".bt"
   },
   {
     "id": "BW",
@@ -341,7 +366,8 @@
     "numericCode": "072",
     "sovereignty": null,
     "emoji": "🇧🇼",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".bw"
   },
   {
     "id": "BY",
@@ -354,7 +380,8 @@
     "numericCode": "112",
     "sovereignty": null,
     "emoji": "🇧🇾",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".by"
   },
   {
     "id": "BZ",
@@ -367,7 +394,8 @@
     "numericCode": "084",
     "sovereignty": null,
     "emoji": "🇧🇿",
-    "region": "America"
+    "region": "America",
+    "domain": ".bz"
   },
   {
     "id": "CA",
@@ -380,7 +408,8 @@
     "numericCode": "124",
     "sovereignty": null,
     "emoji": "🇨🇦",
-    "region": "America"
+    "region": "America",
+    "domain": ".ca"
   },
   {
     "id": "CD",
@@ -396,7 +425,8 @@
     "numericCode": "180",
     "sovereignty": null,
     "emoji": "🇨🇩",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".cd"
   },
   {
     "id": "CF",
@@ -412,7 +442,8 @@
     "numericCode": "140",
     "sovereignty": null,
     "emoji": "🇨🇫",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".cf"
   },
   {
     "id": "CG",
@@ -425,7 +456,8 @@
     "numericCode": "178",
     "sovereignty": null,
     "emoji": "🇨🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".cg"
   },
   {
     "id": "CH",
@@ -438,7 +470,8 @@
     "numericCode": "756",
     "sovereignty": null,
     "emoji": "🇨🇭",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ch"
   },
   {
     "id": "CI",
@@ -454,7 +487,8 @@
     "numericCode": "384",
     "sovereignty": null,
     "emoji": "🇨🇮",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ci"
   },
   {
     "id": "CL",
@@ -467,7 +501,8 @@
     "numericCode": "152",
     "sovereignty": null,
     "emoji": "🇨🇱",
-    "region": "America"
+    "region": "America",
+    "domain": ".cl"
   },
   {
     "id": "CM",
@@ -480,7 +515,8 @@
     "numericCode": "120",
     "sovereignty": null,
     "emoji": "🇨🇲",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".cm"
   },
   {
     "id": "CN",
@@ -493,7 +529,8 @@
     "numericCode": "156",
     "sovereignty": null,
     "emoji": "🇨🇳",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".cn"
   },
   {
     "id": "CO",
@@ -506,7 +543,8 @@
     "numericCode": "170",
     "sovereignty": null,
     "emoji": "🇨🇴",
-    "region": "America"
+    "region": "America",
+    "domain": ".co"
   },
   {
     "id": "CR",
@@ -519,7 +557,8 @@
     "numericCode": "188",
     "sovereignty": null,
     "emoji": "🇨🇷",
-    "region": "America"
+    "region": "America",
+    "domain": ".cr"
   },
   {
     "id": "CU",
@@ -532,7 +571,8 @@
     "numericCode": "192",
     "sovereignty": null,
     "emoji": "🇨🇺",
-    "region": "America"
+    "region": "America",
+    "domain": ".cu"
   },
   {
     "id": "CV",
@@ -545,7 +585,8 @@
     "numericCode": "132",
     "sovereignty": null,
     "emoji": "🇨🇻",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".cv"
   },
   {
     "id": "CY",
@@ -558,7 +599,8 @@
     "numericCode": "196",
     "sovereignty": null,
     "emoji": "🇨🇾",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".cy"
   },
   {
     "id": "CZ",
@@ -571,7 +613,8 @@
     "numericCode": "203",
     "sovereignty": null,
     "emoji": "🇨🇿",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".cz"
   },
   {
     "id": "DE",
@@ -584,7 +627,8 @@
     "numericCode": "276",
     "sovereignty": null,
     "emoji": "🇩🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".de"
   },
   {
     "id": "DJ",
@@ -597,7 +641,8 @@
     "numericCode": "262",
     "sovereignty": null,
     "emoji": "🇩🇯",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".dj"
   },
   {
     "id": "DK",
@@ -610,7 +655,8 @@
     "numericCode": "208",
     "sovereignty": null,
     "emoji": "🇩🇰",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".dk"
   },
   {
     "id": "DM",
@@ -623,7 +669,8 @@
     "numericCode": "212",
     "sovereignty": null,
     "emoji": "🇩🇲",
-    "region": "America"
+    "region": "America",
+    "domain": ".dm"
   },
   {
     "id": "DO",
@@ -636,7 +683,8 @@
     "numericCode": "214",
     "sovereignty": null,
     "emoji": "🇩🇴",
-    "region": "America"
+    "region": "America",
+    "domain": ".do"
   },
   {
     "id": "DZ",
@@ -649,7 +697,8 @@
     "numericCode": "012",
     "sovereignty": null,
     "emoji": "🇩🇿",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".dz"
   },
   {
     "id": "EC",
@@ -662,7 +711,8 @@
     "numericCode": "218",
     "sovereignty": null,
     "emoji": "🇪🇨",
-    "region": "America"
+    "region": "America",
+    "domain": ".ec"
   },
   {
     "id": "EE",
@@ -675,7 +725,8 @@
     "numericCode": "233",
     "sovereignty": null,
     "emoji": "🇪🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ee"
   },
   {
     "id": "EG",
@@ -688,7 +739,8 @@
     "numericCode": "818",
     "sovereignty": null,
     "emoji": "🇪🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".eg"
   },
   {
     "id": "ER",
@@ -701,7 +753,8 @@
     "numericCode": "232",
     "sovereignty": null,
     "emoji": "🇪🇷",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".er"
   },
   {
     "id": "ES",
@@ -714,7 +767,8 @@
     "numericCode": "724",
     "sovereignty": null,
     "emoji": "🇪🇸",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".es"
   },
   {
     "id": "ET",
@@ -727,7 +781,8 @@
     "numericCode": "231",
     "sovereignty": null,
     "emoji": "🇪🇹",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".et"
   },
   {
     "id": "FI",
@@ -740,7 +795,8 @@
     "numericCode": "246",
     "sovereignty": null,
     "emoji": "🇫🇮",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".fi"
   },
   {
     "id": "FJ",
@@ -753,7 +809,8 @@
     "numericCode": "242",
     "sovereignty": null,
     "emoji": "🇫🇯",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".fj"
   },
   {
     "id": "FM",
@@ -769,7 +826,8 @@
     "numericCode": "583",
     "sovereignty": null,
     "emoji": "🇫🇲",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".fm"
   },
   {
     "id": "FR",
@@ -782,7 +840,8 @@
     "numericCode": "250",
     "sovereignty": null,
     "emoji": "🇫🇷",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".fr"
   },
   {
     "id": "GA",
@@ -795,7 +854,8 @@
     "numericCode": "266",
     "sovereignty": null,
     "emoji": "🇬🇦",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ga"
   },
   {
     "id": "GD",
@@ -808,7 +868,8 @@
     "numericCode": "308",
     "sovereignty": null,
     "emoji": "🇬🇩",
-    "region": "America"
+    "region": "America",
+    "domain": ".gd"
   },
   {
     "id": "GE",
@@ -821,7 +882,8 @@
     "numericCode": "268",
     "sovereignty": null,
     "emoji": "🇬🇪",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ge"
   },
   {
     "id": "GH",
@@ -834,7 +896,8 @@
     "numericCode": "288",
     "sovereignty": null,
     "emoji": "🇬🇭",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".gh"
   },
   {
     "id": "GM",
@@ -847,7 +910,8 @@
     "numericCode": "270",
     "sovereignty": null,
     "emoji": "🇬🇲",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".gm"
   },
   {
     "id": "GN",
@@ -860,7 +924,8 @@
     "numericCode": "324",
     "sovereignty": null,
     "emoji": "🇬🇳",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".gn"
   },
   {
     "id": "GQ",
@@ -873,7 +938,8 @@
     "numericCode": "226",
     "sovereignty": null,
     "emoji": "🇬🇶",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".gq"
   },
   {
     "id": "GR",
@@ -886,7 +952,8 @@
     "numericCode": "300",
     "sovereignty": null,
     "emoji": "🇬🇷",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".gr"
   },
   {
     "id": "GT",
@@ -899,7 +966,8 @@
     "numericCode": "320",
     "sovereignty": null,
     "emoji": "🇬🇹",
-    "region": "America"
+    "region": "America",
+    "domain": ".gt"
   },
   {
     "id": "GW",
@@ -912,7 +980,8 @@
     "numericCode": "624",
     "sovereignty": null,
     "emoji": "🇬🇼",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".gw"
   },
   {
     "id": "GY",
@@ -925,7 +994,8 @@
     "numericCode": "328",
     "sovereignty": null,
     "emoji": "🇬🇾",
-    "region": "America"
+    "region": "America",
+    "domain": ".gy"
   },
   {
     "id": "HN",
@@ -938,7 +1008,8 @@
     "numericCode": "340",
     "sovereignty": null,
     "emoji": "🇭🇳",
-    "region": "America"
+    "region": "America",
+    "domain": ".hn"
   },
   {
     "id": "HR",
@@ -951,7 +1022,8 @@
     "numericCode": "191",
     "sovereignty": null,
     "emoji": "🇭🇷",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".hr"
   },
   {
     "id": "HT",
@@ -964,7 +1036,8 @@
     "numericCode": "332",
     "sovereignty": null,
     "emoji": "🇭🇹",
-    "region": "America"
+    "region": "America",
+    "domain": ".ht"
   },
   {
     "id": "HU",
@@ -977,7 +1050,8 @@
     "numericCode": "348",
     "sovereignty": null,
     "emoji": "🇭🇺",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".hu"
   },
   {
     "id": "ID",
@@ -990,7 +1064,8 @@
     "numericCode": "360",
     "sovereignty": null,
     "emoji": "🇮🇩",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".id"
   },
   {
     "id": "IE",
@@ -1003,7 +1078,8 @@
     "numericCode": "372",
     "sovereignty": null,
     "emoji": "🇮🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ie"
   },
   {
     "id": "IL",
@@ -1016,7 +1092,8 @@
     "numericCode": "376",
     "sovereignty": null,
     "emoji": "🇮🇱",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".il"
   },
   {
     "id": "IN",
@@ -1029,7 +1106,8 @@
     "numericCode": "356",
     "sovereignty": null,
     "emoji": "🇮🇳",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".in"
   },
   {
     "id": "IQ",
@@ -1042,7 +1120,8 @@
     "numericCode": "368",
     "sovereignty": null,
     "emoji": "🇮🇶",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".iq"
   },
   {
     "id": "IR",
@@ -1055,7 +1134,8 @@
     "numericCode": "364",
     "sovereignty": null,
     "emoji": "🇮🇷",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ir"
   },
   {
     "id": "IS",
@@ -1068,7 +1148,8 @@
     "numericCode": "352",
     "sovereignty": null,
     "emoji": "🇮🇸",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".is"
   },
   {
     "id": "IT",
@@ -1081,7 +1162,8 @@
     "numericCode": "380",
     "sovereignty": null,
     "emoji": "🇮🇹",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".it"
   },
   {
     "id": "JM",
@@ -1094,7 +1176,8 @@
     "numericCode": "388",
     "sovereignty": null,
     "emoji": "🇯🇲",
-    "region": "America"
+    "region": "America",
+    "domain": ".jm"
   },
   {
     "id": "JO",
@@ -1107,7 +1190,8 @@
     "numericCode": "400",
     "sovereignty": null,
     "emoji": "🇯🇴",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".jo"
   },
   {
     "id": "JP",
@@ -1120,7 +1204,8 @@
     "numericCode": "392",
     "sovereignty": null,
     "emoji": "🇯🇵",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".jp"
   },
   {
     "id": "KE",
@@ -1133,7 +1218,8 @@
     "numericCode": "404",
     "sovereignty": null,
     "emoji": "🇰🇪",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ke"
   },
   {
     "id": "KG",
@@ -1149,7 +1235,8 @@
     "numericCode": "417",
     "sovereignty": null,
     "emoji": "🇰🇬",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kg"
   },
   {
     "id": "KH",
@@ -1162,7 +1249,8 @@
     "numericCode": "116",
     "sovereignty": null,
     "emoji": "🇰🇭",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kh"
   },
   {
     "id": "KI",
@@ -1175,7 +1263,8 @@
     "numericCode": "296",
     "sovereignty": null,
     "emoji": "🇰🇮",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".ki"
   },
   {
     "id": "KM",
@@ -1188,7 +1277,8 @@
     "numericCode": "174",
     "sovereignty": null,
     "emoji": "🇰🇲",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".km"
   },
   {
     "id": "KN",
@@ -1204,7 +1294,8 @@
     "numericCode": "659",
     "sovereignty": null,
     "emoji": "🇰🇳",
-    "region": "America"
+    "region": "America",
+    "domain": ".kn"
   },
   {
     "id": "KP",
@@ -1217,7 +1308,8 @@
     "numericCode": "408",
     "sovereignty": null,
     "emoji": "🇰🇵",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kp"
   },
   {
     "id": "KR",
@@ -1230,7 +1322,8 @@
     "numericCode": "410",
     "sovereignty": null,
     "emoji": "🇰🇷",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kr"
   },
   {
     "id": "KW",
@@ -1243,7 +1336,8 @@
     "numericCode": "414",
     "sovereignty": null,
     "emoji": "🇰🇼",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kw"
   },
   {
     "id": "KZ",
@@ -1256,7 +1350,8 @@
     "numericCode": "398",
     "sovereignty": null,
     "emoji": "🇰🇿",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".kz"
   },
   {
     "id": "LA",
@@ -1269,7 +1364,8 @@
     "numericCode": "418",
     "sovereignty": null,
     "emoji": "🇱🇦",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".la"
   },
   {
     "id": "LB",
@@ -1282,7 +1378,8 @@
     "numericCode": "422",
     "sovereignty": null,
     "emoji": "🇱🇧",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".lb"
   },
   {
     "id": "LC",
@@ -1295,7 +1392,8 @@
     "numericCode": "662",
     "sovereignty": null,
     "emoji": "🇱🇨",
-    "region": "America"
+    "region": "America",
+    "domain": ".lc"
   },
   {
     "id": "LI",
@@ -1308,7 +1406,8 @@
     "numericCode": "438",
     "sovereignty": null,
     "emoji": "🇱🇮",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".li"
   },
   {
     "id": "LK",
@@ -1321,7 +1420,8 @@
     "numericCode": "144",
     "sovereignty": null,
     "emoji": "🇱🇰",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".lk"
   },
   {
     "id": "LR",
@@ -1334,7 +1434,8 @@
     "numericCode": "430",
     "sovereignty": null,
     "emoji": "🇱🇷",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".lr"
   },
   {
     "id": "LS",
@@ -1347,7 +1448,8 @@
     "numericCode": "426",
     "sovereignty": null,
     "emoji": "🇱🇸",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ls"
   },
   {
     "id": "LT",
@@ -1360,7 +1462,8 @@
     "numericCode": "440",
     "sovereignty": null,
     "emoji": "🇱🇹",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".lt"
   },
   {
     "id": "LU",
@@ -1373,7 +1476,8 @@
     "numericCode": "442",
     "sovereignty": null,
     "emoji": "🇱🇺",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".lu"
   },
   {
     "id": "LV",
@@ -1386,7 +1490,8 @@
     "numericCode": "428",
     "sovereignty": null,
     "emoji": "🇱🇻",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".lv"
   },
   {
     "id": "LY",
@@ -1399,7 +1504,8 @@
     "numericCode": "434",
     "sovereignty": null,
     "emoji": "🇱🇾",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ly"
   },
   {
     "id": "MA",
@@ -1412,7 +1518,8 @@
     "numericCode": "504",
     "sovereignty": null,
     "emoji": "🇲🇦",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ma"
   },
   {
     "id": "MC",
@@ -1425,7 +1532,8 @@
     "numericCode": "492",
     "sovereignty": null,
     "emoji": "🇲🇨",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".mc"
   },
   {
     "id": "MD",
@@ -1438,7 +1546,8 @@
     "numericCode": "498",
     "sovereignty": null,
     "emoji": "🇲🇩",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".md"
   },
   {
     "id": "ME",
@@ -1451,7 +1560,8 @@
     "numericCode": "499",
     "sovereignty": null,
     "emoji": "🇲🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".me"
   },
   {
     "id": "MG",
@@ -1464,7 +1574,8 @@
     "numericCode": "450",
     "sovereignty": null,
     "emoji": "🇲🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".mg"
   },
   {
     "id": "MH",
@@ -1477,7 +1588,8 @@
     "numericCode": "584",
     "sovereignty": null,
     "emoji": "🇲🇭",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".mh"
   },
   {
     "id": "MK",
@@ -1490,7 +1602,8 @@
     "numericCode": "807",
     "sovereignty": null,
     "emoji": "🇲🇰",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".mk"
   },
   {
     "id": "ML",
@@ -1503,7 +1616,8 @@
     "numericCode": "466",
     "sovereignty": null,
     "emoji": "🇲🇱",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ml"
   },
   {
     "id": "MM",
@@ -1516,7 +1630,8 @@
     "numericCode": "104",
     "sovereignty": null,
     "emoji": "🇲🇲",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".mm"
   },
   {
     "id": "MN",
@@ -1529,7 +1644,8 @@
     "numericCode": "496",
     "sovereignty": null,
     "emoji": "🇲🇳",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".mn"
   },
   {
     "id": "MR",
@@ -1542,7 +1658,8 @@
     "numericCode": "478",
     "sovereignty": null,
     "emoji": "🇲🇷",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".mr"
   },
   {
     "id": "MT",
@@ -1555,7 +1672,8 @@
     "numericCode": "470",
     "sovereignty": null,
     "emoji": "🇲🇹",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".mt"
   },
   {
     "id": "MU",
@@ -1568,7 +1686,8 @@
     "numericCode": "480",
     "sovereignty": null,
     "emoji": "🇲🇺",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".mu"
   },
   {
     "id": "MV",
@@ -1581,7 +1700,8 @@
     "numericCode": "462",
     "sovereignty": null,
     "emoji": "🇲🇻",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".mv"
   },
   {
     "id": "MW",
@@ -1594,7 +1714,8 @@
     "numericCode": "454",
     "sovereignty": null,
     "emoji": "🇲🇼",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".mw"
   },
   {
     "id": "MX",
@@ -1607,7 +1728,8 @@
     "numericCode": "484",
     "sovereignty": null,
     "emoji": "🇲🇽",
-    "region": "America"
+    "region": "America",
+    "domain": ".mx"
   },
   {
     "id": "MY",
@@ -1620,7 +1742,8 @@
     "numericCode": "458",
     "sovereignty": null,
     "emoji": "🇲🇾",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".my"
   },
   {
     "id": "MZ",
@@ -1633,7 +1756,8 @@
     "numericCode": "508",
     "sovereignty": null,
     "emoji": "🇲🇿",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".mz"
   },
   {
     "id": "NA",
@@ -1646,7 +1770,8 @@
     "numericCode": "516",
     "sovereignty": null,
     "emoji": "🇳🇦",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".na"
   },
   {
     "id": "NE",
@@ -1659,7 +1784,8 @@
     "numericCode": "562",
     "sovereignty": null,
     "emoji": "🇳🇪",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ne"
   },
   {
     "id": "NG",
@@ -1672,7 +1798,8 @@
     "numericCode": "566",
     "sovereignty": null,
     "emoji": "🇳🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ng"
   },
   {
     "id": "NI",
@@ -1685,7 +1812,8 @@
     "numericCode": "558",
     "sovereignty": null,
     "emoji": "🇳🇮",
-    "region": "America"
+    "region": "America",
+    "domain": ".ni"
   },
   {
     "id": "NL",
@@ -1698,7 +1826,8 @@
     "numericCode": "528",
     "sovereignty": null,
     "emoji": "🇳🇱",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".nl"
   },
   {
     "id": "NO",
@@ -1711,7 +1840,8 @@
     "numericCode": "578",
     "sovereignty": null,
     "emoji": "🇳🇴",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".no"
   },
   {
     "id": "NP",
@@ -1724,7 +1854,8 @@
     "numericCode": "524",
     "sovereignty": null,
     "emoji": "🇳🇵",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".np"
   },
   {
     "id": "NR",
@@ -1737,7 +1868,8 @@
     "numericCode": "520",
     "sovereignty": null,
     "emoji": "🇳🇷",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".nr"
   },
   {
     "id": "NZ",
@@ -1750,7 +1882,8 @@
     "numericCode": "554",
     "sovereignty": null,
     "emoji": "🇳🇿",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".nz"
   },
   {
     "id": "OM",
@@ -1763,7 +1896,8 @@
     "numericCode": "512",
     "sovereignty": null,
     "emoji": "🇴🇲",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".om"
   },
   {
     "id": "PA",
@@ -1776,7 +1910,8 @@
     "numericCode": "591",
     "sovereignty": null,
     "emoji": "🇵🇦",
-    "region": "America"
+    "region": "America",
+    "domain": ".pa"
   },
   {
     "id": "PE",
@@ -1789,7 +1924,8 @@
     "numericCode": "604",
     "sovereignty": null,
     "emoji": "🇵🇪",
-    "region": "America"
+    "region": "America",
+    "domain": ".pe"
   },
   {
     "id": "PG",
@@ -1802,7 +1938,8 @@
     "numericCode": "598",
     "sovereignty": null,
     "emoji": "🇵🇬",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".pg"
   },
   {
     "id": "PH",
@@ -1815,7 +1952,8 @@
     "numericCode": "608",
     "sovereignty": null,
     "emoji": "🇵🇭",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ph"
   },
   {
     "id": "PK",
@@ -1828,7 +1966,8 @@
     "numericCode": "586",
     "sovereignty": null,
     "emoji": "🇵🇰",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".pk"
   },
   {
     "id": "PL",
@@ -1841,7 +1980,8 @@
     "numericCode": "616",
     "sovereignty": null,
     "emoji": "🇵🇱",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".pl"
   },
   {
     "id": "PT",
@@ -1854,7 +1994,8 @@
     "numericCode": "620",
     "sovereignty": null,
     "emoji": "🇵🇹",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".pt"
   },
   {
     "id": "PW",
@@ -1867,7 +2008,8 @@
     "numericCode": "585",
     "sovereignty": null,
     "emoji": "🇵🇼",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".pw"
   },
   {
     "id": "PY",
@@ -1880,7 +2022,8 @@
     "numericCode": "600",
     "sovereignty": null,
     "emoji": "🇵🇾",
-    "region": "America"
+    "region": "America",
+    "domain": ".py"
   },
   {
     "id": "QA",
@@ -1893,7 +2036,8 @@
     "numericCode": "634",
     "sovereignty": null,
     "emoji": "🇶🇦",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".qa"
   },
   {
     "id": "RO",
@@ -1906,7 +2050,8 @@
     "numericCode": "642",
     "sovereignty": null,
     "emoji": "🇷🇴",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ro"
   },
   {
     "id": "RS",
@@ -1919,7 +2064,8 @@
     "numericCode": "688",
     "sovereignty": null,
     "emoji": "🇷🇸",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".rs"
   },
   {
     "id": "RU",
@@ -1932,7 +2078,8 @@
     "numericCode": "643",
     "sovereignty": null,
     "emoji": "🇷🇺",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ru"
   },
   {
     "id": "RW",
@@ -1945,7 +2092,8 @@
     "numericCode": "646",
     "sovereignty": null,
     "emoji": "🇷🇼",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".rw"
   },
   {
     "id": "SA",
@@ -1958,7 +2106,8 @@
     "numericCode": "682",
     "sovereignty": null,
     "emoji": "🇸🇦",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".sa"
   },
   {
     "id": "SB",
@@ -1971,7 +2120,8 @@
     "numericCode": "090",
     "sovereignty": null,
     "emoji": "🇸🇧",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".sb"
   },
   {
     "id": "SC",
@@ -1984,7 +2134,8 @@
     "numericCode": "690",
     "sovereignty": null,
     "emoji": "🇸🇨",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".sc"
   },
   {
     "id": "SD",
@@ -1997,7 +2148,8 @@
     "numericCode": "729",
     "sovereignty": null,
     "emoji": "🇸🇩",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".sd"
   },
   {
     "id": "SE",
@@ -2010,7 +2162,8 @@
     "numericCode": "752",
     "sovereignty": null,
     "emoji": "🇸🇪",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".se"
   },
   {
     "id": "SG",
@@ -2023,7 +2176,8 @@
     "numericCode": "702",
     "sovereignty": null,
     "emoji": "🇸🇬",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".sg"
   },
   {
     "id": "SI",
@@ -2036,7 +2190,8 @@
     "numericCode": "705",
     "sovereignty": null,
     "emoji": "🇸🇮",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".si"
   },
   {
     "id": "SK",
@@ -2049,7 +2204,8 @@
     "numericCode": "703",
     "sovereignty": null,
     "emoji": "🇸🇰",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".sk"
   },
   {
     "id": "SL",
@@ -2062,7 +2218,8 @@
     "numericCode": "694",
     "sovereignty": null,
     "emoji": "🇸🇱",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".sl"
   },
   {
     "id": "SM",
@@ -2075,7 +2232,8 @@
     "numericCode": "674",
     "sovereignty": null,
     "emoji": "🇸🇲",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".sm"
   },
   {
     "id": "SN",
@@ -2088,7 +2246,8 @@
     "numericCode": "686",
     "sovereignty": null,
     "emoji": "🇸🇳",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".sn"
   },
   {
     "id": "SO",
@@ -2101,7 +2260,8 @@
     "numericCode": "706",
     "sovereignty": null,
     "emoji": "🇸🇴",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".so"
   },
   {
     "id": "SR",
@@ -2114,7 +2274,8 @@
     "numericCode": "740",
     "sovereignty": null,
     "emoji": "🇸🇷",
-    "region": "America"
+    "region": "America",
+    "domain": ".sr"
   },
   {
     "id": "SS",
@@ -2127,7 +2288,8 @@
     "numericCode": "728",
     "sovereignty": null,
     "emoji": "🇸🇸",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ss"
   },
   {
     "id": "ST",
@@ -2140,7 +2302,8 @@
     "numericCode": "678",
     "sovereignty": null,
     "emoji": "🇸🇹",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".st"
   },
   {
     "id": "SV",
@@ -2153,7 +2316,8 @@
     "numericCode": "222",
     "sovereignty": null,
     "emoji": "🇸🇻",
-    "region": "America"
+    "region": "America",
+    "domain": ".sv"
   },
   {
     "id": "SY",
@@ -2166,7 +2330,8 @@
     "numericCode": "760",
     "sovereignty": null,
     "emoji": "🇸🇾",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".sy"
   },
   {
     "id": "SZ",
@@ -2179,7 +2344,8 @@
     "numericCode": "748",
     "sovereignty": null,
     "emoji": "🇸🇿",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".sz"
   },
   {
     "id": "TD",
@@ -2192,7 +2358,8 @@
     "numericCode": "148",
     "sovereignty": null,
     "emoji": "🇹🇩",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".td"
   },
   {
     "id": "TG",
@@ -2205,7 +2372,8 @@
     "numericCode": "768",
     "sovereignty": null,
     "emoji": "🇹🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".tg"
   },
   {
     "id": "TH",
@@ -2218,7 +2386,8 @@
     "numericCode": "764",
     "sovereignty": null,
     "emoji": "🇹🇭",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".th"
   },
   {
     "id": "TJ",
@@ -2231,7 +2400,8 @@
     "numericCode": "762",
     "sovereignty": null,
     "emoji": "🇹🇯",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".tj"
   },
   {
     "id": "TL",
@@ -2244,7 +2414,8 @@
     "numericCode": "626",
     "sovereignty": null,
     "emoji": "🇹🇱",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".tl"
   },
   {
     "id": "TM",
@@ -2257,7 +2428,8 @@
     "numericCode": "795",
     "sovereignty": null,
     "emoji": "🇹🇲",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".tm"
   },
   {
     "id": "TN",
@@ -2270,7 +2442,8 @@
     "numericCode": "788",
     "sovereignty": null,
     "emoji": "🇹🇳",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".tn"
   },
   {
     "id": "TO",
@@ -2283,7 +2456,8 @@
     "numericCode": "776",
     "sovereignty": null,
     "emoji": "🇹🇴",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".to"
   },
   {
     "id": "TR",
@@ -2296,7 +2470,8 @@
     "numericCode": "792",
     "sovereignty": null,
     "emoji": "🇹🇷",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".tr"
   },
   {
     "id": "TT",
@@ -2309,7 +2484,8 @@
     "numericCode": "780",
     "sovereignty": null,
     "emoji": "🇹🇹",
-    "region": "America"
+    "region": "America",
+    "domain": ".tt"
   },
   {
     "id": "TV",
@@ -2322,7 +2498,8 @@
     "numericCode": "798",
     "sovereignty": null,
     "emoji": "🇹🇻",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".tv"
   },
   {
     "id": "TW",
@@ -2335,7 +2512,8 @@
     "numericCode": "158",
     "sovereignty": null,
     "emoji": "🇹🇼",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".tw"
   },
   {
     "id": "TZ",
@@ -2348,7 +2526,8 @@
     "numericCode": "834",
     "sovereignty": null,
     "emoji": "🇹🇿",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".tz"
   },
   {
     "id": "UA",
@@ -2361,7 +2540,8 @@
     "numericCode": "804",
     "sovereignty": null,
     "emoji": "🇺🇦",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".ua"
   },
   {
     "id": "UG",
@@ -2374,7 +2554,8 @@
     "numericCode": "800",
     "sovereignty": null,
     "emoji": "🇺🇬",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".ug"
   },
   {
     "id": "GB",
@@ -2387,7 +2568,8 @@
     "numericCode": "826",
     "sovereignty": null,
     "emoji": "🇬🇧",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".gb .uk"
   },
   {
     "id": "US",
@@ -2406,7 +2588,8 @@
     "numericCode": "840",
     "sovereignty": null,
     "emoji": "🇺🇸",
-    "region": "America"
+    "region": "America",
+    "domain": ".us"
   },
   {
     "id": "UY",
@@ -2419,7 +2602,8 @@
     "numericCode": "858",
     "sovereignty": null,
     "emoji": "🇺🇾",
-    "region": "America"
+    "region": "America",
+    "domain": ".uy"
   },
   {
     "id": "UZ",
@@ -2432,7 +2616,8 @@
     "numericCode": "860",
     "sovereignty": null,
     "emoji": "🇺🇿",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".uz"
   },
   {
     "id": "VA",
@@ -2445,7 +2630,8 @@
     "numericCode": "336",
     "sovereignty": null,
     "emoji": "🇻🇦",
-    "region": "Europe"
+    "region": "Europe",
+    "domain": ".va"
   },
   {
     "id": "VC",
@@ -2464,7 +2650,8 @@
     "numericCode": "670",
     "sovereignty": null,
     "emoji": "🇻🇨",
-    "region": "America"
+    "region": "America",
+    "domain": ".vc"
   },
   {
     "id": "VE",
@@ -2477,7 +2664,8 @@
     "numericCode": "862",
     "sovereignty": null,
     "emoji": "🇻🇪",
-    "region": "America"
+    "region": "America",
+    "domain": ".ve"
   },
   {
     "id": "VN",
@@ -2490,7 +2678,8 @@
     "numericCode": "704",
     "sovereignty": null,
     "emoji": "🇻🇳",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".vn"
   },
   {
     "id": "VU",
@@ -2503,7 +2692,8 @@
     "numericCode": "548",
     "sovereignty": null,
     "emoji": "🇻🇺",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".vu"
   },
   {
     "id": "WS",
@@ -2516,7 +2706,8 @@
     "numericCode": "882",
     "sovereignty": null,
     "emoji": "🇼🇸",
-    "region": "Oceania"
+    "region": "Oceania",
+    "domain": ".ws"
   },
   {
     "id": "XK",
@@ -2540,7 +2731,8 @@
     "numericCode": "887",
     "sovereignty": null,
     "emoji": "🇾🇪",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ye"
   },
   {
     "id": "ZA",
@@ -2553,7 +2745,8 @@
     "numericCode": "710",
     "sovereignty": null,
     "emoji": "🇿🇦",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".za"
   },
   {
     "id": "ZM",
@@ -2566,7 +2759,8 @@
     "numericCode": "894",
     "sovereignty": null,
     "emoji": "🇿🇲",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".zm"
   },
   {
     "id": "ZW",
@@ -2579,7 +2773,8 @@
     "numericCode": "716",
     "sovereignty": null,
     "emoji": "🇿🇼",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ".zw"
   },
   {
     "id": "AI",
@@ -2592,7 +2787,8 @@
     "numericCode": "660",
     "sovereignty": "GB",
     "emoji": "🇦🇮",
-    "region": null
+    "region": null,
+    "domain": ".ai"
   },
   {
     "id": "AS",
@@ -2605,7 +2801,8 @@
     "numericCode": "016",
     "sovereignty": "US",
     "emoji": "🇦🇸",
-    "region": null
+    "region": null,
+    "domain": ".as"
   },
   {
     "id": "AW",
@@ -2618,7 +2815,8 @@
     "numericCode": "533",
     "sovereignty": "NL",
     "emoji": "🇦🇼",
-    "region": null
+    "region": null,
+    "domain": ".aw"
   },
   {
     "id": "AX",
@@ -2631,7 +2829,8 @@
     "numericCode": "248",
     "sovereignty": "FI",
     "emoji": "🇦🇽",
-    "region": null
+    "region": null,
+    "domain": ".ax"
   },
   {
     "id": "BL",
@@ -2644,7 +2843,8 @@
     "numericCode": "652",
     "sovereignty": "FR",
     "emoji": "🇧🇱",
-    "region": null
+    "region": null,
+    "domain": ".bl"
   },
   {
     "id": "BM",
@@ -2657,7 +2857,8 @@
     "numericCode": "060",
     "sovereignty": "GB",
     "emoji": "🇧🇲",
-    "region": null
+    "region": null,
+    "domain": ".bm"
   },
   {
     "id": "BQ",
@@ -2673,7 +2874,8 @@
     "numericCode": "535",
     "sovereignty": "NL",
     "emoji": "🇧🇶",
-    "region": null
+    "region": null,
+    "domain": ".bq .nl"
   },
   {
     "id": "BV",
@@ -2686,7 +2888,8 @@
     "numericCode": "074",
     "sovereignty": "NO",
     "emoji": "🇧🇻",
-    "region": null
+    "region": null,
+    "domain": ""
   },
   {
     "id": "CC",
@@ -2699,7 +2902,8 @@
     "numericCode": "166",
     "sovereignty": "AU",
     "emoji": "🇨🇨",
-    "region": null
+    "region": null,
+    "domain": ".cc"
   },
   {
     "id": "CK",
@@ -2712,7 +2916,8 @@
     "numericCode": "184",
     "sovereignty": "NZ",
     "emoji": "🇨🇰",
-    "region": null
+    "region": null,
+    "domain": ".ck"
   },
   {
     "id": "CW",
@@ -2725,7 +2930,8 @@
     "numericCode": "531",
     "sovereignty": "NL",
     "emoji": "🇨🇼",
-    "region": null
+    "region": null,
+    "domain": ".cw"
   },
   {
     "id": "CX",
@@ -2738,7 +2944,8 @@
     "numericCode": "162",
     "sovereignty": "AU",
     "emoji": "🇨🇽",
-    "region": null
+    "region": null,
+    "domain": ".cx"
   },
   {
     "id": "EH",
@@ -2747,12 +2954,13 @@
     "alpha2": "EH",
     "alpha3": "ESH",
     "shape": "m 450.52575,383.7674 10e-4,0.523 0,0.621 0.001,0.619 10e-4,0.704 0,0.7 0,0.509 0,0.354 -0.571,0 -0.523,0 -0.523,0 -0.522,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.523,0 -0.522,0 -0.523,0 -0.42,0 0,0.371 0,0.421 0,0.422 0,0.421 0,0.421 0,0.42 0,0.42 0,0.419 0,0.419 0,0.418 0,0.418 0,0.418 0,0.416 0,0.417 0,0.416 0,0.416 0,0.415 0,0.37 -0.02,0.331 -0.168,0.098 -0.401,0.176 -0.412,0.181 -0.523,0.083 -0.172,0.059 -0.334,0.238 -0.439,0.313 -0.38,0.271 -0.251,0.352 -0.091,0.193 -0.037,0.203 0.029,0.194 0.137,0.388 0.037,0.196 0.021,0.341 0.023,0.37 0.025,0.399 0.025,0.399 0.026,0.423 0.027,0.424 0.027,0.425 0.02,0.316 0.025,0.398 -0.425,0.001 -0.643,0 -0.644,10e-4 -0.644,0.001 -0.643,10e-4 -0.643,10e-4 -0.644,0.001 -0.644,0 -0.643,10e-4 -0.644,0.001 -0.643,10e-4 -0.643,10e-4 -0.644,0.001 -0.644,10e-4 -0.643,0 -0.644,0.001 -0.643,10e-4 -0.36,0.001 -0.116,0.559 -0.103,0.401 -0.06,0.327 0.044,0.276 -0.142,-0.151 0.25,-1.556 0.018,-0.131 0.204,-1.439 0.385,-0.782 0.307,-0.345 0.476,-0.179 0.437,-0.788 0.153,-0.727 0.287,-0.335 0.09,-0.262 -0.113,-0.2 0.271,-0.393 0.328,-0.602 0.152,-0.387 0.383,-0.599 0.047,-0.133 -0.034,-0.15 -0.151,0.127 -0.161,0.222 -0.191,0.175 0.078,-0.215 0.15,-0.316 0.341,-0.332 0.538,-0.365 1.116,-1.243 0.42,-0.215 0.378,-0.525 0.135,-0.467 0.037,-1.074 0.135,-0.568 0.246,-0.443 0.294,-0.809 0.224,-0.361 0.146,-0.74 0.159,-0.281 0.285,-0.135 0.404,-0.369 0.607,-0.229 0.719,-0.481 0.337,-0.288 0.225,-0.43 0.241,-0.858 0.431,-0.905 0.221,-0.684 12.234,-0.014 0.002,0.001 0,-0.001 0.377,0 0,0.523 z",
-    "independent": false,
+    "independent": true,
     "disputed": true,
     "numericCode": "732",
     "sovereignty": null,
     "emoji": "🇪🇭",
-    "region": "Africa"
+    "region": "Africa",
+    "domain": ""
   },
   {
     "id": "FK",
@@ -2765,7 +2973,8 @@
     "numericCode": "238",
     "sovereignty": "GB",
     "emoji": "🇫🇰",
-    "region": null
+    "region": null,
+    "domain": ".fk"
   },
   {
     "id": "FO",
@@ -2778,7 +2987,8 @@
     "numericCode": "234",
     "sovereignty": "DK",
     "emoji": "🇫🇴",
-    "region": null
+    "region": null,
+    "domain": ".fo"
   },
   {
     "id": "GF",
@@ -2791,7 +3001,8 @@
     "sovereignty": "FR",
     "numericCode": "254",
     "emoji": "🇬🇫",
-    "region": null
+    "region": null,
+    "domain": ".gf"
   },
   {
     "id": "GG",
@@ -2804,7 +3015,8 @@
     "numericCode": "831",
     "sovereignty": "GB",
     "emoji": "🇬🇬",
-    "region": null
+    "region": null,
+    "domain": ".gg"
   },
   {
     "id": "GI",
@@ -2817,7 +3029,8 @@
     "numericCode": "292",
     "sovereignty": "GB",
     "emoji": "🇬🇮",
-    "region": null
+    "region": null,
+    "domain": ".gi"
   },
   {
     "id": "GL",
@@ -2830,7 +3043,8 @@
     "numericCode": "304",
     "sovereignty": "DK",
     "emoji": "🇬🇱",
-    "region": null
+    "region": null,
+    "domain": ".gl"
   },
   {
     "id": "GO",
@@ -2854,7 +3068,8 @@
     "numericCode": "312",
     "sovereignty": "FR",
     "emoji": "🇬🇵",
-    "region": null
+    "region": null,
+    "domain": ".gp"
   },
   {
     "id": "GS",
@@ -2873,7 +3088,8 @@
     "numericCode": "239",
     "sovereignty": "GB",
     "emoji": "🇬🇸",
-    "region": null
+    "region": null,
+    "domain": ".gs"
   },
   {
     "id": "GU",
@@ -2886,7 +3102,8 @@
     "numericCode": "316",
     "sovereignty": "US",
     "emoji": "🇬🇺",
-    "region": null
+    "region": null,
+    "domain": ".gu"
   },
   {
     "id": "HK",
@@ -2899,7 +3116,8 @@
     "numericCode": "344",
     "sovereignty": "CN",
     "emoji": "🇭🇰",
-    "region": null
+    "region": null,
+    "domain": ".hk"
   },
   {
     "id": "HM",
@@ -2915,7 +3133,8 @@
     "numericCode": "334",
     "sovereignty": "AU",
     "emoji": "🇭🇲",
-    "region": null
+    "region": null,
+    "domain": ".hm"
   },
   {
     "id": "IM",
@@ -2928,7 +3147,8 @@
     "numericCode": "833",
     "sovereignty": "GB",
     "emoji": "🇮🇲",
-    "region": null
+    "region": null,
+    "domain": ".im"
   },
   {
     "id": "IO",
@@ -2944,7 +3164,8 @@
     "numericCode": "086",
     "sovereignty": "GB",
     "emoji": "🇮🇴",
-    "region": null
+    "region": null,
+    "domain": ".io"
   },
   {
     "id": "JE",
@@ -2957,7 +3178,8 @@
     "numericCode": "832",
     "sovereignty": "GB",
     "emoji": "🇯🇪",
-    "region": null
+    "region": null,
+    "domain": ".je"
   },
   {
     "id": "JU",
@@ -2982,7 +3204,8 @@
     "numericCode": "136",
     "sovereignty": "GB",
     "emoji": "🇰🇾",
-    "region": null
+    "region": null,
+    "domain": ".ky"
   },
   {
     "id": "MF",
@@ -2995,7 +3218,8 @@
     "numericCode": "663",
     "sovereignty": "FR",
     "emoji": "🇲🇫",
-    "region": null
+    "region": null,
+    "domain": ".mf"
   },
   {
     "id": "MO",
@@ -3008,7 +3232,8 @@
     "numericCode": "446",
     "sovereignty": "CN",
     "emoji": "🇲🇴",
-    "region": null
+    "region": null,
+    "domain": ".mo"
   },
   {
     "id": "MP",
@@ -3027,7 +3252,8 @@
     "numericCode": "580",
     "sovereignty": "US",
     "emoji": "🇲🇵",
-    "region": null
+    "region": null,
+    "domain": ".mp"
   },
   {
     "id": "MQ",
@@ -3040,7 +3266,8 @@
     "numericCode": "474",
     "sovereignty": "FR",
     "emoji": "🇲🇶",
-    "region": null
+    "region": null,
+    "domain": ".mq"
   },
   {
     "id": "MS",
@@ -3053,7 +3280,8 @@
     "numericCode": "500",
     "sovereignty": "GB",
     "emoji": "🇲🇸",
-    "region": null
+    "region": null,
+    "domain": ".ms"
   },
   {
     "id": "NC",
@@ -3066,7 +3294,8 @@
     "numericCode": "540",
     "sovereignty": "FR",
     "emoji": "🇳🇨",
-    "region": null
+    "region": null,
+    "domain": ".nc"
   },
   {
     "id": "NF",
@@ -3079,7 +3308,8 @@
     "numericCode": "574",
     "sovereignty": "AU",
     "emoji": "🇳🇫",
-    "region": null
+    "region": null,
+    "domain": ".nf"
   },
   {
     "id": "NU",
@@ -3092,7 +3322,8 @@
     "numericCode": "570",
     "sovereignty": "NZ",
     "emoji": "🇳🇺",
-    "region": null
+    "region": null,
+    "domain": ".nu"
   },
   {
     "id": "PF",
@@ -3105,7 +3336,8 @@
     "numericCode": "258",
     "sovereignty": "FR",
     "emoji": "🇵🇫",
-    "region": null
+    "region": null,
+    "domain": ".pf"
   },
   {
     "id": "PM",
@@ -3121,7 +3353,8 @@
     "numericCode": "666",
     "sovereignty": "FR",
     "emoji": "🇵🇲",
-    "region": null
+    "region": null,
+    "domain": ".pm"
   },
   {
     "id": "PN",
@@ -3134,7 +3367,8 @@
     "numericCode": "612",
     "sovereignty": "GB",
     "emoji": "🇵🇳",
-    "region": null
+    "region": null,
+    "domain": ".pn"
   },
   {
     "id": "PR",
@@ -3147,7 +3381,8 @@
     "numericCode": "630",
     "sovereignty": "US",
     "emoji": "🇵🇷",
-    "region": null
+    "region": null,
+    "domain": ".pr"
   },
   {
     "id": "PS",
@@ -3160,7 +3395,8 @@
     "numericCode": "275",
     "sovereignty": null,
     "emoji": "🇵🇸",
-    "region": "Asia"
+    "region": "Asia",
+    "domain": ".ps"
   },
   {
     "id": "RE",
@@ -3173,7 +3409,8 @@
     "numericCode": "638",
     "sovereignty": "FR",
     "emoji": "🇷🇪",
-    "region": null
+    "region": null,
+    "domain": ".re"
   },
   {
     "id": "SH",
@@ -3186,7 +3423,8 @@
     "numericCode": "654",
     "sovereignty": "GB",
     "emoji": "🇸🇭",
-    "region": null
+    "region": null,
+    "domain": ".sh"
   },
   {
     "id": "SJ",
@@ -3202,7 +3440,8 @@
     "numericCode": "744",
     "sovereignty": "NO",
     "emoji": "🇸🇯",
-    "region": null
+    "region": null,
+    "domain": ""
   },
   {
     "id": "SX",
@@ -3218,7 +3457,8 @@
     "numericCode": "534",
     "sovereignty": "NL",
     "emoji": "🇸🇽",
-    "region": null
+    "region": null,
+    "domain": ".sx"
   },
   {
     "id": "TC",
@@ -3231,7 +3471,8 @@
     "numericCode": "796",
     "sovereignty": "GB",
     "emoji": "🇹🇨",
-    "region": null
+    "region": null,
+    "domain": ".tc"
   },
   {
     "id": "TF",
@@ -3250,7 +3491,8 @@
     "sovereignty": "FR",
     "numericCode": "260",
     "emoji": "🇹🇫",
-    "region": null
+    "region": null,
+    "domain": ".tf"
   },
   {
     "id": "TK",
@@ -3263,7 +3505,8 @@
     "numericCode": "772",
     "sovereignty": "NZ",
     "emoji": "🇹🇰",
-    "region": null
+    "region": null,
+    "domain": ".tk"
   },
   {
     "id": "VG",
@@ -3279,7 +3522,8 @@
     "numericCode": "092",
     "sovereignty": "GB",
     "emoji": "🇻🇬",
-    "region": null
+    "region": null,
+    "domain": ".vg"
   },
   {
     "id": "VI",
@@ -3292,7 +3536,8 @@
     "numericCode": "850",
     "sovereignty": "US",
     "emoji": "🇻🇮",
-    "region": null
+    "region": null,
+    "domain": ".vi"
   },
   {
     "id": "WF",
@@ -3305,7 +3550,8 @@
     "numericCode": "876",
     "sovereignty": "FR",
     "emoji": "🇼🇫",
-    "region": null
+    "region": null,
+    "domain": ".wf"
   },
   {
     "id": "YT",
@@ -3318,6 +3564,7 @@
     "numericCode": "175",
     "sovereignty": "FR",
     "emoji": "🇾🇹",
-    "region": null
+    "region": null,
+    "domain": ".yt"
   }
 ]
