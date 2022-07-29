@@ -14,8 +14,10 @@ import {
   Divider,
   ThemeIcon,
   Collapse,
+  ScrollArea,
+  MediaQuery,
 } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { useMediaQuery, useScrollLock } from "@mantine/hooks";
 import {
   GiFlyingFlag,
   GiEarthAmerica,
@@ -29,6 +31,17 @@ import { useRouter } from "next/router";
 import { useIsMounted } from "~/hooks";
 import { Chevron } from "~/components";
 
+const Logo = () => {
+  return (
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "auto" }}>
+      <GiFlyingFlag size={18} />
+      <Text weight={700} align="center">
+        Guess the Flag!
+      </Text>
+    </Box>
+  );
+};
+
 export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.ReactNode; hideNavbar?: boolean }) => {
   const [navbarOpened, setNavbarOpened] = React.useState(false);
   const [flagsOpened, setFlagsOpened] = React.useState(true);
@@ -36,6 +49,8 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
   const [othersOpened, setOthersOpened] = React.useState(true);
   const large = useMediaQuery("(min-width: 1023px)");
   const isMounted = useIsMounted();
+
+  useScrollLock(navbarOpened);
 
   return (
     <AppShell
@@ -45,12 +60,13 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
         !large && isMounted ? (
           <Header height={50}>
             <Box sx={{ display: "flex", height: "100%", alignItems: "center" }}>
-              <Box p={10}>
+              <Box m={10}>
                 <ActionIcon onClick={() => setNavbarOpened((op) => !op)}>
-                  <Burger opened={navbarOpened} />
+                  <Burger opened={navbarOpened} size={18} />
                 </ActionIcon>
               </Box>
-              <GiFlyingFlag size={26} style={{ margin: "auto" }} />
+              <Logo />
+              <Box m={10} sx={{ width: 28, height: 28 }} />
             </Box>
           </Header>
         ) : undefined
@@ -62,11 +78,13 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
             ? { hiddenBreakpoint: "sm", hidden: !navbarOpened, width: { base: 0, sm: 220 } }
             : { width: { base: 200 } })}
         >
-          <Navbar.Section grow>
+          <Navbar.Section grow component={ScrollArea} sx={{ height: "calc(100vh - 50px)" }}>
             <Stack>
-              <Text weight={700} align="center" my={18} color="violet">
-                Guess the Flag!
-              </Text>
+              <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+                <Box m={18}>
+                  <Logo />
+                </Box>
+              </MediaQuery>
 
               {/* Flags */}
               <Divider
@@ -84,7 +102,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </UnstyledButton>
                 }
               />
-              <Collapse in={flagsOpened}>
+              <Box sx={{ display: flagsOpened ? "block" : "none" }}>
                 <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/flags/world" icon={<GiEarthAmerica />}>
                     World
@@ -108,7 +126,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                     Others
                   </NavbarLink>
                 </Stack>
-              </Collapse>
+              </Box>
 
               {/* Shapes */}
               <Divider
@@ -126,7 +144,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </UnstyledButton>
                 }
               />
-              <Collapse in={shapesOpened}>
+              <Box sx={{ display: shapesOpened ? "block" : "none" }}>
                 <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/shapes/world" icon={<GiEarthAmerica />}>
                     World
@@ -150,7 +168,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                     Others
                   </NavbarLink>
                 </Stack>
-              </Collapse>
+              </Box>
 
               {/* Others */}
               <Divider
@@ -168,13 +186,13 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </UnstyledButton>
                 }
               />
-              <Collapse in={othersOpened}>
+              <Box sx={{ display: othersOpened ? "block" : "none" }}>
                 <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/others/world-map" icon={<GiEarthAmerica />}>
                     World Map (Beta)
                   </NavbarLink>
                 </Stack>
-              </Collapse>
+              </Box>
             </Stack>
           </Navbar.Section>
         </Navbar>
