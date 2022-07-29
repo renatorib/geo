@@ -32,7 +32,7 @@ export const countries = [
         sovereignty: ${stg(country.sovereignty)},
         disputed: ${stg(country.disputed ?? false)},
         flag: ${flagExist ? `flags.${normalizeIdToFile(country.id)}` : `null`}, 
-        region: ${country.continent ? `enums.Continent.${country.continent}` : `null`},
+        region: ${country.region ? `enums.Region.${country.region}` : `null`},
       }`;
     })
     .join(", ")}

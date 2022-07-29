@@ -7,7 +7,7 @@ import { countries } from "~/countries";
 const Other = () => {
   return (
     <QuizLayout>
-      <QuizNoSSR title="Other Flags" countries={countries.filter((c) => c.region == null)} />
+      <QuizNoSSR title="Other Flags" countries={countries.filter((c) => c.region == null && c.flag != null)} />
     </QuizLayout>
   );
 };

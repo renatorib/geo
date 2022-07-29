@@ -85,7 +85,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                 }
               />
               <Collapse in={flagsOpened}>
-                <Stack spacing="xs" pl="md" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
+                <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/flags/world" icon={<GiEarthAmerica />}>
                     World
                   </NavbarLink>
@@ -103,6 +103,9 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </NavbarLink>
                   <NavbarLink href="/flags/oceania" icon={<GiEarthAsiaOceania />}>
                     Oceania
+                  </NavbarLink>
+                  <NavbarLink href="/flags/others" icon={<GiEarthAmerica />}>
+                    Others
                   </NavbarLink>
                 </Stack>
               </Collapse>
@@ -124,7 +127,7 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                 }
               />
               <Collapse in={shapesOpened}>
-                <Stack spacing="xs" pl="md" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
+                <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/shapes/world" icon={<GiEarthAmerica />}>
                     World
                   </NavbarLink>
@@ -142,6 +145,9 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                   </NavbarLink>
                   <NavbarLink href="/shapes/oceania" icon={<GiEarthAsiaOceania />}>
                     Oceania
+                  </NavbarLink>
+                  <NavbarLink href="/shapes/others" icon={<GiEarthAmerica />}>
+                    Others
                   </NavbarLink>
                 </Stack>
               </Collapse>
@@ -163,9 +169,9 @@ export const QuizLayout = ({ children, hideNavbar = true }: { children?: React.R
                 }
               />
               <Collapse in={othersOpened}>
-                <Stack spacing="xs" pl="md" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
+                <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
                   <NavbarLink href="/others/world-map" icon={<GiEarthAmerica />}>
-                    Word Map
+                    World Map (Beta)
                   </NavbarLink>
                 </Stack>
               </Collapse>

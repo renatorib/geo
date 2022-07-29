@@ -18,7 +18,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AD,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "AE",
@@ -33,7 +33,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AE,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "AF",
@@ -48,7 +48,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AF,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "AG",
@@ -63,7 +63,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AG,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "AL",
@@ -78,7 +78,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AL,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "AM",
@@ -93,7 +93,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AM,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "AO",
@@ -108,7 +108,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AO,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "AR",
@@ -123,7 +123,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AR,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "AT",
@@ -138,7 +138,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AT,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "AU",
@@ -153,7 +153,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AU,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "AZ",
@@ -168,7 +168,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.AZ,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "BA",
@@ -183,7 +183,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BA,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "BB",
@@ -198,7 +198,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BB,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "BD",
@@ -213,7 +213,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BD,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "BE",
@@ -228,7 +228,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BE,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "BF",
@@ -243,7 +243,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BF,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "BG",
@@ -258,7 +258,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BG,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "BH",
@@ -273,7 +273,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BH,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "BI",
@@ -288,7 +288,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BI,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "BJ",
@@ -303,7 +303,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BJ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "BN",
@@ -321,7 +321,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BN,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "BO",
@@ -336,7 +336,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BO,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "BR",
@@ -351,7 +351,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BR,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "BS",
@@ -366,7 +366,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BS,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "BT",
@@ -381,7 +381,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BT,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "BW",
@@ -396,7 +396,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BW,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "BY",
@@ -411,7 +411,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BY,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "BZ",
@@ -426,7 +426,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.BZ,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CA",
@@ -441,7 +441,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CA,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CD",
@@ -456,7 +456,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CD,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CF",
@@ -471,7 +471,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CF,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CG",
@@ -486,7 +486,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CH",
@@ -501,7 +501,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CH,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "CI",
@@ -516,7 +516,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CI,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CL",
@@ -531,7 +531,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CL,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CM",
@@ -546,7 +546,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CM,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CN",
@@ -561,7 +561,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CN,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "CO",
@@ -576,7 +576,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CO,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CR",
@@ -591,7 +591,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CR,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CU",
@@ -606,7 +606,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CU,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "CV",
@@ -621,7 +621,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CV,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "CY",
@@ -636,7 +636,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CY,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "CZ",
@@ -651,7 +651,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.CZ,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "DE",
@@ -666,7 +666,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DE,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "DJ",
@@ -681,7 +681,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DJ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "DK",
@@ -696,7 +696,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DK,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "DM",
@@ -711,7 +711,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DM,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "DO",
@@ -726,7 +726,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DO,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "DZ",
@@ -741,7 +741,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.DZ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "EC",
@@ -756,7 +756,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.EC,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "EE",
@@ -771,7 +771,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.EE,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "EG",
@@ -786,7 +786,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.EG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "ER",
@@ -801,7 +801,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ER,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "ES",
@@ -816,7 +816,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ES,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "ET",
@@ -831,7 +831,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ET,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "FI",
@@ -846,7 +846,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.FI,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "FJ",
@@ -861,7 +861,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.FJ,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "FM",
@@ -879,7 +879,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.FM,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "FR",
@@ -894,7 +894,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.FR,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "GA",
@@ -909,7 +909,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GA,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GD",
@@ -924,7 +924,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GD,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "GE",
@@ -939,7 +939,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GE,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "GH",
@@ -954,7 +954,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GH,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GM",
@@ -969,7 +969,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GM,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GN",
@@ -984,7 +984,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GN,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GQ",
@@ -999,7 +999,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GQ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GR",
@@ -1014,7 +1014,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GR,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "GT",
@@ -1029,7 +1029,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GT,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "GW",
@@ -1044,7 +1044,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GW,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GY",
@@ -1059,7 +1059,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GY,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "HN",
@@ -1074,7 +1074,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.HN,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "HR",
@@ -1089,7 +1089,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.HR,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "HT",
@@ -1104,7 +1104,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.HT,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "HU",
@@ -1119,7 +1119,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.HU,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "ID",
@@ -1134,7 +1134,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ID,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "IE",
@@ -1149,7 +1149,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IE,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "IL",
@@ -1164,7 +1164,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IL,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "IN",
@@ -1179,7 +1179,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IN,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "IQ",
@@ -1194,7 +1194,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IQ,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "IR",
@@ -1209,7 +1209,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IR,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "IS",
@@ -1224,7 +1224,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IS,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "IT",
@@ -1239,7 +1239,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.IT,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "JM",
@@ -1254,7 +1254,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.JM,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "JO",
@@ -1269,7 +1269,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.JO,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "JP",
@@ -1284,7 +1284,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.JP,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KE",
@@ -1299,7 +1299,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KE,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "KG",
@@ -1317,7 +1317,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KG,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KH",
@@ -1332,7 +1332,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KH,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KI",
@@ -1347,7 +1347,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KI,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "KM",
@@ -1362,7 +1362,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KM,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "KN",
@@ -1377,7 +1377,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KN,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "KP",
@@ -1392,7 +1392,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KP,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KR",
@@ -1407,7 +1407,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KR,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KW",
@@ -1422,7 +1422,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KW,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "KZ",
@@ -1437,7 +1437,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.KZ,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "LA",
@@ -1452,7 +1452,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LA,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "LB",
@@ -1467,7 +1467,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LB,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "LC",
@@ -1482,7 +1482,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LC,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "LI",
@@ -1497,7 +1497,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LI,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "LK",
@@ -1512,7 +1512,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LK,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "LR",
@@ -1527,7 +1527,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LR,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "LS",
@@ -1542,7 +1542,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LS,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "LT",
@@ -1557,7 +1557,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LT,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "LU",
@@ -1572,7 +1572,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LU,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "LV",
@@ -1587,7 +1587,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LV,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "LY",
@@ -1602,7 +1602,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.LY,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MA",
@@ -1617,7 +1617,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MA,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MC",
@@ -1632,7 +1632,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MC,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "MD",
@@ -1647,7 +1647,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MD,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "ME",
@@ -1662,7 +1662,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ME,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "MG",
@@ -1677,7 +1677,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MH",
@@ -1692,7 +1692,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MH,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "MK",
@@ -1707,7 +1707,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MK,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "ML",
@@ -1722,7 +1722,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ML,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MM",
@@ -1737,7 +1737,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MM,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "MN",
@@ -1752,7 +1752,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MN,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "MR",
@@ -1767,7 +1767,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MR,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MT",
@@ -1782,7 +1782,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MT,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "MU",
@@ -1797,7 +1797,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MU,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MV",
@@ -1812,7 +1812,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MV,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "MW",
@@ -1827,7 +1827,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MW,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "MX",
@@ -1842,7 +1842,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MX,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "MY",
@@ -1857,7 +1857,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MY,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "MZ",
@@ -1872,7 +1872,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.MZ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "NA",
@@ -1887,7 +1887,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NA,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "NE",
@@ -1902,7 +1902,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NE,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "NG",
@@ -1917,7 +1917,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "NI",
@@ -1932,7 +1932,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NI,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "NL",
@@ -1947,7 +1947,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NL,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "NO",
@@ -1962,7 +1962,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NO,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "NP",
@@ -1977,7 +1977,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NP,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "NR",
@@ -1992,7 +1992,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NR,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "NZ",
@@ -2007,7 +2007,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.NZ,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "OM",
@@ -2022,7 +2022,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.OM,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "PA",
@@ -2037,7 +2037,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PA,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "PE",
@@ -2052,7 +2052,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PE,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "PG",
@@ -2067,7 +2067,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PG,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "PH",
@@ -2082,7 +2082,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PH,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "PK",
@@ -2097,7 +2097,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PK,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "PL",
@@ -2112,7 +2112,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PL,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "PT",
@@ -2127,7 +2127,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PT,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "PW",
@@ -2142,7 +2142,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PW,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "PY",
@@ -2157,7 +2157,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PY,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "QA",
@@ -2172,7 +2172,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.QA,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "RO",
@@ -2187,7 +2187,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.RO,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "RS",
@@ -2202,7 +2202,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.RS,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "RU",
@@ -2217,7 +2217,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.RU,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "RW",
@@ -2232,7 +2232,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.RW,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SA",
@@ -2247,7 +2247,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SA,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "SB",
@@ -2262,7 +2262,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SB,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "SC",
@@ -2277,7 +2277,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SC,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SD",
@@ -2292,7 +2292,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SD,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SE",
@@ -2307,7 +2307,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SE,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "SG",
@@ -2322,7 +2322,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SG,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "SI",
@@ -2337,7 +2337,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SI,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "SK",
@@ -2352,7 +2352,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SK,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "SL",
@@ -2367,7 +2367,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SL,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SM",
@@ -2382,7 +2382,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SM,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "SN",
@@ -2397,7 +2397,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SN,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SO",
@@ -2412,7 +2412,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SO,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SR",
@@ -2427,7 +2427,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SR,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "SS",
@@ -2442,7 +2442,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SS,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "ST",
@@ -2457,7 +2457,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ST,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "SV",
@@ -2472,7 +2472,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SV,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "SY",
@@ -2487,7 +2487,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SY,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "SZ",
@@ -2502,7 +2502,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.SZ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "TD",
@@ -2517,7 +2517,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TD,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "TG",
@@ -2532,7 +2532,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "TH",
@@ -2547,7 +2547,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TH,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TJ",
@@ -2562,7 +2562,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TJ,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TL",
@@ -2577,7 +2577,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TL,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TM",
@@ -2592,7 +2592,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TM,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TN",
@@ -2607,7 +2607,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TN,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "TO",
@@ -2622,7 +2622,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TO,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "TR",
@@ -2637,7 +2637,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TR,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TT",
@@ -2652,7 +2652,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TT,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "TV",
@@ -2667,7 +2667,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TV,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "TW",
@@ -2682,7 +2682,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TW,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "TZ",
@@ -2697,7 +2697,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.TZ,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "UA",
@@ -2712,7 +2712,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.UA,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "UG",
@@ -2727,7 +2727,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.UG,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "GB",
@@ -2742,7 +2742,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.GB,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "US",
@@ -2757,7 +2757,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.US,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "UY",
@@ -2772,7 +2772,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.UY,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "UZ",
@@ -2787,7 +2787,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.UZ,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "VA",
@@ -2802,7 +2802,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.VA,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "VC",
@@ -2823,7 +2823,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.VC,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "VE",
@@ -2838,7 +2838,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.VE,
-    region: null,
+    region: enums.Region.America,
   },
   {
     id: "VN",
@@ -2853,7 +2853,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.VN,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "VU",
@@ -2868,7 +2868,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.VU,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "WS",
@@ -2883,7 +2883,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.WS,
-    region: null,
+    region: enums.Region.Oceania,
   },
   {
     id: "XK",
@@ -2898,7 +2898,7 @@ export const countries = [
     sovereignty: undefined,
     disputed: false,
     flag: flags.XK,
-    region: null,
+    region: enums.Region.Europe,
   },
   {
     id: "YE",
@@ -2913,7 +2913,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.YE,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "ZA",
@@ -2928,7 +2928,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ZA,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "ZM",
@@ -2943,7 +2943,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ZM,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "ZW",
@@ -2958,7 +2958,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.ZW,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "AI",
@@ -3156,7 +3156,7 @@ export const countries = [
     sovereignty: null,
     disputed: true,
     flag: flags.EH,
-    region: null,
+    region: enums.Region.Africa,
   },
   {
     id: "FK",
@@ -3615,7 +3615,7 @@ export const countries = [
     sovereignty: null,
     disputed: false,
     flag: flags.PS,
-    region: null,
+    region: enums.Region.Asia,
   },
   {
     id: "RE",
