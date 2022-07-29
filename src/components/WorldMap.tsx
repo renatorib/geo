@@ -134,7 +134,7 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
           onChangeValue={setValue}
           tool={TOOL_PAN}
           onChangeTool={() => {}}
-          scaleFactorMin={1}
+          scaleFactorMin={0.3}
           scaleFactorMax={25}
           scaleFactorOnWheel={1.15}
           preventPanOutside={true}
