@@ -350,13 +350,21 @@ const CountryCard: React.FC<{
         <Card.Section sx={{ backgroundColor: color[0] }}>
           {type === "flag" && (
             <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-              <NextImage
-                src={country.flag}
-                alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
-                title={props.checked ? name : undefined}
-                objectFit="contain"
-                layout="fill"
-              />
+              {country.flag ? (
+                <NextImage
+                  src={country.flag}
+                  alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
+                  title={props.checked ? name : undefined}
+                  objectFit="contain"
+                  layout="fill"
+                />
+              ) : (
+                <Center>
+                  <Text color="red" size="xs">
+                    Flag not found
+                  </Text>
+                </Center>
+              )}
             </AspectRatio>
           )}
           {type === "shape" && (
