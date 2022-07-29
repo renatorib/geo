@@ -1,25 +1,12 @@
 import React from "react";
 
-import { ReactSVGPanZoom, fitSelection, zoomOnViewerCenter, fitToViewer, Value, TOOL_PAN } from "react-svg-pan-zoom";
-import {
-  ActionIcon,
-  Text,
-  Box,
-  Center,
-  Group,
-  Input,
-  Tooltip,
-  useMantineTheme,
-  createStyles,
-  Menu,
-} from "@mantine/core";
-import { NoSSR, QuizLayout } from "~/components";
+import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
+import { ActionIcon, Text, Box, Center, Group, Input, createStyles, Menu } from "@mantine/core";
+import { QuizLayout } from "~/components";
 import { Country } from "~/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { zoomIntoPath } from "~/modules/svg/viewbox";
 import { LangSelector } from "~/components/LangSelector";
-import { useDebouncedEvent, useEvent, useLang, usePooling, usePrevious, useThrottledEvent } from "~/hooks";
-import { throttle } from "~/modules/function";
+import { useEvent, useLang, useThrottledEvent } from "~/hooks";
 
 const useStyles = createStyles((t) => ({
   path: {
@@ -61,7 +48,6 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
   const Viewer = React.useRef<ReactSVGPanZoom | null>(null);
   const [value, setValue] = React.useState<Value>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const [selected, setSelected] = React.useState<string>();
   const { width, height } = useMainSize({ initialHeight: 666, initialWidth: 1010 });
   const [strokeWidth, setStrokeWidth] = React.useState(0.5);
   const { property } = useLang();
@@ -79,7 +65,6 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
   const handleZoom = useThrottledEvent((value: Value) => {
     const zoom = value?.a ?? 1;
     setStrokeWidth(0.5 / zoom);
-    console.log(zoom);
   }, 500);
 
   const handleGuess = (_guess: string) => {
@@ -204,8 +189,7 @@ function useMainSize({ initialWidth = 0, initialHeight = 0 }: { initialWidth?: n
       window.removeEventListener("resize", snapshot, options as any);
       window.removeEventListener("orientationchange", snapshot, options as any);
     };
-    return () => {};
-  }, []);
+  }, []); // eslint-disable-line
 
   return { width, height };
 }
