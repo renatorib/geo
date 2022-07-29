@@ -37,6 +37,7 @@ import { Country } from "../countries";
 import { useLang, usePrevious, usePooling } from "~/hooks";
 import { calcViewBox } from "~/modules/svg/calcViewBox";
 import { LangSelector } from "./LangSelector";
+import { zoomIntoPath } from "~/modules/svg/viewbox";
 
 type QuizProps = {
   type?: "flag" | "shape";
@@ -287,11 +288,15 @@ const CountryCard: React.FC<{
   const [focused, setFocused] = React.useState(false);
   const { lang } = useLang();
   const theme = useMantineTheme();
-
-  const { country, checked, onGuess, type = "flag", width, listening } = props;
+  const { country, type = "flag" } = props;
 
   const shapeViewbox = React.useMemo(() => {
-    return type === "shape" && country.shape ? calcViewBox(country.shape) : null;
+    if (type === "shape") {
+      const zoom = zoomIntoPath(country.shape);
+      const size = Math.max(zoom.viewboxWidth, zoom.viewboxHeight);
+      return { viewbox: zoom.viewbox, size: size };
+    }
+    return { viewbox: "0 0 1010 666", size: 1000 };
   }, [type, country.shape]);
 
   const stateProps = React.useMemo(() => {
@@ -369,9 +374,14 @@ const CountryCard: React.FC<{
           )}
           {type === "shape" && (
             <Box>
-              {country.shape && shapeViewbox ? (
-                <svg viewBox={shapeViewbox} width="100%" height="100%">
-                  <path d={country.shape} fill={props.checked ? color[1] : "#222"} />
+              {country.shape && shapeViewbox.viewbox ? (
+                <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
+                  <path
+                    d={country.shape}
+                    stroke={props.checked ? theme.colors.green[7] : theme.colors.gray[5]}
+                    fill={props.checked ? theme.colors.green[4] : theme.colors.gray[3]}
+                    strokeWidth={shapeViewbox.size * 0.006}
+                  />
                 </svg>
               ) : (
                 <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
@@ -390,7 +400,7 @@ const CountryCard: React.FC<{
             icon={props.listening && focused ? <MicOn /> : icon}
             value={props.checked ? name : undefined}
             title={props.checked ? name : undefined}
-            placeholder="Your guess"
+            placeholder="Type your guess..."
             onChange={(e) => props.onGuess(e.target.value)}
             readOnly={!!props.checked}
             disabled={!!props.checked}

@@ -12,7 +12,6 @@ const useStyles = createStyles((t) => ({
   path: {
     fill: t.colors.gray[3],
     stroke: t.colors.gray[6],
-    cursor: "zoom-in",
     "&:hover": {
       fill: t.colors.gray[4],
     },
