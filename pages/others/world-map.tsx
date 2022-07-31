@@ -1,10 +1,14 @@
 import React from "react";
 
-import { WorldMap, NoSSR } from "~/components";
+import { WorldMap, NoSSR, QuizLayout } from "~/components";
 import { countries } from "~/countries";
 
 const Page = () => {
-  return <NoSSR>{() => <WorldMap countries={countries.filter((c) => c.shape != null)} />}</NoSSR>;
+  return (
+    <QuizLayout contained={false}>
+      <NoSSR>{() => <WorldMap countries={countries.filter((c) => c.shape != null)} />}</NoSSR>
+    </QuizLayout>
+  );
 };
 
 export default Page;

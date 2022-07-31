@@ -14,7 +14,6 @@ import {
   Grid,
   ActionIcon,
   Menu,
-  Switch,
   Alert,
   Transition,
   Center,
@@ -22,7 +21,7 @@ import {
   keyframes,
   createStyles,
 } from "@mantine/core";
-import { useLocalStorage, useMediaQuery } from "@mantine/hooks";
+import { useLocalStorage } from "@mantine/hooks";
 import {
   RiCheckLine,
   RiShuffleFill,
@@ -31,13 +30,11 @@ import {
   RiMicLine,
   RiEyeCloseLine,
   RiRestartLine,
-  RiVolumeUpLine,
 } from "react-icons/ri";
 import { Country } from "../countries";
 import { useLang, usePrevious, usePooling } from "~/hooks";
-import { calcViewBox } from "~/modules/svg/calcViewBox";
-import { LangSelector } from "./LangSelector";
 import { zoomIntoPath } from "~/modules/svg/viewbox";
+import { blink } from "~/styles/keyframes";
 
 type QuizProps = {
   type?: "flag" | "shape";
@@ -48,9 +45,8 @@ type QuizProps = {
 export const Quiz = (props: QuizProps) => {
   const [, rerender] = React.useState(0);
   const { lang } = useLang();
-  const [speech, setSpeech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
+  const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const large = useMediaQuery("(min-width: 1023px)");
   const [spoiler, setSpoiler] = React.useState(false);
   const [focusedCountryId, setFocusedCountryId] = React.useState<string>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
@@ -183,7 +179,6 @@ export const Quiz = (props: QuizProps) => {
           listening={listening}
           checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
           onGuess={(guess) => handleGuess(country, guess)}
-          width={large ? 300 : 180}
           type={props.type ?? "flag"}
         />
       </div>
@@ -191,87 +186,71 @@ export const Quiz = (props: QuizProps) => {
   ));
 
   return (
-    <>
-      <TranscriptDialog />
-      <Stack>
-        <Box sx={{ position: "sticky", top: 0, zIndex: 2, background: "#fafafa", width: "100%" }} py="xs">
-          <Group>
-            <Text weight={700}>{props.title}</Text>
-            <Box>
-              <Text>
-                {Object.values(checked).length} / {countries.length}
-              </Text>
-            </Box>
-            <Group ml="auto" spacing="xs">
-              <LangSelector />
-              <Menu shadow="md" width={200} position="bottom-end" withArrow>
-                <Menu.Target>
-                  <ActionIcon radius="xl" color="dark">
-                    <RiMore2Fill size={20} />
-                  </ActionIcon>
-                </Menu.Target>
+    <Stack pt="sm">
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 2,
+          background: "#ffffff",
+        }}
+        py="xs"
+        mx="-md"
+        px="md"
+      >
+        <Group>
+          <Text weight={700}>{props.title}</Text>
+          <Box>
+            <Text>
+              {Object.values(checked).length} / {countries.length}
+            </Text>
+          </Box>
+          <Group ml="auto" spacing="xs">
+            <Menu shadow="md" width={200} position="bottom-end" withArrow>
+              <Menu.Target>
+                <ActionIcon radius="xl" color="dark">
+                  <RiMore2Fill size={20} />
+                </ActionIcon>
+              </Menu.Target>
 
-                <Menu.Dropdown>
-                  <Menu.Label>Quiz</Menu.Label>
-                  <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
-                    Shuffle
-                  </Menu.Item>
-                  <Menu.Item icon={<RiRestartLine />} onClick={reset}>
-                    Reset
-                  </Menu.Item>
-                  <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
-                    {spoiler ? "Hide" : "Show"} answers
-                  </Menu.Item>
-                  <Menu.Divider />
-                  <Menu.Label>Settings</Menu.Label>
-                  <Group px={12} py={6} position="apart">
-                    <Switch
-                      size="xs"
-                      checked={speech === "true" ? true : false}
-                      onChange={(ev) => setSpeech(String(ev.currentTarget.checked))}
-                      disabled={!browserSupportsSpeechRecognition}
-                      label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
-                    />
-                  </Group>
-                </Menu.Dropdown>
-              </Menu>
-            </Group>
+              <Menu.Dropdown>
+                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
+                  Shuffle
+                </Menu.Item>
+                <Menu.Item icon={<RiRestartLine />} onClick={reset}>
+                  Reset
+                </Menu.Item>
+                <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
+                  {spoiler ? "Hide" : "Show"} answers
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           </Group>
-        </Box>
-        <Transition mounted={speech === "true"} transition="fade" duration={200}>
-          {(styles) => (
-            <Box style={{ ...styles }}>
-              <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
-                <Text color="dimmed">
-                  When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
-                  listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
-                  <RiMore2Fill style={{ verticalAlign: "middle" }} />.
-                </Text>
-              </Alert>
-            </Box>
-          )}
-        </Transition>
-        <form>
-          {large ? (
-            <Group spacing="xs">
-              {cards.map((card) => (
-                <Box key={card.key} sx={{ width: 300 }}>
-                  {card}
-                </Box>
-              ))}
-            </Group>
-          ) : (
-            <Grid columns={2}>
-              {cards.map((card) => (
-                <Grid.Col span={1} key={card.key}>
-                  {card}
-                </Grid.Col>
-              ))}
-            </Grid>
-          )}
-        </form>
-      </Stack>
-    </>
+        </Group>
+      </Box>
+      <Transition mounted={speech === "true"} transition="fade" duration={200}>
+        {(styles) => (
+          <Box style={{ ...styles }}>
+            <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
+              <Text color="dimmed">
+                When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
+                listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
+                <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+              </Text>
+            </Alert>
+          </Box>
+        )}
+      </Transition>
+      <form>
+        <Grid>
+          {cards.map((card) => (
+            <Grid.Col span={6} md={4} key={card.key}>
+              {card}
+            </Grid.Col>
+          ))}
+        </Grid>
+      </form>
+    </Stack>
   );
 };
 
@@ -282,12 +261,11 @@ const CountryCard: React.FC<{
   checked: "correct" | "spoiler" | false;
   onGuess: (guess: string) => void;
   type?: "flag" | "shape";
-  width?: number;
   listening?: boolean;
 }> = (props) => {
   const [focused, setFocused] = React.useState(false);
-  const { lang } = useLang();
   const theme = useMantineTheme();
+  const { property } = useLang();
   const { country, type = "flag" } = props;
 
   const shapeViewbox = React.useMemo(() => {
@@ -319,22 +297,8 @@ const CountryCard: React.FC<{
     }
   }, [props.checked]); // eslint-disable-line
 
-  const langProps = React.useMemo(() => {
-    switch (lang) {
-      case "pt-BR":
-        return {
-          name: country.name.pt,
-        };
-      case "en-US":
-      default:
-        return {
-          name: country.name.en,
-        };
-    }
-  }, [lang]); // eslint-disable-line
-
   const { color, icon } = stateProps;
-  const { name } = langProps;
+  const name = country.name[property];
 
   return (
     <Box
@@ -395,6 +359,7 @@ const CountryCard: React.FC<{
             </Box>
           )}
         </Card.Section>
+
         <Card.Section sx={{ backgroundColor: color[0] }}>
           <Input<"input">
             icon={props.listening && focused ? <MicOn /> : icon}
@@ -430,58 +395,12 @@ const CountryCard: React.FC<{
   );
 };
 
-const TranscriptDialog = () => {
-  const [show, setShow] = React.useState(false);
-  const { transcript } = useSpeechRecognition();
-  const prevTranscript = usePrevious(transcript);
-  const dismissTimeout = React.useRef<NodeJS.Timeout>();
-  const message = transcript || prevTranscript;
-
-  React.useEffect(() => {
-    setShow(true);
-    clearTimeout(dismissTimeout.current);
-    dismissTimeout.current = setTimeout(() => setShow(false), 3000);
-    return () => clearTimeout(dismissTimeout.current);
-  }, [transcript]);
-
-  return (
-    <Dialog
-      opened={show && !!message}
-      position={{ top: 20, left: "calc(50vw - 150px)" }}
-      transition="slide-down"
-      styles={{
-        root: {
-          width: 300,
-          textAlign: "center",
-          boxShadow: "none",
-          background: "rgba(0, 0, 0, 0.5)",
-          color: "white",
-          border: "none",
-        },
-      }}
-    >
-      <Box sx={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <RiVolumeUpLine style={{ flexShrink: "0" }} />
-        <Text size="lg">{message}</Text>
-      </Box>
-    </Dialog>
-  );
-};
-
-const blink = keyframes({
-  "0, 100&": { opacity: 1 },
-  "50%": { opacity: 0.2 },
-});
-
-const useBlinkStyles = createStyles((theme) => ({
-  blink: {
-    animation: `${blink} 1.5s ease-in-out infinite`,
-  },
-}));
-
 const MicOn = () => {
-  const { classes } = useBlinkStyles();
-  return <RiMicLine color="red" className={classes.blink} />;
+  return (
+    <Box sx={{ animation: `${blink} 1.5s ease-in-out infinite`, display: "inline-flex" }}>
+      <RiMicLine color="red" />
+    </Box>
+  );
 };
 
 function shuffle(array: any[]) {

@@ -1,70 +1,49 @@
 import React from "react";
 
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
-import { ActionIcon, Text, Box, Center, Group, Input, createStyles, Menu, Badge } from "@mantine/core";
-import { QuizLayout } from "~/components";
+import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
 import { Country } from "~/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { LangSelector } from "~/components/LangSelector";
-import { useEvent, useLang, useThrottledEvent } from "~/hooks";
+import { useLang, useDebouncedEvent, usePooling } from "~/hooks";
+import { useViewportSize } from "@mantine/hooks";
 
 const useStyles = createStyles((t) => ({
   path: {
     fill: t.colors.gray[3],
     stroke: t.colors.gray[6],
-    "&:hover": {
-      fill: t.colors.gray[4],
-    },
-    "&.blur": {
-      fill: t.colors.gray[1],
-      stroke: t.colors.gray[3],
-      "&:hover": {
-        fill: t.colors.gray[2],
-      },
-    },
     "&.checked": {
       fill: t.colors.green[4],
       stroke: t.colors.green[7],
-      "&:hover": {
-        fill: t.colors.green[5],
-        stroke: t.colors.green[8],
-      },
-      "&.blur": {
-        fill: t.colors.green[1],
-        stroke: t.colors.green[2],
-      },
-    },
-    "&.selected": {
-      cursor: "zoom-out",
-    },
-    "&.disputed": {
-      fill: t.colors.gray[7],
     },
   },
 }));
 
 export const WorldMap = ({ countries }: { countries: Country[] }) => {
   const Viewer = React.useRef<ReactSVGPanZoom | null>(null);
+  const [loaded, setLoaded] = React.useState(false);
   const [value, setValue] = React.useState<Value>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const { width, height } = useMainSize({ initialHeight: 666, initialWidth: 1010 });
-  const [strokeWidth, setStrokeWidth] = React.useState(0.5);
+  const { width, height } = useViewportSize();
+  const [strokeWidth, setStrokeWidth] = React.useState(0.7);
   const { property } = useLang();
   const { classes, cx } = useStyles();
+  const theme = useMantineTheme();
 
   const countriesToRender = countries;
   const countriesToPlay = countries.filter((c) => c.independent === true);
 
   React.useEffect(() => {
-    Viewer.current?.fitToViewer();
-    Viewer.current?.zoomOnViewerCenter(1);
-    (window as any).v = Viewer.current;
+    Viewer.current?.setPointOnViewerCenter(1010 / 2, 660 / 2, 1.2);
+    setLoaded(true);
   }, []);
 
-  const handleZoom = useThrottledEvent((value: Value) => {
+  const fixStrokeWidth = (value?: Value | null) => {
     const zoom = value?.a ?? 1;
-    setStrokeWidth(0.5 / zoom);
-  }, 500);
+    setStrokeWidth(0.7 / zoom);
+  };
+
+  const handleZoom = useDebouncedEvent(fixStrokeWidth, 300);
+  usePooling(() => fixStrokeWidth(Viewer?.current?.props?.value), 2000);
 
   const handleGuess = (_guess: string) => {
     const normalize = (input: string) =>
@@ -90,105 +69,95 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
   };
 
   return (
-    <QuizLayout>
-      <Box sx={{ position: "relative" }} m="-md">
-        <Center sx={{ position: "absolute", width: "100%", zIndex: 1 }} pt="xs">
-          <Group sx={{ background: "rgba(255, 255, 255, 0.7)", borderRadius: 8, maxWidth: 420 }} p="xs" spacing="xs">
-            <Menu withinPortal withArrow width={200}>
-              <Menu.Target>
-                <ActionIcon color="gray" radius="xl">
-                  <RiMore2Fill size={18} />
-                </ActionIcon>
-              </Menu.Target>
-              <Menu.Dropdown>
-                <Menu.Item onClick={() => setChecked({})} icon={<RiRefreshLine />}>
-                  Reset
-                </Menu.Item>
-              </Menu.Dropdown>
-            </Menu>
-            <Box>
-              <Text size="sm" color="dimmed" weight={400}>
-                {Object.keys(checked).length} / {countriesToPlay.length}
-              </Text>
-            </Box>
-            <Box>
-              <Input<"input">
-                sx={{ input: { opacity: 0.8, maxWidth: 180, "&:focus": { opacity: 1 } } }}
-                placeholder="Type country names..."
-                onChange={(e) => {
-                  if (handleGuess(e.target.value)) {
-                    e.target.value = "";
-                  }
-                }}
-              />
-            </Box>
-
-            <LangSelector />
-          </Group>
-        </Center>
-        <ReactSVGPanZoom
-          ref={Viewer}
-          width={width - 1}
-          height={height - 1}
-          value={value ?? ({} as any)}
-          onChangeValue={setValue}
-          tool={TOOL_PAN}
-          onChangeTool={() => {}}
-          scaleFactorMin={0.3}
-          scaleFactorMax={25}
-          scaleFactorOnWheel={1.15}
-          preventPanOutside={true}
-          onZoom={handleZoom as any}
-          customToolbar={() => null}
-          customMiniature={() => null}
-          background="#f9f9f9"
-          SVGBackground="#f9f9f9"
+    <Box sx={{ position: "relative" }}>
+      <Center sx={{ position: "absolute", width: "100%", zIndex: 1, top: 0 }}>
+        <Box
+          p="sm"
+          m="sm"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            border: "1px solid rgba(200, 200, 200, 0.4)",
+            background: "rgba(255, 255, 255, 0.4)",
+            backdropFilter: "blur(2px)",
+            borderRadius: 8,
+            maxWidth: 400,
+            width: "100%",
+            opacity: loaded ? 1 : 0,
+            transform: loaded ? "translateY(0)" : "translateY(-50px)",
+            transition: "all 300ms ease-in-out",
+            willChange: "all",
+          }}
         >
-          <svg viewBox="0 0 1010 666">
-            {countriesToRender.map((c) => {
-              const isChecked = c.independent ? checked[c.id] : c.sovereignty ? checked[c.sovereignty] : false;
+          <Box sx={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
+            <Text pl={8} size="sm" color={theme.colors.dark[2]} weight={400}>
+              {Object.keys(checked).length} / {countriesToPlay.length}
+            </Text>
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <TextInput
+              placeholder="Type country names..."
+              onChange={(e) => {
+                if (handleGuess(e.target.value)) {
+                  e.target.value = "";
+                }
+              }}
+            />
+          </Box>
+          <Menu withinPortal withArrow width={200} position="bottom-end">
+            <Menu.Target>
+              <ActionIcon color="dark" radius="xl">
+                <RiMore2Fill size={18} />
+              </ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => setChecked({})} icon={<RiRefreshLine />}>
+                Reset
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+        </Box>
+      </Center>
+      <ReactSVGPanZoom
+        style={{ opacity: loaded ? 1 : 0, transition: "opacity 300ms ease-in-out", willChange: "opacity" }}
+        ref={Viewer}
+        width={width}
+        height={height - 50}
+        value={value ?? ({} as any)}
+        onChangeValue={setValue}
+        tool={TOOL_PAN}
+        onChangeTool={() => {}}
+        scaleFactorMin={0.3}
+        scaleFactorMax={25}
+        scaleFactorOnWheel={1.15}
+        onPan={handleZoom as any}
+        onZoom={handleZoom as any}
+        customToolbar={() => null}
+        background="#f9f9f9"
+        SVGBackground="#f9f9f9"
+        customMiniature={() => null}
+        // miniatureProps={{ background: "white", height: 60, width: 100, position: "right" }}
+      >
+        <svg viewBox="0 0 1010 666">
+          {countriesToRender.map((c) => {
+            const isChecked = c.independent ? checked[c.id] : c.sovereignty ? checked[c.sovereignty] : false;
 
-              return (
-                <React.Fragment key={c.id}>
-                  <path
-                    id={`path-${c.id}`}
-                    className={cx(classes.path, { checked: isChecked })}
-                    strokeWidth={strokeWidth}
-                    strokeDasharray={c.disputed ? strokeWidth * 10 : undefined}
-                    d={c.shape}
-                  ></path>
-                </React.Fragment>
-              );
-            })}
-          </svg>
-        </ReactSVGPanZoom>
-      </Box>
-    </QuizLayout>
+            return (
+              <React.Fragment key={c.id}>
+                <path
+                  id={`path-${c.id}`}
+                  className={cx(classes.path, { checked: isChecked })}
+                  strokeWidth={strokeWidth}
+                  strokeDasharray={c.disputed ? strokeWidth * 10 : undefined}
+                  d={c.shape}
+                ></path>
+              </React.Fragment>
+            );
+          })}
+        </svg>
+      </ReactSVGPanZoom>
+    </Box>
   );
 };
-
-function useMainSize({ initialWidth = 0, initialHeight = 0 }: { initialWidth?: number; initialHeight?: number }) {
-  const [width, setWidth] = React.useState(initialWidth);
-  const [height, setHeight] = React.useState(initialHeight);
-
-  const snapshot = useEvent(() => {
-    const main = document.querySelector("main");
-    const width = main?.clientWidth ?? initialWidth;
-    const height = main?.clientHeight ?? initialHeight;
-    setWidth(width);
-    setHeight(height);
-  });
-
-  React.useEffect(() => {
-    snapshot();
-    const options = { passive: true };
-    window.addEventListener("resize", snapshot, options);
-    window.addEventListener("orientationchange", snapshot, options);
-    return () => {
-      window.removeEventListener("resize", snapshot, options as any);
-      window.removeEventListener("orientationchange", snapshot, options as any);
-    };
-  }, []); // eslint-disable-line
-
-  return { width, height };
-}

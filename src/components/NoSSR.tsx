@@ -1,7 +1,12 @@
 import React from "react";
 import { useIsMounted } from "~/hooks";
 
-export const NoSSR = ({ children }: { children: () => React.ReactNode | JSX.Element }) => {
-  const isMounted = useIsMounted();
-  return isMounted ? <>{children()}</> : null;
+export const NoSSR = ({
+  children,
+  fallback = null,
+}: {
+  children: () => React.ReactNode | JSX.Element;
+  fallback?: React.ReactNode;
+}) => {
+  return <>{useIsMounted() ? children() : fallback}</>;
 };
