@@ -30,6 +30,7 @@ import {
   RiMicLine,
   RiEyeCloseLine,
   RiRestartLine,
+  RiSettings2Line,
 } from "react-icons/ri";
 import { Country } from "../countries";
 import { useLang, usePrevious, usePooling } from "~/hooks";
@@ -231,11 +232,12 @@ export const Quiz = (props: QuizProps) => {
       <Transition mounted={speech === "true"} transition="fade" duration={200}>
         {(styles) => (
           <Box style={{ ...styles }}>
-            <Alert variant="outline" title="Speech is enabled!" icon={<RiMicLine />}>
+            <Alert color="indigo" title="Speech is enabled!" icon={<RiMicLine />}>
               <Text color="dimmed">
                 When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
-                listening to your guesses through your microphone. You can disable speech mode in your settings{" "}
-                <RiMore2Fill style={{ verticalAlign: "middle" }} />.
+                listening to your guesses through your microphone. <br /> You can disable speech mode in your settings{" "}
+                <RiSettings2Line color="black" style={{ verticalAlign: "middle" }} /> located at top-right of the
+                header.
               </Text>
             </Alert>
           </Box>

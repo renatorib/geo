@@ -32,17 +32,6 @@ import { Chevron, LangSelector, TranscriptDialog } from "~/components";
 import { useSpeechRecognition } from "react-speech-recognition";
 import { useLocalStorage } from "@mantine/hooks";
 
-const Logo = () => {
-  return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "auto" }}>
-      <GiFlyingFlag size={18} />
-      <Text weight={700} align="center">
-        Guess the Flag!
-      </Text>
-    </Box>
-  );
-};
-
 const AppNavbar = () => {
   const [flagsOpened, setFlagsOpened] = React.useState(true);
   const [shapesOpened, setShapesOpened] = React.useState(false);
@@ -174,7 +163,25 @@ const AppHeader = () => {
           <Box m={10}>
             <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
           </Box>
-          <Logo />
+          <NextLink href="/" passHref>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                margin: "auto",
+                color: "black",
+                textDecoration: "none",
+              }}
+              component="a"
+            >
+              <GiFlyingFlag size={18} />
+              <Text weight={700} align="center">
+                Guess the Flag!
+              </Text>
+            </Box>
+          </NextLink>
           <Box m={10}>
             <Group ml="auto" spacing="xs">
               <LangSelector />
@@ -226,9 +233,9 @@ export const QuizLayout = ({ children, contained = true }: { children?: React.Re
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <AppHeader />
-      <MainWrapper>
-        <TranscriptDialog />
-        <Box component="main" sx={{ minHeight: "calc(100vh - 50px)" }}>
+      <TranscriptDialog />
+      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%" }}>
+        <Box component="main" sx={{ height: "100%" }}>
           {children}
         </Box>
       </MainWrapper>
