@@ -11,7 +11,9 @@
     "sovereignty": null,
     "emoji": "🇦🇩",
     "region": "Europe",
-    "domain": ".ad"
+    "domain": ".ad",
+    "capital": { "pt": "Andorra la Vella", "en": "Andorra la Vella" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "AE",
@@ -25,7 +27,9 @@
     "sovereignty": null,
     "emoji": "🇦🇪",
     "region": "Asia",
-    "domain": ".ae"
+    "domain": ".ae",
+    "capital": { "pt": "Abu Dhabi", "en": "Abu Dhabi" },
+    "capitalAlias": { "pt": ["Abu Dabi"], "en": [] }
   },
   {
     "id": "AF",
@@ -39,7 +43,9 @@
     "sovereignty": null,
     "emoji": "🇦🇫",
     "region": "Asia",
-    "domain": ".af"
+    "domain": ".af",
+    "capital": { "pt": "Cabul", "en": "Kabul" },
+    "capitalAlias": { "pt": ["Kabul"], "en": [] }
   },
   {
     "id": "AG",
@@ -53,7 +59,9 @@
     "sovereignty": null,
     "emoji": "🇦🇬",
     "region": "America",
-    "domain": ".ag"
+    "domain": ".ag",
+    "capital": { "pt": "São João", "en": "Saint John's" },
+    "capitalAlias": { "pt": ["Saint John", "St. John"], "en": ["St. John"] }
   },
   {
     "id": "AL",
@@ -67,7 +75,9 @@
     "sovereignty": null,
     "emoji": "🇦🇱",
     "region": "Europe",
-    "domain": ".al"
+    "domain": ".al",
+    "capital": { "pt": "Tirana", "en": "Tirana" },
+    "capitalAlias": { "pt": ["Tirana"], "en": [] }
   },
   {
     "id": "AM",
@@ -81,7 +91,9 @@
     "sovereignty": null,
     "emoji": "🇦🇲",
     "region": "Asia",
-    "domain": ".am"
+    "domain": ".am",
+    "capital": { "pt": "Erevã", "en": "Yerevan" },
+    "capitalAlias": { "pt": ["Yerevan"], "en": [] }
   },
   {
     "id": "AO",
@@ -95,7 +107,9 @@
     "sovereignty": null,
     "emoji": "🇦🇴",
     "region": "Africa",
-    "domain": ".ao"
+    "domain": ".ao",
+    "capital": { "pt": "Luanda", "en": "Luanda" },
+    "capitalAlias": { "pt": ["Luanda"], "en": [] }
   },
   {
     "id": "AR",
@@ -109,7 +123,9 @@
     "sovereignty": null,
     "emoji": "🇦🇷",
     "region": "America",
-    "domain": ".ar"
+    "domain": ".ar",
+    "capital": { "pt": "Buenos Aires", "en": "Buenos Aires" },
+    "capitalAlias": { "pt": ["Buenos Aires"], "en": [] }
   },
   {
     "id": "AT",
@@ -123,7 +139,9 @@
     "sovereignty": null,
     "emoji": "🇦🇹",
     "region": "Europe",
-    "domain": ".at"
+    "domain": ".at",
+    "capital": { "pt": "Viena", "en": "Vienna" },
+    "capitalAlias": { "pt": ["Vienna"], "en": [] }
   },
   {
     "id": "AU",
@@ -137,7 +155,9 @@
     "sovereignty": null,
     "emoji": "🇦🇺",
     "region": "Oceania",
-    "domain": ".au"
+    "domain": ".au",
+    "capital": { "pt": "Camberra", "en": "Canberra" },
+    "capitalAlias": { "pt": ["Canberra"], "en": [] }
   },
   {
     "id": "AZ",
@@ -151,7 +171,9 @@
     "sovereignty": null,
     "emoji": "🇦🇿",
     "region": "Asia",
-    "domain": ".az"
+    "domain": ".az",
+    "capital": { "pt": "Bacu", "en": "Baku" },
+    "capitalAlias": { "pt": ["Baku"], "en": [] }
   },
   {
     "id": "BA",
@@ -168,7 +190,9 @@
     "sovereignty": null,
     "emoji": "🇧🇦",
     "region": "Europe",
-    "domain": ".ba"
+    "domain": ".ba",
+    "capital": { "pt": "Sarajevo", "en": "Sarajevo" },
+    "capitalAlias": { "pt": ["Sarajevo"], "en": [] }
   },
   {
     "id": "BB",
@@ -182,7 +206,9 @@
     "sovereignty": null,
     "emoji": "🇧🇧",
     "region": "America",
-    "domain": ".bb"
+    "domain": ".bb",
+    "capital": { "pt": "Bridgetown", "en": "Bridgetown" },
+    "capitalAlias": { "pt": ["Bridgetown"], "en": [] }
   },
   {
     "id": "BD",
@@ -196,7 +222,9 @@
     "sovereignty": null,
     "emoji": "🇧🇩",
     "region": "Asia",
-    "domain": ".bd"
+    "domain": ".bd",
+    "capital": { "pt": "Daca", "en": "Dhaka" },
+    "capitalAlias": { "pt": ["Dhaka"], "en": [] }
   },
   {
     "id": "BE",
@@ -210,12 +238,14 @@
     "sovereignty": null,
     "emoji": "🇧🇪",
     "region": "Europe",
-    "domain": ".be"
+    "domain": ".be",
+    "capital": { "pt": "Bruxelas", "en": "Brussels" },
+    "capitalAlias": { "pt": ["Brussels"], "en": [] }
   },
   {
     "id": "BF",
-    "name": { "pt": "Burkina Faso", "en": "Burkina Faso" },
-    "alias": { "pt": [], "en": [] },
+    "name": { "pt": "Burquina Fasso", "en": "Burkina Faso" },
+    "alias": { "pt": ["Burkina Faso", "Burquina"], "en": [] },
     "alpha2": "BF",
     "alpha3": "BFA",
     "shape": "m 475.50575,420.8694 -0.039,0.134 -0.002,0.237 -0.05,0.375 -0.06,0.449 0.244,0.29 0.292,0.312 0.078,0.121 -0.078,0.307 0.055,0.18 0.154,0.3 0.262,0.381 0.269,0.391 0.186,0.051 0.177,0.032 0.108,0.07 0.157,0.068 0.157,0.044 0.136,0.086 0.087,0.084 0.113,0.241 0.303,0.159 0.212,0.157 -0.085,0.08 -0.264,-0.032 -0.248,-0.069 -0.033,0.116 -0.01,0.442 0.039,0.367 0.058,0.049 0.25,0.068 0.595,0.477 0.538,0.452 0.181,0.117 0.297,0.044 0.334,0.019 0.143,-0.042 0.323,-0.227 0.172,-0.025 0.159,0.006 0.086,0.036 0.155,0.186 0.145,0.28 0.041,0.207 -0.013,0.111 -0.049,0.042 -0.265,0.053 -0.115,0.042 -0.028,0.06 0.041,0.139 0.051,0.09 0.289,0.403 0.418,0.544 0.129,0.139 -0.073,0.162 -0.213,0.424 -0.159,0.177 -0.703,0.6 -0.344,-0.071 -0.723,0.121 -0.108,-0.138 -0.169,-0.018 -0.209,0.024 -0.076,0.052 -0.023,0.059 -0.075,0.083 -0.134,0.238 -0.103,0.06 -0.128,0.037 -0.158,-0.005 -0.092,0.031 0,0.118 -0.028,0.102 -0.107,0.052 -0.045,0.114 0.008,0.113 -0.062,0.052 -0.136,-0.028 -0.081,-0.032 -0.076,0.146 -0.094,0.099 -0.067,-0.001 -0.723,0.029 -0.263,0.078 -0.158,0.002 -0.006,-0.066 -0.019,-0.039 -0.912,-0.221 -0.639,-0.131 -0.648,-0.145 -0.037,0.136 -0.093,0.088 -0.14,0.006 -0.097,-0.021 -0.065,0.105 -0.108,0.139 -0.15,0.067 -0.147,0.086 -0.083,0.075 -0.06,10e-4 -0.148,-0.176 -0.197,-0.018 -0.368,0.029 -0.166,-0.048 -0.226,-0.023 -0.534,0.036 -0.853,-0.072 -0.14,0.039 -0.037,0.032 -0.845,0.008 -0.929,0.009 -0.778,0.008 -0.681,0.007 -0.001,-0.03 -0.219,-0.004 -0.024,0.059 -0.193,0.708 -0.021,0.385 0.103,0.239 0.115,0.152 0.129,0.063 0.013,0.086 -0.104,0.111 0.009,0.113 0.122,0.117 0.03,0.124 -0.062,0.129 0.015,0.31 0.09,0.491 0.003,0.318 -0.086,0.145 0.041,0.249 0.167,0.351 0.03,0.148 -0.06,0.069 -0.139,0.091 -0.141,-0.003 -0.164,-0.212 -0.072,-0.095 -0.132,-0.216 -0.113,-0.216 -0.152,-0.095 -0.15,-0.088 -0.182,-0.275 -0.176,-0.131 -0.186,0.037 -0.271,-0.051 -0.547,-0.068 -0.588,0.02 -0.244,0.063 -0.241,0.1 -0.611,0.221 -0.241,0.108 -0.183,0.276 -0.208,-0.006 -0.207,-0.088 -0.13,-0.125 -0.279,0.027 -0.269,-0.121 -0.26,-0.239 -0.192,-0.079 -0.245,-0.173 -0.067,-0.33 -0.155,-0.231 -0.142,-0.322 -0.212,-0.144 -0.244,-0.077 -0.337,0.016 -0.221,-0.129 -0.175,-0.188 0.046,-0.163 0.079,-0.232 0.009,-0.223 0.052,-0.362 -0.032,-0.453 -0.061,-0.316 0.186,-0.132 0.215,-0.118 0.134,-0.215 0.139,-0.483 0.058,-0.417 -0.043,-0.155 -0.071,-0.123 -0.057,-0.18 -0.033,-0.22 0.039,-0.192 0.163,-0.178 0.204,-0.148 0.145,-0.072 0.384,-0.074 0.48,-0.11 0.277,-0.126 0.202,-0.125 0.113,-0.1 0.115,-0.203 0.186,-0.158 0.144,-0.16 0.02,-0.443 -10e-4,-0.253 -0.107,-0.14 -0.058,-0.119 0.711,-0.348 0.005,-0.245 -0.099,-0.274 -0.139,-0.221 -0.052,-0.19 0.197,-0.225 0.175,-0.169 0.127,-0.143 0.28,-0.218 0.292,-0.057 0.263,0.082 0.779,0.514 0.135,0.033 0.162,-0.039 0.206,-0.136 0.266,-0.106 0.098,-0.344 -0.009,-0.506 0.061,-0.232 0.14,-0.042 0.448,0.097 0.117,0.005 0.13,-0.032 0.095,-0.089 -0.004,-0.164 -0.021,-0.145 0.146,-0.47 0.267,-0.354 0.539,-0.442 0.168,-0.089 0.195,-0.045 0.966,0.304 0.157,-0.075 0.236,-0.754 0.262,-0.072 0.314,-0.013 0.204,-0.065 0.106,-0.052 0.46,-0.287 0.81,-0.39 0.436,-0.168 0.085,-0.063 0.312,-0.277 0.414,-0.318 0.264,-0.064 0.365,-0.023 0.23,0.052 0.062,0.09 0.076,0.046 0.476,-0.135 0.682,0.215 z",
@@ -224,7 +254,9 @@
     "sovereignty": null,
     "emoji": "🇧🇫",
     "region": "Africa",
-    "domain": ".bf"
+    "domain": ".bf",
+    "capital": { "pt": "Ouagadougou", "en": "Ouagadougou" },
+    "capitalAlias": { "pt": ["Ouagadougou"], "en": [] }
   },
   {
     "id": "BG",
@@ -238,7 +270,9 @@
     "sovereignty": null,
     "emoji": "🇧🇬",
     "region": "Europe",
-    "domain": ".bg"
+    "domain": ".bg",
+    "capital": { "pt": "Sofia", "en": "Sofia" },
+    "capitalAlias": { "pt": ["Sofia"], "en": [] }
   },
   {
     "id": "BH",
@@ -252,7 +286,9 @@
     "sovereignty": null,
     "emoji": "🇧🇭",
     "region": "Asia",
-    "domain": ".bh"
+    "domain": ".bh",
+    "capital": { "pt": "Manama", "en": "Manama" },
+    "capitalAlias": { "pt": ["Manama"], "en": [] }
   },
   {
     "id": "BI",
@@ -266,7 +302,9 @@
     "sovereignty": null,
     "emoji": "🇧🇮",
     "region": "Africa",
-    "domain": ".bi"
+    "domain": ".bi",
+    "capital": { "pt": "Gitega", "en": "Gitega" },
+    "capitalAlias": { "pt": ["Gitega"], "en": [] }
   },
   {
     "id": "BJ",
@@ -280,7 +318,9 @@
     "sovereignty": null,
     "emoji": "🇧🇯",
     "region": "Africa",
-    "domain": ".bj"
+    "domain": ".bj",
+    "capital": { "pt": "Cotonou", "en": "Cotonou" },
+    "capitalAlias": { "pt": ["Cotonou"], "en": [] }
   },
   {
     "id": "BN",
@@ -297,7 +337,9 @@
     "sovereignty": null,
     "emoji": "🇧🇳",
     "region": "Asia",
-    "domain": ".bn"
+    "domain": ".bn",
+    "capital": { "pt": "Bandar Seri Begawan", "en": "Bandar Seri Begawan" },
+    "capitalAlias": { "pt": ["Bandar Seri Begawan"], "en": [] }
   },
   {
     "id": "BO",
@@ -311,7 +353,9 @@
     "sovereignty": null,
     "emoji": "🇧🇴",
     "region": "America",
-    "domain": ".bo"
+    "domain": ".bo",
+    "capital": { "pt": "La Paz", "en": "La Paz" },
+    "capitalAlias": { "pt": ["La Paz"], "en": [] }
   },
   {
     "id": "BR",
@@ -325,7 +369,9 @@
     "sovereignty": null,
     "emoji": "🇧🇷",
     "region": "America",
-    "domain": ".br"
+    "domain": ".br",
+    "capital": { "pt": "Brasília", "en": "Brasilia" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BS",
@@ -339,7 +385,9 @@
     "sovereignty": null,
     "emoji": "🇧🇸",
     "region": "America",
-    "domain": ".bs"
+    "domain": ".bs",
+    "capital": { "pt": "Nassau", "en": "Nassau" },
+    "capitalAlias": { "pt": ["Nassau"], "en": [] }
   },
   {
     "id": "BT",
@@ -353,7 +401,9 @@
     "sovereignty": null,
     "emoji": "🇧🇹",
     "region": "Asia",
-    "domain": ".bt"
+    "domain": ".bt",
+    "capital": { "pt": "Thimphu", "en": "Thimphu" },
+    "capitalAlias": { "pt": ["Thimphu"], "en": [] }
   },
   {
     "id": "BW",
@@ -367,7 +417,9 @@
     "sovereignty": null,
     "emoji": "🇧🇼",
     "region": "Africa",
-    "domain": ".bw"
+    "domain": ".bw",
+    "capital": { "pt": "Gaborone", "en": "Gaborone" },
+    "capitalAlias": { "pt": ["Gaborone"], "en": [] }
   },
   {
     "id": "BY",
@@ -381,7 +433,9 @@
     "sovereignty": null,
     "emoji": "🇧🇾",
     "region": "Europe",
-    "domain": ".by"
+    "domain": ".by",
+    "capital": { "pt": "Minsk", "en": "Minsk" },
+    "capitalAlias": { "pt": ["Minsk"], "en": [] }
   },
   {
     "id": "BZ",
@@ -395,7 +449,9 @@
     "sovereignty": null,
     "emoji": "🇧🇿",
     "region": "America",
-    "domain": ".bz"
+    "domain": ".bz",
+    "capital": { "pt": "Belmopan", "en": "Belmopan" },
+    "capitalAlias": { "pt": ["Belmopan"], "en": [] }
   },
   {
     "id": "CA",
@@ -409,14 +465,19 @@
     "sovereignty": null,
     "emoji": "🇨🇦",
     "region": "America",
-    "domain": ".ca"
+    "domain": ".ca",
+    "capital": { "pt": "Ottawa", "en": "Ottawa" },
+    "capitalAlias": { "pt": ["Ottawa"], "en": [] }
   },
   {
     "id": "CD",
-    "name": { "pt": "República Democrática do Congo", "en": "D.R. Congo" },
+    "name": {
+      "pt": "República Democrática do Congo",
+      "en": "Democratic Republic of the Congo"
+    },
     "alias": {
-      "pt": ["DR Congo", "Congo", "DROC"],
-      "en": ["DR Congo", "Congo"]
+      "pt": ["RD Congo", "Congo", "DROC"],
+      "en": ["D.R. Congo", "DR Congo", "Congo"]
     },
     "alpha2": "CD",
     "alpha3": "COD",
@@ -426,7 +487,9 @@
     "sovereignty": null,
     "emoji": "🇨🇩",
     "region": "Africa",
-    "domain": ".cd"
+    "domain": ".cd",
+    "capital": { "pt": "Brazzaville", "en": "Brazzaville" },
+    "capitalAlias": { "pt": ["Brazzaville"], "en": [] }
   },
   {
     "id": "CF",
@@ -443,7 +506,9 @@
     "sovereignty": null,
     "emoji": "🇨🇫",
     "region": "Africa",
-    "domain": ".cf"
+    "domain": ".cf",
+    "capital": { "pt": "Bangui", "en": "Bangui" },
+    "capitalAlias": { "pt": ["Bangui"], "en": [] }
   },
   {
     "id": "CG",
@@ -457,7 +522,9 @@
     "sovereignty": null,
     "emoji": "🇨🇬",
     "region": "Africa",
-    "domain": ".cg"
+    "domain": ".cg",
+    "capital": { "pt": "Brazavile", "en": "Brazzaville" },
+    "capitalAlias": { "pt": ["Brazzaville"], "en": [] }
   },
   {
     "id": "CH",
@@ -471,7 +538,9 @@
     "sovereignty": null,
     "emoji": "🇨🇭",
     "region": "Europe",
-    "domain": ".ch"
+    "domain": ".ch",
+    "capital": { "pt": "Bern", "en": "Bern" },
+    "capitalAlias": { "pt": ["Bern"], "en": [] }
   },
   {
     "id": "CI",
@@ -488,7 +557,9 @@
     "sovereignty": null,
     "emoji": "🇨🇮",
     "region": "Africa",
-    "domain": ".ci"
+    "domain": ".ci",
+    "capital": { "pt": "Iamussucro", "en": "Yamoussoukro" },
+    "capitalAlias": { "pt": ["Yamoussoukro"], "en": [] }
   },
   {
     "id": "CL",
@@ -502,7 +573,9 @@
     "sovereignty": null,
     "emoji": "🇨🇱",
     "region": "America",
-    "domain": ".cl"
+    "domain": ".cl",
+    "capital": { "pt": "Santiago", "en": "Santiago" },
+    "capitalAlias": { "pt": ["Santiago"], "en": [] }
   },
   {
     "id": "CM",
@@ -516,7 +589,9 @@
     "sovereignty": null,
     "emoji": "🇨🇲",
     "region": "Africa",
-    "domain": ".cm"
+    "domain": ".cm",
+    "capital": { "pt": "Yaoundé", "en": "Yaoundé" },
+    "capitalAlias": { "pt": ["Yaoundé"], "en": [] }
   },
   {
     "id": "CN",
@@ -530,7 +605,9 @@
     "sovereignty": null,
     "emoji": "🇨🇳",
     "region": "Asia",
-    "domain": ".cn"
+    "domain": ".cn",
+    "capital": { "pt": "Pequim", "en": "Beijing" },
+    "capitalAlias": { "pt": ["Beijing"], "en": [] }
   },
   {
     "id": "CO",
@@ -544,7 +621,9 @@
     "sovereignty": null,
     "emoji": "🇨🇴",
     "region": "America",
-    "domain": ".co"
+    "domain": ".co",
+    "capital": { "pt": "Bogotá", "en": "Bogotá" },
+    "capitalAlias": { "pt": ["Bogotá"], "en": [] }
   },
   {
     "id": "CR",
@@ -558,7 +637,9 @@
     "sovereignty": null,
     "emoji": "🇨🇷",
     "region": "America",
-    "domain": ".cr"
+    "domain": ".cr",
+    "capital": { "pt": "São José", "en": "San José" },
+    "capitalAlias": { "pt": ["San José"], "en": [] }
   },
   {
     "id": "CU",
@@ -572,7 +653,9 @@
     "sovereignty": null,
     "emoji": "🇨🇺",
     "region": "America",
-    "domain": ".cu"
+    "domain": ".cu",
+    "capital": { "pt": "Havana", "en": "Havana" },
+    "capitalAlias": { "pt": ["Havana"], "en": [] }
   },
   {
     "id": "CV",
@@ -586,7 +669,9 @@
     "sovereignty": null,
     "emoji": "🇨🇻",
     "region": "Africa",
-    "domain": ".cv"
+    "domain": ".cv",
+    "capital": { "pt": "Praia", "en": "Praia" },
+    "capitalAlias": { "pt": ["Praia"], "en": [] }
   },
   {
     "id": "CY",
@@ -600,7 +685,9 @@
     "sovereignty": null,
     "emoji": "🇨🇾",
     "region": "Asia",
-    "domain": ".cy"
+    "domain": ".cy",
+    "capital": { "pt": "Nicósia", "en": "Nicosia" },
+    "capitalAlias": { "pt": ["Nicosia", "Lefkosia"], "en": ["Lefkosia"] }
   },
   {
     "id": "CZ",
@@ -614,7 +701,9 @@
     "sovereignty": null,
     "emoji": "🇨🇿",
     "region": "Europe",
-    "domain": ".cz"
+    "domain": ".cz",
+    "capital": { "pt": "Praga", "en": "Prague" },
+    "capitalAlias": { "pt": ["Prague"], "en": [] }
   },
   {
     "id": "DE",
@@ -628,7 +717,9 @@
     "sovereignty": null,
     "emoji": "🇩🇪",
     "region": "Europe",
-    "domain": ".de"
+    "domain": ".de",
+    "capital": { "pt": "Berlim", "en": "Berlin" },
+    "capitalAlias": { "pt": ["Berlin"], "en": [] }
   },
   {
     "id": "DJ",
@@ -642,7 +733,9 @@
     "sovereignty": null,
     "emoji": "🇩🇯",
     "region": "Africa",
-    "domain": ".dj"
+    "domain": ".dj",
+    "capital": { "pt": "Djibuti", "en": "Djibouti" },
+    "capitalAlias": { "pt": ["Djibouti"], "en": [] }
   },
   {
     "id": "DK",
@@ -656,7 +749,9 @@
     "sovereignty": null,
     "emoji": "🇩🇰",
     "region": "Europe",
-    "domain": ".dk"
+    "domain": ".dk",
+    "capital": { "pt": "Copenhague", "en": "Copenhagen" },
+    "capitalAlias": { "pt": ["Copenhagen"], "en": [] }
   },
   {
     "id": "DM",
@@ -670,7 +765,9 @@
     "sovereignty": null,
     "emoji": "🇩🇲",
     "region": "America",
-    "domain": ".dm"
+    "domain": ".dm",
+    "capital": { "pt": "Roseau", "en": "Roseau" },
+    "capitalAlias": { "pt": ["Roseau"], "en": [] }
   },
   {
     "id": "DO",
@@ -684,7 +781,9 @@
     "sovereignty": null,
     "emoji": "🇩🇴",
     "region": "America",
-    "domain": ".do"
+    "domain": ".do",
+    "capital": { "pt": "Santo Domingo", "en": "Santo Domingo" },
+    "capitalAlias": { "pt": ["Santo Domingo"], "en": [] }
   },
   {
     "id": "DZ",
@@ -698,7 +797,9 @@
     "sovereignty": null,
     "emoji": "🇩🇿",
     "region": "Africa",
-    "domain": ".dz"
+    "domain": ".dz",
+    "capital": { "pt": "Argel", "en": "Algiers" },
+    "capitalAlias": { "pt": ["Algiers"], "en": [] }
   },
   {
     "id": "EC",
@@ -712,7 +813,9 @@
     "sovereignty": null,
     "emoji": "🇪🇨",
     "region": "America",
-    "domain": ".ec"
+    "domain": ".ec",
+    "capital": { "pt": "Quito", "en": "Quito" },
+    "capitalAlias": { "pt": ["Quito"], "en": [] }
   },
   {
     "id": "EE",
@@ -726,7 +829,9 @@
     "sovereignty": null,
     "emoji": "🇪🇪",
     "region": "Europe",
-    "domain": ".ee"
+    "domain": ".ee",
+    "capital": { "pt": "Tallinn", "en": "Tallinn" },
+    "capitalAlias": { "pt": ["Tallinn"], "en": [] }
   },
   {
     "id": "EG",
@@ -740,7 +845,9 @@
     "sovereignty": null,
     "emoji": "🇪🇬",
     "region": "Africa",
-    "domain": ".eg"
+    "domain": ".eg",
+    "capital": { "pt": "Cairo", "en": "Cairo" },
+    "capitalAlias": { "pt": ["Cairo"], "en": [] }
   },
   {
     "id": "ER",
@@ -754,7 +861,9 @@
     "sovereignty": null,
     "emoji": "🇪🇷",
     "region": "Africa",
-    "domain": ".er"
+    "domain": ".er",
+    "capital": { "pt": "Asmara", "en": "Asmara" },
+    "capitalAlias": { "pt": ["Asmara"], "en": [] }
   },
   {
     "id": "ES",
@@ -768,7 +877,9 @@
     "sovereignty": null,
     "emoji": "🇪🇸",
     "region": "Europe",
-    "domain": ".es"
+    "domain": ".es",
+    "capital": { "pt": "Madri", "en": "Madrid" },
+    "capitalAlias": { "pt": ["Madrid"], "en": [] }
   },
   {
     "id": "ET",
@@ -782,7 +893,9 @@
     "sovereignty": null,
     "emoji": "🇪🇹",
     "region": "Africa",
-    "domain": ".et"
+    "domain": ".et",
+    "capital": { "pt": "Adis Abeba", "en": "Addis Ababa" },
+    "capitalAlias": { "pt": ["Addis Ababa"], "en": [] }
   },
   {
     "id": "FI",
@@ -796,7 +909,9 @@
     "sovereignty": null,
     "emoji": "🇫🇮",
     "region": "Europe",
-    "domain": ".fi"
+    "domain": ".fi",
+    "capital": { "pt": "Helsinque", "en": "Helsinki" },
+    "capitalAlias": { "pt": ["Helsinki"], "en": [] }
   },
   {
     "id": "FJ",
@@ -810,7 +925,9 @@
     "sovereignty": null,
     "emoji": "🇫🇯",
     "region": "Oceania",
-    "domain": ".fj"
+    "domain": ".fj",
+    "capital": { "pt": "Suva", "en": "Suva" },
+    "capitalAlias": { "pt": ["Suva"], "en": [] }
   },
   {
     "id": "FM",
@@ -827,7 +944,9 @@
     "sovereignty": null,
     "emoji": "🇫🇲",
     "region": "Oceania",
-    "domain": ".fm"
+    "domain": ".fm",
+    "capital": { "pt": "Palikir", "en": "Palikir" },
+    "capitalAlias": { "pt": ["Palikir"], "en": [] }
   },
   {
     "id": "FR",
@@ -841,7 +960,9 @@
     "sovereignty": null,
     "emoji": "🇫🇷",
     "region": "Europe",
-    "domain": ".fr"
+    "domain": ".fr",
+    "capital": { "pt": "Paris", "en": "Paris" },
+    "capitalAlias": { "pt": ["Paris"], "en": [] }
   },
   {
     "id": "GA",
@@ -855,7 +976,9 @@
     "sovereignty": null,
     "emoji": "🇬🇦",
     "region": "Africa",
-    "domain": ".ga"
+    "domain": ".ga",
+    "capital": { "pt": "Libreville", "en": "Libreville" },
+    "capitalAlias": { "pt": ["Libreville"], "en": [] }
   },
   {
     "id": "GD",
@@ -869,7 +992,9 @@
     "sovereignty": null,
     "emoji": "🇬🇩",
     "region": "America",
-    "domain": ".gd"
+    "domain": ".gd",
+    "capital": { "pt": "São Jorge", "en": "St. George's" },
+    "capitalAlias": { "pt": ["St. George's"], "en": [] }
   },
   {
     "id": "GE",
@@ -883,7 +1008,9 @@
     "sovereignty": null,
     "emoji": "🇬🇪",
     "region": "Asia",
-    "domain": ".ge"
+    "domain": ".ge",
+    "capital": { "pt": "Tbilisi", "en": "Tbilisi" },
+    "capitalAlias": { "pt": ["Tbilisi"], "en": [] }
   },
   {
     "id": "GH",
@@ -897,12 +1024,14 @@
     "sovereignty": null,
     "emoji": "🇬🇭",
     "region": "Africa",
-    "domain": ".gh"
+    "domain": ".gh",
+    "capital": { "pt": "Accra", "en": "Accra" },
+    "capitalAlias": { "pt": ["Accra"], "en": [] }
   },
   {
     "id": "GM",
     "name": { "pt": "Gâmbia", "en": "Gambia" },
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["A Gâmbia"], "en": ["The Gambia"] },
     "alpha2": "GM",
     "alpha3": "GMB",
     "shape": "m 427.84875,426.1794 -0.016,-0.242 -0.156,-0.552 0.209,-0.241 0.227,-0.143 0.153,0.114 0.046,0.225 0.118,0.154 0.402,0.096 0.397,-0.069 0.243,0.032 -0.007,-0.125 0.082,-0.166 0.483,-0.071 0.51,-0.047 0.525,-0.1 0.411,0.004 0.122,-0.027 -0.029,-0.043 -0.369,-0.048 -0.787,0.114 -0.801,0.034 -0.607,0.301 -0.249,-0.028 -0.252,-0.301 -0.09,-0.371 0.711,-0.027 0.862,0.012 0.939,0.012 0.442,0.006 0.232,-0.404 0.442,-0.178 0.452,-0.066 0.236,0.017 0.248,0.06 0.477,0.333 0.297,0.077 0.251,0.075 0.179,0.162 0.285,0.161 0.224,0.043 0.133,-0.024 0.222,-0.062 0.146,-0.05 0.476,-0.021 0.35,0.186 0.073,0.203 -0.058,0.208 -0.47,0.111 -0.651,0.174 -0.538,-0.095 -0.655,-0.237 -0.383,-0.17 -0.159,-0.069 -0.239,-0.108 -0.209,-0.116 -0.201,-0.076 -0.154,-0.048 -0.114,0.061 -0.057,0.144 -0.091,0.16 -0.117,0.095 -0.549,0.056 -0.493,0.059 -0.264,0.05 -0.177,0.038 -0.055,0.483 -0.558,-0.005 -0.548,-0.006 -0.569,0.009 -0.611,0.009 -0.157,0.099 z",
@@ -911,7 +1040,9 @@
     "sovereignty": null,
     "emoji": "🇬🇲",
     "region": "Africa",
-    "domain": ".gm"
+    "domain": ".gm",
+    "capital": { "pt": "Banjul", "en": "Banjul" },
+    "capitalAlias": { "pt": ["Banjul"], "en": [] }
   },
   {
     "id": "GN",
@@ -925,7 +1056,9 @@
     "sovereignty": null,
     "emoji": "🇬🇳",
     "region": "Africa",
-    "domain": ".gn"
+    "domain": ".gn",
+    "capital": { "pt": "Conakry", "en": "Conakry" },
+    "capitalAlias": { "pt": ["Conakry"], "en": [] }
   },
   {
     "id": "GQ",
@@ -939,7 +1072,9 @@
     "sovereignty": null,
     "emoji": "🇬🇶",
     "region": "Africa",
-    "domain": ".gq"
+    "domain": ".gq",
+    "capital": { "pt": "Malabo", "en": "Malabo" },
+    "capitalAlias": { "pt": ["Malabo"], "en": [] }
   },
   {
     "id": "GR",
@@ -953,7 +1088,9 @@
     "sovereignty": null,
     "emoji": "🇬🇷",
     "region": "Europe",
-    "domain": ".gr"
+    "domain": ".gr",
+    "capital": { "pt": "Atenas", "en": "Athens" },
+    "capitalAlias": { "pt": ["Athens"], "en": [] }
   },
   {
     "id": "GT",
@@ -967,7 +1104,9 @@
     "sovereignty": null,
     "emoji": "🇬🇹",
     "region": "America",
-    "domain": ".gt"
+    "domain": ".gt",
+    "capital": { "pt": "Cidade de Guatemala", "en": "Guatemala City" },
+    "capitalAlias": { "pt": ["Guatemala City"], "en": [] }
   },
   {
     "id": "GW",
@@ -981,7 +1120,9 @@
     "sovereignty": null,
     "emoji": "🇬🇼",
     "region": "Africa",
-    "domain": ".gw"
+    "domain": ".gw",
+    "capital": { "pt": "Bissau", "en": "Bissau" },
+    "capitalAlias": { "pt": ["Bissau"], "en": [] }
   },
   {
     "id": "GY",
@@ -995,7 +1136,9 @@
     "sovereignty": null,
     "emoji": "🇬🇾",
     "region": "America",
-    "domain": ".gy"
+    "domain": ".gy",
+    "capital": { "pt": "Georgetown", "en": "Georgetown" },
+    "capitalAlias": { "pt": ["Georgetown"], "en": [] }
   },
   {
     "id": "HN",
@@ -1009,7 +1152,9 @@
     "sovereignty": null,
     "emoji": "🇭🇳",
     "region": "America",
-    "domain": ".hn"
+    "domain": ".hn",
+    "capital": { "pt": "Tegucigalpa", "en": "Tegucigalpa" },
+    "capitalAlias": { "pt": ["Tegucigalpa"], "en": [] }
   },
   {
     "id": "HR",
@@ -1023,7 +1168,9 @@
     "sovereignty": null,
     "emoji": "🇭🇷",
     "region": "Europe",
-    "domain": ".hr"
+    "domain": ".hr",
+    "capital": { "pt": "Zagreb", "en": "Zagreb" },
+    "capitalAlias": { "pt": ["Zagreb"], "en": [] }
   },
   {
     "id": "HT",
@@ -1037,7 +1184,9 @@
     "sovereignty": null,
     "emoji": "🇭🇹",
     "region": "America",
-    "domain": ".ht"
+    "domain": ".ht",
+    "capital": { "pt": "Porto Príncipe", "en": "Port-au-Prince" },
+    "capitalAlias": { "pt": ["Port-au-Prince"], "en": [] }
   },
   {
     "id": "HU",
@@ -1051,7 +1200,9 @@
     "sovereignty": null,
     "emoji": "🇭🇺",
     "region": "Europe",
-    "domain": ".hu"
+    "domain": ".hu",
+    "capital": { "pt": "Budapeste", "en": "Budapest" },
+    "capitalAlias": { "pt": ["Budapest"], "en": [] }
   },
   {
     "id": "ID",
@@ -1065,7 +1216,9 @@
     "sovereignty": null,
     "emoji": "🇮🇩",
     "region": "Asia",
-    "domain": ".id"
+    "domain": ".id",
+    "capital": { "pt": "Jacarta", "en": "Jakarta" },
+    "capitalAlias": { "pt": ["Jakarta"], "en": [] }
   },
   {
     "id": "IE",
@@ -1079,7 +1232,9 @@
     "sovereignty": null,
     "emoji": "🇮🇪",
     "region": "Europe",
-    "domain": ".ie"
+    "domain": ".ie",
+    "capital": { "pt": "Dublin", "en": "Dublin" },
+    "capitalAlias": { "pt": ["Dublin"], "en": [] }
   },
   {
     "id": "IL",
@@ -1093,7 +1248,9 @@
     "sovereignty": null,
     "emoji": "🇮🇱",
     "region": "Asia",
-    "domain": ".il"
+    "domain": ".il",
+    "capital": { "pt": "Jerusalém", "en": "Jerusalem" },
+    "capitalAlias": { "pt": ["Jerusalem"], "en": [] }
   },
   {
     "id": "IN",
@@ -1107,7 +1264,9 @@
     "sovereignty": null,
     "emoji": "🇮🇳",
     "region": "Asia",
-    "domain": ".in"
+    "domain": ".in",
+    "capital": { "pt": "Nova Delhi", "en": "New Delhi" },
+    "capitalAlias": { "pt": ["New Delhi"], "en": [] }
   },
   {
     "id": "IQ",
@@ -1121,7 +1280,9 @@
     "sovereignty": null,
     "emoji": "🇮🇶",
     "region": "Asia",
-    "domain": ".iq"
+    "domain": ".iq",
+    "capital": { "pt": "Bagdá", "en": "Baghdad" },
+    "capitalAlias": { "pt": ["Baghdad"], "en": [] }
   },
   {
     "id": "IR",
@@ -1135,7 +1296,9 @@
     "sovereignty": null,
     "emoji": "🇮🇷",
     "region": "Asia",
-    "domain": ".ir"
+    "domain": ".ir",
+    "capital": { "pt": "Teerã", "en": "Tehran" },
+    "capitalAlias": { "pt": ["Tehran"], "en": [] }
   },
   {
     "id": "IS",
@@ -1149,7 +1312,9 @@
     "sovereignty": null,
     "emoji": "🇮🇸",
     "region": "Europe",
-    "domain": ".is"
+    "domain": ".is",
+    "capital": { "pt": "Reykjavík", "en": "Reykjavík" },
+    "capitalAlias": { "pt": ["Reykjavík"], "en": [] }
   },
   {
     "id": "IT",
@@ -1163,7 +1328,9 @@
     "sovereignty": null,
     "emoji": "🇮🇹",
     "region": "Europe",
-    "domain": ".it"
+    "domain": ".it",
+    "capital": { "pt": "Roma", "en": "Rome" },
+    "capitalAlias": { "pt": ["Rome"], "en": [] }
   },
   {
     "id": "JM",
@@ -1177,7 +1344,9 @@
     "sovereignty": null,
     "emoji": "🇯🇲",
     "region": "America",
-    "domain": ".jm"
+    "domain": ".jm",
+    "capital": { "pt": "Kingston", "en": "Kingston" },
+    "capitalAlias": { "pt": ["Kingston"], "en": [] }
   },
   {
     "id": "JO",
@@ -1191,7 +1360,9 @@
     "sovereignty": null,
     "emoji": "🇯🇴",
     "region": "Asia",
-    "domain": ".jo"
+    "domain": ".jo",
+    "capital": { "pt": "Amã", "en": "Amman" },
+    "capitalAlias": { "pt": ["Amman"], "en": [] }
   },
   {
     "id": "JP",
@@ -1205,7 +1376,9 @@
     "sovereignty": null,
     "emoji": "🇯🇵",
     "region": "Asia",
-    "domain": ".jp"
+    "domain": ".jp",
+    "capital": { "pt": "Tóquio", "en": "Tokyo" },
+    "capitalAlias": { "pt": ["Tokyo"], "en": [] }
   },
   {
     "id": "KE",
@@ -1219,7 +1392,9 @@
     "sovereignty": null,
     "emoji": "🇰🇪",
     "region": "Africa",
-    "domain": ".ke"
+    "domain": ".ke",
+    "capital": { "pt": "Nairobi", "en": "Nairobi" },
+    "capitalAlias": { "pt": ["Nairobi"], "en": [] }
   },
   {
     "id": "KG",
@@ -1236,7 +1411,9 @@
     "sovereignty": null,
     "emoji": "🇰🇬",
     "region": "Asia",
-    "domain": ".kg"
+    "domain": ".kg",
+    "capital": { "pt": "Bishkek", "en": "Bishkek" },
+    "capitalAlias": { "pt": ["Bishkek"], "en": [] }
   },
   {
     "id": "KH",
@@ -1250,7 +1427,9 @@
     "sovereignty": null,
     "emoji": "🇰🇭",
     "region": "Asia",
-    "domain": ".kh"
+    "domain": ".kh",
+    "capital": { "pt": "Phnom Penh", "en": "Phnom Penh" },
+    "capitalAlias": { "pt": ["Phnom Penh"], "en": [] }
   },
   {
     "id": "KI",
@@ -1264,7 +1443,9 @@
     "sovereignty": null,
     "emoji": "🇰🇮",
     "region": "Oceania",
-    "domain": ".ki"
+    "domain": ".ki",
+    "capital": { "pt": "Tarawa do sul", "en": "South Tarawa" },
+    "capitalAlias": { "pt": ["South Tarawa"], "en": [] }
   },
   {
     "id": "KM",
@@ -1278,7 +1459,9 @@
     "sovereignty": null,
     "emoji": "🇰🇲",
     "region": "Africa",
-    "domain": ".km"
+    "domain": ".km",
+    "capital": { "pt": "Moroni", "en": "Moroni" },
+    "capitalAlias": { "pt": ["Moroni"], "en": [] }
   },
   {
     "id": "KN",
@@ -1295,7 +1478,9 @@
     "sovereignty": null,
     "emoji": "🇰🇳",
     "region": "America",
-    "domain": ".kn"
+    "domain": ".kn",
+    "capital": { "pt": "Basseterre", "en": "Basseterre" },
+    "capitalAlias": { "pt": ["Basseterre"], "en": [] }
   },
   {
     "id": "KP",
@@ -1309,7 +1494,9 @@
     "sovereignty": null,
     "emoji": "🇰🇵",
     "region": "Asia",
-    "domain": ".kp"
+    "domain": ".kp",
+    "capital": { "pt": "Pyongyang", "en": "Pyongyang" },
+    "capitalAlias": { "pt": ["Pyongyang"], "en": [] }
   },
   {
     "id": "KR",
@@ -1323,7 +1510,9 @@
     "sovereignty": null,
     "emoji": "🇰🇷",
     "region": "Asia",
-    "domain": ".kr"
+    "domain": ".kr",
+    "capital": { "pt": "Seul", "en": "Seoul" },
+    "capitalAlias": { "pt": ["Seoul"], "en": [] }
   },
   {
     "id": "KW",
@@ -1337,7 +1526,9 @@
     "sovereignty": null,
     "emoji": "🇰🇼",
     "region": "Asia",
-    "domain": ".kw"
+    "domain": ".kw",
+    "capital": { "pt": "Cidade de Kuwait", "en": "Kuwait City" },
+    "capitalAlias": { "pt": ["Kuwait City"], "en": [] }
   },
   {
     "id": "KZ",
@@ -1351,7 +1542,9 @@
     "sovereignty": null,
     "emoji": "🇰🇿",
     "region": "Asia",
-    "domain": ".kz"
+    "domain": ".kz",
+    "capital": { "pt": "Nur-Sultan", "en": "Nur-Sultan" },
+    "capitalAlias": { "pt": ["Nur-Sultan"], "en": [] }
   },
   {
     "id": "LA",
@@ -1365,7 +1558,9 @@
     "sovereignty": null,
     "emoji": "🇱🇦",
     "region": "Asia",
-    "domain": ".la"
+    "domain": ".la",
+    "capital": { "pt": "Vientiane", "en": "Vientiane" },
+    "capitalAlias": { "pt": ["Vientiane"], "en": [] }
   },
   {
     "id": "LB",
@@ -1379,7 +1574,9 @@
     "sovereignty": null,
     "emoji": "🇱🇧",
     "region": "Asia",
-    "domain": ".lb"
+    "domain": ".lb",
+    "capital": { "pt": "Beirute", "en": "Beirut" },
+    "capitalAlias": { "pt": ["Beirut"], "en": [] }
   },
   {
     "id": "LC",
@@ -1393,7 +1590,9 @@
     "sovereignty": null,
     "emoji": "🇱🇨",
     "region": "America",
-    "domain": ".lc"
+    "domain": ".lc",
+    "capital": { "pt": "Castries", "en": "Castries" },
+    "capitalAlias": { "pt": ["Castries"], "en": [] }
   },
   {
     "id": "LI",
@@ -1407,7 +1606,9 @@
     "sovereignty": null,
     "emoji": "🇱🇮",
     "region": "Europe",
-    "domain": ".li"
+    "domain": ".li",
+    "capital": { "pt": "Vaduz", "en": "Vaduz" },
+    "capitalAlias": { "pt": ["Vaduz"], "en": [] }
   },
   {
     "id": "LK",
@@ -1421,7 +1622,9 @@
     "sovereignty": null,
     "emoji": "🇱🇰",
     "region": "Asia",
-    "domain": ".lk"
+    "domain": ".lk",
+    "capital": { "pt": "Colombo", "en": "Colombo" },
+    "capitalAlias": { "pt": ["Colombo"], "en": [] }
   },
   {
     "id": "LR",
@@ -1435,7 +1638,9 @@
     "sovereignty": null,
     "emoji": "🇱🇷",
     "region": "Africa",
-    "domain": ".lr"
+    "domain": ".lr",
+    "capital": { "pt": "Monróvia", "en": "Monrovia" },
+    "capitalAlias": { "pt": ["Monrovia"], "en": [] }
   },
   {
     "id": "LS",
@@ -1449,7 +1654,9 @@
     "sovereignty": null,
     "emoji": "🇱🇸",
     "region": "Africa",
-    "domain": ".ls"
+    "domain": ".ls",
+    "capital": { "pt": "Maseru", "en": "Maseru" },
+    "capitalAlias": { "pt": ["Maseru"], "en": [] }
   },
   {
     "id": "LT",
@@ -1463,7 +1670,9 @@
     "sovereignty": null,
     "emoji": "🇱🇹",
     "region": "Europe",
-    "domain": ".lt"
+    "domain": ".lt",
+    "capital": { "pt": "Vilnius", "en": "Vilnius" },
+    "capitalAlias": { "pt": ["Vilnius"], "en": [] }
   },
   {
     "id": "LU",
@@ -1477,7 +1686,9 @@
     "sovereignty": null,
     "emoji": "🇱🇺",
     "region": "Europe",
-    "domain": ".lu"
+    "domain": ".lu",
+    "capital": { "pt": "Luxemburgo", "en": "Luxembourg" },
+    "capitalAlias": { "pt": ["Luxembourg"], "en": [] }
   },
   {
     "id": "LV",
@@ -1491,7 +1702,9 @@
     "sovereignty": null,
     "emoji": "🇱🇻",
     "region": "Europe",
-    "domain": ".lv"
+    "domain": ".lv",
+    "capital": { "pt": "Riga", "en": "Riga" },
+    "capitalAlias": { "pt": ["Riga"], "en": [] }
   },
   {
     "id": "LY",
@@ -1505,7 +1718,9 @@
     "sovereignty": null,
     "emoji": "🇱🇾",
     "region": "Africa",
-    "domain": ".ly"
+    "domain": ".ly",
+    "capital": { "pt": "Trípoli", "en": "Tripoli" },
+    "capitalAlias": { "pt": ["Tripoli"], "en": [] }
   },
   {
     "id": "MA",
@@ -1519,7 +1734,9 @@
     "sovereignty": null,
     "emoji": "🇲🇦",
     "region": "Africa",
-    "domain": ".ma"
+    "domain": ".ma",
+    "capital": { "pt": "Rabat", "en": "Rabat" },
+    "capitalAlias": { "pt": ["Rabat"], "en": [] }
   },
   {
     "id": "MC",
@@ -1533,7 +1750,9 @@
     "sovereignty": null,
     "emoji": "🇲🇨",
     "region": "Europe",
-    "domain": ".mc"
+    "domain": ".mc",
+    "capital": { "pt": "Mônaco", "en": "Monaco" },
+    "capitalAlias": { "pt": ["Monaco"], "en": [] }
   },
   {
     "id": "MD",
@@ -1547,7 +1766,9 @@
     "sovereignty": null,
     "emoji": "🇲🇩",
     "region": "Europe",
-    "domain": ".md"
+    "domain": ".md",
+    "capital": { "pt": "Chișinău", "en": "Chișinău" },
+    "capitalAlias": { "pt": ["Chișinău"], "en": [] }
   },
   {
     "id": "ME",
@@ -1561,7 +1782,9 @@
     "sovereignty": null,
     "emoji": "🇲🇪",
     "region": "Europe",
-    "domain": ".me"
+    "domain": ".me",
+    "capital": { "pt": "Cetinje", "en": "Cetinje" },
+    "capitalAlias": { "pt": ["Cetinje"], "en": [] }
   },
   {
     "id": "MG",
@@ -1575,7 +1798,9 @@
     "sovereignty": null,
     "emoji": "🇲🇬",
     "region": "Africa",
-    "domain": ".mg"
+    "domain": ".mg",
+    "capital": { "pt": "Antananarivo", "en": "Antananarivo" },
+    "capitalAlias": { "pt": ["Antananarivo"], "en": [] }
   },
   {
     "id": "MH",
@@ -1589,7 +1814,9 @@
     "sovereignty": null,
     "emoji": "🇲🇭",
     "region": "Oceania",
-    "domain": ".mh"
+    "domain": ".mh",
+    "capital": { "pt": "Majuro", "en": "Majuro" },
+    "capitalAlias": { "pt": ["Majuro"], "en": [] }
   },
   {
     "id": "MK",
@@ -1603,7 +1830,9 @@
     "sovereignty": null,
     "emoji": "🇲🇰",
     "region": "Europe",
-    "domain": ".mk"
+    "domain": ".mk",
+    "capital": { "pt": "Skopje", "en": "Skopje" },
+    "capitalAlias": { "pt": ["Skopje"], "en": [] }
   },
   {
     "id": "ML",
@@ -1617,7 +1846,9 @@
     "sovereignty": null,
     "emoji": "🇲🇱",
     "region": "Africa",
-    "domain": ".ml"
+    "domain": ".ml",
+    "capital": { "pt": "Bamako", "en": "Bamako" },
+    "capitalAlias": { "pt": ["Bamako"], "en": [] }
   },
   {
     "id": "MM",
@@ -1631,7 +1862,9 @@
     "sovereignty": null,
     "emoji": "🇲🇲",
     "region": "Asia",
-    "domain": ".mm"
+    "domain": ".mm",
+    "capital": { "pt": "Naypyidaw", "en": "Naypyidaw" },
+    "capitalAlias": { "pt": ["Naypyidaw"], "en": [] }
   },
   {
     "id": "MN",
@@ -1645,7 +1878,9 @@
     "sovereignty": null,
     "emoji": "🇲🇳",
     "region": "Asia",
-    "domain": ".mn"
+    "domain": ".mn",
+    "capital": { "pt": "Ulaanbaatar", "en": "Ulaanbaatar" },
+    "capitalAlias": { "pt": ["Ulaanbaatar"], "en": [] }
   },
   {
     "id": "MR",
@@ -1659,7 +1894,9 @@
     "sovereignty": null,
     "emoji": "🇲🇷",
     "region": "Africa",
-    "domain": ".mr"
+    "domain": ".mr",
+    "capital": { "pt": "NouakChott", "en": "Nouakchott" },
+    "capitalAlias": { "pt": ["Nouakchott"], "en": [] }
   },
   {
     "id": "MT",
@@ -1673,7 +1910,9 @@
     "sovereignty": null,
     "emoji": "🇲🇹",
     "region": "Europe",
-    "domain": ".mt"
+    "domain": ".mt",
+    "capital": { "pt": "Valletta", "en": "Valletta" },
+    "capitalAlias": { "pt": ["Valletta"], "en": [] }
   },
   {
     "id": "MU",
@@ -1687,7 +1926,9 @@
     "sovereignty": null,
     "emoji": "🇲🇺",
     "region": "Africa",
-    "domain": ".mu"
+    "domain": ".mu",
+    "capital": { "pt": "Porto Louis", "en": "Port Louis" },
+    "capitalAlias": { "pt": ["Port Louis"], "en": [] }
   },
   {
     "id": "MV",
@@ -1701,7 +1942,9 @@
     "sovereignty": null,
     "emoji": "🇲🇻",
     "region": "Asia",
-    "domain": ".mv"
+    "domain": ".mv",
+    "capital": { "pt": "Macho", "en": "Malé" },
+    "capitalAlias": { "pt": ["Malé"], "en": [] }
   },
   {
     "id": "MW",
@@ -1715,7 +1958,9 @@
     "sovereignty": null,
     "emoji": "🇲🇼",
     "region": "Africa",
-    "domain": ".mw"
+    "domain": ".mw",
+    "capital": { "pt": "Lilongwe", "en": "Lilongwe" },
+    "capitalAlias": { "pt": ["Lilongwe"], "en": [] }
   },
   {
     "id": "MX",
@@ -1729,7 +1974,9 @@
     "sovereignty": null,
     "emoji": "🇲🇽",
     "region": "America",
-    "domain": ".mx"
+    "domain": ".mx",
+    "capital": { "pt": "Cidade do México", "en": "Mexico City" },
+    "capitalAlias": { "pt": ["Mexico City"], "en": [] }
   },
   {
     "id": "MY",
@@ -1743,7 +1990,9 @@
     "sovereignty": null,
     "emoji": "🇲🇾",
     "region": "Asia",
-    "domain": ".my"
+    "domain": ".my",
+    "capital": { "pt": "Kuala Lumpur", "en": "Kuala Lumpur" },
+    "capitalAlias": { "pt": ["Kuala Lumpur"], "en": [] }
   },
   {
     "id": "MZ",
@@ -1757,7 +2006,9 @@
     "sovereignty": null,
     "emoji": "🇲🇿",
     "region": "Africa",
-    "domain": ".mz"
+    "domain": ".mz",
+    "capital": { "pt": "Maputo", "en": "Maputo" },
+    "capitalAlias": { "pt": ["Maputo"], "en": [] }
   },
   {
     "id": "NA",
@@ -1771,7 +2022,9 @@
     "sovereignty": null,
     "emoji": "🇳🇦",
     "region": "Africa",
-    "domain": ".na"
+    "domain": ".na",
+    "capital": { "pt": "Windhoek", "en": "Windhoek" },
+    "capitalAlias": { "pt": ["Windhoek"], "en": [] }
   },
   {
     "id": "NE",
@@ -1785,7 +2038,9 @@
     "sovereignty": null,
     "emoji": "🇳🇪",
     "region": "Africa",
-    "domain": ".ne"
+    "domain": ".ne",
+    "capital": { "pt": "Niamey", "en": "Niamey" },
+    "capitalAlias": { "pt": ["Niamey"], "en": [] }
   },
   {
     "id": "NG",
@@ -1799,7 +2054,9 @@
     "sovereignty": null,
     "emoji": "🇳🇬",
     "region": "Africa",
-    "domain": ".ng"
+    "domain": ".ng",
+    "capital": { "pt": "Abuja", "en": "Abuja" },
+    "capitalAlias": { "pt": ["Abuja"], "en": [] }
   },
   {
     "id": "NI",
@@ -1813,7 +2070,9 @@
     "sovereignty": null,
     "emoji": "🇳🇮",
     "region": "America",
-    "domain": ".ni"
+    "domain": ".ni",
+    "capital": { "pt": "Manágua", "en": "Managua" },
+    "capitalAlias": { "pt": ["Managua"], "en": [] }
   },
   {
     "id": "NL",
@@ -1827,7 +2086,9 @@
     "sovereignty": null,
     "emoji": "🇳🇱",
     "region": "Europe",
-    "domain": ".nl"
+    "domain": ".nl",
+    "capital": { "pt": "Amsterdã", "en": "Amsterdam" },
+    "capitalAlias": { "pt": ["Amsterdam"], "en": [] }
   },
   {
     "id": "NO",
@@ -1841,7 +2102,9 @@
     "sovereignty": null,
     "emoji": "🇳🇴",
     "region": "Europe",
-    "domain": ".no"
+    "domain": ".no",
+    "capital": { "pt": "Oslo", "en": "Oslo" },
+    "capitalAlias": { "pt": ["Oslo"], "en": [] }
   },
   {
     "id": "NP",
@@ -1855,7 +2118,9 @@
     "sovereignty": null,
     "emoji": "🇳🇵",
     "region": "Asia",
-    "domain": ".np"
+    "domain": ".np",
+    "capital": { "pt": "Kathmandu", "en": "Kathmandu" },
+    "capitalAlias": { "pt": ["Kathmandu"], "en": [] }
   },
   {
     "id": "NR",
@@ -1869,7 +2134,9 @@
     "sovereignty": null,
     "emoji": "🇳🇷",
     "region": "Oceania",
-    "domain": ".nr"
+    "domain": ".nr",
+    "capital": { "pt": "Yaren", "en": "Yaren" },
+    "capitalAlias": { "pt": ["Yaren"], "en": [] }
   },
   {
     "id": "NZ",
@@ -1883,7 +2150,9 @@
     "sovereignty": null,
     "emoji": "🇳🇿",
     "region": "Oceania",
-    "domain": ".nz"
+    "domain": ".nz",
+    "capital": { "pt": "Wellington", "en": "Wellington" },
+    "capitalAlias": { "pt": ["Wellington"], "en": [] }
   },
   {
     "id": "OM",
@@ -1897,7 +2166,9 @@
     "sovereignty": null,
     "emoji": "🇴🇲",
     "region": "Asia",
-    "domain": ".om"
+    "domain": ".om",
+    "capital": { "pt": "Muscat", "en": "Muscat" },
+    "capitalAlias": { "pt": ["Muscat"], "en": [] }
   },
   {
     "id": "PA",
@@ -1911,7 +2182,9 @@
     "sovereignty": null,
     "emoji": "🇵🇦",
     "region": "America",
-    "domain": ".pa"
+    "domain": ".pa",
+    "capital": { "pt": "Cidade do Panamá", "en": "Panama City" },
+    "capitalAlias": { "pt": ["Panama City"], "en": [] }
   },
   {
     "id": "PE",
@@ -1925,7 +2198,9 @@
     "sovereignty": null,
     "emoji": "🇵🇪",
     "region": "America",
-    "domain": ".pe"
+    "domain": ".pe",
+    "capital": { "pt": "Lima", "en": "Lima" },
+    "capitalAlias": { "pt": ["Lima"], "en": [] }
   },
   {
     "id": "PG",
@@ -1939,7 +2214,9 @@
     "sovereignty": null,
     "emoji": "🇵🇬",
     "region": "Oceania",
-    "domain": ".pg"
+    "domain": ".pg",
+    "capital": { "pt": "Port Moresby", "en": "Port Moresby" },
+    "capitalAlias": { "pt": ["Port Moresby"], "en": [] }
   },
   {
     "id": "PH",
@@ -1953,7 +2230,9 @@
     "sovereignty": null,
     "emoji": "🇵🇭",
     "region": "Asia",
-    "domain": ".ph"
+    "domain": ".ph",
+    "capital": { "pt": "Manila", "en": "Manila" },
+    "capitalAlias": { "pt": ["Manila"], "en": [] }
   },
   {
     "id": "PK",
@@ -1967,7 +2246,9 @@
     "sovereignty": null,
     "emoji": "🇵🇰",
     "region": "Asia",
-    "domain": ".pk"
+    "domain": ".pk",
+    "capital": { "pt": "Islamabad", "en": "Islamabad" },
+    "capitalAlias": { "pt": ["Islamabad"], "en": [] }
   },
   {
     "id": "PL",
@@ -1981,7 +2262,9 @@
     "sovereignty": null,
     "emoji": "🇵🇱",
     "region": "Europe",
-    "domain": ".pl"
+    "domain": ".pl",
+    "capital": { "pt": "Varsóvia", "en": "Warsaw" },
+    "capitalAlias": { "pt": ["Warsaw"], "en": [] }
   },
   {
     "id": "PT",
@@ -1995,7 +2278,9 @@
     "sovereignty": null,
     "emoji": "🇵🇹",
     "region": "Europe",
-    "domain": ".pt"
+    "domain": ".pt",
+    "capital": { "pt": "Lisboa", "en": "Lisbon" },
+    "capitalAlias": { "pt": ["Lisbon"], "en": [] }
   },
   {
     "id": "PW",
@@ -2009,7 +2294,9 @@
     "sovereignty": null,
     "emoji": "🇵🇼",
     "region": "Oceania",
-    "domain": ".pw"
+    "domain": ".pw",
+    "capital": { "pt": "Ngerulmud", "en": "Ngerulmud" },
+    "capitalAlias": { "pt": ["Ngerulmud"], "en": [] }
   },
   {
     "id": "PY",
@@ -2023,7 +2310,9 @@
     "sovereignty": null,
     "emoji": "🇵🇾",
     "region": "America",
-    "domain": ".py"
+    "domain": ".py",
+    "capital": { "pt": "Assunção", "en": "Asunción" },
+    "capitalAlias": { "pt": ["Asunción"], "en": [] }
   },
   {
     "id": "QA",
@@ -2037,7 +2326,9 @@
     "sovereignty": null,
     "emoji": "🇶🇦",
     "region": "Asia",
-    "domain": ".qa"
+    "domain": ".qa",
+    "capital": { "pt": "Doha", "en": "Doha" },
+    "capitalAlias": { "pt": ["Doha"], "en": [] }
   },
   {
     "id": "RO",
@@ -2051,7 +2342,9 @@
     "sovereignty": null,
     "emoji": "🇷🇴",
     "region": "Europe",
-    "domain": ".ro"
+    "domain": ".ro",
+    "capital": { "pt": "Bucareste", "en": "Bucharest" },
+    "capitalAlias": { "pt": ["Bucharest"], "en": [] }
   },
   {
     "id": "RS",
@@ -2065,7 +2358,9 @@
     "sovereignty": null,
     "emoji": "🇷🇸",
     "region": "Europe",
-    "domain": ".rs"
+    "domain": ".rs",
+    "capital": { "pt": "Belgrado", "en": "Belgrade" },
+    "capitalAlias": { "pt": ["Belgrade"], "en": [] }
   },
   {
     "id": "RU",
@@ -2079,7 +2374,9 @@
     "sovereignty": null,
     "emoji": "🇷🇺",
     "region": "Europe",
-    "domain": ".ru"
+    "domain": ".ru",
+    "capital": { "pt": "Moscou", "en": "Moscow" },
+    "capitalAlias": { "pt": ["Moscow"], "en": [] }
   },
   {
     "id": "RW",
@@ -2093,7 +2390,9 @@
     "sovereignty": null,
     "emoji": "🇷🇼",
     "region": "Africa",
-    "domain": ".rw"
+    "domain": ".rw",
+    "capital": { "pt": "Kigali", "en": "Kigali" },
+    "capitalAlias": { "pt": ["Kigali"], "en": [] }
   },
   {
     "id": "SA",
@@ -2107,7 +2406,9 @@
     "sovereignty": null,
     "emoji": "🇸🇦",
     "region": "Asia",
-    "domain": ".sa"
+    "domain": ".sa",
+    "capital": { "pt": "Riyadh", "en": "Riyadh" },
+    "capitalAlias": { "pt": ["Riyadh"], "en": [] }
   },
   {
     "id": "SB",
@@ -2121,7 +2422,9 @@
     "sovereignty": null,
     "emoji": "🇸🇧",
     "region": "Oceania",
-    "domain": ".sb"
+    "domain": ".sb",
+    "capital": { "pt": "Honiara", "en": "Honiara" },
+    "capitalAlias": { "pt": ["Honiara"], "en": [] }
   },
   {
     "id": "SC",
@@ -2135,7 +2438,9 @@
     "sovereignty": null,
     "emoji": "🇸🇨",
     "region": "Africa",
-    "domain": ".sc"
+    "domain": ".sc",
+    "capital": { "pt": "Victoria", "en": "Victoria" },
+    "capitalAlias": { "pt": ["Victoria"], "en": [] }
   },
   {
     "id": "SD",
@@ -2149,7 +2454,9 @@
     "sovereignty": null,
     "emoji": "🇸🇩",
     "region": "Africa",
-    "domain": ".sd"
+    "domain": ".sd",
+    "capital": { "pt": "Cartum", "en": "Khartoum" },
+    "capitalAlias": { "pt": ["Khartoum"], "en": [] }
   },
   {
     "id": "SE",
@@ -2163,12 +2470,14 @@
     "sovereignty": null,
     "emoji": "🇸🇪",
     "region": "Europe",
-    "domain": ".se"
+    "domain": ".se",
+    "capital": { "pt": "Estocolmo", "en": "Stockholm" },
+    "capitalAlias": { "pt": ["Stockholm"], "en": [] }
   },
   {
     "id": "SG",
-    "name": { "pt": "Singapura", "en": "Singapore" },
-    "alias": { "pt": [], "en": [] },
+    "name": { "pt": "Cingapura", "en": "Singapore" },
+    "alias": { "pt": ["Singapura"], "en": [] },
     "alpha2": "SG",
     "alpha3": "SGP",
     "shape": "m 766.68475,459.2094 -0.42,0.185 -0.476,-0.168 0.154,-0.273 0.316,-0.066 0.256,0.087 0.145,0.066 0.1,0.075 z",
@@ -2177,7 +2486,9 @@
     "sovereignty": null,
     "emoji": "🇸🇬",
     "region": "Asia",
-    "domain": ".sg"
+    "domain": ".sg",
+    "capital": { "pt": "Cingapura", "en": "Singapore" },
+    "capitalAlias": { "pt": ["Singapura", "Singapore"], "en": [] }
   },
   {
     "id": "SI",
@@ -2191,7 +2502,9 @@
     "sovereignty": null,
     "emoji": "🇸🇮",
     "region": "Europe",
-    "domain": ".si"
+    "domain": ".si",
+    "capital": { "pt": "Liubliana", "en": "Ljubljana" },
+    "capitalAlias": { "pt": ["Ljubljana"], "en": [] }
   },
   {
     "id": "SK",
@@ -2205,7 +2518,9 @@
     "sovereignty": null,
     "emoji": "🇸🇰",
     "region": "Europe",
-    "domain": ".sk"
+    "domain": ".sk",
+    "capital": { "pt": "Bratislava", "en": "Bratislava" },
+    "capitalAlias": { "pt": ["Bratislava"], "en": [] }
   },
   {
     "id": "SL",
@@ -2219,7 +2534,9 @@
     "sovereignty": null,
     "emoji": "🇸🇱",
     "region": "Africa",
-    "domain": ".sl"
+    "domain": ".sl",
+    "capital": { "pt": "Freetown", "en": "Freetown" },
+    "capitalAlias": { "pt": ["Freetown"], "en": [] }
   },
   {
     "id": "SM",
@@ -2233,7 +2550,9 @@
     "sovereignty": null,
     "emoji": "🇸🇲",
     "region": "Europe",
-    "domain": ".sm"
+    "domain": ".sm",
+    "capital": { "pt": "San Marino", "en": "San Marino" },
+    "capitalAlias": { "pt": ["San Marino"], "en": [] }
   },
   {
     "id": "SN",
@@ -2247,7 +2566,9 @@
     "sovereignty": null,
     "emoji": "🇸🇳",
     "region": "Africa",
-    "domain": ".sn"
+    "domain": ".sn",
+    "capital": { "pt": "Dakar", "en": "Dakar" },
+    "capitalAlias": { "pt": ["Dakar"], "en": [] }
   },
   {
     "id": "SO",
@@ -2261,7 +2582,9 @@
     "sovereignty": null,
     "emoji": "🇸🇴",
     "region": "Africa",
-    "domain": ".so"
+    "domain": ".so",
+    "capital": { "pt": "Mogadíscio", "en": "Mogadishu" },
+    "capitalAlias": { "pt": ["Mogadishu"], "en": [] }
   },
   {
     "id": "SR",
@@ -2275,7 +2598,9 @@
     "sovereignty": null,
     "emoji": "🇸🇷",
     "region": "America",
-    "domain": ".sr"
+    "domain": ".sr",
+    "capital": { "pt": "Paramaribo", "en": "Paramaribo" },
+    "capitalAlias": { "pt": ["Paramaribo"], "en": [] }
   },
   {
     "id": "SS",
@@ -2289,7 +2614,9 @@
     "sovereignty": null,
     "emoji": "🇸🇸",
     "region": "Africa",
-    "domain": ".ss"
+    "domain": ".ss",
+    "capital": { "pt": "Juba", "en": "Juba" },
+    "capitalAlias": { "pt": ["Juba"], "en": [] }
   },
   {
     "id": "ST",
@@ -2303,7 +2630,9 @@
     "sovereignty": null,
     "emoji": "🇸🇹",
     "region": "Africa",
-    "domain": ".st"
+    "domain": ".st",
+    "capital": { "pt": "São Tomé", "en": "São Tomé" },
+    "capitalAlias": { "pt": ["São Tomé"], "en": [] }
   },
   {
     "id": "SV",
@@ -2317,7 +2646,9 @@
     "sovereignty": null,
     "emoji": "🇸🇻",
     "region": "America",
-    "domain": ".sv"
+    "domain": ".sv",
+    "capital": { "pt": "São Salvador", "en": "San Salvador" },
+    "capitalAlias": { "pt": ["San Salvador"], "en": [] }
   },
   {
     "id": "SY",
@@ -2331,7 +2662,9 @@
     "sovereignty": null,
     "emoji": "🇸🇾",
     "region": "Asia",
-    "domain": ".sy"
+    "domain": ".sy",
+    "capital": { "pt": "Damasco", "en": "Damascus" },
+    "capitalAlias": { "pt": ["Damascus"], "en": [] }
   },
   {
     "id": "SZ",
@@ -2345,7 +2678,9 @@
     "sovereignty": null,
     "emoji": "🇸🇿",
     "region": "Africa",
-    "domain": ".sz"
+    "domain": ".sz",
+    "capital": { "pt": "Lobamba / Mebabane", "en": "Lobamba / Mbabane" },
+    "capitalAlias": { "pt": ["Lobamba", "Mebabane", "Mbabane"], "en": ["Lobamba", "Mbabane"] }
   },
   {
     "id": "TD",
@@ -2359,7 +2694,9 @@
     "sovereignty": null,
     "emoji": "🇹🇩",
     "region": "Africa",
-    "domain": ".td"
+    "domain": ".td",
+    "capital": { "pt": "N'djamena", "en": "N'Djamena" },
+    "capitalAlias": { "pt": ["N'Djamena"], "en": [] }
   },
   {
     "id": "TG",
@@ -2373,7 +2710,9 @@
     "sovereignty": null,
     "emoji": "🇹🇬",
     "region": "Africa",
-    "domain": ".tg"
+    "domain": ".tg",
+    "capital": { "pt": "Lomé", "en": "Lomé" },
+    "capitalAlias": { "pt": ["Lomé"], "en": [] }
   },
   {
     "id": "TH",
@@ -2387,7 +2726,9 @@
     "sovereignty": null,
     "emoji": "🇹🇭",
     "region": "Asia",
-    "domain": ".th"
+    "domain": ".th",
+    "capital": { "pt": "Bangkok", "en": "Bangkok" },
+    "capitalAlias": { "pt": ["Bangkok"], "en": [] }
   },
   {
     "id": "TJ",
@@ -2401,12 +2742,14 @@
     "sovereignty": null,
     "emoji": "🇹🇯",
     "region": "Asia",
-    "domain": ".tj"
+    "domain": ".tj",
+    "capital": { "pt": "Dushanbe", "en": "Dushanbe" },
+    "capitalAlias": { "pt": ["Dushanbe"], "en": [] }
   },
   {
     "id": "TL",
-    "name": { "pt": "Timor-Leste", "en": "Timor-Leste" },
-    "alias": { "pt": [], "en": [] },
+    "name": { "pt": "Timor-Leste", "en": "East Timor" },
+    "alias": { "pt": [], "en": ["Timor-Leste"] },
     "alpha2": "TL",
     "alpha3": "TLS",
     "shape": "m 827.51975,485.6914 -0.188,0.484 -0.203,-0.103 0.216,-0.272 0.104,-0.081 0.071,-0.028 z m -1.623,3.871 -0.097,-0.368 -0.103,-0.158 -0.08,-0.09 -0.027,-0.112 0.004,-0.115 0.049,-0.053 0.346,-0.015 0.137,-0.189 -0.001,-0.227 -0.069,-0.077 -0.067,-0.032 -0.356,0.17 -0.103,-0.031 -0.061,-0.062 0.02,-0.251 0.294,-0.235 0.249,-0.426 0.175,-0.17 0.407,-0.159 0.165,-0.045 1.186,-0.235 0.283,-0.016 0.751,0.007 1.006,-0.051 0.248,-0.032 0.322,-0.104 0.313,-0.128 0.165,-0.101 0.174,-0.073 0.259,0.092 0.438,0.069 0.118,0.061 0.109,0.084 -0.509,0.448 -0.56,0.372 -0.345,0.112 -0.356,0.076 -0.272,0.144 -0.229,0.225 -0.293,0.126 -0.33,0.043 -0.283,0.067 -0.256,0.132 -0.355,0.227 -0.145,0.023 -0.152,-0.005 -0.295,0.087 -0.919,0.324 -0.555,0.361 -0.4,0.31 z m -2.895,-0.481 0.454,-0.241 0.691,-0.186 -0.018,0.136 -0.07,0.214 -0.104,0.101 -0.158,0.181 -0.104,0.04 -0.414,-0.04 -0.054,0.026 -0.071,-0.019 -0.105,-0.116 -0.047,-0.096 z",
@@ -2415,7 +2758,9 @@
     "sovereignty": null,
     "emoji": "🇹🇱",
     "region": "Asia",
-    "domain": ".tl"
+    "domain": ".tl",
+    "capital": { "pt": "Dili", "en": "Dili" },
+    "capitalAlias": { "pt": ["Dili"], "en": [] }
   },
   {
     "id": "TM",
@@ -2429,7 +2774,9 @@
     "sovereignty": null,
     "emoji": "🇹🇲",
     "region": "Asia",
-    "domain": ".tm"
+    "domain": ".tm",
+    "capital": { "pt": "Ashgabat", "en": "Ashgabat" },
+    "capitalAlias": { "pt": ["Ashgabat"], "en": [] }
   },
   {
     "id": "TN",
@@ -2443,7 +2790,9 @@
     "sovereignty": null,
     "emoji": "🇹🇳",
     "region": "Africa",
-    "domain": ".tn"
+    "domain": ".tn",
+    "capital": { "pt": "Tunis", "en": "Tunis" },
+    "capitalAlias": { "pt": ["Tunis"], "en": [] }
   },
   {
     "id": "TO",
@@ -2457,7 +2806,9 @@
     "sovereignty": null,
     "emoji": "🇹🇴",
     "region": "Oceania",
-    "domain": ".to"
+    "domain": ".to",
+    "capital": { "pt": "Nukuʻalofa", "en": "Nukuʻalofa" },
+    "capitalAlias": { "pt": ["Nukuʻalofa"], "en": [] }
   },
   {
     "id": "TR",
@@ -2471,7 +2822,9 @@
     "sovereignty": null,
     "emoji": "🇹🇷",
     "region": "Asia",
-    "domain": ".tr"
+    "domain": ".tr",
+    "capital": { "pt": "Ancara", "en": "Ankara" },
+    "capitalAlias": { "pt": ["Ankara"], "en": [] }
   },
   {
     "id": "TT",
@@ -2485,7 +2838,9 @@
     "sovereignty": null,
     "emoji": "🇹🇹",
     "region": "America",
-    "domain": ".tt"
+    "domain": ".tt",
+    "capital": { "pt": "Porto da Espanha", "en": "Port of Spain" },
+    "capitalAlias": { "pt": ["Port of Spain"], "en": [] }
   },
   {
     "id": "TV",
@@ -2499,7 +2854,9 @@
     "sovereignty": null,
     "emoji": "🇹🇻",
     "region": "Oceania",
-    "domain": ".tv"
+    "domain": ".tv",
+    "capital": { "pt": "FUNAFUTI", "en": "Funafuti" },
+    "capitalAlias": { "pt": ["Funafuti"], "en": [] }
   },
   {
     "id": "TW",
@@ -2513,7 +2870,9 @@
     "sovereignty": null,
     "emoji": "🇹🇼",
     "region": "Asia",
-    "domain": ".tw"
+    "domain": ".tw",
+    "capital": { "pt": "Taipei", "en": "Taipei" },
+    "capitalAlias": { "pt": ["Taipé"], "en": [] }
   },
   {
     "id": "TZ",
@@ -2527,7 +2886,9 @@
     "sovereignty": null,
     "emoji": "🇹🇿",
     "region": "Africa",
-    "domain": ".tz"
+    "domain": ".tz",
+    "capital": { "pt": "Dodoma", "en": "Dodoma" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "UA",
@@ -2541,7 +2902,9 @@
     "sovereignty": null,
     "emoji": "🇺🇦",
     "region": "Europe",
-    "domain": ".ua"
+    "domain": ".ua",
+    "capital": { "pt": "Kyiv", "en": "Kyiv" },
+    "capitalAlias": { "pt": ["Kyiv"], "en": [] }
   },
   {
     "id": "UG",
@@ -2555,7 +2918,9 @@
     "sovereignty": null,
     "emoji": "🇺🇬",
     "region": "Africa",
-    "domain": ".ug"
+    "domain": ".ug",
+    "capital": { "pt": "Kampala", "en": "Kampala" },
+    "capitalAlias": { "pt": ["Kampala"], "en": [] }
   },
   {
     "id": "GB",
@@ -2569,7 +2934,9 @@
     "sovereignty": null,
     "emoji": "🇬🇧",
     "region": "Europe",
-    "domain": ".gb .uk"
+    "domain": ".gb .uk",
+    "capital": { "pt": "Londres", "en": "London" },
+    "capitalAlias": { "pt": ["London"], "en": [] }
   },
   {
     "id": "US",
@@ -2589,7 +2956,9 @@
     "sovereignty": null,
     "emoji": "🇺🇸",
     "region": "America",
-    "domain": ".us"
+    "domain": ".us",
+    "capital": { "pt": "Washington DC.", "en": "Washington, D.C." },
+    "capitalAlias": { "pt": ["Washington, D.C."], "en": [] }
   },
   {
     "id": "UY",
@@ -2603,7 +2972,9 @@
     "sovereignty": null,
     "emoji": "🇺🇾",
     "region": "America",
-    "domain": ".uy"
+    "domain": ".uy",
+    "capital": { "pt": "Montevidéu", "en": "Montevideo" },
+    "capitalAlias": { "pt": ["Montevideo"], "en": [] }
   },
   {
     "id": "UZ",
@@ -2617,7 +2988,9 @@
     "sovereignty": null,
     "emoji": "🇺🇿",
     "region": "Asia",
-    "domain": ".uz"
+    "domain": ".uz",
+    "capital": { "pt": "Tashkent", "en": "Tashkent" },
+    "capitalAlias": { "pt": ["Tashkent"], "en": [] }
   },
   {
     "id": "VA",
@@ -2631,7 +3004,9 @@
     "sovereignty": null,
     "emoji": "🇻🇦",
     "region": "Europe",
-    "domain": ".va"
+    "domain": ".va",
+    "capital": { "pt": "Cidade do Vaticano", "en": "Vatican City" },
+    "capitalAlias": { "pt": ["Vatican City"], "en": [] }
   },
   {
     "id": "VC",
@@ -2651,7 +3026,9 @@
     "sovereignty": null,
     "emoji": "🇻🇨",
     "region": "America",
-    "domain": ".vc"
+    "domain": ".vc",
+    "capital": { "pt": "Kingstown", "en": "Kingstown" },
+    "capitalAlias": { "pt": ["Kingstown"], "en": [] }
   },
   {
     "id": "VE",
@@ -2665,7 +3042,9 @@
     "sovereignty": null,
     "emoji": "🇻🇪",
     "region": "America",
-    "domain": ".ve"
+    "domain": ".ve",
+    "capital": { "pt": "Caracas", "en": "Caracas" },
+    "capitalAlias": { "pt": ["Caracas"], "en": [] }
   },
   {
     "id": "VN",
@@ -2679,7 +3058,9 @@
     "sovereignty": null,
     "emoji": "🇻🇳",
     "region": "Asia",
-    "domain": ".vn"
+    "domain": ".vn",
+    "capital": { "pt": "Hanói", "en": "Hanoi" },
+    "capitalAlias": { "pt": ["Hanoi"], "en": [] }
   },
   {
     "id": "VU",
@@ -2693,7 +3074,9 @@
     "sovereignty": null,
     "emoji": "🇻🇺",
     "region": "Oceania",
-    "domain": ".vu"
+    "domain": ".vu",
+    "capital": { "pt": "Port Vila", "en": "Port Vila" },
+    "capitalAlias": { "pt": ["Port Vila"], "en": [] }
   },
   {
     "id": "WS",
@@ -2707,7 +3090,9 @@
     "sovereignty": null,
     "emoji": "🇼🇸",
     "region": "Oceania",
-    "domain": ".ws"
+    "domain": ".ws",
+    "capital": { "pt": "APIA", "en": "Apia" },
+    "capitalAlias": { "pt": ["Apia"], "en": [] }
   },
   {
     "id": "XK",
@@ -2718,7 +3103,9 @@
     "independent": true,
     "shape": "m 535.40975,332.5954 -0.004,0 -0.481,0.105 -0.162,0.123 -0.096,0.216 -0.031,0.111 -0.085,0.004 -0.141,-0.111 -0.178,-0.174 -0.233,0.014 -0.79,0.378 -0.078,0.198 -0.017,0.429 -0.054,0.116 -0.085,0.074 -0.326,-0.047 -0.035,-0.028 0.043,-0.164 -0.017,-0.36 -0.148,-0.597 -0.104,-0.195 -0.217,-0.195 -0.168,-0.128 -0.303,-0.114 -0.153,-0.33 -0.231,-0.374 -0.111,-0.086 0.018,-0.037 0.053,-0.283 -0.066,-0.206 -0.102,-0.176 0.069,-0.107 0.213,10e-4 0.176,0.02 0.063,-0.169 0.363,-0.11 0.349,-0.115 0.051,-0.08 -0.08,-0.174 0.047,-0.109 0.418,-0.31 0.068,-0.141 0.026,-0.11 -0.056,-0.118 -0.079,-0.183 0.038,-0.078 0.217,-0.106 0.177,-0.124 0.104,-0.01 0.065,0.089 0,0.092 0.058,0.155 0.13,0.084 0.216,0.137 0.251,0.093 0.196,0.186 0.269,0.332 0.04,0.164 0.242,0.147 0.224,0.165 -0.035,0.305 0.763,0.266 0.172,-0.002 0.082,0.047 -0.002,0.069 -0.06,0.213 -0.314,0.654 -0.025,0.135 -0.225,0.142 -0.031,0.082 0.064,0.179 z",
     "emoji": "🇽🇰",
-    "region": "Europe"
+    "region": "Europe",
+    "capital": { "pt": "Pristina", "en": "Pristina" },
+    "capitalAlias": { "pt": ["Pristina"], "en": [] }
   },
   {
     "id": "YE",
@@ -2732,7 +3119,9 @@
     "sovereignty": null,
     "emoji": "🇾🇪",
     "region": "Asia",
-    "domain": ".ye"
+    "domain": ".ye",
+    "capital": { "pt": "Aden", "en": "Aden" },
+    "capitalAlias": { "pt": ["Aden"], "en": [] }
   },
   {
     "id": "ZA",
@@ -2746,7 +3135,12 @@
     "sovereignty": null,
     "emoji": "🇿🇦",
     "region": "Africa",
-    "domain": ".za"
+    "domain": ".za",
+    "capital": { "pt": "Blumefontaina / Cidade do Cabo / Pretória", "en": "Bloemfontein / Cape Town / Pretoria" },
+    "capitalAlias": {
+      "pt": ["Bloemfontein", "Blumefontaina", "Cape Town", "Cidade do Cabo", "Pretoria"],
+      "en": ["Bloemfontein", "Cape Town", "Pretoria"]
+    }
   },
   {
     "id": "ZM",
@@ -2760,7 +3154,9 @@
     "sovereignty": null,
     "emoji": "🇿🇲",
     "region": "Africa",
-    "domain": ".zm"
+    "domain": ".zm",
+    "capital": { "pt": "Lusaka", "en": "Lusaka" },
+    "capitalAlias": { "pt": ["Lusaka"], "en": [] }
   },
   {
     "id": "ZW",
@@ -2774,7 +3170,9 @@
     "sovereignty": null,
     "emoji": "🇿🇼",
     "region": "Africa",
-    "domain": ".zw"
+    "domain": ".zw",
+    "capital": { "pt": "Harare", "en": "Harare" },
+    "capitalAlias": { "pt": ["Harare"], "en": [] }
   },
   {
     "id": "AI",
@@ -2788,7 +3186,9 @@
     "sovereignty": "GB",
     "emoji": "🇦🇮",
     "region": null,
-    "domain": ".ai"
+    "domain": ".ai",
+    "capital": { "pt": "O Vale", "en": "The Valley" },
+    "capitalAlias": { "pt": ["The Valley"], "en": [] }
   },
   {
     "id": "AS",
@@ -2802,7 +3202,9 @@
     "sovereignty": "US",
     "emoji": "🇦🇸",
     "region": null,
-    "domain": ".as"
+    "domain": ".as",
+    "capital": { "pt": "Pago Pago", "en": "Pago Pago" },
+    "capitalAlias": { "pt": ["Pago Pago"], "en": [] }
   },
   {
     "id": "AW",
@@ -2816,7 +3218,9 @@
     "sovereignty": "NL",
     "emoji": "🇦🇼",
     "region": null,
-    "domain": ".aw"
+    "domain": ".aw",
+    "capital": { "pt": "Oranjestad", "en": "Oranjestad" },
+    "capitalAlias": { "pt": ["Oranjestad"], "en": [] }
   },
   {
     "id": "AX",
@@ -2830,7 +3234,9 @@
     "sovereignty": "FI",
     "emoji": "🇦🇽",
     "region": null,
-    "domain": ".ax"
+    "domain": ".ax",
+    "capital": { "pt": "Mariehamn", "en": "Mariehamn" },
+    "capitalAlias": { "pt": ["Mariehamn"], "en": [] }
   },
   {
     "id": "BL",
@@ -2844,7 +3250,9 @@
     "sovereignty": "FR",
     "emoji": "🇧🇱",
     "region": null,
-    "domain": ".bl"
+    "domain": ".bl",
+    "capital": { "pt": "Gustavia", "en": "Gustavia" },
+    "capitalAlias": { "pt": ["Gustavia"], "en": [] }
   },
   {
     "id": "BM",
@@ -2858,7 +3266,9 @@
     "sovereignty": "GB",
     "emoji": "🇧🇲",
     "region": null,
-    "domain": ".bm"
+    "domain": ".bm",
+    "capital": { "pt": "Hamilton", "en": "Hamilton" },
+    "capitalAlias": { "pt": ["Hamilton"], "en": [] }
   },
   {
     "id": "BQ",
@@ -2875,21 +3285,9 @@
     "sovereignty": "NL",
     "emoji": "🇧🇶",
     "region": null,
-    "domain": ".bq .nl"
-  },
-  {
-    "id": "BV",
-    "name": { "pt": "Ilha Bouvet", "en": "Bouvet Island" },
-    "alias": { "pt": ["Bouvet"], "en": [] },
-    "alpha2": "BV",
-    "alpha3": "BVT",
-    "shape": "m 484.61275,644.9594 -0.051,0.023 -0.127,-10e-4 -0.043,0.006 -0.063,0.047 -0.02,-0.02 -0.023,-0.036 -0.01,-0.094 0.028,-0.105 0.041,-0.049 0.072,-0.043 0.058,-0.025 0.056,-0.01 0.03,0.003 0.105,0.077 0.008,0.055 -0.016,0.068 -0.017,0.049 z",
-    "independent": false,
-    "numericCode": "074",
-    "sovereignty": "NO",
-    "emoji": "🇧🇻",
-    "region": null,
-    "domain": ""
+    "domain": ".bq",
+    "capital": { "pt": "Kralendijk", "en": "Kralendijk" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "CC",
@@ -2903,7 +3301,9 @@
     "sovereignty": "AU",
     "emoji": "🇨🇨",
     "region": null,
-    "domain": ".cc"
+    "domain": ".cc",
+    "capital": { "pt": "Ilha Oeste", "en": "West Island" },
+    "capitalAlias": { "pt": ["West Island"], "en": [] }
   },
   {
     "id": "CK",
@@ -2917,7 +3317,9 @@
     "sovereignty": "NZ",
     "emoji": "🇨🇰",
     "region": null,
-    "domain": ".ck"
+    "domain": ".ck",
+    "capital": { "pt": "Avarua", "en": "Avarua" },
+    "capitalAlias": { "pt": ["Avarua"], "en": [] }
   },
   {
     "id": "CW",
@@ -2931,7 +3333,9 @@
     "sovereignty": "NL",
     "emoji": "🇨🇼",
     "region": null,
-    "domain": ".cw"
+    "domain": ".cw",
+    "capital": { "pt": "Willemstad", "en": "Willemstad" },
+    "capitalAlias": { "pt": ["Willemstad"], "en": [] }
   },
   {
     "id": "CX",
@@ -2945,7 +3349,9 @@
     "sovereignty": "AU",
     "emoji": "🇨🇽",
     "region": null,
-    "domain": ".cx"
+    "domain": ".cx",
+    "capital": { "pt": "Fish Fish Cove", "en": "Flying Fish Cove" },
+    "capitalAlias": { "pt": ["Flying Fish Cove"], "en": [] }
   },
   {
     "id": "EH",
@@ -2960,7 +3366,9 @@
     "sovereignty": null,
     "emoji": "🇪🇭",
     "region": "Africa",
-    "domain": ""
+    "domain": null,
+    "capital": { "pt": "El Aiune", "en": "El Aaiún" },
+    "capitalAlias": { "pt": ["Laiune"], "en": ["Laayoune"] }
   },
   {
     "id": "FK",
@@ -2974,7 +3382,9 @@
     "sovereignty": "GB",
     "emoji": "🇫🇰",
     "region": null,
-    "domain": ".fk"
+    "domain": ".fk",
+    "capital": { "pt": "Stanley", "en": "Stanley" },
+    "capitalAlias": { "pt": ["Stanley"], "en": [] }
   },
   {
     "id": "FO",
@@ -2988,7 +3398,9 @@
     "sovereignty": "DK",
     "emoji": "🇫🇴",
     "region": null,
-    "domain": ".fo"
+    "domain": ".fo",
+    "capital": { "pt": "TÓRSHAVN", "en": "Tórshavn" },
+    "capitalAlias": { "pt": ["Tórshavn"], "en": [] }
   },
   {
     "id": "GF",
@@ -3002,7 +3414,9 @@
     "numericCode": "254",
     "emoji": "🇬🇫",
     "region": null,
-    "domain": ".gf"
+    "domain": ".gf",
+    "capital": { "pt": "Caiena", "en": "Cayenne" },
+    "capitalAlias": { "pt": ["Cayenne"], "en": [] }
   },
   {
     "id": "GG",
@@ -3016,7 +3430,9 @@
     "sovereignty": "GB",
     "emoji": "🇬🇬",
     "region": null,
-    "domain": ".gg"
+    "domain": ".gg",
+    "capital": { "pt": "Porto de São Pedro", "en": "St. Peter Port" },
+    "capitalAlias": { "pt": ["St. Peter Port"], "en": [] }
   },
   {
     "id": "GI",
@@ -3030,7 +3446,9 @@
     "sovereignty": "GB",
     "emoji": "🇬🇮",
     "region": null,
-    "domain": ".gi"
+    "domain": ".gi",
+    "capital": { "pt": "Gibraltar", "en": "Gibraltar" },
+    "capitalAlias": { "pt": ["Gibraltar"], "en": [] }
   },
   {
     "id": "GL",
@@ -3044,7 +3462,9 @@
     "sovereignty": "DK",
     "emoji": "🇬🇱",
     "region": null,
-    "domain": ".gl"
+    "domain": ".gl",
+    "capital": { "pt": "Nuuk", "en": "Nuuk" },
+    "capitalAlias": { "pt": ["Nuuk"], "en": [] }
   },
   {
     "id": "GO",
@@ -3055,7 +3475,10 @@
     "shape": "m 607.65075,495.4144 -0.02,0.008 -0.039,-0.009 -0.008,-0.049 0.05,-0.009 z",
     "independent": false,
     "emoji": "🇬🇴",
-    "region": null
+    "region": null,
+    "domain": null,
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "GP",
@@ -3069,7 +3492,9 @@
     "sovereignty": "FR",
     "emoji": "🇬🇵",
     "region": null,
-    "domain": ".gp"
+    "domain": ".gp",
+    "capital": { "pt": "Basse-Terre", "en": "Basse-Terre" },
+    "capitalAlias": { "pt": ["Basse-Terre", "Basseterre"], "en": ["Basseterre"] }
   },
   {
     "id": "GS",
@@ -3079,7 +3504,7 @@
     },
     "alias": {
       "pt": ["Geórgia do Sul", "Sandwich do Sul"],
-      "en": ["South Georgia", "South Sandwich"]
+      "en": ["South Georgia and the South Sandwich Islands", "South Georgia", "South Sandwich"]
     },
     "alpha2": "GS",
     "alpha3": "SGS",
@@ -3089,7 +3514,9 @@
     "sovereignty": "GB",
     "emoji": "🇬🇸",
     "region": null,
-    "domain": ".gs"
+    "domain": ".gs",
+    "capital": { "pt": "Rei Edward Point", "en": "King Edward Point" },
+    "capitalAlias": { "pt": ["King Edward Point"], "en": [] }
   },
   {
     "id": "GU",
@@ -3103,7 +3530,9 @@
     "sovereignty": "US",
     "emoji": "🇬🇺",
     "region": null,
-    "domain": ".gu"
+    "domain": ".gu",
+    "capital": { "pt": "Hagåtña", "en": "Hagåtña" },
+    "capitalAlias": { "pt": ["Hagåtña"], "en": [] }
   },
   {
     "id": "HK",
@@ -3117,7 +3546,9 @@
     "sovereignty": "CN",
     "emoji": "🇭🇰",
     "region": null,
-    "domain": ".hk"
+    "domain": ".hk",
+    "capital": { "pt": "Cidade de Vitória", "en": "City of Victoria" },
+    "capitalAlias": { "pt": ["Vitória", "Victoria"], "en": ["Victoria City", "Victoria"] }
   },
   {
     "id": "HM",
@@ -3134,7 +3565,9 @@
     "sovereignty": "AU",
     "emoji": "🇭🇲",
     "region": null,
-    "domain": ".hm"
+    "domain": ".hm",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "IM",
@@ -3148,7 +3581,9 @@
     "sovereignty": "GB",
     "emoji": "🇮🇲",
     "region": null,
-    "domain": ".im"
+    "domain": ".im",
+    "capital": { "pt": "Douglas", "en": "Douglas" },
+    "capitalAlias": { "pt": ["Douglas"], "en": [] }
   },
   {
     "id": "IO",
@@ -3165,7 +3600,9 @@
     "sovereignty": "GB",
     "emoji": "🇮🇴",
     "region": null,
-    "domain": ".io"
+    "domain": ".io",
+    "capital": { "pt": "Camp Thunder Cove", "en": "Camp Thunder Cove" },
+    "capitalAlias": { "pt": ["Camp Thunder Cove"], "en": [] }
   },
   {
     "id": "JE",
@@ -3179,7 +3616,9 @@
     "sovereignty": "GB",
     "emoji": "🇯🇪",
     "region": null,
-    "domain": ".je"
+    "domain": ".je",
+    "capital": { "pt": "St. Helier", "en": "St. Helier" },
+    "capitalAlias": { "pt": ["St. Helier"], "en": [] }
   },
   {
     "id": "JU",
@@ -3191,7 +3630,10 @@
     "independent": false,
     "sovereignty": "FR",
     "emoji": "🇯🇺",
-    "region": null
+    "region": null,
+    "domain": null,
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "KY",
@@ -3205,7 +3647,9 @@
     "sovereignty": "GB",
     "emoji": "🇰🇾",
     "region": null,
-    "domain": ".ky"
+    "domain": ".ky",
+    "capital": { "pt": "George Town", "en": "George Town" },
+    "capitalAlias": { "pt": ["George Town"], "en": [] }
   },
   {
     "id": "MF",
@@ -3219,7 +3663,9 @@
     "sovereignty": "FR",
     "emoji": "🇲🇫",
     "region": null,
-    "domain": ".mf"
+    "domain": ".mf",
+    "capital": { "pt": "Carrigot", "en": "Marigot" },
+    "capitalAlias": { "pt": ["Marigot"], "en": [] }
   },
   {
     "id": "MO",
@@ -3233,7 +3679,9 @@
     "sovereignty": "CN",
     "emoji": "🇲🇴",
     "region": null,
-    "domain": ".mo"
+    "domain": ".mo",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MP",
@@ -3253,7 +3701,9 @@
     "sovereignty": "US",
     "emoji": "🇲🇵",
     "region": null,
-    "domain": ".mp"
+    "domain": ".mp",
+    "capital": { "pt": "Saipan", "en": "Saipan" },
+    "capitalAlias": { "pt": ["Saipan"], "en": [] }
   },
   {
     "id": "MQ",
@@ -3267,7 +3717,9 @@
     "sovereignty": "FR",
     "emoji": "🇲🇶",
     "region": null,
-    "domain": ".mq"
+    "domain": ".mq",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MS",
@@ -3281,7 +3733,9 @@
     "sovereignty": "GB",
     "emoji": "🇲🇸",
     "region": null,
-    "domain": ".ms"
+    "domain": ".ms",
+    "capital": { "pt": "Brades", "en": "Brades" },
+    "capitalAlias": { "pt": ["Brades"], "en": [] }
   },
   {
     "id": "NC",
@@ -3295,7 +3749,9 @@
     "sovereignty": "FR",
     "emoji": "🇳🇨",
     "region": null,
-    "domain": ".nc"
+    "domain": ".nc",
+    "capital": { "pt": "Nouméa", "en": "Nouméa" },
+    "capitalAlias": { "pt": ["Nouméa"], "en": [] }
   },
   {
     "id": "NF",
@@ -3309,7 +3765,9 @@
     "sovereignty": "AU",
     "emoji": "🇳🇫",
     "region": null,
-    "domain": ".nf"
+    "domain": ".nf",
+    "capital": { "pt": "Kingston", "en": "Kingston" },
+    "capitalAlias": { "pt": ["Kingston"], "en": [] }
   },
   {
     "id": "NU",
@@ -3323,7 +3781,9 @@
     "sovereignty": "NZ",
     "emoji": "🇳🇺",
     "region": null,
-    "domain": ".nu"
+    "domain": ".nu",
+    "capital": { "pt": "Alofi", "en": "Alofi" },
+    "capitalAlias": { "pt": ["Alofi"], "en": [] }
   },
   {
     "id": "PF",
@@ -3337,7 +3797,9 @@
     "sovereignty": "FR",
     "emoji": "🇵🇫",
     "region": null,
-    "domain": ".pf"
+    "domain": ".pf",
+    "capital": { "pt": "Papeete", "en": "Papeete" },
+    "capitalAlias": { "pt": ["Papeete"], "en": [] }
   },
   {
     "id": "PM",
@@ -3354,7 +3816,9 @@
     "sovereignty": "FR",
     "emoji": "🇵🇲",
     "region": null,
-    "domain": ".pm"
+    "domain": ".pm",
+    "capital": { "pt": "St. Pierre", "en": "St. Pierre" },
+    "capitalAlias": { "pt": ["St. Pierre"], "en": [] }
   },
   {
     "id": "PN",
@@ -3368,7 +3832,9 @@
     "sovereignty": "GB",
     "emoji": "🇵🇳",
     "region": null,
-    "domain": ".pn"
+    "domain": ".pn",
+    "capital": { "pt": "Adamstown", "en": "Adamstown" },
+    "capitalAlias": { "pt": ["Adamstown"], "en": [] }
   },
   {
     "id": "PR",
@@ -3382,7 +3848,9 @@
     "sovereignty": "US",
     "emoji": "🇵🇷",
     "region": null,
-    "domain": ".pr"
+    "domain": ".pr",
+    "capital": { "pt": "San Juan", "en": "San Juan" },
+    "capitalAlias": { "pt": ["San Juan"], "en": [] }
   },
   {
     "id": "PS",
@@ -3397,7 +3865,9 @@
     "sovereignty": null,
     "emoji": "🇵🇸",
     "region": "Asia",
-    "domain": ".ps"
+    "domain": ".ps",
+    "capital": { "pt": "Jerusalém", "en": "Jerusalem" },
+    "capitalAlias": { "pt": ["Jerusalem"], "en": [] }
   },
   {
     "id": "RE",
@@ -3411,7 +3881,9 @@
     "sovereignty": "FR",
     "emoji": "🇷🇪",
     "region": null,
-    "domain": ".re"
+    "domain": ".re",
+    "capital": { "pt": "São Dinis", "en": "Saint-Denis" },
+    "capitalAlias": { "pt": ["Saint-Denis"], "en": [] }
   },
   {
     "id": "SH",
@@ -3425,7 +3897,9 @@
     "sovereignty": "GB",
     "emoji": "🇸🇭",
     "region": null,
-    "domain": ".sh"
+    "domain": ".sh",
+    "capital": { "pt": "Jamestown", "en": "Jamestown" },
+    "capitalAlias": { "pt": ["Jamestown"], "en": [] }
   },
   {
     "id": "SJ",
@@ -3442,7 +3916,9 @@
     "sovereignty": "NO",
     "emoji": "🇸🇯",
     "region": null,
-    "domain": ""
+    "domain": null,
+    "capital": { "pt": "Longyearbyen", "en": "Longyearbyen" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "SX",
@@ -3459,7 +3935,9 @@
     "sovereignty": "NL",
     "emoji": "🇸🇽",
     "region": null,
-    "domain": ".sx"
+    "domain": ".sx",
+    "capital": { "pt": "Philipsburg", "en": "Philipsburg" },
+    "capitalAlias": { "pt": ["Philipsburg"], "en": [] }
   },
   {
     "id": "TC",
@@ -3473,7 +3951,9 @@
     "sovereignty": "GB",
     "emoji": "🇹🇨",
     "region": null,
-    "domain": ".tc"
+    "domain": ".tc",
+    "capital": { "pt": "Cidade de Cockburn", "en": "Cockburn Town" },
+    "capitalAlias": { "pt": ["Cockburn Town"], "en": [] }
   },
   {
     "id": "TF",
@@ -3493,7 +3973,9 @@
     "numericCode": "260",
     "emoji": "🇹🇫",
     "region": null,
-    "domain": ".tf"
+    "domain": ".tf",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "TK",
@@ -3507,7 +3989,9 @@
     "sovereignty": "NZ",
     "emoji": "🇹🇰",
     "region": null,
-    "domain": ".tk"
+    "domain": ".tk",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "VG",
@@ -3524,12 +4008,17 @@
     "sovereignty": "GB",
     "emoji": "🇻🇬",
     "region": null,
-    "domain": ".vg"
+    "domain": ".vg",
+    "capital": { "pt": "Cidade rodoviária", "en": "Road Town" },
+    "capitalAlias": { "pt": ["Road Town"], "en": [] }
   },
   {
     "id": "VI",
     "name": { "pt": "Ilhas Virgens Americanas", "en": "US Virgin Islands" },
-    "alias": { "pt": ["Ilhas Virgens"], "en": ["Virgin Islands"] },
+    "alias": {
+      "pt": ["Ilhas Virgens"],
+      "en": ["United States Virgin Islands", "Virgin Islands"]
+    },
     "alpha2": "VI",
     "alpha3": "VIR",
     "shape": "m 292.90875,410.9164 -0.21,0.026 -0.291,-0.136 0.229,-0.052 0.148,0.033 0.124,0.129 z m 0.519,-0.071 -0.186,0.078 -0.125,-0.011 -0.048,-0.028 0.099,-0.091 0.26,0.052 z m -0.296,1.643 0.235,0.129 0.285,0 -0.297,0.129 -0.569,0.013 0.013,-0.207 0.333,-0.064 z",
@@ -3538,7 +4027,9 @@
     "sovereignty": "US",
     "emoji": "🇻🇮",
     "region": null,
-    "domain": ".vi"
+    "domain": ".vi",
+    "capital": { "pt": "Charlotte Amalie", "en": "Charlotte Amalie" },
+    "capitalAlias": { "pt": ["Charlotte Amalie"], "en": [] }
   },
   {
     "id": "WF",
@@ -3552,7 +4043,9 @@
     "sovereignty": "FR",
     "emoji": "🇼🇫",
     "region": null,
-    "domain": ".wf"
+    "domain": ".wf",
+    "capital": { "pt": "Mata utu", "en": "Mata Utu" },
+    "capitalAlias": { "pt": ["Mata Utu"], "en": [] }
   },
   {
     "id": "YT",
@@ -3566,6 +4059,8 @@
     "sovereignty": "FR",
     "emoji": "🇾🇹",
     "region": null,
-    "domain": ".yt"
+    "domain": ".yt",
+    "capital": { "pt": "", "en": "" },
+    "capitalAlias": { "pt": [], "en": [] }
   }
 ]

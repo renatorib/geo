@@ -22,6 +22,7 @@
     "@mantine/notifications": "^5.0.0",
     "@mantine/nprogress": "^5.0.0",
     "@mantine/spotlight": "^5.0.0",
+    "@vitalets/google-translate-api": "^8.0.0",
     "chalk": "^5.0.1",
     "classnames": "^2.3.1",
     "next": "12.2.3",
@@ -35,6 +36,7 @@
     "react-svg-pan-zoom": "^3.11.0",
     "regenerator-runtime": "^0.13.9",
     "svgo": "^2.8.0",
+    "wikipedia": "^1.1.9",
     "zx": "^7.0.7"
   },
   "devDependencies": {

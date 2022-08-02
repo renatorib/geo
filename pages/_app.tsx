@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Guess the Flag</title>
+        <title>Guess the Country!</title>
       </Head>
 
       <MantineProvider withGlobalStyles withNormalizeCSS>

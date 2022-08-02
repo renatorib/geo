@@ -30,7 +30,10 @@ export const countries = [
         emoji: ${stg(country.emoji)},
         independent: ${stg(country.independent)},
         sovereignty: ${stg(country.sovereignty)},
+        domain: ${stg(country.domain)},
         disputed: ${stg(country.disputed ?? false)},
+        capital: ${stg(country.capital)},
+        capitalAlias: ${stg(country.capitalAlias)},
         flag: ${flagExist ? `flags.${normalizeIdToFile(country.id)}` : `null`}, 
         region: ${country.region ? `enums.Region.${country.region}` : `null`},
       }`;

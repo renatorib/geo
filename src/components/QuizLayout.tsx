@@ -9,7 +9,6 @@ import {
   Header,
   ActionIcon,
   Burger,
-  Divider,
   ThemeIcon,
   Drawer,
   Container,
@@ -17,135 +16,20 @@ import {
   Switch,
   useMantineTheme,
 } from "@mantine/core";
-import {
-  GiFlyingFlag,
-  GiEarthAmerica,
-  GiEarthAsiaOceania,
-  GiEarthAfricaEurope,
-  GiBrazil,
-  GiWorld,
-} from "react-icons/gi";
-import { RiMore2Fill, RiSettings2Line } from "react-icons/ri";
+import { GiFlyingFlag } from "react-icons/gi";
+import { RiSettings2Line, RiHome2Line } from "react-icons/ri";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Chevron, LangSelector, TranscriptDialog } from "~/components";
+import { LangSelector, TranscriptDialog } from "~/components";
 import { useSpeechRecognition } from "react-speech-recognition";
 import { useLocalStorage } from "@mantine/hooks";
 
 const AppNavbar = () => {
-  const [flagsOpened, setFlagsOpened] = React.useState(true);
-  const [shapesOpened, setShapesOpened] = React.useState(false);
-  const [othersOpened, setOthersOpened] = React.useState(false);
-
   return (
     <Stack>
-      {/* Flags */}
-      <Divider
-        label={
-          <UnstyledButton
-            px="xs"
-            onClick={() => setFlagsOpened((o) => !o)}
-            sx={(t) => ({ fontSize: "inherit", "&:hover": { background: t.colors.gray[0] } })}
-          >
-            <Group spacing="xs">
-              <GiFlyingFlag />
-              <Text weight="bold">Flags</Text>
-              <Chevron opened={flagsOpened} />
-            </Group>
-          </UnstyledButton>
-        }
-      />
-      <Box sx={{ display: flagsOpened ? "block" : "none" }}>
-        <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
-          <NavbarLink href="/flags/world" icon={<GiEarthAmerica />}>
-            World
-          </NavbarLink>
-          <NavbarLink href="/flags/africa" icon={<GiEarthAfricaEurope />}>
-            Africa
-          </NavbarLink>
-          <NavbarLink href="/flags/america" icon={<GiEarthAmerica />}>
-            America
-          </NavbarLink>
-          <NavbarLink href="/flags/asia" icon={<GiEarthAsiaOceania />}>
-            Asia
-          </NavbarLink>
-          <NavbarLink href="/flags/europe" icon={<GiEarthAfricaEurope />}>
-            Europe
-          </NavbarLink>
-          <NavbarLink href="/flags/oceania" icon={<GiEarthAsiaOceania />}>
-            Oceania
-          </NavbarLink>
-          <NavbarLink href="/flags/others" icon={<GiEarthAmerica />}>
-            Others
-          </NavbarLink>
-        </Stack>
-      </Box>
-
-      {/* Shapes */}
-      <Divider
-        label={
-          <UnstyledButton
-            px="xs"
-            onClick={() => setShapesOpened((o) => !o)}
-            sx={(t) => ({ fontSize: "inherit", "&:hover": { background: t.colors.gray[0] } })}
-          >
-            <Group spacing="xs">
-              <GiBrazil />
-              <Text weight="bold">Shapes</Text>
-              <Chevron opened={shapesOpened} />
-            </Group>
-          </UnstyledButton>
-        }
-      />
-      <Box sx={{ display: shapesOpened ? "block" : "none" }}>
-        <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
-          <NavbarLink href="/shapes/world" icon={<GiEarthAmerica />}>
-            World
-          </NavbarLink>
-          <NavbarLink href="/shapes/africa" icon={<GiEarthAfricaEurope />}>
-            Africa
-          </NavbarLink>
-          <NavbarLink href="/shapes/america" icon={<GiEarthAmerica />}>
-            America
-          </NavbarLink>
-          <NavbarLink href="/shapes/asia" icon={<GiEarthAsiaOceania />}>
-            Asia
-          </NavbarLink>
-          <NavbarLink href="/shapes/europe" icon={<GiEarthAfricaEurope />}>
-            Europe
-          </NavbarLink>
-          <NavbarLink href="/shapes/oceania" icon={<GiEarthAsiaOceania />}>
-            Oceania
-          </NavbarLink>
-          <NavbarLink href="/shapes/others" icon={<GiEarthAmerica />}>
-            Others
-          </NavbarLink>
-        </Stack>
-      </Box>
-
-      {/* Others */}
-      <Divider
-        label={
-          <UnstyledButton
-            px="xs"
-            onClick={() => setOthersOpened((o) => !o)}
-            sx={(t) => ({ fontSize: "inherit", "&:hover": { background: t.colors.gray[0] } })}
-          >
-            <Group spacing="xs">
-              <GiWorld />
-              <Text weight="bold">Others</Text>
-              <Chevron opened={othersOpened} />
-            </Group>
-          </UnstyledButton>
-        }
-      />
-      <Box sx={{ display: othersOpened ? "block" : "none" }}>
-        <Stack spacing="xs" pl="xs" ml="xs" sx={{ borderLeft: "1px solid #eee" }}>
-          <NavbarLink href="/others/world-map" icon={<GiEarthAmerica />}>
-            World Map (Beta)
-          </NavbarLink>
-        </Stack>
-      </Box>
+      <NavbarLink href="/" icon={<RiHome2Line />}>
+        Home
+      </NavbarLink>
     </Stack>
   );
 };
@@ -178,7 +62,7 @@ const AppHeader = () => {
             >
               <GiFlyingFlag size={18} />
               <Text weight={700} align="center">
-                Guess the Flag!
+                Guess the Country!
               </Text>
             </Box>
           </NextLink>
@@ -269,7 +153,7 @@ const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: Rea
           },
         })}
       >
-        <Group align="center">
+        <Group align="center" spacing="xs">
           <Text color="violet">
             <Group align="center">
               <ThemeIcon variant="light" color={selected ? "violet" : "blue"}>

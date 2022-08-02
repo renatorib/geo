@@ -17,9 +17,6 @@ import {
   Alert,
   Transition,
   Center,
-  Dialog,
-  keyframes,
-  createStyles,
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import {
@@ -33,12 +30,14 @@ import {
   RiSettings2Line,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useLang, usePrevious, usePooling } from "~/hooks";
+import { useLang, usePooling } from "~/hooks";
 import { zoomIntoPath } from "~/modules/svg/viewbox";
 import { blink } from "~/styles/keyframes";
 
+type QuizType = "flags" | "shapes" | "domains" | "capitals";
+
 type QuizProps = {
-  type?: "flag" | "shape";
+  type?: QuizType;
   countries: Country[];
   title: string;
 };
@@ -180,7 +179,7 @@ export const Quiz = (props: QuizProps) => {
           listening={listening}
           checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
           onGuess={(guess) => handleGuess(country, guess)}
-          type={props.type ?? "flag"}
+          type={props.type ?? "flags"}
         />
       </div>
     </React.Fragment>
@@ -262,7 +261,7 @@ const CountryCard: React.FC<{
   country: Country;
   checked: "correct" | "spoiler" | false;
   onGuess: (guess: string) => void;
-  type?: "flag" | "shape";
+  type?: QuizType;
   listening?: boolean;
 }> = (props) => {
   const [focused, setFocused] = React.useState(false);
@@ -271,7 +270,7 @@ const CountryCard: React.FC<{
   const { country, type = "flag" } = props;
 
   const shapeViewbox = React.useMemo(() => {
-    if (type === "shape") {
+    if (type === "shapes") {
       const zoom = zoomIntoPath(country.shape);
       const size = Math.max(zoom.viewboxWidth, zoom.viewboxHeight);
       return { viewbox: zoom.viewbox, size: size };
@@ -319,7 +318,7 @@ const CountryCard: React.FC<{
         })}
       >
         <Card.Section sx={{ backgroundColor: color[0] }}>
-          {type === "flag" && (
+          {type === "flags" && (
             <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
               {country.flag ? (
                 <NextImage
@@ -338,7 +337,7 @@ const CountryCard: React.FC<{
               )}
             </AspectRatio>
           )}
-          {type === "shape" && (
+          {type === "shapes" && (
             <Box>
               {country.shape && shapeViewbox.viewbox ? (
                 <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
@@ -359,6 +358,20 @@ const CountryCard: React.FC<{
                 </AspectRatio>
               )}
             </Box>
+          )}
+          {type === "domains" && (
+            <CardOfTypeText
+              text={country.domain}
+              fontSize={38}
+              color={props.checked === "correct" ? "green" : props.checked === "spoiler" ? "red" : theme.colors.dark[4]}
+            />
+          )}
+          {type === "capitals" && (
+            <CardOfTypeText
+              text={country.capital[property]}
+              fontSize={16}
+              color={props.checked === "correct" ? "green" : props.checked === "spoiler" ? "red" : theme.colors.dark[4]}
+            />
           )}
         </Card.Section>
 
@@ -393,6 +406,38 @@ const CountryCard: React.FC<{
           />
         </Card.Section>
       </Card>
+    </Box>
+  );
+};
+
+const CardOfTypeText = ({
+  text,
+  color,
+  fontSize,
+}: {
+  text: string | undefined | null;
+  color: string;
+  fontSize: string | number;
+}) => {
+  return (
+    <Box>
+      {text ? (
+        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
+          <Center>
+            <Text color={color} size={fontSize as any} align="center">
+              {text}
+            </Text>
+          </Center>
+        </AspectRatio>
+      ) : (
+        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
+          <Center>
+            <Text color="red" size="xs">
+              ?
+            </Text>
+          </Center>
+        </AspectRatio>
+      )}
     </Box>
   );
 };
