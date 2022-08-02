@@ -2,6 +2,10 @@ import { upperFirstLetter } from "~/modules/string";
 import { countries, Country } from "./countries";
 import { Region } from "./countries/enums";
 
+const select = {
+  all: (c: Country) => c,
+};
+
 const from = {
   africa: (c: Country) => c.region === Region.Africa,
   america: (c: Country) => c.region === Region.America,
@@ -10,10 +14,6 @@ const from = {
   oceania: (c: Country) => c.region === Region.Oceania,
   others: (c: Country) => c.region === null,
   world: (c: Country) => c,
-};
-
-const is = {
-  independent: (c: Country) => c.independent === true,
 };
 
 const have = {
@@ -56,6 +56,37 @@ export const games = [
       {
         name: "others",
         query: from.others,
+      },
+    ],
+  },
+  {
+    name: "map",
+    type: "world-map",
+    query: select.all,
+    groups: [
+      {
+        name: "world",
+        query: from.world,
+      },
+      {
+        name: "africa",
+        query: from.africa,
+      },
+      {
+        name: "america",
+        query: from.america,
+      },
+      {
+        name: "asia",
+        query: from.asia,
+      },
+      {
+        name: "europe",
+        query: from.europe,
+      },
+      {
+        name: "oceania",
+        query: from.oceania,
       },
     ],
   },
@@ -161,37 +192,6 @@ export const games = [
       {
         name: "others",
         query: from.others,
-      },
-    ],
-  },
-  {
-    name: "map",
-    type: "world-map",
-    query: is.independent,
-    groups: [
-      {
-        name: "world",
-        query: from.world,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
       },
     ],
   },
