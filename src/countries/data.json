@@ -77,7 +77,7 @@
     "region": "Europe",
     "domain": ".al",
     "capital": { "pt": "Tirana", "en": "Tirana" },
-    "capitalAlias": { "pt": ["Tirana"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "AM",
@@ -109,7 +109,7 @@
     "region": "Africa",
     "domain": ".ao",
     "capital": { "pt": "Luanda", "en": "Luanda" },
-    "capitalAlias": { "pt": ["Luanda"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "AR",
@@ -125,7 +125,7 @@
     "region": "America",
     "domain": ".ar",
     "capital": { "pt": "Buenos Aires", "en": "Buenos Aires" },
-    "capitalAlias": { "pt": ["Buenos Aires"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "AT",
@@ -208,7 +208,7 @@
     "region": "America",
     "domain": ".bb",
     "capital": { "pt": "Bridgetown", "en": "Bridgetown" },
-    "capitalAlias": { "pt": ["Bridgetown"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BD",
@@ -255,7 +255,7 @@
     "emoji": "🇧🇫",
     "region": "Africa",
     "domain": ".bf",
-    "capital": { "pt": "Ouagadougou", "en": "Ouagadougou" },
+    "capital": { "pt": "Uagadugu", "en": "Ouagadougou" },
     "capitalAlias": { "pt": ["Ouagadougou"], "en": [] }
   },
   {
@@ -272,7 +272,7 @@
     "region": "Europe",
     "domain": ".bg",
     "capital": { "pt": "Sofia", "en": "Sofia" },
-    "capitalAlias": { "pt": ["Sofia"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BH",
@@ -288,7 +288,7 @@
     "region": "Asia",
     "domain": ".bh",
     "capital": { "pt": "Manama", "en": "Manama" },
-    "capitalAlias": { "pt": ["Manama"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BI",
@@ -303,7 +303,7 @@
     "emoji": "🇧🇮",
     "region": "Africa",
     "domain": ".bi",
-    "capital": { "pt": "Gitega", "en": "Gitega" },
+    "capital": { "pt": "Guitega", "en": "Gitega" },
     "capitalAlias": { "pt": ["Gitega"], "en": [] }
   },
   {
@@ -319,7 +319,7 @@
     "emoji": "🇧🇯",
     "region": "Africa",
     "domain": ".bj",
-    "capital": { "pt": "Cotonou", "en": "Cotonou" },
+    "capital": { "pt": "Cotonu", "en": "Cotonou" },
     "capitalAlias": { "pt": ["Cotonou"], "en": [] }
   },
   {
@@ -355,7 +355,7 @@
     "region": "America",
     "domain": ".bo",
     "capital": { "pt": "La Paz", "en": "La Paz" },
-    "capitalAlias": { "pt": ["La Paz"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BR",
@@ -387,7 +387,7 @@
     "region": "America",
     "domain": ".bs",
     "capital": { "pt": "Nassau", "en": "Nassau" },
-    "capitalAlias": { "pt": ["Nassau"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BT",
@@ -402,8 +402,8 @@
     "emoji": "🇧🇹",
     "region": "Asia",
     "domain": ".bt",
-    "capital": { "pt": "Thimphu", "en": "Thimphu" },
-    "capitalAlias": { "pt": ["Thimphu"], "en": [] }
+    "capital": { "pt": "Thimbu", "en": "Thimphu" },
+    "capitalAlias": { "pt": ["Timbu", "Thimphu"], "en": [] }
   },
   {
     "id": "BW",
@@ -435,7 +435,7 @@
     "region": "Europe",
     "domain": ".by",
     "capital": { "pt": "Minsk", "en": "Minsk" },
-    "capitalAlias": { "pt": ["Minsk"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BZ",
@@ -450,7 +450,7 @@
     "emoji": "🇧🇿",
     "region": "America",
     "domain": ".bz",
-    "capital": { "pt": "Belmopan", "en": "Belmopan" },
+    "capital": { "pt": "Belmopã", "en": "Belmopan" },
     "capitalAlias": { "pt": ["Belmopan"], "en": [] }
   },
   {
@@ -488,8 +488,8 @@
     "emoji": "🇨🇩",
     "region": "Africa",
     "domain": ".cd",
-    "capital": { "pt": "Brazzaville", "en": "Brazzaville" },
-    "capitalAlias": { "pt": ["Brazzaville"], "en": [] }
+    "capital": { "pt": "Quinxassa", "en": "Kinshasa" },
+    "capitalAlias": { "pt": ["Kinshasa"], "en": [] }
   },
   {
     "id": "CF",
@@ -508,7 +508,7 @@
     "region": "Africa",
     "domain": ".cf",
     "capital": { "pt": "Bangui", "en": "Bangui" },
-    "capitalAlias": { "pt": ["Bangui"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "CG",
@@ -539,7 +539,7 @@
     "emoji": "🇨🇭",
     "region": "Europe",
     "domain": ".ch",
-    "capital": { "pt": "Bern", "en": "Bern" },
+    "capital": { "pt": "Berna", "en": "Bern" },
     "capitalAlias": { "pt": ["Bern"], "en": [] }
   },
   {
@@ -623,7 +623,7 @@
     "region": "America",
     "domain": ".co",
     "capital": { "pt": "Bogotá", "en": "Bogotá" },
-    "capitalAlias": { "pt": ["Bogotá"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "CR",
@@ -655,7 +655,7 @@
     "region": "America",
     "domain": ".cu",
     "capital": { "pt": "Havana", "en": "Havana" },
-    "capitalAlias": { "pt": ["Havana"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "CV",
@@ -671,7 +671,7 @@
     "region": "Africa",
     "domain": ".cv",
     "capital": { "pt": "Praia", "en": "Praia" },
-    "capitalAlias": { "pt": ["Praia"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "CY",
@@ -735,7 +735,7 @@
     "region": "Africa",
     "domain": ".dj",
     "capital": { "pt": "Djibuti", "en": "Djibouti" },
-    "capitalAlias": { "pt": ["Djibouti"], "en": [] }
+    "capitalAlias": { "pt": ["Dibuti", "Dibouti", "Jibuti"], "en": [] }
   },
   {
     "id": "DK",
@@ -767,7 +767,7 @@
     "region": "America",
     "domain": ".dm",
     "capital": { "pt": "Roseau", "en": "Roseau" },
-    "capitalAlias": { "pt": ["Roseau"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "DO",
@@ -783,7 +783,7 @@
     "region": "America",
     "domain": ".do",
     "capital": { "pt": "Santo Domingo", "en": "Santo Domingo" },
-    "capitalAlias": { "pt": ["Santo Domingo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "DZ",
@@ -815,7 +815,7 @@
     "region": "America",
     "domain": ".ec",
     "capital": { "pt": "Quito", "en": "Quito" },
-    "capitalAlias": { "pt": ["Quito"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "EE",
@@ -831,7 +831,7 @@
     "region": "Europe",
     "domain": ".ee",
     "capital": { "pt": "Tallinn", "en": "Tallinn" },
-    "capitalAlias": { "pt": ["Tallinn"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "EG",
@@ -847,7 +847,7 @@
     "region": "Africa",
     "domain": ".eg",
     "capital": { "pt": "Cairo", "en": "Cairo" },
-    "capitalAlias": { "pt": ["Cairo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "ER",
@@ -863,7 +863,7 @@
     "region": "Africa",
     "domain": ".er",
     "capital": { "pt": "Asmara", "en": "Asmara" },
-    "capitalAlias": { "pt": ["Asmara"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "ES",
@@ -927,7 +927,7 @@
     "region": "Oceania",
     "domain": ".fj",
     "capital": { "pt": "Suva", "en": "Suva" },
-    "capitalAlias": { "pt": ["Suva"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "FM",
@@ -945,7 +945,7 @@
     "emoji": "🇫🇲",
     "region": "Oceania",
     "domain": ".fm",
-    "capital": { "pt": "Palikir", "en": "Palikir" },
+    "capital": { "pt": "Paliquir", "en": "Palikir" },
     "capitalAlias": { "pt": ["Palikir"], "en": [] }
   },
   {
@@ -962,7 +962,7 @@
     "region": "Europe",
     "domain": ".fr",
     "capital": { "pt": "Paris", "en": "Paris" },
-    "capitalAlias": { "pt": ["Paris"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "GA",
@@ -978,7 +978,7 @@
     "region": "Africa",
     "domain": ".ga",
     "capital": { "pt": "Libreville", "en": "Libreville" },
-    "capitalAlias": { "pt": ["Libreville"], "en": [] }
+    "capitalAlias": { "pt": ["Librevile"], "en": [] }
   },
   {
     "id": "GD",
@@ -994,7 +994,7 @@
     "region": "America",
     "domain": ".gd",
     "capital": { "pt": "São Jorge", "en": "St. George's" },
-    "capitalAlias": { "pt": ["St. George's"], "en": [] }
+    "capitalAlias": { "pt": ["St. George's", "Saint George"], "en": ["Saint George"] }
   },
   {
     "id": "GE",
@@ -1009,7 +1009,7 @@
     "emoji": "🇬🇪",
     "region": "Asia",
     "domain": ".ge",
-    "capital": { "pt": "Tbilisi", "en": "Tbilisi" },
+    "capital": { "pt": "Tiblíssi", "en": "Tbilisi" },
     "capitalAlias": { "pt": ["Tbilisi"], "en": [] }
   },
   {
@@ -1025,7 +1025,7 @@
     "emoji": "🇬🇭",
     "region": "Africa",
     "domain": ".gh",
-    "capital": { "pt": "Accra", "en": "Accra" },
+    "capital": { "pt": "Acra", "en": "Accra" },
     "capitalAlias": { "pt": ["Accra"], "en": [] }
   },
   {
@@ -1057,7 +1057,7 @@
     "emoji": "🇬🇳",
     "region": "Africa",
     "domain": ".gn",
-    "capital": { "pt": "Conakry", "en": "Conakry" },
+    "capital": { "pt": "Conacri", "en": "Conakry" },
     "capitalAlias": { "pt": ["Conakry"], "en": [] }
   },
   {
@@ -1074,7 +1074,7 @@
     "region": "Africa",
     "domain": ".gq",
     "capital": { "pt": "Malabo", "en": "Malabo" },
-    "capitalAlias": { "pt": ["Malabo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "GR",
@@ -1105,7 +1105,7 @@
     "emoji": "🇬🇹",
     "region": "America",
     "domain": ".gt",
-    "capital": { "pt": "Cidade de Guatemala", "en": "Guatemala City" },
+    "capital": { "pt": "Cidade da Guatemala", "en": "Guatemala City" },
     "capitalAlias": { "pt": ["Guatemala City"], "en": [] }
   },
   {
@@ -1122,7 +1122,7 @@
     "region": "Africa",
     "domain": ".gw",
     "capital": { "pt": "Bissau", "en": "Bissau" },
-    "capitalAlias": { "pt": ["Bissau"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "GY",
@@ -1138,7 +1138,7 @@
     "region": "America",
     "domain": ".gy",
     "capital": { "pt": "Georgetown", "en": "Georgetown" },
-    "capitalAlias": { "pt": ["Georgetown"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "HN",
@@ -1154,7 +1154,7 @@
     "region": "America",
     "domain": ".hn",
     "capital": { "pt": "Tegucigalpa", "en": "Tegucigalpa" },
-    "capitalAlias": { "pt": ["Tegucigalpa"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "HR",
@@ -1234,7 +1234,7 @@
     "region": "Europe",
     "domain": ".ie",
     "capital": { "pt": "Dublin", "en": "Dublin" },
-    "capitalAlias": { "pt": ["Dublin"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "IL",
@@ -1313,7 +1313,7 @@
     "emoji": "🇮🇸",
     "region": "Europe",
     "domain": ".is",
-    "capital": { "pt": "Reykjavík", "en": "Reykjavík" },
+    "capital": { "pt": "Reiquiavique", "en": "Reykjavík" },
     "capitalAlias": { "pt": ["Reykjavík"], "en": [] }
   },
   {
@@ -1393,7 +1393,7 @@
     "emoji": "🇰🇪",
     "region": "Africa",
     "domain": ".ke",
-    "capital": { "pt": "Nairobi", "en": "Nairobi" },
+    "capital": { "pt": "Nairóbi", "en": "Nairobi" },
     "capitalAlias": { "pt": ["Nairobi"], "en": [] }
   },
   {
@@ -1412,7 +1412,7 @@
     "emoji": "🇰🇬",
     "region": "Asia",
     "domain": ".kg",
-    "capital": { "pt": "Bishkek", "en": "Bishkek" },
+    "capital": { "pt": "Bisqueque", "en": "Bishkek" },
     "capitalAlias": { "pt": ["Bishkek"], "en": [] }
   },
   {
@@ -1444,7 +1444,7 @@
     "emoji": "🇰🇮",
     "region": "Oceania",
     "domain": ".ki",
-    "capital": { "pt": "Tarawa do sul", "en": "South Tarawa" },
+    "capital": { "pt": "Taraua do Sul", "en": "South Tarawa" },
     "capitalAlias": { "pt": ["South Tarawa"], "en": [] }
   },
   {
@@ -1461,7 +1461,7 @@
     "region": "Africa",
     "domain": ".km",
     "capital": { "pt": "Moroni", "en": "Moroni" },
-    "capitalAlias": { "pt": ["Moroni"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "KN",
@@ -1527,7 +1527,7 @@
     "emoji": "🇰🇼",
     "region": "Asia",
     "domain": ".kw",
-    "capital": { "pt": "Cidade de Kuwait", "en": "Kuwait City" },
+    "capital": { "pt": "Cidade do Kuwait", "en": "Kuwait City" },
     "capitalAlias": { "pt": ["Kuwait City"], "en": [] }
   },
   {
@@ -1543,7 +1543,7 @@
     "emoji": "🇰🇿",
     "region": "Asia",
     "domain": ".kz",
-    "capital": { "pt": "Nur-Sultan", "en": "Nur-Sultan" },
+    "capital": { "pt": "Nur-Sultã", "en": "Nur-Sultan" },
     "capitalAlias": { "pt": ["Nur-Sultan"], "en": [] }
   },
   {
@@ -1560,7 +1560,7 @@
     "region": "Asia",
     "domain": ".la",
     "capital": { "pt": "Vientiane", "en": "Vientiane" },
-    "capitalAlias": { "pt": ["Vientiane"], "en": [] }
+    "capitalAlias": { "pt": ["Vienciana"], "en": [] }
   },
   {
     "id": "LB",
@@ -1592,7 +1592,7 @@
     "region": "America",
     "domain": ".lc",
     "capital": { "pt": "Castries", "en": "Castries" },
-    "capitalAlias": { "pt": ["Castries"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "LI",
@@ -1624,7 +1624,7 @@
     "region": "Asia",
     "domain": ".lk",
     "capital": { "pt": "Colombo", "en": "Colombo" },
-    "capitalAlias": { "pt": ["Colombo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "LR",
@@ -1656,7 +1656,7 @@
     "region": "Africa",
     "domain": ".ls",
     "capital": { "pt": "Maseru", "en": "Maseru" },
-    "capitalAlias": { "pt": ["Maseru"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "LT",
@@ -1672,12 +1672,12 @@
     "region": "Europe",
     "domain": ".lt",
     "capital": { "pt": "Vilnius", "en": "Vilnius" },
-    "capitalAlias": { "pt": ["Vilnius"], "en": [] }
+    "capitalAlias": { "pt": ["Vilnius", "Vilna"], "en": [] }
   },
   {
     "id": "LU",
     "name": { "pt": "Luxemburgo", "en": "Luxembourg" },
-    "alias": { "pt": [], "en": [] },
+    "alias": { "pt": ["Luxembourg"], "en": [] },
     "alpha2": "LU",
     "alpha3": "LUX",
     "shape": "m 492.06075,300.7024 -0.022,0.117 0.004,0.261 0.079,0.261 0.188,0.258 0.143,0.186 0.193,0.149 0.326,0.141 0.13,0.03 0.018,0.191 -0.025,0.202 -0.113,0.111 -0.106,0.161 -0.08,0.195 -0.083,0.375 -0.012,0.259 -0.188,-0.107 -0.099,-0.073 -0.172,-0.02 -0.171,0.06 -0.128,0.131 -0.177,0.04 -0.145,-0.04 -0.086,-0.098 -0.077,-0.053 -0.219,-0.066 -0.095,-0.143 0.073,-0.067 0.062,-0.106 0.053,-0.149 0.067,-0.137 -0.215,-0.379 -0.045,-0.116 -0.176,-0.213 0.002,-0.109 0.042,-0.103 -0.016,-0.081 0.025,-0.191 0.124,-0.181 0.082,-0.224 0.139,-0.306 0.307,-0.368 0.22,0.057 0.097,-0.002 0.058,0.135 z",
@@ -1704,7 +1704,7 @@
     "region": "Europe",
     "domain": ".lv",
     "capital": { "pt": "Riga", "en": "Riga" },
-    "capitalAlias": { "pt": ["Riga"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "LY",
@@ -1736,7 +1736,7 @@
     "region": "Africa",
     "domain": ".ma",
     "capital": { "pt": "Rabat", "en": "Rabat" },
-    "capitalAlias": { "pt": ["Rabat"], "en": [] }
+    "capitalAlias": { "pt": ["Rabat", "Rabate"], "en": [] }
   },
   {
     "id": "MC",
@@ -1767,7 +1767,7 @@
     "emoji": "🇲🇩",
     "region": "Europe",
     "domain": ".md",
-    "capital": { "pt": "Chișinău", "en": "Chișinău" },
+    "capital": { "pt": "Quixinau", "en": "Chișinău" },
     "capitalAlias": { "pt": ["Chișinău"], "en": [] }
   },
   {
@@ -1784,7 +1784,7 @@
     "region": "Europe",
     "domain": ".me",
     "capital": { "pt": "Cetinje", "en": "Cetinje" },
-    "capitalAlias": { "pt": ["Cetinje"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MG",
@@ -1800,7 +1800,7 @@
     "region": "Africa",
     "domain": ".mg",
     "capital": { "pt": "Antananarivo", "en": "Antananarivo" },
-    "capitalAlias": { "pt": ["Antananarivo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MH",
@@ -1816,7 +1816,7 @@
     "region": "Oceania",
     "domain": ".mh",
     "capital": { "pt": "Majuro", "en": "Majuro" },
-    "capitalAlias": { "pt": ["Majuro"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MK",
@@ -1831,7 +1831,7 @@
     "emoji": "🇲🇰",
     "region": "Europe",
     "domain": ".mk",
-    "capital": { "pt": "Skopje", "en": "Skopje" },
+    "capital": { "pt": "Escópia", "en": "Skopje" },
     "capitalAlias": { "pt": ["Skopje"], "en": [] }
   },
   {
@@ -1847,7 +1847,7 @@
     "emoji": "🇲🇱",
     "region": "Africa",
     "domain": ".ml",
-    "capital": { "pt": "Bamako", "en": "Bamako" },
+    "capital": { "pt": "Bamaco", "en": "Bamako" },
     "capitalAlias": { "pt": ["Bamako"], "en": [] }
   },
   {
@@ -1863,7 +1863,7 @@
     "emoji": "🇲🇲",
     "region": "Asia",
     "domain": ".mm",
-    "capital": { "pt": "Naypyidaw", "en": "Naypyidaw" },
+    "capital": { "pt": "Nepiedó", "en": "Naypyidaw" },
     "capitalAlias": { "pt": ["Naypyidaw"], "en": [] }
   },
   {
@@ -1879,7 +1879,7 @@
     "emoji": "🇲🇳",
     "region": "Asia",
     "domain": ".mn",
-    "capital": { "pt": "Ulaanbaatar", "en": "Ulaanbaatar" },
+    "capital": { "pt": "Ulã Bator", "en": "Ulaanbaatar" },
     "capitalAlias": { "pt": ["Ulaanbaatar"], "en": [] }
   },
   {
@@ -1895,7 +1895,7 @@
     "emoji": "🇲🇷",
     "region": "Africa",
     "domain": ".mr",
-    "capital": { "pt": "NouakChott", "en": "Nouakchott" },
+    "capital": { "pt": "Nuaquexote", "en": "Nouakchott" },
     "capitalAlias": { "pt": ["Nouakchott"], "en": [] }
   },
   {
@@ -1911,7 +1911,7 @@
     "emoji": "🇲🇹",
     "region": "Europe",
     "domain": ".mt",
-    "capital": { "pt": "Valletta", "en": "Valletta" },
+    "capital": { "pt": "Valeta", "en": "Valletta" },
     "capitalAlias": { "pt": ["Valletta"], "en": [] }
   },
   {
@@ -1943,8 +1943,8 @@
     "emoji": "🇲🇻",
     "region": "Asia",
     "domain": ".mv",
-    "capital": { "pt": "Macho", "en": "Malé" },
-    "capitalAlias": { "pt": ["Malé"], "en": [] }
+    "capital": { "pt": "Malé", "en": "Malé" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "MW",
@@ -1959,7 +1959,7 @@
     "emoji": "🇲🇼",
     "region": "Africa",
     "domain": ".mw",
-    "capital": { "pt": "Lilongwe", "en": "Lilongwe" },
+    "capital": { "pt": "Lilongué", "en": "Lilongwe" },
     "capitalAlias": { "pt": ["Lilongwe"], "en": [] }
   },
   {
@@ -2008,7 +2008,7 @@
     "region": "Africa",
     "domain": ".mz",
     "capital": { "pt": "Maputo", "en": "Maputo" },
-    "capitalAlias": { "pt": ["Maputo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "NA",
@@ -2023,7 +2023,7 @@
     "emoji": "🇳🇦",
     "region": "Africa",
     "domain": ".na",
-    "capital": { "pt": "Windhoek", "en": "Windhoek" },
+    "capital": { "pt": "Vinduque", "en": "Windhoek" },
     "capitalAlias": { "pt": ["Windhoek"], "en": [] }
   },
   {
@@ -2039,7 +2039,7 @@
     "emoji": "🇳🇪",
     "region": "Africa",
     "domain": ".ne",
-    "capital": { "pt": "Niamey", "en": "Niamey" },
+    "capital": { "pt": "Niamei", "en": "Niamey" },
     "capitalAlias": { "pt": ["Niamey"], "en": [] }
   },
   {
@@ -2104,7 +2104,7 @@
     "region": "Europe",
     "domain": ".no",
     "capital": { "pt": "Oslo", "en": "Oslo" },
-    "capitalAlias": { "pt": ["Oslo"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "NP",
@@ -2119,7 +2119,7 @@
     "emoji": "🇳🇵",
     "region": "Asia",
     "domain": ".np",
-    "capital": { "pt": "Kathmandu", "en": "Kathmandu" },
+    "capital": { "pt": "Catmandu", "en": "Kathmandu" },
     "capitalAlias": { "pt": ["Kathmandu"], "en": [] }
   },
   {
@@ -2135,7 +2135,7 @@
     "emoji": "🇳🇷",
     "region": "Oceania",
     "domain": ".nr",
-    "capital": { "pt": "Yaren", "en": "Yaren" },
+    "capital": { "pt": "Iarém", "en": "Yaren" },
     "capitalAlias": { "pt": ["Yaren"], "en": [] }
   },
   {
@@ -2152,7 +2152,7 @@
     "region": "Oceania",
     "domain": ".nz",
     "capital": { "pt": "Wellington", "en": "Wellington" },
-    "capitalAlias": { "pt": ["Wellington"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "OM",
@@ -2167,7 +2167,7 @@
     "emoji": "🇴🇲",
     "region": "Asia",
     "domain": ".om",
-    "capital": { "pt": "Muscat", "en": "Muscat" },
+    "capital": { "pt": "Muscate", "en": "Muscat" },
     "capitalAlias": { "pt": ["Muscat"], "en": [] }
   },
   {
@@ -2200,7 +2200,7 @@
     "region": "America",
     "domain": ".pe",
     "capital": { "pt": "Lima", "en": "Lima" },
-    "capitalAlias": { "pt": ["Lima"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "PG",
@@ -2215,7 +2215,7 @@
     "emoji": "🇵🇬",
     "region": "Oceania",
     "domain": ".pg",
-    "capital": { "pt": "Port Moresby", "en": "Port Moresby" },
+    "capital": { "pt": "Porto Moresby", "en": "Port Moresby" },
     "capitalAlias": { "pt": ["Port Moresby"], "en": [] }
   },
   {
@@ -2247,7 +2247,7 @@
     "emoji": "🇵🇰",
     "region": "Asia",
     "domain": ".pk",
-    "capital": { "pt": "Islamabad", "en": "Islamabad" },
+    "capital": { "pt": "Islamabade", "en": "Islamabad" },
     "capitalAlias": { "pt": ["Islamabad"], "en": [] }
   },
   {
@@ -2328,7 +2328,7 @@
     "region": "Asia",
     "domain": ".qa",
     "capital": { "pt": "Doha", "en": "Doha" },
-    "capitalAlias": { "pt": ["Doha"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "RO",
@@ -2391,7 +2391,7 @@
     "emoji": "🇷🇼",
     "region": "Africa",
     "domain": ".rw",
-    "capital": { "pt": "Kigali", "en": "Kigali" },
+    "capital": { "pt": "Quigali", "en": "Kigali" },
     "capitalAlias": { "pt": ["Kigali"], "en": [] }
   },
   {
@@ -2407,7 +2407,7 @@
     "emoji": "🇸🇦",
     "region": "Asia",
     "domain": ".sa",
-    "capital": { "pt": "Riyadh", "en": "Riyadh" },
+    "capital": { "pt": "Riade", "en": "Riyadh" },
     "capitalAlias": { "pt": ["Riyadh"], "en": [] }
   },
   {
@@ -2424,12 +2424,12 @@
     "region": "Oceania",
     "domain": ".sb",
     "capital": { "pt": "Honiara", "en": "Honiara" },
-    "capitalAlias": { "pt": ["Honiara"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "SC",
-    "name": { "pt": "Seychelles", "en": "Seychelles" },
-    "alias": { "pt": [], "en": [] },
+    "name": { "pt": "Seicheles", "en": "Seychelles" },
+    "alias": { "pt": ["Seychelles"], "en": [] },
     "alpha2": "SC",
     "alpha3": "SYC",
     "shape": "m 630.76775,476.0194 0.008,0.259 -0.135,-0.087 -0.038,-0.167 -0.18,-0.125 -0.094,-0.114 0.203,-0.141 z",
@@ -2439,7 +2439,7 @@
     "emoji": "🇸🇨",
     "region": "Africa",
     "domain": ".sc",
-    "capital": { "pt": "Victoria", "en": "Victoria" },
+    "capital": { "pt": "Vitória", "en": "Victoria" },
     "capitalAlias": { "pt": ["Victoria"], "en": [] }
   },
   {
@@ -2476,8 +2476,8 @@
   },
   {
     "id": "SG",
-    "name": { "pt": "Cingapura", "en": "Singapore" },
-    "alias": { "pt": ["Singapura"], "en": [] },
+    "name": { "pt": "Singapura", "en": "Singapore" },
+    "alias": { "pt": ["Cingapura"], "en": [] },
     "alpha2": "SG",
     "alpha3": "SGP",
     "shape": "m 766.68475,459.2094 -0.42,0.185 -0.476,-0.168 0.154,-0.273 0.316,-0.066 0.256,0.087 0.145,0.066 0.1,0.075 z",
@@ -2487,8 +2487,8 @@
     "emoji": "🇸🇬",
     "region": "Asia",
     "domain": ".sg",
-    "capital": { "pt": "Cingapura", "en": "Singapore" },
-    "capitalAlias": { "pt": ["Singapura", "Singapore"], "en": [] }
+    "capital": { "pt": "Singapura", "en": "Singapore" },
+    "capitalAlias": { "pt": ["Cingapura", "Singapore"], "en": [] }
   },
   {
     "id": "SI",
@@ -2520,7 +2520,7 @@
     "region": "Europe",
     "domain": ".sk",
     "capital": { "pt": "Bratislava", "en": "Bratislava" },
-    "capitalAlias": { "pt": ["Bratislava"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "SL",
@@ -2551,8 +2551,8 @@
     "emoji": "🇸🇲",
     "region": "Europe",
     "domain": ".sm",
-    "capital": { "pt": "San Marino", "en": "San Marino" },
-    "capitalAlias": { "pt": ["San Marino"], "en": [] }
+    "capital": { "pt": "Cidade de San Marino", "en": "San Marino City" },
+    "capitalAlias": { "pt": ["San Marino", "São Marino", "São Marinho"], "en": ["San Marino"] }
   },
   {
     "id": "SN",
@@ -2568,7 +2568,7 @@
     "region": "Africa",
     "domain": ".sn",
     "capital": { "pt": "Dakar", "en": "Dakar" },
-    "capitalAlias": { "pt": ["Dakar"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "SO",
@@ -2616,7 +2616,7 @@
     "region": "Africa",
     "domain": ".ss",
     "capital": { "pt": "Juba", "en": "Juba" },
-    "capitalAlias": { "pt": ["Juba"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "ST",
@@ -2695,8 +2695,8 @@
     "emoji": "🇹🇩",
     "region": "Africa",
     "domain": ".td",
-    "capital": { "pt": "N'djamena", "en": "N'Djamena" },
-    "capitalAlias": { "pt": ["N'Djamena"], "en": [] }
+    "capital": { "pt": "Djamena", "en": "N'Djamena" },
+    "capitalAlias": { "pt": ["Jamena", "N'Djamena"], "en": ["Djamena"] }
   },
   {
     "id": "TG",
@@ -2775,7 +2775,7 @@
     "emoji": "🇹🇲",
     "region": "Asia",
     "domain": ".tm",
-    "capital": { "pt": "Ashgabat", "en": "Ashgabat" },
+    "capital": { "pt": "Asgabate", "en": "Ashgabat" },
     "capitalAlias": { "pt": ["Ashgabat"], "en": [] }
   },
   {
@@ -2792,7 +2792,7 @@
     "region": "Africa",
     "domain": ".tn",
     "capital": { "pt": "Tunis", "en": "Tunis" },
-    "capitalAlias": { "pt": ["Tunis"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "TO",
@@ -2807,8 +2807,8 @@
     "emoji": "🇹🇴",
     "region": "Oceania",
     "domain": ".to",
-    "capital": { "pt": "Nukuʻalofa", "en": "Nukuʻalofa" },
-    "capitalAlias": { "pt": ["Nukuʻalofa"], "en": [] }
+    "capital": { "pt": "Nuku'alofa", "en": "Nuku'alofa" },
+    "capitalAlias": { "pt": ["Nukualofa", "Nuku alofa"], "en": ["Nukualofa", "Nuku alofa"] }
   },
   {
     "id": "TR",
@@ -2855,7 +2855,7 @@
     "emoji": "🇹🇻",
     "region": "Oceania",
     "domain": ".tv",
-    "capital": { "pt": "FUNAFUTI", "en": "Funafuti" },
+    "capital": { "pt": "Funafuti", "en": "Funafuti" },
     "capitalAlias": { "pt": ["Funafuti"], "en": [] }
   },
   {
@@ -2903,7 +2903,7 @@
     "emoji": "🇺🇦",
     "region": "Europe",
     "domain": ".ua",
-    "capital": { "pt": "Kyiv", "en": "Kyiv" },
+    "capital": { "pt": "Kiev", "en": "Kyiv" },
     "capitalAlias": { "pt": ["Kyiv"], "en": [] }
   },
   {
@@ -2919,7 +2919,7 @@
     "emoji": "🇺🇬",
     "region": "Africa",
     "domain": ".ug",
-    "capital": { "pt": "Kampala", "en": "Kampala" },
+    "capital": { "pt": "Campala", "en": "Kampala" },
     "capitalAlias": { "pt": ["Kampala"], "en": [] }
   },
   {
@@ -2957,8 +2957,8 @@
     "emoji": "🇺🇸",
     "region": "America",
     "domain": ".us",
-    "capital": { "pt": "Washington DC.", "en": "Washington, D.C." },
-    "capitalAlias": { "pt": ["Washington, D.C."], "en": [] }
+    "capital": { "pt": "Washington, D.C.", "en": "Washington, D.C." },
+    "capitalAlias": { "pt": ["Washington"], "en": ["Washington"] }
   },
   {
     "id": "UY",
@@ -2989,7 +2989,7 @@
     "emoji": "🇺🇿",
     "region": "Asia",
     "domain": ".uz",
-    "capital": { "pt": "Tashkent", "en": "Tashkent" },
+    "capital": { "pt": "Toshkent", "en": "Tashkent" },
     "capitalAlias": { "pt": ["Tashkent"], "en": [] }
   },
   {
@@ -3075,7 +3075,7 @@
     "emoji": "🇻🇺",
     "region": "Oceania",
     "domain": ".vu",
-    "capital": { "pt": "Port Vila", "en": "Port Vila" },
+    "capital": { "pt": "Porto Vila", "en": "Port Vila" },
     "capitalAlias": { "pt": ["Port Vila"], "en": [] }
   },
   {
@@ -3091,8 +3091,8 @@
     "emoji": "🇼🇸",
     "region": "Oceania",
     "domain": ".ws",
-    "capital": { "pt": "APIA", "en": "Apia" },
-    "capitalAlias": { "pt": ["Apia"], "en": [] }
+    "capital": { "pt": "Apia", "en": "Apia" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "XK",
@@ -3121,7 +3121,7 @@
     "region": "Asia",
     "domain": ".ye",
     "capital": { "pt": "Aden", "en": "Aden" },
-    "capitalAlias": { "pt": ["Aden"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "ZA",
@@ -3187,7 +3187,7 @@
     "emoji": "🇦🇮",
     "region": null,
     "domain": ".ai",
-    "capital": { "pt": "O Vale", "en": "The Valley" },
+    "capital": { "pt": "The Valley", "en": "The Valley" },
     "capitalAlias": { "pt": ["The Valley"], "en": [] }
   },
   {
@@ -3220,7 +3220,7 @@
     "region": null,
     "domain": ".aw",
     "capital": { "pt": "Oranjestad", "en": "Oranjestad" },
-    "capitalAlias": { "pt": ["Oranjestad"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "AX",
@@ -3236,7 +3236,7 @@
     "region": null,
     "domain": ".ax",
     "capital": { "pt": "Mariehamn", "en": "Mariehamn" },
-    "capitalAlias": { "pt": ["Mariehamn"], "en": [] }
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "BL",
@@ -3302,7 +3302,7 @@
     "emoji": "🇨🇨",
     "region": null,
     "domain": ".cc",
-    "capital": { "pt": "Ilha Oeste", "en": "West Island" },
+    "capital": { "pt": "Ilha Ocidental", "en": "West Island" },
     "capitalAlias": { "pt": ["West Island"], "en": [] }
   },
   {
@@ -3350,7 +3350,7 @@
     "emoji": "🇨🇽",
     "region": null,
     "domain": ".cx",
-    "capital": { "pt": "Fish Fish Cove", "en": "Flying Fish Cove" },
+    "capital": { "pt": "Flying Fish Cove", "en": "Flying Fish Cove" },
     "capitalAlias": { "pt": ["Flying Fish Cove"], "en": [] }
   },
   {
@@ -3399,8 +3399,8 @@
     "emoji": "🇫🇴",
     "region": null,
     "domain": ".fo",
-    "capital": { "pt": "TÓRSHAVN", "en": "Tórshavn" },
-    "capitalAlias": { "pt": ["Tórshavn"], "en": [] }
+    "capital": { "pt": "Tórshavn", "en": "Tórshavn" },
+    "capitalAlias": { "pt": [], "en": [] }
   },
   {
     "id": "GF",
@@ -3617,8 +3617,8 @@
     "emoji": "🇯🇪",
     "region": null,
     "domain": ".je",
-    "capital": { "pt": "St. Helier", "en": "St. Helier" },
-    "capitalAlias": { "pt": ["St. Helier"], "en": [] }
+    "capital": { "pt": "Santo Helério", "en": "St. Helier" },
+    "capitalAlias": { "pt": ["St. Helier", "Saint Helier"], "en": ["Saint Helier"] }
   },
   {
     "id": "JU",
@@ -3680,8 +3680,8 @@
     "emoji": "🇲🇴",
     "region": null,
     "domain": ".mo",
-    "capital": { "pt": "", "en": "" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "Macau", "en": "Macau" },
+    "capitalAlias": { "pt": ["Macao"], "en": ["Macao"] }
   },
   {
     "id": "MP",
@@ -3718,8 +3718,8 @@
     "emoji": "🇲🇶",
     "region": null,
     "domain": ".mq",
-    "capital": { "pt": "", "en": "" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "Forte da França", "en": "Fort-de-France" },
+    "capitalAlias": { "pt": ["Fort-de-France"], "en": [] }
   },
   {
     "id": "MS",
@@ -3974,8 +3974,8 @@
     "emoji": "🇹🇫",
     "region": null,
     "domain": ".tf",
-    "capital": { "pt": "", "en": "" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "São Pedro", "en": "Saint-Pierre" },
+    "capitalAlias": { "pt": ["Saint-Pierre"], "en": [] }
   },
   {
     "id": "TK",
@@ -3990,7 +3990,7 @@
     "emoji": "🇹🇰",
     "region": null,
     "domain": ".tk",
-    "capital": { "pt": "", "en": "" },
+    "capital": { "pt": "Nukunonu", "en": "Nukunonu" },
     "capitalAlias": { "pt": [], "en": [] }
   },
   {
@@ -4009,7 +4009,7 @@
     "emoji": "🇻🇬",
     "region": null,
     "domain": ".vg",
-    "capital": { "pt": "Cidade rodoviária", "en": "Road Town" },
+    "capital": { "pt": "Road Town", "en": "Road Town" },
     "capitalAlias": { "pt": ["Road Town"], "en": [] }
   },
   {
@@ -4044,7 +4044,7 @@
     "emoji": "🇼🇫",
     "region": null,
     "domain": ".wf",
-    "capital": { "pt": "Mata utu", "en": "Mata Utu" },
+    "capital": { "pt": "Mata Utu", "en": "Mata Utu" },
     "capitalAlias": { "pt": ["Mata Utu"], "en": [] }
   },
   {
@@ -4060,7 +4060,7 @@
     "emoji": "🇾🇹",
     "region": null,
     "domain": ".yt",
-    "capital": { "pt": "", "en": "" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "Mamudzu", "en": "Mamoudzou" },
+    "capitalAlias": { "pt": ["Mamoudzou"], "en": [] }
   }
 ]
