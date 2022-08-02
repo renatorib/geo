@@ -13,7 +13,7 @@ const from = {
   europe: (c: Country) => c.region === Region.Europe,
   oceania: (c: Country) => c.region === Region.Oceania,
   others: (c: Country) => c.region === null,
-  world: (c: Country) => c,
+  world: (c: Country) => c.region != null,
 };
 
 const have = {
@@ -66,7 +66,7 @@ export const games = [
     groups: [
       {
         name: "world",
-        query: from.world,
+        query: select.all,
       },
       {
         name: "africa",
