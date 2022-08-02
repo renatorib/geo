@@ -195,7 +195,7 @@ export const games = [
       },
     ],
   },
-] as const;
+];
 
 export const findGameByUrl = (url: string /* ex.: flags/america */) => {
   const [name, groupName] = url.split("/");
