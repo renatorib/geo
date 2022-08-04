@@ -10,6 +10,7 @@ type PageProps = { url: string };
 
 export const getStaticProps: GetStaticProps<PageProps, { paths: string[] }> = ({ params }) => {
   const url = (params?.paths ?? []).join("/");
+
   return {
     revalidate: 60,
     props: { url },
@@ -17,7 +18,8 @@ export const getStaticProps: GetStaticProps<PageProps, { paths: string[] }> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = games.flatMap((game) => game.groups.flatMap((group) => `${game.name}/${group.name}`));
+  const paths = games.flatMap((game) => game.groups.flatMap((group) => `${game.url}/${group.url}`));
+
   return {
     paths: paths.map((path) => ({ params: { paths: path.split("/") } })),
     fallback: false,
@@ -39,11 +41,21 @@ const Play = ({ url }: PageProps) => {
     );
   }
 
-  if (game.type === "cards-quiz") {
+  if (game.type === "countries-cards-quiz") {
     return (
       <QuizLayout>
         <NoSSR>
-          {() => <Quiz title={game.title} countries={game.countries} type={game.name as any} display={game.display} />}
+          {() => <Quiz title={game.title} countries={game.countries} display={game.display} type="country" />}
+        </NoSSR>
+      </QuizLayout>
+    );
+  }
+
+  if (game.type === "capitals-cards-quiz") {
+    return (
+      <QuizLayout>
+        <NoSSR>
+          {() => <Quiz title={game.title} countries={game.countries} display={game.display} type="capital" />}
         </NoSSR>
       </QuizLayout>
     );

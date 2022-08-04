@@ -36,10 +36,8 @@ import { blink, pop } from "~/styles/keyframes";
 import { normalizeGuess } from "~/modules/string";
 import { GiPartyPopper } from "react-icons/gi";
 
-type QuizType = "flags" | "shapes" | "domains" | "capitals";
-
 type QuizProps = {
-  type?: QuizType;
+  type?: "country" | "capital";
   countries: Country[];
   title: string;
   display?: ({ country, checked }: { country: Country; checked: "correct" | "spoiler" | false }) => JSX.Element;
@@ -55,6 +53,7 @@ export const Quiz = (props: QuizProps) => {
   const [countries, setCountries] = React.useState<Country[]>(() => shuffle(props.countries));
   const { lang, property } = useLang();
   const timerProps = useTimer();
+  const type = props.type ?? "country";
 
   const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
 
@@ -126,7 +125,11 @@ export const Quiz = (props: QuizProps) => {
       timerProps.start();
     }
 
-    const answers = [country.name[property], ...country.alias[property]].map(normalizeGuess);
+    const answers = (
+      type === "capital"
+        ? [country.capital[property], ...country.capitalAlias[property]]
+        : [country.name[property], ...country.alias[property]]
+    ).map(normalizeGuess);
 
     if (answers.includes(normalizeGuess(guess))) {
       const elements = document.querySelectorAll('[data-quiz-card-id][data-quiz-card-status="false"]');
@@ -179,6 +182,7 @@ export const Quiz = (props: QuizProps) => {
   const cards = countries.map((country) => {
     const isChecked = !!checked[country.id] ? "correct" : spoiler ? "spoiler" : false;
     const displayEl = props.display ? props.display({ country, checked: isChecked }) : null;
+    const name = type === "capital" ? country.capital[property] : country.name[property];
 
     return (
       <React.Fragment key={country.id}>
@@ -188,7 +192,7 @@ export const Quiz = (props: QuizProps) => {
         >
           <GuessCard
             id={country.id}
-            name={country.name[property]}
+            name={name}
             display={displayEl}
             listening={listening}
             checked={isChecked}

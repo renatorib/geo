@@ -2,9 +2,40 @@ import * as display from "./display";
 import { upperFirstLetter } from "~/modules/string";
 import { countries, Country } from "../countries";
 import { Region } from "../countries/enums";
+import { RiCommunityFill, RiFlag2Fill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
+import { GiBrazil } from "react-icons/gi";
+
+type Query = (c: Country) => boolean;
+
+type Group = {
+  url: string;
+  query: Query;
+};
+
+type Game = {
+  name: string;
+  icon: React.ReactNode;
+  description: string;
+  url: string;
+  query: Query;
+  groups: Group[];
+} & (
+  | {
+      type: "countries-cards-quiz";
+      display: typeof display.FlagsDisplay;
+    }
+  | {
+      type: "capitals-cards-quiz";
+      display: typeof display.FlagsDisplay;
+    }
+  | {
+      type: "world-map";
+    }
+);
 
 const select = {
-  all: (c: Country) => c,
+  all: (c: Country) => true,
+  independent: (c: Country) => c.independent === true,
 };
 
 const from = {
@@ -13,8 +44,7 @@ const from = {
   asia: (c: Country) => c.region === Region.Asia,
   europe: (c: Country) => c.region === Region.Europe,
   oceania: (c: Country) => c.region === Region.Oceania,
-  others: (c: Country) => c.region === null,
-  world: (c: Country) => c.region != null,
+  noRegion: (c: Country) => c.region === null,
 };
 
 const have = {
@@ -24,194 +54,130 @@ const have = {
   capital: (c: Country) => c.capital != null && c.capital.en != "",
 };
 
-export const games = [
+const group = (url: Group["url"], query: Group["query"]): Group => ({
+  url,
+  query,
+});
+
+export const games: Game[] = [
   {
-    name: "flags",
-    type: "cards-quiz",
+    name: "Flags",
+    description: "Guess countries by their flags",
+    url: "flags",
+    icon: <RiFlag2Fill />,
+    type: "countries-cards-quiz",
     query: have.flag,
     display: display.FlagsDisplay,
     groups: [
-      {
-        name: "world",
-        query: from.world,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
-      },
-      {
-        name: "others",
-        query: from.others,
-      },
+      group("world", select.independent),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
+      group("others", from.noRegion),
     ],
   },
   {
-    name: "map",
+    name: "Map",
+    description: "Guess countries in the map",
+    url: "map",
+    icon: <RiMap2Fill />,
     type: "world-map",
     query: select.all,
     groups: [
-      {
-        name: "world",
-        query: select.all,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
-      },
+      group("world", select.all),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
     ],
   },
   {
-    name: "shapes",
-    type: "cards-quiz",
+    name: "Shapes",
+    description: "Guess countries by their shapes",
+    url: "shapes",
+    icon: <GiBrazil />,
+    type: "countries-cards-quiz",
     query: have.shape,
     display: display.ShapesDisplay,
     groups: [
-      {
-        name: "world",
-        query: from.world,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
-      },
-      {
-        name: "others",
-        query: from.others,
-      },
+      group("world", select.independent),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
+      group("others", from.noRegion),
     ],
   },
   {
-    name: "capitals",
-    type: "cards-quiz",
+    name: "Capitals 1",
+    description: "Guess countries by their capitals",
+    url: "capitals",
+    icon: <RiCommunityFill />,
+    type: "countries-cards-quiz",
     query: have.capital,
     display: display.CapitalsDisplay,
     groups: [
-      {
-        name: "world",
-        query: from.world,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
-      },
-      {
-        name: "others",
-        query: from.others,
-      },
+      group("world", select.independent),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
+      group("others", from.noRegion),
     ],
   },
   {
-    name: "domains",
-    type: "cards-quiz",
+    name: "Capitals 2",
+    description: "Guess capitals by country names",
+    url: "capitals-2",
+    icon: <RiCommunityFill />,
+    type: "capitals-cards-quiz",
+    query: have.capital,
+    display: display.NamesDisplay,
+    groups: [
+      group("world", select.independent),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
+      group("others", from.noRegion),
+    ],
+  },
+  {
+    name: "Domains",
+    description: "Guess countries by their domains",
+    url: "domains",
+    icon: <RiWindow2Fill />,
+    type: "countries-cards-quiz",
     query: have.domain,
     display: display.DomainsDisplay,
     groups: [
-      {
-        name: "world",
-        query: from.world,
-      },
-      {
-        name: "africa",
-        query: from.africa,
-      },
-      {
-        name: "america",
-        query: from.america,
-      },
-      {
-        name: "asia",
-        query: from.asia,
-      },
-      {
-        name: "europe",
-        query: from.europe,
-      },
-      {
-        name: "oceania",
-        query: from.oceania,
-      },
-      {
-        name: "others",
-        query: from.others,
-      },
+      group("world", select.independent),
+      group("africa", from.africa),
+      group("america", from.america),
+      group("asia", from.asia),
+      group("europe", from.europe),
+      group("oceania", from.oceania),
+      group("others", from.noRegion),
     ],
   },
 ];
 
 export const findGameByUrl = (url: string /* ex.: flags/america */) => {
-  const [name, groupName] = url.split("/");
+  const [gameUrl, groupUrl] = url.split("/");
 
-  const game = games.find((g) => g.name === name);
+  const game = games.find((g) => g.url === gameUrl);
 
   if (!game) {
     return false;
   }
 
-  const group = game.groups.find((g) => g.name === groupName);
+  const group = game.groups.find((g) => g.url === groupUrl);
 
   if (!group) {
     return false;
@@ -221,9 +187,10 @@ export const findGameByUrl = (url: string /* ex.: flags/america */) => {
 
   return {
     name: game.name,
+    description: game.description,
     type: game.type,
     countries: countriesToPlay,
-    title: `${upperFirstLetter(game.name)} (${upperFirstLetter(group.name)})`,
-    display: game.display,
+    title: `${upperFirstLetter(game.name)}${group.url !== "world" ? ` (${upperFirstLetter(group.url)})` : ""}`,
+    display: "display" in game ? game.display : undefined,
   };
 };
