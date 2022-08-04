@@ -42,7 +42,9 @@ const Play = ({ url }: PageProps) => {
   if (game.type === "cards-quiz") {
     return (
       <QuizLayout>
-        <NoSSR>{() => <Quiz title={game.title} countries={game.countries} type={game.name as any} />}</NoSSR>
+        <NoSSR>
+          {() => <Quiz title={game.title} countries={game.countries} type={game.name as any} display={game.display} />}
+        </NoSSR>
       </QuizLayout>
     );
   }

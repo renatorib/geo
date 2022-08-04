@@ -6,3 +6,4 @@ export * from "./useLang";
 export * from "./usePooling";
 export * from "./usePrevious";
 export * from "./useThrottledEvent";
+export * from "./useUserConfig";

@@ -1,5 +1,4 @@
 import React from "react";
-import NextImage from "next/image";
 import dynamic from "next/dynamic";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import {
@@ -8,7 +7,6 @@ import {
   Group,
   Input,
   Box,
-  AspectRatio,
   Stack,
   useMantineTheme,
   Grid,
@@ -16,9 +14,7 @@ import {
   Menu,
   Alert,
   Transition,
-  Center,
 } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
 import {
   RiCheckLine,
   RiShuffleFill,
@@ -30,9 +26,9 @@ import {
   RiSettings2Line,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useLang, usePooling } from "~/hooks";
-import { zoomIntoPath } from "~/modules/svg/viewbox";
+import { useLang, usePooling, useUserConfig } from "~/hooks";
 import { blink } from "~/styles/keyframes";
+import { normalizeGuess } from "~/modules/string";
 
 type QuizType = "flags" | "shapes" | "domains" | "capitals";
 
@@ -40,19 +36,20 @@ type QuizProps = {
   type?: QuizType;
   countries: Country[];
   title: string;
+  display?: ({ country, checked }: { country: Country; checked: "correct" | "spoiler" | false }) => JSX.Element;
 };
 
 export const Quiz = (props: QuizProps) => {
   const [, rerender] = React.useState(0);
-  const { lang } = useLang();
-  const [speech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
+  const { speech } = useUserConfig();
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [spoiler, setSpoiler] = React.useState(false);
   const [focusedCountryId, setFocusedCountryId] = React.useState<string>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
   const [countries, setCountries] = React.useState<Country[]>(() => shuffle(props.countries));
+  const { lang, property } = useLang();
 
-  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech === "true";
+  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
 
   React.useEffect(() => {
     const SpeechGrammarList =
@@ -65,7 +62,6 @@ export const Quiz = (props: QuizProps) => {
       const recognition = SpeechRecognition.getRecognition() as any;
 
       if ("grammars" in recognition) {
-        const property = lang === "en-US" ? "en" : lang === "pt-BR" ? "pt" : "en";
         const grammar = `#JSGF V1.0; grammar countries; public <countries> = ${countries
           .flatMap((c) => [c.name[property], ...c.alias[property]])
           .join(" | ")} ;`;
@@ -79,7 +75,6 @@ export const Quiz = (props: QuizProps) => {
   const startListening = () => {
     if (useSpeech && !listening) {
       SpeechRecognition.startListening({ language: lang });
-      console.log(SpeechRecognition.getRecognition());
     }
   };
 
@@ -119,37 +114,10 @@ export const Quiz = (props: QuizProps) => {
     shuffleCountries();
   };
 
-  const handleGuess = (country: Country, _guess: string) => {
-    const getLangProps = () => {
-      switch (lang) {
-        case "pt-BR":
-          return {
-            name: country.name.pt,
-            alias: country.alias.pt,
-          };
-        case "en-US":
-        default:
-          return {
-            name: country.name.en,
-            alias: country.alias.en,
-          };
-      }
-    };
+  const handleGuess = (country: Country, guess: string) => {
+    const answers = [country.name[property], ...country.alias[property]].map(normalizeGuess);
 
-    const { name, alias } = getLangProps();
-
-    const normalize = (input: string) =>
-      input
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "")
-        .replace(/-/gu, " ")
-        .toLowerCase()
-        .trim();
-
-    const answers = [name, ...alias].map(normalize);
-    const guess = normalize(_guess);
-
-    if (answers.includes(guess)) {
+    if (answers.includes(normalizeGuess(guess))) {
       const elements = document.querySelectorAll('[data-quiz-card-id][data-quiz-card-status="false"]');
       const current = document.querySelector(`[data-quiz-card-id="${country.id}"]`);
       const index = [...elements].indexOf(current!);
@@ -168,22 +136,28 @@ export const Quiz = (props: QuizProps) => {
     }
   };
 
-  const cards = countries.map((country) => (
-    <React.Fragment key={country.id}>
-      <div
-        onFocusCapture={() => setFocusedCountryId(country.id)}
-        onBlurCapture={() => setFocusedCountryId((c) => (c === country.id ? undefined : c))}
-      >
-        <CountryCard
-          country={country}
-          listening={listening}
-          checked={!!checked[country.id] ? "correct" : spoiler ? "spoiler" : false}
-          onGuess={(guess) => handleGuess(country, guess)}
-          type={props.type ?? "flags"}
-        />
-      </div>
-    </React.Fragment>
-  ));
+  const cards = countries.map((country) => {
+    const isChecked = !!checked[country.id] ? "correct" : spoiler ? "spoiler" : false;
+    const displayEl = props.display ? props.display({ country, checked: isChecked }) : null;
+
+    return (
+      <React.Fragment key={country.id}>
+        <div
+          onFocusCapture={() => setFocusedCountryId(country.id)}
+          onBlurCapture={() => setFocusedCountryId((c) => (c === country.id ? undefined : c))}
+        >
+          <GuessCard
+            id={country.id}
+            name={country.name[property]}
+            display={displayEl}
+            listening={listening}
+            checked={isChecked}
+            onGuess={(guess) => handleGuess(country, guess)}
+          />
+        </div>
+      </React.Fragment>
+    );
+  });
 
   return (
     <Stack pt="sm">
@@ -228,7 +202,8 @@ export const Quiz = (props: QuizProps) => {
           </Group>
         </Group>
       </Box>
-      <Transition mounted={speech === "true"} transition="fade" duration={200}>
+
+      <Transition mounted={speech} transition="fade" duration={200}>
         {(styles) => (
           <Box style={{ ...styles }}>
             <Alert color="indigo" title="Speech is enabled!" icon={<RiMicLine />}>
@@ -242,6 +217,7 @@ export const Quiz = (props: QuizProps) => {
           </Box>
         )}
       </Transition>
+
       <form>
         <Grid>
           {cards.map((card) => (
@@ -257,55 +233,34 @@ export const Quiz = (props: QuizProps) => {
 
 export const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
 
-const CountryCard: React.FC<{
-  country: Country;
+type GuessCardProps = {
+  id: string;
+  name: string;
   checked: "correct" | "spoiler" | false;
   onGuess: (guess: string) => void;
-  type?: QuizType;
   listening?: boolean;
-}> = (props) => {
-  const [focused, setFocused] = React.useState(false);
+  display?: React.ReactNode;
+};
+
+const GuessCard = ({ id, name, checked, onGuess, listening, display }: GuessCardProps) => {
   const theme = useMantineTheme();
-  const { property } = useLang();
-  const { country, type = "flag" } = props;
+  const [focused, setFocused] = React.useState(false);
 
-  const shapeViewbox = React.useMemo(() => {
-    if (type === "shapes") {
-      const zoom = zoomIntoPath(country.shape);
-      const size = Math.max(zoom.viewboxWidth, zoom.viewboxHeight);
-      return { viewbox: zoom.viewbox, size: size };
-    }
-    return { viewbox: "0 0 1010 666", size: 1000 };
-  }, [type, country.shape]);
-
-  const stateProps = React.useMemo(() => {
-    switch (props.checked) {
-      case "correct":
-        return {
-          color: [theme.colors.green[2], theme.colors.green[9]],
-          icon: <RiCheckLine />,
-        };
-      case "spoiler":
-        return {
-          color: [theme.colors.red[2], theme.colors.red[9]],
-          icon: <RiEyeLine />,
-        };
-      default:
-        return {
-          color: [undefined, undefined],
-          icon: undefined,
-        };
-    }
-  }, [props.checked]); // eslint-disable-line
-
-  const { color, icon } = stateProps;
-  const name = country.name[property];
+  const color = checked === "correct" ? theme.colors.green : checked === "spoiler" ? theme.colors.red : [];
+  const icon =
+    checked === "correct" ? (
+      <RiCheckLine />
+    ) : checked === "spoiler" ? (
+      <RiEyeLine />
+    ) : listening && focused ? (
+      <MicOn />
+    ) : null;
 
   return (
     <Box
-      component={props.checked ? "div" : "label"}
-      data-quiz-card-id={country.id}
-      data-quiz-card-status={props.checked}
+      component={checked ? "div" : "label"}
+      data-quiz-card-id={id}
+      data-quiz-card-status={String(checked)}
       style={{ width: "100%" }}
     >
       <Card
@@ -317,85 +272,29 @@ const CountryCard: React.FC<{
           outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
         })}
       >
-        <Card.Section sx={{ backgroundColor: color[0] }}>
-          {type === "flags" && (
-            <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-              {country.flag ? (
-                <NextImage
-                  src={country.flag}
-                  alt={props.checked ? `Flag of ${name}` : "Flag of unknown"}
-                  title={props.checked ? name : undefined}
-                  objectFit="contain"
-                  layout="fill"
-                />
-              ) : (
-                <Center>
-                  <Text color="red" size="xs">
-                    Flag not found
-                  </Text>
-                </Center>
-              )}
-            </AspectRatio>
-          )}
-          {type === "shapes" && (
-            <Box>
-              {country.shape && shapeViewbox.viewbox ? (
-                <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
-                  <path
-                    d={country.shape}
-                    stroke={props.checked ? theme.colors.green[7] : theme.colors.gray[5]}
-                    fill={props.checked ? theme.colors.green[4] : theme.colors.gray[3]}
-                    strokeWidth={shapeViewbox.size * 0.006}
-                  />
-                </svg>
-              ) : (
-                <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-                  <Center>
-                    <Text color="red" size="xs">
-                      Country shape not found
-                    </Text>
-                  </Center>
-                </AspectRatio>
-              )}
-            </Box>
-          )}
-          {type === "domains" && (
-            <CardOfTypeText
-              text={country.domain}
-              fontSize={38}
-              color={props.checked === "correct" ? "green" : props.checked === "spoiler" ? "red" : theme.colors.dark[4]}
-            />
-          )}
-          {type === "capitals" && (
-            <CardOfTypeText
-              text={country.capital[property]}
-              fontSize={16}
-              color={props.checked === "correct" ? "green" : props.checked === "spoiler" ? "red" : theme.colors.dark[4]}
-            />
-          )}
-        </Card.Section>
+        {display && <Card.Section sx={{ backgroundColor: color[2] }}>{display}</Card.Section>}
 
-        <Card.Section sx={{ backgroundColor: color[0] }}>
+        <Card.Section sx={{ backgroundColor: color[2] }}>
           <Input<"input">
-            icon={props.listening && focused ? <MicOn /> : icon}
-            value={props.checked ? name : undefined}
-            title={props.checked ? name : undefined}
+            icon={listening && focused ? <MicOn /> : icon}
+            value={checked ? name : undefined}
+            title={checked ? name : undefined}
             placeholder="Type your guess..."
-            onChange={(e) => props.onGuess(e.target.value)}
-            readOnly={!!props.checked}
-            disabled={!!props.checked}
+            onChange={(e) => onGuess(e.target.value)}
+            readOnly={!!checked}
+            disabled={!!checked}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             styles={{
               icon: {
-                color: color[1],
+                color: color[9],
               },
               input: {
                 width: `100%`,
                 border: "none",
                 textOverflow: "ellipsis",
                 "&:disabled": {
-                  color: color[1],
+                  color: color[9],
                   background: "none",
                   border: "none",
                   opacity: 1,
@@ -406,38 +305,6 @@ const CountryCard: React.FC<{
           />
         </Card.Section>
       </Card>
-    </Box>
-  );
-};
-
-const CardOfTypeText = ({
-  text,
-  color,
-  fontSize,
-}: {
-  text: string | undefined | null;
-  color: string;
-  fontSize: string | number;
-}) => {
-  return (
-    <Box>
-      {text ? (
-        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
-          <Center>
-            <Text color={color} size={fontSize as any} align="center">
-              {text}
-            </Text>
-          </Center>
-        </AspectRatio>
-      ) : (
-        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
-          <Center>
-            <Text color="red" size="xs">
-              ?
-            </Text>
-          </Center>
-        </AspectRatio>
-      )}
     </Box>
   );
 };

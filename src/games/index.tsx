@@ -1,6 +1,7 @@
+import * as display from "./display";
 import { upperFirstLetter } from "~/modules/string";
-import { countries, Country } from "./countries";
-import { Region } from "./countries/enums";
+import { countries, Country } from "../countries";
+import { Region } from "../countries/enums";
 
 const select = {
   all: (c: Country) => c,
@@ -28,6 +29,7 @@ export const games = [
     name: "flags",
     type: "cards-quiz",
     query: have.flag,
+    display: display.FlagsDisplay,
     groups: [
       {
         name: "world",
@@ -94,6 +96,7 @@ export const games = [
     name: "shapes",
     type: "cards-quiz",
     query: have.shape,
+    display: display.ShapesDisplay,
     groups: [
       {
         name: "world",
@@ -129,6 +132,7 @@ export const games = [
     name: "capitals",
     type: "cards-quiz",
     query: have.capital,
+    display: display.CapitalsDisplay,
     groups: [
       {
         name: "world",
@@ -164,6 +168,7 @@ export const games = [
     name: "domains",
     type: "cards-quiz",
     query: have.domain,
+    display: display.DomainsDisplay,
     groups: [
       {
         name: "world",
@@ -219,5 +224,6 @@ export const findGameByUrl = (url: string /* ex.: flags/america */) => {
     type: game.type,
     countries: countriesToPlay,
     title: `${upperFirstLetter(game.name)} (${upperFirstLetter(group.name)})`,
+    display: game.display,
   };
 };

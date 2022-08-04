@@ -22,7 +22,7 @@ import cn from "classnames";
 import { useRouter } from "next/router";
 import { LangSelector, TranscriptDialog } from "~/components";
 import { useSpeechRecognition } from "react-speech-recognition";
-import { useLocalStorage } from "@mantine/hooks";
+import { useUserConfig } from "~/hooks";
 
 const AppNavbar = () => {
   return (
@@ -38,7 +38,7 @@ const AppHeader = () => {
   const theme = useMantineTheme();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const [speech, setSpeech] = useLocalStorage({ key: "gtf:speech", defaultValue: "false" });
+  const { speech, setSpeech } = useUserConfig();
 
   return (
     <Box>
@@ -81,8 +81,8 @@ const AppHeader = () => {
                   <Group px={12} py={6} position="apart">
                     <Switch
                       size="sm"
-                      checked={speech === "true" ? true : false}
-                      onChange={(ev) => setSpeech(String(ev.currentTarget.checked))}
+                      checked={speech}
+                      onChange={(ev) => setSpeech(ev.currentTarget.checked)}
                       disabled={!browserSupportsSpeechRecognition}
                       label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
                     />
