@@ -38,7 +38,7 @@ const AppHeader = () => {
   const theme = useMantineTheme();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const { speech, setSpeech } = useUserConfig();
+  const { speech, setSpeech, timer, setTimer } = useUserConfig();
 
   return (
     <Box>
@@ -85,6 +85,14 @@ const AppHeader = () => {
                       onChange={(ev) => setSpeech(ev.currentTarget.checked)}
                       disabled={!browserSupportsSpeechRecognition}
                       label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
+                    />
+                  </Group>
+                  <Group px={12} py={6} position="apart">
+                    <Switch
+                      size="sm"
+                      checked={timer}
+                      onChange={(ev) => setTimer(ev.currentTarget.checked)}
+                      label="Show timer"
                     />
                   </Group>
                 </Menu.Dropdown>

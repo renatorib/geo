@@ -13,6 +13,7 @@ const useBooleanLocalStorage = (key: string, defaultValue: boolean) =>
 
 export const useUserConfig = () => {
   const [speech, setSpeech] = useBooleanLocalStorage("gtf:speech", false);
+  const [timer, setTimer] = useBooleanLocalStorage("gtf:timer", false);
 
-  return { speech, setSpeech };
+  return { speech, setSpeech, timer, setTimer };
 };

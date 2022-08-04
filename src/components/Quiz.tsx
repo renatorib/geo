@@ -1,6 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import Confetti from "react-confetti";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { openModal } from "@mantine/modals";
 import {
   Card,
   Text,
@@ -14,6 +16,8 @@ import {
   Menu,
   Alert,
   Transition,
+  Center,
+  Portal,
 } from "@mantine/core";
 import {
   RiCheckLine,
@@ -24,11 +28,13 @@ import {
   RiEyeCloseLine,
   RiRestartLine,
   RiSettings2Line,
+  RiPlayCircleFill,
 } from "react-icons/ri";
 import { Country } from "../countries";
-import { useLang, usePooling, useUserConfig } from "~/hooks";
-import { blink } from "~/styles/keyframes";
+import { useEvent, useLang, usePooling, useUserConfig } from "~/hooks";
+import { blink, pop } from "~/styles/keyframes";
 import { normalizeGuess } from "~/modules/string";
+import { GiPartyPopper } from "react-icons/gi";
 
 type QuizType = "flags" | "shapes" | "domains" | "capitals";
 
@@ -41,13 +47,14 @@ type QuizProps = {
 
 export const Quiz = (props: QuizProps) => {
   const [, rerender] = React.useState(0);
-  const { speech } = useUserConfig();
+  const { speech, timer } = useUserConfig();
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const [spoiler, setSpoiler] = React.useState(false);
   const [focusedCountryId, setFocusedCountryId] = React.useState<string>();
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
   const [countries, setCountries] = React.useState<Country[]>(() => shuffle(props.countries));
   const { lang, property } = useLang();
+  const timerProps = useTimer();
 
   const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
 
@@ -115,6 +122,10 @@ export const Quiz = (props: QuizProps) => {
   };
 
   const handleGuess = (country: Country, guess: string) => {
+    if (!timerProps.started) {
+      timerProps.start();
+    }
+
     const answers = [country.name[property], ...country.alias[property]].map(normalizeGuess);
 
     if (answers.includes(normalizeGuess(guess))) {
@@ -127,12 +138,41 @@ export const Quiz = (props: QuizProps) => {
         elements[index === elements.length - 1 ? 0 : index + 1]?.querySelector<HTMLInputElement>("input");
 
       currInput?.blur();
-
-      // Set checked
       setChecked((c) => ({ ...c, [country.id]: true }));
+      setTimeout(() => {
+        nextInput?.focus();
+      }, 1);
 
-      // Focus next element
-      setTimeout(() => nextInput?.focus(), 1);
+      // Completed
+      if (Object.keys(checked).length + 1 === countries.length) {
+        // Show congratulations modal
+        const time = timerProps.end();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        openModal({
+          size: "xs",
+          overlayColor: "rgba(200, 200, 200, 0.7)",
+          overlayBlur: 2,
+          centered: true,
+          withCloseButton: false,
+          children: (
+            <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
+              <Portal>
+                <Confetti />
+              </Portal>
+              <Text color="violet" sx={{ animation: `${pop} 500ms ease-in` }}>
+                <GiPartyPopper size={120} />
+              </Text>
+              <Text color="dark" align="center">
+                <>
+                  <strong>Congratulations!</strong>
+                  <br />
+                  You have completed {countries.length} guesses of {props.title} in <strong>{time}</strong>
+                </>
+              </Text>
+            </Box>
+          ),
+        });
+      }
     }
   };
 
@@ -172,13 +212,33 @@ export const Quiz = (props: QuizProps) => {
         mx="-md"
         px="md"
       >
-        <Group>
+        <Group spacing="xl">
           <Text weight={700}>{props.title}</Text>
           <Box>
             <Text>
               {Object.values(checked).length} / {countries.length}
             </Text>
           </Box>
+          {timer && (
+            <Box style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <Text color={timerProps.started ? "orange" : "gray"} weight={700}>
+                <Timer started={timerProps.started} />
+              </Text>
+              {!timerProps.started && (
+                <ActionIcon
+                  onClick={() => timerProps.start()}
+                  color="green"
+                  radius="xl"
+                  variant="subtle"
+                  size="md"
+                  style={{ marginTop: -2 }}
+                >
+                  <RiPlayCircleFill size={20} />
+                </ActionIcon>
+              )}
+            </Box>
+          )}
+
           <Group ml="auto" spacing="xs">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
@@ -315,6 +375,56 @@ const MicOn = () => {
       <RiMicLine color="red" />
     </Box>
   );
+};
+
+const timeDiff = (started: number, now: number) => {
+  const diff = (Date.now() - started) / 1000;
+  const H = 3600;
+  const M = 60;
+  const S = 1;
+
+  const hours = Math.floor(diff / H);
+  const minutes = Math.floor((diff % H) / M);
+  const seconds = Math.floor(((diff % H) % M) / S);
+
+  const hoursText = String(hours).padStart(2, "0");
+  const minutesText = String(minutes).padStart(2, "0");
+  const secondsText = String(seconds).padStart(2, "0");
+
+  if (hours > 0) {
+    return `${hoursText}:${minutesText}:${secondsText}`;
+  }
+  return `${minutesText}:${secondsText}`;
+};
+
+const useTimer = () => {
+  const [started, setStarted] = React.useState<number>();
+
+  const start = () => {
+    setStarted(Date.now());
+  };
+
+  const end = () => {
+    setStarted(undefined);
+    return started ? timeDiff(started, Date.now()) : "00";
+  };
+
+  return { start, end, started };
+};
+
+const Timer = ({ started }: { started: number | undefined }) => {
+  const [time, setTime] = React.useState("");
+
+  const tick = useEvent(() => {
+    if (started) {
+      setTime(timeDiff(started, Date.now()));
+    }
+  });
+
+  React.useEffect(() => void tick(), [started]); // eslint-disable-line
+  usePooling(() => tick(), 400);
+
+  return <>{time}</>;
 };
 
 function shuffle(array: any[]) {

@@ -6,7 +6,8 @@ import { useLang } from "~/hooks";
 export const CapitalsDisplay = ({ country, checked }: DisplayProps) => {
   const { property } = useLang();
   const theme = useMantineTheme();
-  const color = checked === "correct" ? "green" : checked === "spoiler" ? "red" : theme.colors.dark[4];
+  const color =
+    checked === "correct" ? theme.colors.green[8] : checked === "spoiler" ? theme.colors.red[8] : theme.colors.dark[4];
   const name = country.capital[property];
   const nameEn = country.capital.en;
 
