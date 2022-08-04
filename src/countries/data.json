@@ -192,7 +192,7 @@
     "region": "Europe",
     "domain": ".ba",
     "capital": { "pt": "Sarajevo", "en": "Sarajevo" },
-    "capitalAlias": { "pt": ["Sarajevo"], "en": [] }
+    "capitalAlias": { "pt": ["Saraievo"], "en": [] }
   },
   {
     "id": "BB",
@@ -1767,8 +1767,8 @@
     "emoji": "🇲🇩",
     "region": "Europe",
     "domain": ".md",
-    "capital": { "pt": "Quixinau", "en": "Chișinău" },
-    "capitalAlias": { "pt": ["Chișinău"], "en": [] }
+    "capital": { "pt": "Chisinau", "en": "Chișinău" },
+    "capitalAlias": { "pt": ["Quixinau"], "en": [] }
   },
   {
     "id": "ME",
@@ -1784,7 +1784,7 @@
     "region": "Europe",
     "domain": ".me",
     "capital": { "pt": "Cetinje", "en": "Cetinje" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capitalAlias": { "pt": ["Cetinhe"], "en": [] }
   },
   {
     "id": "MG",
@@ -2994,8 +2994,8 @@
   },
   {
     "id": "VA",
-    "name": { "pt": "Vaticano", "en": "Vatican City" },
-    "alias": { "pt": [], "en": ["Holy See", "Vatican"] },
+    "name": { "pt": "Vaticano", "en": "Vatican" },
+    "alias": { "pt": [], "en": ["Holy See", "Vatican City"] },
     "alpha2": "VA",
     "alpha3": "VAT",
     "independent": true,

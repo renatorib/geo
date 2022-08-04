@@ -35,7 +35,7 @@ const Play = ({ url }: PageProps) => {
 
   if (game.type === "world-map") {
     return (
-      <QuizLayout contained={false}>
+      <QuizLayout contained={false} showFooter={false}>
         <NoSSR>{() => <WorldMap countries={game.countries} />}</NoSSR>
       </QuizLayout>
     );

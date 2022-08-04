@@ -15,9 +15,11 @@ import {
   Menu,
   Switch,
   useMantineTheme,
+  Center,
+  Anchor,
 } from "@mantine/core";
 import { GiFlyingFlag } from "react-icons/gi";
-import { RiSettings2Line, RiHome2Line } from "react-icons/ri";
+import { RiSettings2Line, RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { LangSelector, TranscriptDialog } from "~/components";
@@ -119,7 +121,37 @@ const AppHeader = () => {
   );
 };
 
-export const QuizLayout = ({ children, contained = true }: { children?: React.ReactNode; contained?: boolean }) => {
+const AppFooter = () => {
+  return (
+    <Box py="xl">
+      <Text
+        size="xs"
+        color="gray"
+        align="center"
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
+      >
+        <span>Made with</span>
+        <span style={{ verticalAlign: "middle" }}>
+          <RiHeart2Fill size={10} color="red" />
+        </span>
+        <span>by</span>
+        <Anchor color="violet" href="https://rena.to" target="_blank" rel="noreferrer">
+          rena.to
+        </Anchor>
+      </Text>
+    </Box>
+  );
+};
+
+export const QuizLayout = ({
+  children,
+  contained = true,
+  showFooter = true,
+}: {
+  children?: React.ReactNode;
+  contained?: boolean;
+  showFooter?: boolean;
+}) => {
   const MainWrapper = contained ? Container : Box;
 
   return (
@@ -130,6 +162,7 @@ export const QuizLayout = ({ children, contained = true }: { children?: React.Re
         <Box component="main" sx={{ height: "100%" }}>
           {children}
         </Box>
+        {showFooter && <AppFooter />}
       </MainWrapper>
     </Box>
   );
