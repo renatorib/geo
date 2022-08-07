@@ -1783,8 +1783,8 @@
     "emoji": "🇲🇪",
     "region": "Europe",
     "domain": ".me",
-    "capital": { "pt": "Cetinje", "en": "Cetinje" },
-    "capitalAlias": { "pt": ["Cetinhe"], "en": [] }
+    "capital": { "pt": "Podgorica", "en": "Podgorica" },
+    "capitalAlias": { "pt": ["Podgoritza"], "en": ["Podgoritza"] }
   },
   {
     "id": "MG",
