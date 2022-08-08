@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Guess the Country!</title>
+        <title>guess.li</title>
       </Head>
 
       <MantineProvider withGlobalStyles withNormalizeCSS>

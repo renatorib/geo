@@ -1,6 +1,7 @@
 export * from "./Chevron";
 export * from "./Flag";
 export * from "./LangSelector";
+export * from "./Logo";
 export * from "./NoSSR";
 export * from "./Quiz";
 export * from "./QuizCard";

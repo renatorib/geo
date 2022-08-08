@@ -22,7 +22,7 @@ import { GiFlyingFlag } from "react-icons/gi";
 import { RiSettings2Line, RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { LangSelector, TranscriptDialog } from "~/components";
+import { LangSelector, TranscriptDialog, Logo } from "~/components";
 import { useSpeechRecognition } from "react-speech-recognition";
 import { useUserConfig } from "~/hooks";
 
@@ -57,15 +57,16 @@ const AppHeader = () => {
                 justifyContent: "center",
                 gap: 10,
                 margin: "auto",
-                color: "black",
-                textDecoration: "none",
+                color: theme.colors.dark[9],
+                transition: "all 200ms ease-in-out",
+                "&:hover": {
+                  color: theme.colors.violet[5],
+                  transform: "scale(1.05)",
+                },
               }}
               component="a"
             >
-              <GiFlyingFlag size={18} />
-              <Text weight={700} align="center">
-                Guess the Country!
-              </Text>
+              <Logo size={40} />
             </Box>
           </NextLink>
           <Box m={10}>
