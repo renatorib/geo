@@ -12,8 +12,8 @@
     "emoji": "🇦🇩",
     "region": "Europe",
     "domain": ".ad",
-    "capital": { "pt": "Andorra la Vella", "en": "Andorra la Vella" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "Andorra-a-Velha", "en": "Andorra la Vella" },
+    "capitalAlias": { "pt": ["Andorra a Velha", "Andorra a Velha", "Andorra la Vella"], "en": ["Andorra Vella"] }
   },
   {
     "id": "AE",
@@ -467,7 +467,7 @@
     "region": "America",
     "domain": ".ca",
     "capital": { "pt": "Ottawa", "en": "Ottawa" },
-    "capitalAlias": { "pt": ["Ottawa"], "en": [] }
+    "capitalAlias": { "pt": ["Otawa", "Otava"], "en": [] }
   },
   {
     "id": "CD",
@@ -830,8 +830,8 @@
     "emoji": "🇪🇪",
     "region": "Europe",
     "domain": ".ee",
-    "capital": { "pt": "Tallinn", "en": "Tallinn" },
-    "capitalAlias": { "pt": [], "en": [] }
+    "capital": { "pt": "Talín", "en": "Tallinn" },
+    "capitalAlias": { "pt": ["Tallinn"], "en": [] }
   },
   {
     "id": "EG",
@@ -1266,7 +1266,7 @@
     "region": "Asia",
     "domain": ".in",
     "capital": { "pt": "Nova Delhi", "en": "New Delhi" },
-    "capitalAlias": { "pt": ["New Delhi"], "en": [] }
+    "capitalAlias": { "pt": ["New Delhi", "Nova Deli"], "en": [] }
   },
   {
     "id": "IQ",
