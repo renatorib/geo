@@ -14,25 +14,23 @@ const Index = () => {
 
   return (
     <QuizLayout>
-      <Modal opened={opened} onClose={() => setOpened(false)} title="Choose the region">
-        <Group spacing="xs">
-          <Grid gutter="xs">
-            {games
-              .find((g) => g.url === gameUrl)
-              ?.groups.map((group) => (
-                <Grid.Col key={group.url} span={6} xs={4}>
-                  <Button
-                    color="violet"
-                    variant="light"
-                    onClick={() => router.push(`/play/${gameUrl}/${group.url}`)}
-                    fullWidth
-                  >
-                    {upperFirstLetter(group.url)}
-                  </Button>
-                </Grid.Col>
-              ))}
-          </Grid>
-        </Group>
+      <Modal opened={opened} onClose={() => setOpened(false)} title="Choose the group">
+        <Grid gutter="xs">
+          {games
+            .find((g) => g.url === gameUrl)
+            ?.groups.map((group) => (
+              <Grid.Col key={group.url} span={6} xs={4}>
+                <Button
+                  color="violet"
+                  variant="light"
+                  onClick={() => router.push(`/play/${gameUrl}/${group.url}`)}
+                  fullWidth
+                >
+                  {upperFirstLetter(group.url)}
+                </Button>
+              </Grid.Col>
+            ))}
+        </Grid>
       </Modal>
 
       <Box py="md" sx={{ width: "100%" }}>

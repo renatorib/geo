@@ -1,7 +1,7 @@
 import React from "react";
 import NextImage from "next/image";
 import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
-import { countries } from "~/countries";
+import { countries } from "~/data-sources/countries";
 import { useLang } from "~/hooks";
 import { LangSelector, NoSSR, QuizLayout } from "~/components";
 

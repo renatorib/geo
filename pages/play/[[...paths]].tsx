@@ -36,27 +36,15 @@ const Play = ({ url }: PageProps) => {
   if (game.type === "world-map") {
     return (
       <QuizLayout contained={false} showFooter={false}>
-        <NoSSR>{() => <WorldMap countries={game.countries} />}</NoSSR>
+        <NoSSR>{() => <WorldMap countries={game.data} guess={game.guess} />}</NoSSR>
       </QuizLayout>
     );
   }
 
-  if (game.type === "countries-cards-quiz") {
+  if (game.type === "cards") {
     return (
       <QuizLayout>
-        <NoSSR>
-          {() => <Quiz title={game.title} countries={game.countries} display={game.display} type="country" />}
-        </NoSSR>
-      </QuizLayout>
-    );
-  }
-
-  if (game.type === "capitals-cards-quiz") {
-    return (
-      <QuizLayout>
-        <NoSSR>
-          {() => <Quiz title={game.title} countries={game.countries} display={game.display} type="capital" />}
-        </NoSSR>
+        <NoSSR>{() => <Quiz title={game.title} data={game.data} display={game.display} guess={game.guess} />}</NoSSR>
       </QuizLayout>
     );
   }

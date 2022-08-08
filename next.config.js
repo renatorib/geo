@@ -4,6 +4,9 @@ const redirects = require("./redirects");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ["upload.wikimedia.org", "guess.li"],
+  },
 
   async redirects() {
     return [...redirects];

@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@mantine/hooks";
-import * as flags from "~/countries/flags";
+import * as flags from "~/data-sources/countries/flags";
 
 const langs = {
   "en-US": {
@@ -16,15 +16,23 @@ const langs = {
   },
 };
 
-type Lang = keyof typeof langs;
+export type Lang = keyof typeof langs;
+export type Property = typeof langs[Lang]["property"];
 
 const DEFAULT_LANG: Lang = "en-US";
-const DEFAULT_PROPERTY = "en";
+const DEFAULT_PROPERTY: Property = "en";
 
 export const useLang = () => {
   const [_lang, setLang] = useLocalStorage<Lang>({ key: "gtf:lang", defaultValue: "en-US" });
   const langProps = Object.values(langs).find((l) => l.code === _lang);
-  const lang = langProps?.code ?? DEFAULT_LANG;
-  const property = langProps?.property ?? DEFAULT_PROPERTY;
-  return { lang, property, setLang, langs };
+
+  const lang: Lang = langProps?.code ?? DEFAULT_LANG;
+  const property: Property = langProps?.property ?? DEFAULT_PROPERTY;
+
+  return {
+    lang,
+    property,
+    setLang,
+    langs,
+  };
 };

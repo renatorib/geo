@@ -16,7 +16,6 @@ import {
   Menu,
   Alert,
   Transition,
-  Center,
   Portal,
 } from "@mantine/core";
 import {
@@ -30,83 +29,62 @@ import {
   RiSettings2Line,
   RiPlayCircleFill,
 } from "react-icons/ri";
-import { Country } from "../countries";
-import { useEvent, useLang, usePooling, useUserConfig } from "~/hooks";
+import { Property, useEvent, useLang, usePooling, useUserConfig } from "~/hooks";
 import { blink, pop } from "~/styles/keyframes";
+import type { Display } from "~/data-sources/countries/display";
+import { Entity } from "~/games";
 import { normalizeGuess } from "~/modules/string";
 import { GiPartyPopper } from "react-icons/gi";
 
-type QuizProps = {
-  type?: "country" | "capital";
-  countries: Country[];
+type QuizProps<T extends Entity> = {
+  data: T[];
   title: string;
-  display?: ({ country, checked }: { country: Country; checked: "correct" | "spoiler" | false }) => JSX.Element;
+  display?: Display<T>;
+  guess: (c: T, p: Property) => { value: string; aliases: string[] };
 };
 
-export const Quiz = (props: QuizProps) => {
+export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
   const [, rerender] = React.useState(0);
   const { speech, timer } = useUserConfig();
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const [spoiler, setSpoiler] = React.useState(false);
-  const [focusedCountryId, setFocusedCountryId] = React.useState<string>();
-  const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const [countries, setCountries] = React.useState<Country[]>(() => shuffle(props.countries));
   const { lang, property } = useLang();
+  const [spoiler, setSpoiler] = React.useState(false);
+  const [focusedId, setFocusedId] = React.useState<string>();
+  const [checked, setChecked] = React.useState<Record<string, boolean>>({});
+  const [data, setData] = React.useState<T[]>(() => shuffle(props.data));
   const timerProps = useTimer();
-  const type = props.type ?? "country";
 
-  const useSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
-
-  React.useEffect(() => {
-    const SpeechGrammarList =
-      (window as any).SpeechGrammarList ||
-      (window as any).webkitSpeechGrammarList ||
-      (window as any).mozSpeechGrammarList ||
-      (window as any).webkitSpeechGrammarList;
-
-    if (useSpeech && SpeechGrammarList) {
-      const recognition = SpeechRecognition.getRecognition() as any;
-
-      if ("grammars" in recognition) {
-        const grammar = `#JSGF V1.0; grammar countries; public <countries> = ${countries
-          .flatMap((c) => [c.name[property], ...c.alias[property]])
-          .join(" | ")} ;`;
-        const list = new SpeechGrammarList();
-        list?.addFromString?.(grammar, 10);
-        recognition.grammars = list;
-      }
-    }
-  }, [useSpeech, lang]); // eslint-disable-line
+  const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
 
   const startListening = () => {
-    if (useSpeech && !listening) {
+    if (shouldUseSpeech && !listening) {
       SpeechRecognition.startListening({ language: lang });
     }
   };
 
   const stopListening = () => {
-    if (useSpeech || listening) {
+    if (shouldUseSpeech || listening) {
       SpeechRecognition.stopListening();
     }
   };
 
   usePooling(() => {
-    if (useSpeech && focusedCountryId && !listening) {
+    if (shouldUseSpeech && focusedId && !listening) {
       startListening();
-    } else if (useSpeech && listening && !focusedCountryId) {
+    } else if (shouldUseSpeech && listening && !focusedId) {
       stopListening();
     }
   }, 100);
 
   React.useEffect(() => {
-    const country = countries.find((c) => c.id === focusedCountryId);
-    if (useSpeech && transcript && focusedCountryId && country) {
-      handleGuess(country, transcript);
+    const node = data.find((c) => c.id === focusedId);
+    if (shouldUseSpeech && transcript && focusedId && node) {
+      handleGuess(node, transcript);
     }
-  }, [transcript, focusedCountryId, useSpeech]); // eslint-disable-line
+  }, [transcript, focusedId, shouldUseSpeech]); // eslint-disable-line
 
-  const shuffleCountries = () => {
-    setCountries((c) => shuffle(c));
+  const shuffleData = () => {
+    setData((c) => shuffle(c));
     rerender((r) => r + 1);
   };
 
@@ -117,23 +95,18 @@ export const Quiz = (props: QuizProps) => {
   const reset = () => {
     setSpoiler(false);
     setChecked({});
-    shuffleCountries();
+    shuffleData();
   };
 
-  const handleGuess = (country: Country, guess: string) => {
-    if (!timerProps.started) {
-      timerProps.start();
-    }
+  const handleGuess = (node: T, guess: string) => {
+    if (!timerProps.started) timerProps.start();
 
-    const answers = (
-      type === "capital"
-        ? [country.capital[property], ...country.capitalAlias[property]]
-        : [country.name[property], ...country.alias[property]]
-    ).map(normalizeGuess);
+    const { value, aliases } = props.guess(node, property);
+    const answers = [value, ...aliases].map(normalizeGuess);
 
     if (answers.includes(normalizeGuess(guess))) {
       const elements = document.querySelectorAll('[data-quiz-card-id][data-quiz-card-status="false"]');
-      const current = document.querySelector(`[data-quiz-card-id="${country.id}"]`);
+      const current = document.querySelector(`[data-quiz-card-id="${node.id}"]`);
       const index = [...elements].indexOf(current!);
 
       const currInput = current?.querySelector<HTMLInputElement>("input");
@@ -141,13 +114,13 @@ export const Quiz = (props: QuizProps) => {
         elements[index === elements.length - 1 ? 0 : index + 1]?.querySelector<HTMLInputElement>("input");
 
       currInput?.blur();
-      setChecked((c) => ({ ...c, [country.id]: true }));
+      setChecked((c) => ({ ...c, [node.id]: true }));
       setTimeout(() => {
         nextInput?.focus();
       }, 1);
 
       // Completed
-      if (Object.keys(checked).length + 1 === countries.length) {
+      if (Object.keys(checked).length + 1 === data.length) {
         // Show congratulations modal
         const time = timerProps.end();
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -169,7 +142,7 @@ export const Quiz = (props: QuizProps) => {
                 <>
                   <strong>Congratulations!</strong>
                   <br />
-                  You have completed {countries.length} guesses of {props.title} in <strong>{time}</strong>
+                  You have completed {data.length} guesses of {props.title} in <strong>{time}</strong>
                 </>
               </Text>
             </Box>
@@ -179,24 +152,24 @@ export const Quiz = (props: QuizProps) => {
     }
   };
 
-  const cards = countries.map((country) => {
-    const isChecked = !!checked[country.id] ? "correct" : spoiler ? "spoiler" : false;
-    const displayEl = props.display ? props.display({ country, checked: isChecked }) : null;
-    const name = type === "capital" ? country.capital[property] : country.name[property];
+  const cards = data.map((node) => {
+    const isChecked = !!checked[node.id] ? "correct" : spoiler ? "spoiler" : false;
+    const displayEl = props.display ? props.display({ data: node, checked: isChecked }) : null;
+    const { value } = props.guess(node, property);
 
     return (
-      <React.Fragment key={country.id}>
+      <React.Fragment key={node.id}>
         <div
-          onFocusCapture={() => setFocusedCountryId(country.id)}
-          onBlurCapture={() => setFocusedCountryId((c) => (c === country.id ? undefined : c))}
+          onFocusCapture={() => setFocusedId(node.id)}
+          onBlurCapture={() => setFocusedId((c) => (c === node.id ? undefined : c))}
         >
           <GuessCard
-            id={country.id}
-            name={name}
+            id={node.id}
+            name={value}
             display={displayEl}
             listening={listening}
             checked={isChecked}
-            onGuess={(guess) => handleGuess(country, guess)}
+            onGuess={(guess) => handleGuess(node, guess)}
           />
         </div>
       </React.Fragment>
@@ -220,7 +193,7 @@ export const Quiz = (props: QuizProps) => {
           <Text weight={700}>{props.title}</Text>
           <Box>
             <Text>
-              {Object.values(checked).length} / {countries.length}
+              {Object.values(checked).length} / {data.length}
             </Text>
           </Box>
           {timer && (
@@ -252,7 +225,7 @@ export const Quiz = (props: QuizProps) => {
               </Menu.Target>
 
               <Menu.Dropdown>
-                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleCountries}>
+                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleData}>
                   Shuffle
                 </Menu.Item>
                 <Menu.Item icon={<RiRestartLine />} onClick={reset}>

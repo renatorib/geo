@@ -1,15 +1,16 @@
 import React from "react";
 import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
+import { Country } from "~/data-sources/countries";
 import { DisplayProps } from "./types";
 import { useLang } from "~/hooks";
 
-export const CapitalsDisplay = ({ country, checked }: DisplayProps) => {
+export const CapitalsDisplay = ({ data, checked }: DisplayProps<Country>) => {
   const { property } = useLang();
   const theme = useMantineTheme();
   const color =
     checked === "correct" ? theme.colors.green[8] : checked === "spoiler" ? theme.colors.red[8] : theme.colors.dark[4];
-  const name = country.capital[property];
-  const nameEn = country.capital.en;
+  const name = data.capital[property];
+  const nameEn = data.capital.en;
 
   return (
     <Box>

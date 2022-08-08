@@ -1,23 +1,24 @@
 import React from "react";
 import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
-import { DisplayProps } from "./types";
+import { Country } from "~/data-sources/countries";
 import { zoomIntoPath } from "~/modules/svg/viewbox";
+import { DisplayProps } from "./types";
 
-export const ShapesDisplay = ({ country, checked }: DisplayProps) => {
+export const ShapesDisplay = ({ data, checked }: DisplayProps<Country>) => {
   const theme = useMantineTheme();
 
   const shapeViewbox = React.useMemo(() => {
-    const zoom = zoomIntoPath(country.shape);
+    const zoom = zoomIntoPath(data.shape);
     const size = Math.max(zoom.viewboxWidth, zoom.viewboxHeight);
     return { viewbox: zoom.viewbox, size: size };
-  }, [country.shape]);
+  }, [data.shape]);
 
   return (
     <Box>
-      {country.shape && shapeViewbox.viewbox ? (
+      {data.shape && shapeViewbox.viewbox ? (
         <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
           <path
-            d={country.shape}
+            d={data.shape}
             stroke={checked ? theme.colors.green[7] : theme.colors.gray[5]}
             fill={checked ? theme.colors.green[4] : theme.colors.gray[3]}
             strokeWidth={shapeViewbox.size * 0.006}

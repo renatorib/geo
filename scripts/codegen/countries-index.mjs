@@ -4,7 +4,7 @@ $.verbose = false;
 import fs from "node:fs";
 import prettier from "prettier";
 import chalk from "chalk";
-import data from "../../src/countries/data.json" assert { type: "json" };
+import data from "../../src/data-sources/countries/data.json" assert { type: "json" };
 
 const stg = JSON.stringify;
 const normalizeIdToFile = (id) => id.toUpperCase().replace(/-/g, "");
@@ -19,7 +19,7 @@ import * as enums from "./enums";
 export const countries = [
   ${data
     .map((country) => {
-      const flagExist = fs.existsSync(`src/countries/flags/${normalizeIdToFile(country.id)}.png`);
+      const flagExist = fs.existsSync(`src/data-sources/countries/flags/${normalizeIdToFile(country.id)}.png`);
       return `{
         id: ${stg(country.id)},
         name: ${stg(country.name)}, 
@@ -45,5 +45,5 @@ export type Country = typeof countries[number];
 `;
 
 const code = prettier.format(template, { parser: "typescript" });
-fs.writeFileSync("src/countries/index.ts", code);
-console.log(chalk.green(`${chalk.bold("Generated:")} src/countries/index.ts`));
+fs.writeFileSync("src/data-sources/countries/index.ts", code);
+console.log(chalk.green(`${chalk.bold("Generated:")} src/data-sources/countries/index.ts`));

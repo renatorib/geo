@@ -2,7 +2,7 @@ import React from "react";
 
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
-import { Country } from "~/countries";
+import { Country } from "~/data-sources/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
 import { useLang, useDebouncedEvent, usePooling } from "~/hooks";
 import { useViewportSize } from "@mantine/hooks";
@@ -18,7 +18,12 @@ const useStyles = createStyles((t) => ({
   },
 }));
 
-export const WorldMap = ({ countries }: { countries: Country[] }) => {
+type WorldMapProps = {
+  countries: Country[];
+  guess: (c: Country, p: "en" | "pt") => { value: string; aliases: string[] };
+};
+
+export const WorldMap = (props: WorldMapProps) => {
   const Viewer = React.useRef<ReactSVGPanZoom | null>(null);
   const [loaded, setLoaded] = React.useState(false);
   const [value, setValue] = React.useState<Value>();
@@ -29,8 +34,8 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
 
-  const countriesToRender = countries;
-  const countriesToPlay = countries.filter((c) => c.independent === true);
+  const countriesToRender = props.countries;
+  const countriesToPlay = props.countries.filter((c) => c.independent === true);
 
   React.useEffect(() => {
     Viewer.current?.setPointOnViewerCenter(1010 / 2, 660 / 2, 1.2);
@@ -56,7 +61,8 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
 
     for (const country of countriesToPlay) {
       if (!checked[country.id]) {
-        const answers = [country.name[property], ...country.alias[property]].map(normalize);
+        const { value, aliases } = props.guess(country, property);
+        const answers = [value, ...aliases].map(normalize);
         const guess = normalize(_guess);
         if (answers.includes(guess)) {
           setChecked((c) => ({ ...c, [country.id]: true }));
@@ -138,7 +144,6 @@ export const WorldMap = ({ countries }: { countries: Country[] }) => {
         background="#f9f9f9"
         SVGBackground="#f9f9f9"
         customMiniature={() => null}
-        // miniatureProps={{ background: "white", height: 60, width: 100, position: "right" }}
       >
         <svg viewBox="0 0 1010 666">
           {countriesToRender.map((c) => {
