@@ -1,1 +1,1 @@
-Source code of [gtflag.vercel.app](https://gtflag.vercel.app)
+Source code of [guess.li](https://guess.li)
