@@ -70,7 +70,7 @@ const game = <T extends Entity>(options: Game<T>) => ({
 
 export const games: Game<any>[] = [
   game<Country>({
-    name: "Flags",
+    name: "Country Flags",
     description: "Guess countries by their flags",
     url: "flags",
     icon: <RiFlag2Fill />,
@@ -110,7 +110,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Shapes",
+    name: "Country Shapes",
     description: "Guess countries by their shapes",
     url: "shapes",
     icon: <GiBrazil />,
@@ -131,7 +131,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Capitals 1",
+    name: "Country Capitals 1",
     description: "Guess countries by their capitals",
     url: "capitals",
     icon: <RiCommunityFill />,
@@ -152,7 +152,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Capitals 2",
+    name: "Country Capitals 2",
     description: "Guess capitals by country names",
     url: "capitals-2",
     icon: <RiCommunityFill />,
@@ -173,7 +173,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Domains",
+    name: "Country Domains",
     description: "Guess countries by their domains",
     url: "domains",
     icon: <RiWindow2Fill />,

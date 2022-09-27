@@ -1,36 +1,23 @@
-import { Box, Button, Card, Grid, Group, Modal, Text, ThemeIcon, useMantineTheme } from "@mantine/core";
+import { Box, Button, Card, Grid, Group, Modal, Select, Stack, Text, ThemeIcon, useMantineTheme } from "@mantine/core";
 import { useRouter } from "next/router";
 import React from "react";
 
 import { upperFirstLetter } from "~/modules/string";
 import { QuizLayout } from "~/components/QuizLayout";
 import { games } from "~/games";
+import { RiPlayFill } from "react-icons/ri";
+
+type Game = typeof games[number];
 
 const Index = () => {
-  const router = useRouter();
   const theme = useMantineTheme();
   const [opened, setOpened] = React.useState(false);
-  const [gameUrl, setGameUrl] = React.useState<string>();
+  const [game, setGame] = React.useState<Game>();
 
   return (
     <QuizLayout>
-      <Modal opened={opened} onClose={() => setOpened(false)} title="Choose the group">
-        <Grid gutter="xs">
-          {games
-            .find((g) => g.url === gameUrl)
-            ?.groups.map((group) => (
-              <Grid.Col key={group.url} span={6} xs={4}>
-                <Button
-                  color="violet"
-                  variant="light"
-                  onClick={() => router.push(`/play/${gameUrl}/${group.url}`)}
-                  fullWidth
-                >
-                  {upperFirstLetter(group.url)}
-                </Button>
-              </Grid.Col>
-            ))}
-        </Grid>
+      <Modal opened={opened && game != null} onClose={() => setOpened(false)} withCloseButton={false}>
+        {game && <GameForm game={game} />}
       </Modal>
 
       <Box py="md" sx={{ width: "100%" }}>
@@ -50,8 +37,8 @@ const Index = () => {
                   "&:active": { background: theme.colors.violet[1] },
                 }}
                 onClick={() => {
-                  setGameUrl(game.url);
                   setOpened(true);
+                  setGame(game);
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
@@ -75,6 +62,42 @@ const Index = () => {
         </Grid>
       </Box>
     </QuizLayout>
+  );
+};
+
+const GameForm = ({ game }: { game: Game }) => {
+  const [loading, setLoading] = React.useState(false);
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const group = form.group as HTMLInputElement;
+    setLoading(true);
+    router.push(`/play/${game.url}/${group.value}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Stack>
+        <Text weight={700}>Play {game.name}</Text>
+
+        <div>{game.description}</div>
+
+        <Group align="flex-end" grow>
+          <Select
+            label="Select a group to play"
+            name="group"
+            data={game.groups.map((g) => ({ value: g.url, label: upperFirstLetter(g.url) })) ?? []}
+            defaultValue={game.groups[0].url}
+          />
+
+          <Button type="submit" ml="auto" rightIcon={<RiPlayFill />} loading={loading} loaderPosition="right">
+            Play
+          </Button>
+        </Group>
+      </Stack>
+    </form>
   );
 };
 

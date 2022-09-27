@@ -1,6 +1,9 @@
+let ID = 0;
+const id = () => ++ID;
+
 export const footballClubs = [
   {
-    id: "spfc",
+    id: id(),
     name: "São Paulo Futebol Clube",
     logo: "https://upload.wikimedia.org/wikipedia/pt/4/4b/S%C3%A3o_Paulo_Futebol_Clube.png",
   },
