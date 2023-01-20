@@ -4,7 +4,7 @@ import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
 import { Country } from "~/data-sources/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { useLang, useDebouncedEvent, usePooling } from "~/hooks";
+import { useLang, useThrottledEvent, usePooling } from "~/hooks";
 import { useViewportSize } from "@mantine/hooks";
 
 const useStyles = createStyles((t) => ({
@@ -47,7 +47,7 @@ export const WorldMap = (props: WorldMapProps) => {
     setStrokeWidth(0.7 / zoom);
   };
 
-  const handleZoom = useDebouncedEvent(fixStrokeWidth, 300);
+  const handleZoom = useThrottledEvent(fixStrokeWidth, 200);
   usePooling(() => fixStrokeWidth(Viewer?.current?.props?.value), 2000);
 
   const handleGuess = (_guess: string) => {
