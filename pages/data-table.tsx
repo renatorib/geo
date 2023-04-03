@@ -95,7 +95,7 @@ const DataTablePage = () => {
                           <td>
                             <AspectRatio ratio={45 / 30}>
                               {c.flag ? (
-                                <NextImage src={c.flag} objectFit="contain" layout="fill" />
+                                <NextImage src={c.flag} objectFit="contain" layout="fill" alt="" />
                               ) : (
                                 <Box sx={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
                               )}

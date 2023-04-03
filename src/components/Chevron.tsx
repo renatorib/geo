@@ -1,4 +1,4 @@
-import React, { ReactSVG } from "react";
+import React from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 export const Chevron = ({ opened, ...props }: { opened: boolean } & React.ComponentProps<typeof RiArrowDownSLine>) => {
@@ -6,7 +6,7 @@ export const Chevron = ({ opened, ...props }: { opened: boolean } & React.Compon
     <RiArrowDownSLine
       {...props}
       style={{
-        transform: opened ? "rotate(180deg)" : "rotate(0deg",
+        transform: opened ? "rotate(180deg)" : "rotate(0deg)",
         transition: "transform 200ms ease",
         ...props.style,
       }}

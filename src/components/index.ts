@@ -1,3 +1,4 @@
+export * from "./AspectRatio";
 export * from "./Chevron";
 export * from "./Flag";
 export * from "./LangSelector";
