@@ -1,5 +1,5 @@
 import React from "react";
-import NextImage from "next/image";
+import NextImage from "next/legacy/image";
 import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
 import { countries } from "~/data-sources/countries";
 import { useLang } from "~/hooks";

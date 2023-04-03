@@ -1,5 +1,5 @@
 import React from "react";
-import NextImage from "next/image";
+import NextImage from "next/legacy/image";
 import { AspectRatio, Center, Text } from "@mantine/core";
 import { DisplayProps } from "~/data-sources/countries/display";
 import { FootballClub } from "..";
