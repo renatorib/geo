@@ -1,12 +1,13 @@
 import "regenerator-runtime/runtime";
 import "../src/styles/globals.css";
-import React from "react";
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import { Inter } from "next/font/google";
+import Head from "next/head";
+import React from "react";
+
 import { MantineProvider } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
+import { NotificationsProvider } from "@mantine/notifications";
 
 const inter = Inter({
   subsets: ["latin"],

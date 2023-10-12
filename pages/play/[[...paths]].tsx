@@ -1,9 +1,10 @@
 import React from "react";
+
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import { NoSSR, WorldMap, AppLayout, Quiz } from "~/components";
-import { games, findGameByUrl } from "~/games";
 import { QuizZen } from "~/components/QuizZen";
+import { games, findGameByUrl } from "~/games";
 
 type PageProps = { url: string };
 

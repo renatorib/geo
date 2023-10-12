@@ -1,13 +1,17 @@
+import React from "react";
+
+import { GiBrazil } from "react-icons/gi";
+import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
+
+import { Display } from "~/data-sources";
+// import { footballClubs, FootballClub } from "~/data-sources/football-clubs";
+// import { DisplayLogo } from "~/data-sources/football-clubs/display/DisplayLogo";
+import { Property } from "~/features/i18n";
 import { upperFirstLetter } from "~/lib/string";
+
 import { countries, Country } from "../data-sources/countries";
 import * as countriesDisplay from "../data-sources/countries/display";
-import { footballClubs, FootballClub } from "~/data-sources/football-clubs";
-import { DisplayLogo } from "~/data-sources/football-clubs/display/DisplayLogo";
 import { Region } from "../data-sources/countries/enums";
-import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
-import { GiBrazil, GiSoccerBall } from "react-icons/gi";
-import { Property } from "~/features/i18n";
-import { Display } from "~/data-sources";
 
 export type Entity = { id: string };
 export type Answer<T> = (data: T, langProp: Property) => { value: string; aliases: string[] };
@@ -51,7 +55,7 @@ const country = {
     }),
   },
   select: {
-    all: (c: Country) => true,
+    all: () => true,
     independent: (c: Country) => c.independent === true,
   },
   from: {

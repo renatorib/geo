@@ -1,8 +1,9 @@
 import React from "react";
-import { Answer, Entity } from "~/games";
-import { shuffle as shuffleArray } from "~/lib/array";
+
 import { useLang } from "~/features/i18n";
+import { Answer, Entity } from "~/games";
 import { useRerender } from "~/hooks";
+import { shuffle as shuffleArray } from "~/lib/array";
 
 export type Node<T extends Entity> = {
   entity: T;
@@ -55,7 +56,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
         data.map((_node) => {
           if (node.id !== _node.id) return _node;
           return { ...node, checked: true };
-        })
+        }),
       );
       rerender();
     }

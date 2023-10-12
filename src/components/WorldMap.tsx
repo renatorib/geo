@@ -1,13 +1,14 @@
 import React from "react";
 
-import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
-import { Country } from "~/data-sources/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { useThrottledEvent, usePooling } from "~/hooks";
-import { Answer } from "~/games";
+import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
+
+import { Country } from "~/data-sources/countries";
 import { useLang } from "~/features/i18n";
+import { Answer } from "~/games";
+import { useThrottledEvent, usePooling } from "~/hooks";
 
 const useStyles = createStyles((t) => ({
   path: {

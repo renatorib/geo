@@ -1,8 +1,10 @@
-import React from "react";
 import NextImage from "next/image";
+import React from "react";
+
 import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
-import { countries } from "~/data-sources/countries";
+
 import { NoSSR, AppLayout } from "~/components";
+import { countries } from "~/data-sources/countries";
 import { LangSelectorMenu, useLang } from "~/features/i18n";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
@@ -24,6 +26,7 @@ const WikiLink = ({
   name: string;
   lang: string;
 }) => {
+  lang;
   const [opened, setOpened] = React.useState(false);
 
   return (

@@ -1,7 +1,9 @@
 import React from "react";
+
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import { usePooling } from "~/hooks";
+
 import { useLang } from "~/features/i18n";
+import { usePooling } from "~/hooks";
 
 type UseTranscripterProps = {
   /**

@@ -1,7 +1,10 @@
 import React from "react";
+
 import { Menu, UnstyledButton } from "@mantine/core";
 import { RiCheckLine } from "react-icons/ri";
+
 import { useLang } from "~/features/i18n";
+
 import { Chevron } from "../../components/Chevron";
 import { Flag } from "../../components/Flag";
 import { NoSSR } from "../../components/NoSSR";

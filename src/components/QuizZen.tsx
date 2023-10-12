@@ -1,5 +1,6 @@
-import React from "react";
 import dynamic from "next/dynamic";
+import React from "react";
+
 import { Text, Group, Box, Stack, ActionIcon, Menu, Transition, Button } from "@mantine/core";
 import {
   RiShuffleFill,
@@ -10,16 +11,17 @@ import {
   RiSkipForwardFill,
   RiTimerFill,
 } from "react-icons/ri";
-import { Display } from "~/data-sources";
-import { Entity, Answer } from "~/games";
-import { QuizCard } from "./QuizCard";
 
-import { TimerControl, useTimer } from "~/features/timer";
-import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
-import { useLocalSettings } from "~/features/settings";
+import { Display } from "~/data-sources";
 import { useGuesser, Node, openCongratulationsModal } from "~/features/guesser";
+import { useLocalSettings } from "~/features/settings";
+import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
+import { TimerControl, useTimer } from "~/features/timer";
+import { Entity, Answer } from "~/games";
 import { onNextPaint } from "~/lib/dom";
+
 import { ProgressBar } from "./ProgressBar";
+import { QuizCard } from "./QuizCard";
 
 type QuizProps<T extends Entity> = {
   data: T[];

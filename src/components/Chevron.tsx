@@ -1,4 +1,5 @@
 import React from "react";
+
 import { RiArrowDownSLine } from "react-icons/ri";
 
 export const Chevron = ({ opened, ...props }: { opened: boolean } & React.ComponentProps<typeof RiArrowDownSLine>) => {

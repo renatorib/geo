@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useInterval } from "@mantine/hooks";
+
 import { useEvent } from "./use-event";
 
 export const usePooling = (tick: () => any, intervalMs: number) => {

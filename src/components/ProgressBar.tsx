@@ -1,5 +1,6 @@
-import { Box, useMantineTheme } from "@mantine/core";
 import React from "react";
+
+import { Box, useMantineTheme } from "@mantine/core";
 
 export const ProgressBar = (props: { progress: number }) => {
   const theme = useMantineTheme();

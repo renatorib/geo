@@ -3,8 +3,9 @@ import React from "react";
 import { ActionIcon, Group, Menu, Switch } from "@mantine/core";
 import { RiSettings2Line } from "react-icons/ri";
 
-import { useLocalSettings } from "./useLocalSettings";
 import { useSpeechRecognition } from "../speech-recognition";
+
+import { useLocalSettings } from "./useLocalSettings";
 
 export const LocalSettingsMenu = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();

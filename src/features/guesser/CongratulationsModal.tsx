@@ -1,9 +1,11 @@
 import React from "react";
+
 import { Box, Portal, Text } from "@mantine/core";
+import { openModal } from "@mantine/modals";
 import Confetti from "react-confetti";
 import { GiPartyPopper } from "react-icons/gi";
+
 import { pop } from "~/styles/keyframes";
-import { openModal } from "@mantine/modals";
 
 type Props = {
   guesses: number;

@@ -1,10 +1,11 @@
-import { Box, Button, Card, Grid, Modal, Text, ThemeIcon, useMantineTheme } from "@mantine/core";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { upperFirstLetter } from "~/lib/string";
+import { Box, Button, Card, Grid, Modal, Text, useMantineTheme } from "@mantine/core";
+
 import { AppLayout } from "~/components";
 import { games } from "~/games";
+import { upperFirstLetter } from "~/lib/string";
 
 const Index = () => {
   const router = useRouter();

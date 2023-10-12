@@ -1,8 +1,10 @@
 import React from "react";
+
 import { Box, Card, Input, useMantineTheme } from "@mantine/core";
 import { RiCheckLine, RiEyeLine } from "react-icons/ri";
-import { MicOn } from "~/features/speech-recognition";
+
 import { useLang } from "~/features/i18n";
+import { MicOn } from "~/features/speech-recognition";
 
 export type QuizCardProps = {
   id: string;
