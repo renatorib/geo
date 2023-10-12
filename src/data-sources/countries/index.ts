@@ -1,8 +1,8 @@
 // THIS FILE IS AUTO GENERATED
 // DO NOT EDIT MANUALLY
 
-import * as flags from "./flags";
 import * as enums from "./enums";
+import * as flags from "./flags";
 
 export const countries = [
   {
@@ -1956,8 +1956,7 @@ export const countries = [
     id: "MC",
     name: { pt: "Mônaco", en: "Monaco" },
     alias: { pt: [], en: [] },
-    shape:
-      "m 495.77175,326.8484 -0.171,0.073 0.007,-0.084 0.042,-0.046 0.054,-0.022 0.063,0.037 z",
+    shape: "m 495.77175,326.8484 -0.171,0.073 0.007,-0.084 0.042,-0.046 0.054,-0.022 0.063,0.037 z",
     alpha2: "MC",
     alpha3: "MCO",
     emoji: "🇲🇨",
@@ -2388,8 +2387,7 @@ export const countries = [
     id: "NR",
     name: { pt: "Nauru", en: "Nauru" },
     alias: { pt: [], en: [] },
-    shape:
-      "m 943.46275,464.3614 -0.055,0.096 -0.064,-0.012 -0.026,-0.064 0.019,-0.068 0.071,-0.027 0.047,0.021 z",
+    shape: "m 943.46275,464.3614 -0.055,0.096 -0.064,-0.012 -0.026,-0.064 0.019,-0.068 0.071,-0.027 0.047,0.021 z",
     alpha2: "NR",
     alpha3: "NRU",
     emoji: "🇳🇷",
@@ -2730,8 +2728,7 @@ export const countries = [
     id: "SC",
     name: { pt: "Seicheles", en: "Seychelles" },
     alias: { pt: ["Seychelles"], en: [] },
-    shape:
-      "m 630.76775,476.0194 0.008,0.259 -0.135,-0.087 -0.038,-0.167 -0.18,-0.125 -0.094,-0.114 0.203,-0.141 z",
+    shape: "m 630.76775,476.0194 0.008,0.259 -0.135,-0.087 -0.038,-0.167 -0.18,-0.125 -0.094,-0.114 0.203,-0.141 z",
     alpha2: "SC",
     alpha3: "SYC",
     emoji: "🇸🇨",
@@ -2856,8 +2853,7 @@ export const countries = [
     id: "SM",
     name: { pt: "San Marino", en: "San Marino" },
     alias: { pt: ["São Marino", "São Marinho"], en: [] },
-    shape:
-      "m 509.93475,326.2634 -0.165,0.029 -0.083,-0.158 0.124,-0.185 0.176,-0.029 0.031,0.143 z",
+    shape: "m 509.93475,326.2634 -0.165,0.029 -0.083,-0.158 0.124,-0.185 0.176,-0.029 0.031,0.143 z",
     alpha2: "SM",
     alpha3: "SMR",
     emoji: "🇸🇲",
@@ -3369,8 +3365,7 @@ export const countries = [
     id: "VA",
     name: { pt: "Vaticano", en: "Vatican" },
     alias: { pt: [], en: ["Holy See", "Vatican City"] },
-    shape:
-      "m 509.80575,333.9114 -0.024,0.003 -0.009,-0.013 0.009,-0.017 0.021,-0.003 z",
+    shape: "m 509.80575,333.9114 -0.024,0.003 -0.009,-0.013 0.009,-0.017 0.021,-0.003 z",
     alpha2: "VA",
     alpha3: "VAT",
     emoji: "🇻🇦",
@@ -3533,13 +3528,7 @@ export const countries = [
       en: "Bloemfontein / Cape Town / Pretoria",
     },
     capitalAlias: {
-      pt: [
-        "Bloemfontein",
-        "Blumefontaina",
-        "Cape Town",
-        "Cidade do Cabo",
-        "Pretoria",
-      ],
+      pt: ["Bloemfontein", "Blumefontaina", "Cape Town", "Cidade do Cabo", "Pretoria"],
       en: ["Bloemfontein", "Cape Town", "Pretoria"],
     },
     flag: flags.ZA,
@@ -3585,8 +3574,7 @@ export const countries = [
     id: "AI",
     name: { pt: "Anguila", en: "Anguilla" },
     alias: { pt: [], en: [] },
-    shape:
-      "m 298.08375,411.2344 -0.446,0.148 0.018,-0.085 0.358,-0.203 0.13,0.014 z",
+    shape: "m 298.08375,411.2344 -0.446,0.148 0.018,-0.085 0.358,-0.203 0.13,0.014 z",
     alpha2: "AI",
     alpha3: "AIA",
     emoji: "🇦🇮",
@@ -3603,8 +3591,7 @@ export const countries = [
     id: "AS",
     name: { pt: "Samoa Americana", en: "American Samoa" },
     alias: { pt: [], en: [] },
-    shape:
-      "m 1006.0897,503.3594 -0.121,0.025 -0.144,-0.137 0.28,-0.104 0.089,-0.054 0.34,0.027 -0.203,0.045 z",
+    shape: "m 1006.0897,503.3594 -0.121,0.025 -0.144,-0.137 0.28,-0.104 0.089,-0.054 0.34,0.027 -0.203,0.045 z",
     alpha2: "AS",
     alpha3: "ASM",
     emoji: "🇦🇸",
@@ -3675,8 +3662,7 @@ export const countries = [
     id: "BM",
     name: { pt: "Bermudas", en: "Bermuda" },
     alias: { pt: ["Bermuda"], en: ["Somers Isles"] },
-    shape:
-      "m 293.23075,367.6474 -0.252,0.112 -0.07,-0.009 -0.05,-0.038 0.257,-0.112 0.215,-0.262 0.074,0.017 z",
+    shape: "m 293.23075,367.6474 -0.252,0.112 -0.07,-0.009 -0.05,-0.038 0.257,-0.112 0.215,-0.262 0.074,0.017 z",
     alpha2: "BM",
     alpha3: "BMU",
     emoji: "🇧🇲",
@@ -3858,8 +3844,7 @@ export const countries = [
     id: "GG",
     name: { pt: "Guernsey", en: "Guernsey" },
     alias: { pt: ["Guernesey", "Guérnesei"], en: ["Guernesey"] },
-    shape:
-      "m 467.84475,303.4184 -0.099,0.284 -0.257,-0.096 -0.02,-0.074 0.292,-0.165 0.06,0.001 z",
+    shape: "m 467.84475,303.4184 -0.099,0.284 -0.257,-0.096 -0.02,-0.074 0.292,-0.165 0.06,0.001 z",
     alpha2: "GG",
     alpha3: "GGY",
     emoji: "🇬🇬",
@@ -3912,8 +3897,7 @@ export const countries = [
     id: "GO",
     name: { pt: "Ilhas Gloriosas", en: "Glorioso Islands" },
     alias: { pt: ["Glorioso", "Gloriosas"], en: ["Glorioso"] },
-    shape:
-      "m 607.65075,495.4144 -0.02,0.008 -0.039,-0.009 -0.008,-0.049 0.05,-0.009 z",
+    shape: "m 607.65075,495.4144 -0.02,0.008 -0.039,-0.009 -0.008,-0.049 0.05,-0.009 z",
     alpha2: "GO",
     alpha3: null,
     emoji: "🇬🇴",
@@ -3952,11 +3936,7 @@ export const countries = [
     },
     alias: {
       pt: ["Geórgia do Sul", "Sandwich do Sul"],
-      en: [
-        "South Georgia and the South Sandwich Islands",
-        "South Georgia",
-        "South Sandwich",
-      ],
+      en: ["South Georgia and the South Sandwich Islands", "South Georgia", "South Sandwich"],
     },
     shape:
       "m 370.76475,643.1304 0.273,0.232 0.217,-0.158 0.225,0.019 0.123,0.078 0.126,0.03 0.158,10e-4 0.272,0.392 -0.114,0.347 0.298,-0.068 0.259,0.289 0.118,-0.023 0.059,-0.117 0.167,-0.134 0.115,0.18 0.14,0.345 0.177,0.105 0.156,0.365 0.123,0.462 0.112,0.066 0.192,0.001 0.195,-0.063 -0.074,0.4 0.023,0.354 0.322,0.255 -0.192,0.141 -0.202,0.204 -0.411,0.157 -0.107,-0.066 -0.359,-0.355 -0.167,-0.418 -0.377,-0.596 -0.074,-0.175 -0.097,-0.112 -0.341,-0.072 -0.3,-0.143 -0.25,-0.3 -0.078,-0.184 -0.096,-0.128 -0.339,0.007 -0.214,-0.141 -0.211,-0.192 -0.953,-0.554 -0.374,0.056 -0.172,-0.156 0.009,-0.277 0.197,-0.165 -0.825,-0.063 -0.293,-0.099 0.202,-0.06 1.15,-0.009 0.431,-0.046 0.038,0.119 0.381,0.245 0.362,0.024 z m 30.421,22.057 0.012,0.306 -0.436,-0.28 -0.101,-0.132 0.14,-0.171 0.274,-0.006 0.067,0.104 0.044,0.179 z",
@@ -4093,8 +4073,7 @@ export const countries = [
     id: "JU",
     name: { pt: "Ilha de João da Nova", en: "Juan De Nova Island" },
     alias: { pt: ["João da Nova"], en: ["Juan De Nova"] },
-    shape:
-      "m 594.89475,511.2514 -0.017,0.004 -0.029,-0.006 -0.049,-0.047 0.039,-0.017 0.065,0.038 z",
+    shape: "m 594.89475,511.2514 -0.017,0.004 -0.029,-0.006 -0.049,-0.047 0.039,-0.017 0.065,0.038 z",
     alpha2: "JU",
     alpha3: null,
     emoji: "🇯🇺",
@@ -4129,8 +4108,7 @@ export const countries = [
     id: "MF",
     name: { pt: "São Martinho (Francês)", en: "Saint Martin (French)" },
     alias: { pt: ["São Martinho", "Saint Martin"], en: ["Saint Martin"] },
-    shape:
-      "m 298.05475,411.6834 -0.314,0 0.023,-0.064 0.146,-0.072 0.107,0.006 0.043,0.026 z",
+    shape: "m 298.05475,411.6834 -0.314,0 0.023,-0.064 0.146,-0.072 0.107,0.006 0.043,0.026 z",
     alpha2: "MF",
     alpha3: "MAF",
     emoji: "🇲🇫",
@@ -4207,8 +4185,7 @@ export const countries = [
     id: "MS",
     name: { pt: "Monserrate", en: "Montserrat" },
     alias: { pt: ["Montserrat"], en: [] },
-    shape:
-      "m 300.47675,415.5674 -0.016,0.172 -0.19,-0.053 -0.004,-0.152 0.089,-0.154 0.044,-0.015 z",
+    shape: "m 300.47675,415.5674 -0.016,0.172 -0.19,-0.053 -0.004,-0.152 0.089,-0.154 0.044,-0.015 z",
     alpha2: "MS",
     alpha3: "MSR",
     emoji: "🇲🇸",
@@ -4261,8 +4238,7 @@ export const countries = [
     id: "NU",
     name: { pt: "Niue", en: "Niue" },
     alias: { pt: [], en: [] },
-    shape:
-      "m 1008.6787,517.1444 -0.281,0.162 -0.125,-0.192 0.111,-0.244 0.132,-0.063 0.078,-0.008 0.114,0.226 z",
+    shape: "m 1008.6787,517.1444 -0.281,0.162 -0.125,-0.192 0.111,-0.244 0.132,-0.063 0.078,-0.008 0.114,0.226 z",
     alpha2: "NU",
     alpha3: "NIU",
     emoji: "🇳🇺",
@@ -4426,8 +4402,7 @@ export const countries = [
       pt: ["São Martinho", "Saint Martin", "Sint Maarten"],
       en: ["Saint Martin", "Sint Maarten"],
     },
-    shape:
-      "m 297.74075,411.6834 0.314,0 -0.003,0.069 -0.03,0.077 -0.189,-0.065 -0.096,-0.068 z",
+    shape: "m 297.74075,411.6834 0.314,0 -0.003,0.069 -0.03,0.077 -0.189,-0.065 -0.096,-0.068 z",
     alpha2: "SX",
     alpha3: "SXM",
     emoji: "🇸🇽",
@@ -4577,4 +4552,4 @@ export const countries = [
   },
 ];
 
-export type Country = typeof countries[number];
+export type Country = (typeof countries)[number];

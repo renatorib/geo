@@ -1,6 +1,8 @@
 import React from "react";
+
 import { ActionIcon, Box, Text } from "@mantine/core";
 import { RiPlayCircleFill } from "react-icons/ri";
+
 import { useEvent, usePooling } from "~/hooks";
 
 export const useTimer = () => {
@@ -57,8 +59,8 @@ export const TimerControl = ({ timer }: { timer: Timer }) => {
   );
 };
 
-function timeDiff(started: number, now: number) {
-  const diff = (Date.now() - started) / 1000;
+function timeDiff(from: number, to: number = Date.now()) {
+  const diff = (to - from) / 1000;
   const H = 3600;
   const M = 60;
   const S = 1;

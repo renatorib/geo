@@ -1,7 +1,9 @@
 import React from "react";
+
 import { Box, Dialog, Text } from "@mantine/core";
 import { RiVolumeUpLine } from "react-icons/ri";
 import { useSpeechRecognition } from "react-speech-recognition";
+
 import { usePrevious } from "~/hooks";
 
 export const TranscriptDialog = () => {

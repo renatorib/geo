@@ -1,18 +1,18 @@
-import React from "react";
 import dynamic from "next/dynamic";
+import React from "react";
+
 import { Text, Group, Box, Stack, Grid, ActionIcon, Menu, Transition } from "@mantine/core";
 import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
-import { Entity, Answer } from "~/games";
-
-import { TimerControl, useTimer } from "~/features/timer";
-import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
-import { useLocalSettings } from "~/features/settings";
 import { openCongratulationsModal, useGuesser } from "~/features/guesser";
+import { useLocalSettings } from "~/features/settings";
+import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
+import { TimerControl, useTimer } from "~/features/timer";
+import { Entity, Answer } from "~/games";
+import { onNextPaint } from "~/lib/dom";
 
 import { QuizCard } from "./QuizCard";
-import { onNextPaint } from "~/lib/dom";
 
 type QuizProps<T extends Entity> = {
   data: T[];

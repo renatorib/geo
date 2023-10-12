@@ -278,7 +278,7 @@ type StringifyPathDataOptions = {
 
 export const stringifyPathData = ({ pathData, precision, disableSpaceAfterFlags }: StringifyPathDataOptions) => {
   // combine sequence of the same commands
-  let combined = [];
+  const combined = [];
   for (let i = 0; i < pathData.length; i += 1) {
     const { command, args } = pathData[i];
     if (i === 0) {

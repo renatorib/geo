@@ -1,5 +1,6 @@
-import React from "react";
 import { useRouter } from "next/router";
+import React from "react";
+
 import { startNavigationProgress, resetNavigationProgress, NavigationProgress } from "@mantine/nprogress";
 
 export function RouterTransition() {

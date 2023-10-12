@@ -1,5 +1,7 @@
 import React from "react";
+
 import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
+
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
 

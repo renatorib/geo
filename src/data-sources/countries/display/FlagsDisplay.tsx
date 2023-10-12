@@ -1,6 +1,8 @@
-import React from "react";
 import NextImage from "next/image";
+import React from "react";
+
 import { AspectRatio, Center, Text } from "@mantine/core";
+
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
 import { useLang } from "~/features/i18n";

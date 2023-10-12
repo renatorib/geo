@@ -1,5 +1,7 @@
-import React from "react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
+
 import {
   Group,
   Text,
@@ -14,13 +16,12 @@ import {
   useMantineTheme,
   Anchor,
 } from "@mantine/core";
-import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import cn from "classnames";
-import { useRouter } from "next/router";
-import { Logo } from "~/components";
+import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 
-import { LocalSettingsMenu } from "~/features/settings";
+import { Logo } from "~/components";
 import { LangSelectorMenu } from "~/features/i18n";
+import { LocalSettingsMenu } from "~/features/settings";
 import { TranscriptDialog } from "~/features/speech-recognition";
 
 const AppNavbar = () => {

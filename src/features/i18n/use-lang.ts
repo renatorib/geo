@@ -1,4 +1,5 @@
 import { useLocalStorage } from "@mantine/hooks";
+
 import * as flags from "~/data-sources/countries/flags";
 
 const langs = {
@@ -17,7 +18,7 @@ const langs = {
 };
 
 export type Lang = keyof typeof langs;
-export type Property = typeof langs[Lang]["property"];
+export type Property = (typeof langs)[Lang]["property"];
 
 const DEFAULT_LANG: Lang = "en-US";
 const DEFAULT_PROPERTY: Property = "en";

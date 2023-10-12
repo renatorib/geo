@@ -11,4 +11,4 @@ export const footballClubs = [
   },
 ];
 
-export type FootballClub = typeof footballClubs[number];
+export type FootballClub = (typeof footballClubs)[number];

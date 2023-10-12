@@ -118,12 +118,12 @@ export const zoomIntoPath = (pathData: string, aspectRatio = 45 / 30) => {
     points.y.add(pointer.y);
   }
 
-  let bounds = {
+  const bounds = {
     x: [Math.min(...points.x), Math.max(...points.x)],
     y: [Math.min(...points.y), Math.max(...points.y)],
   };
-  let width = bounds.x[1] - bounds.x[0];
-  let height = bounds.y[1] - bounds.y[0];
+  const width = bounds.x[1] - bounds.x[0];
+  const height = bounds.y[1] - bounds.y[0];
 
   // Output
 

@@ -1,4 +1,4 @@
-const redirects = require("./redirects");
+const redirects = require("./redirects"); // eslint-disable-line
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
