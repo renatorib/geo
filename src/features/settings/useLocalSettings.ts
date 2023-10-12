@@ -1,17 +1,14 @@
 import { useLocalStorage } from "@mantine/hooks";
 
-const serialize = (b: boolean) => (b ? "true" : "false");
-const deserialize = (b: "true" | "false") => (b === "true" ? true : false);
-
 const useBooleanLocalStorage = (key: string, defaultValue: boolean) =>
   useLocalStorage<boolean>({
     key,
     defaultValue,
-    serialize,
-    deserialize,
+    serialize: (b) => (b ? "true" : "false"),
+    deserialize: (b: "true" | "false") => (b === "true" ? true : false),
   });
 
-export const useUserConfig = () => {
+export const useLocalSettings = () => {
   const [speech, setSpeech] = useBooleanLocalStorage("gtf:speech", false);
   const [timer, setTimer] = useBooleanLocalStorage("gtf:timer", false);
 

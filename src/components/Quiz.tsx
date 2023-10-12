@@ -1,220 +1,94 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Confetti from "react-confetti";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import { openModal } from "@mantine/modals";
-import {
-  Card,
-  Text,
-  Group,
-  Input,
-  Box,
-  Stack,
-  useMantineTheme,
-  Grid,
-  ActionIcon,
-  Menu,
-  Alert,
-  Transition,
-  Portal,
-} from "@mantine/core";
-import {
-  RiCheckLine,
-  RiShuffleFill,
-  RiEyeLine,
-  RiMore2Fill,
-  RiMicLine,
-  RiEyeCloseLine,
-  RiRestartLine,
-  RiSettings2Line,
-  RiPlayCircleFill,
-} from "react-icons/ri";
-import { Property, useEvent, useLang, usePooling, useUserConfig } from "~/hooks";
-import { blink, pop } from "~/styles/keyframes";
-import type { Display } from "~/data-sources/countries/display";
-import { Entity } from "~/games";
-import { normalizeGuess } from "~/modules/string";
-import { GiPartyPopper } from "react-icons/gi";
+import { Text, Group, Box, Stack, Grid, ActionIcon, Menu, Transition } from "@mantine/core";
+import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
+
+import { Display } from "~/data-sources";
+import { Entity, Answer } from "~/games";
+
+import { TimerControl, useTimer } from "~/features/timer";
+import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
+import { useLocalSettings } from "~/features/settings";
+import { openCongratulationsModal, useGuesser } from "~/features/guesser";
+
+import { QuizCard } from "./QuizCard";
+import { onNextPaint } from "~/lib/dom";
 
 type QuizProps<T extends Entity> = {
   data: T[];
+  answer: Answer<T>;
   title: string;
   display?: Display<T>;
-  guess: (c: T, p: Property) => { value: string; aliases: string[] };
 };
 
 export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
-  const [, rerender] = React.useState(0);
-  const { speech, timer } = useUserConfig();
-  const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const { lang, property } = useLang();
-  const [spoiler, setSpoiler] = React.useState(false);
+  const settings = useLocalSettings();
+  const timer = useTimer();
+
+  const guesser = useGuesser({
+    initial: props.data,
+    answer: props.answer,
+    onGuess({ correct, node }) {
+      if (!timer.started) timer.start();
+      if (correct) selectNextOf(node.entity);
+    },
+    onComplete() {
+      openCongratulationsModal({
+        guesses: guesser.data.length,
+        name: props.title,
+        time: timer.end(),
+      });
+    },
+  });
+
+  const selectNextOf = (entity: T) => {
+    const currentIndex = guesser.data.findIndex((node) => node.entity.id === entity.id);
+    const lookup = [
+      ...guesser.data.slice(currentIndex + 1, guesser.data.length),
+      ...guesser.data.slice(0, currentIndex + 1),
+    ];
+    const next = lookup.find((node) => node.checked === false);
+
+    const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${entity.id}"] input`);
+    const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${next?.id}"] input`);
+
+    currInput?.blur();
+    onNextPaint(() => nextInput?.focus());
+  };
+
   const [focusedId, setFocusedId] = React.useState<string>();
-  const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const [data, setData] = React.useState<T[]>(() => shuffle(props.data));
-  const timerProps = useTimer();
+  const currentNode = guesser.data.find((c) => c.id === focusedId);
 
-  const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && speech;
-
-  const startListening = () => {
-    if (shouldUseSpeech && !listening) {
-      SpeechRecognition.startListening({ language: lang });
-    }
-  };
-
-  const stopListening = () => {
-    if (shouldUseSpeech || listening) {
-      SpeechRecognition.stopListening();
-    }
-  };
-
-  usePooling(() => {
-    if (shouldUseSpeech && focusedId && !listening) {
-      startListening();
-    } else if (shouldUseSpeech && listening && !focusedId) {
-      stopListening();
-    }
-  }, 100);
-
-  React.useEffect(() => {
-    const node = data.find((c) => c.id === focusedId);
-    if (shouldUseSpeech && transcript && focusedId && node) {
-      handleGuess(node, transcript);
-    }
-  }, [transcript, focusedId, shouldUseSpeech]); // eslint-disable-line
-
-  const shuffleData = () => {
-    setData((c) => shuffle(c));
-    rerender((r) => r + 1);
-  };
-
-  const toggleSpoiler = () => {
-    setSpoiler((s) => !s);
-  };
-
-  const reset = () => {
-    setSpoiler(false);
-    setChecked({});
-    shuffleData();
-  };
-
-  const handleGuess = (node: T, guess: string) => {
-    if (!timerProps.started) timerProps.start();
-
-    const { value, aliases } = props.guess(node, property);
-    const answers = [value, ...aliases].map(normalizeGuess);
-
-    if (answers.includes(normalizeGuess(guess))) {
-      const elements = document.querySelectorAll('[data-quiz-card-id][data-quiz-card-status="false"]');
-      const current = document.querySelector(`[data-quiz-card-id="${node.id}"]`);
-      const index = [...elements].indexOf(current!);
-
-      const currInput = current?.querySelector<HTMLInputElement>("input");
-      const nextInput =
-        elements[index === elements.length - 1 ? 0 : index + 1]?.querySelector<HTMLInputElement>("input");
-
-      currInput?.blur();
-      setChecked((c) => ({ ...c, [node.id]: true }));
-      setTimeout(() => {
-        nextInput?.focus();
-      }, 1);
-
-      // Completed
-      if (Object.keys(checked).length + 1 === data.length) {
-        // Show congratulations modal
-        const time = timerProps.end();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        openModal({
-          size: "xs",
-          overlayColor: "rgba(200, 200, 200, 0.7)",
-          overlayBlur: 2,
-          centered: true,
-          withCloseButton: false,
-          children: (
-            <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
-              <Portal>
-                <Confetti />
-              </Portal>
-              <Text color="violet" sx={{ animation: `${pop} 500ms ease-in` }}>
-                <GiPartyPopper size={120} />
-              </Text>
-              <Text color="dark" align="center">
-                <>
-                  <strong>Congratulations!</strong>
-                  <br />
-                  You have completed {data.length} guesses of {props.title} in <strong>{time}</strong>
-                </>
-              </Text>
-            </Box>
-          ),
-        });
-      }
-    }
-  };
-
-  const cards = data.map((node) => {
-    const isChecked = !!checked[node.id] ? "correct" : spoiler ? "spoiler" : false;
-    const displayEl = props.display ? props.display({ data: node, checked: isChecked }) : null;
-    const { value } = props.guess(node, property);
-
-    return (
-      <React.Fragment key={node.id}>
-        <div
-          onFocusCapture={() => setFocusedId(node.id)}
-          onBlurCapture={() => setFocusedId((c) => (c === node.id ? undefined : c))}
-        >
-          <GuessCard
-            id={node.id}
-            name={value}
-            display={displayEl}
-            listening={listening}
-            checked={isChecked}
-            onGuess={(guess) => handleGuess(node, guess)}
-          />
-        </div>
-      </React.Fragment>
-    );
+  const { listening } = useTranscripter({
+    enabled: settings.speech,
+    active: !!focusedId,
+    onTranscript: (transcript) => {
+      if (currentNode) guesser.guess(currentNode, transcript);
+    },
   });
 
   return (
     <Stack pt="sm">
       <Box
+        py="xs"
+        mx="-md"
+        px="md"
         sx={{
           position: "sticky",
           top: 0,
           zIndex: 2,
           background: "#ffffff",
         }}
-        py="xs"
-        mx="-md"
-        px="md"
       >
         <Group spacing="xl">
           <Text weight={700}>{props.title}</Text>
           <Box>
             <Text>
-              {Object.values(checked).length} / {data.length}
+              {guesser.totalChecked} / {guesser.data.length}
             </Text>
           </Box>
-          {timer && (
-            <Box style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <Text color={timerProps.started ? "orange" : "gray"} weight={700}>
-                <Timer started={timerProps.started} />
-              </Text>
-              {!timerProps.started && (
-                <ActionIcon
-                  onClick={() => timerProps.start()}
-                  color="green"
-                  radius="xl"
-                  variant="subtle"
-                  size="md"
-                  style={{ marginTop: -2 }}
-                >
-                  <RiPlayCircleFill size={20} />
-                </ActionIcon>
-              )}
-            </Box>
-          )}
+
+          {settings.timer && <TimerControl timer={timer} />}
 
           <Group ml="auto" spacing="xs">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
@@ -225,14 +99,18 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
               </Menu.Target>
 
               <Menu.Dropdown>
-                <Menu.Item icon={<RiShuffleFill />} onClick={shuffleData}>
+                <Menu.Item icon={<RiShuffleFill />} onClick={guesser.shuffle}>
                   Shuffle
                 </Menu.Item>
-                <Menu.Item icon={<RiRestartLine />} onClick={reset}>
+                <Menu.Item icon={<RiRestartLine />} onClick={guesser.reset}>
                   Reset
                 </Menu.Item>
-                <Menu.Item color="red" icon={spoiler ? <RiEyeCloseLine /> : <RiEyeLine />} onClick={toggleSpoiler}>
-                  {spoiler ? "Hide" : "Show"} answers
+                <Menu.Item
+                  color="red"
+                  icon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
+                  onClick={guesser.toggleSpoiler}
+                >
+                  {guesser.spoiler ? "Hide" : "Show"} answers
                 </Menu.Item>
               </Menu.Dropdown>
             </Menu>
@@ -240,28 +118,39 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
         </Group>
       </Box>
 
-      <Transition mounted={speech} transition="fade" duration={200}>
+      <Transition mounted={settings.speech} transition="fade" duration={200}>
         {(styles) => (
           <Box style={{ ...styles }}>
-            <Alert color="indigo" title="Speech is enabled!" icon={<RiMicLine />}>
-              <Text color="dimmed">
-                When you see <RiMicLine color="red" style={{ verticalAlign: "middle" }} /> icon, it means we are
-                listening to your guesses through your microphone. <br /> You can disable speech mode in your settings{" "}
-                <RiSettings2Line color="black" style={{ verticalAlign: "middle" }} /> located at top-right of the
-                header.
-              </Text>
-            </Alert>
+            <SpeechAlert />
           </Box>
         )}
       </Transition>
 
       <form>
         <Grid>
-          {cards.map((card) => (
-            <Grid.Col span={6} md={4} key={card.key}>
-              {card}
-            </Grid.Col>
-          ))}
+          {guesser.data.map((node) => {
+            const { value } = guesser.answer(node);
+            const status = guesser.getNodeStatus(node);
+
+            return (
+              <Grid.Col span={6} md={4} key={node.id}>
+                <div
+                  onFocusCapture={() => setFocusedId(node.entity.id)}
+                  onBlurCapture={() => setFocusedId((id) => (id === node.entity.id ? undefined : id))}
+                >
+                  <QuizCard
+                    id={node.entity.id}
+                    name={value}
+                    listening={listening}
+                    status={status}
+                    onGuess={(text) => guesser.guess(node, text)}
+                  >
+                    {props.display ? props.display({ data: node.entity, status }) : null}
+                  </QuizCard>
+                </div>
+              </Grid.Col>
+            );
+          })}
         </Grid>
       </form>
     </Stack>
@@ -269,154 +158,3 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
 };
 
 export const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });
-
-type GuessCardProps = {
-  id: string;
-  name: string;
-  checked: "correct" | "spoiler" | false;
-  onGuess: (guess: string) => void;
-  listening?: boolean;
-  display?: React.ReactNode;
-};
-
-const GuessCard = ({ id, name, checked, onGuess, listening, display }: GuessCardProps) => {
-  const theme = useMantineTheme();
-  const [focused, setFocused] = React.useState(false);
-
-  const color = checked === "correct" ? theme.colors.green : checked === "spoiler" ? theme.colors.red : [];
-  const icon =
-    checked === "correct" ? (
-      <RiCheckLine />
-    ) : checked === "spoiler" ? (
-      <RiEyeLine />
-    ) : listening && focused ? (
-      <MicOn />
-    ) : null;
-
-  return (
-    <Box
-      component={checked ? "div" : "label"}
-      data-quiz-card-id={id}
-      data-quiz-card-status={String(checked)}
-      style={{ width: "100%" }}
-    >
-      <Card
-        withBorder
-        p="lg"
-        radius="md"
-        shadow={focused ? "lg" : undefined}
-        sx={(t) => ({
-          outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
-        })}
-      >
-        {display && <Card.Section sx={{ backgroundColor: color[2] }}>{display}</Card.Section>}
-
-        <Card.Section sx={{ backgroundColor: color[2] }}>
-          <Input<"input">
-            icon={listening && focused ? <MicOn /> : icon}
-            value={checked ? name : undefined}
-            title={checked ? name : undefined}
-            placeholder="Type your guess..."
-            onChange={(e) => onGuess(e.target.value)}
-            readOnly={!!checked}
-            disabled={!!checked}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            styles={{
-              icon: {
-                color: color[9],
-              },
-              input: {
-                width: `100%`,
-                border: "none",
-                textOverflow: "ellipsis",
-                "&:disabled": {
-                  color: color[9],
-                  background: "none",
-                  border: "none",
-                  opacity: 1,
-                  cursor: "default",
-                },
-              },
-            }}
-          />
-        </Card.Section>
-      </Card>
-    </Box>
-  );
-};
-
-const MicOn = () => {
-  return (
-    <Box sx={{ animation: `${blink} 1.5s ease-in-out infinite`, display: "inline-flex" }}>
-      <RiMicLine color="red" />
-    </Box>
-  );
-};
-
-const timeDiff = (started: number, now: number) => {
-  const diff = (Date.now() - started) / 1000;
-  const H = 3600;
-  const M = 60;
-  const S = 1;
-
-  const hours = Math.floor(diff / H);
-  const minutes = Math.floor((diff % H) / M);
-  const seconds = Math.floor(((diff % H) % M) / S);
-
-  const hoursText = String(hours).padStart(2, "0");
-  const minutesText = String(minutes).padStart(2, "0");
-  const secondsText = String(seconds).padStart(2, "0");
-
-  if (hours > 0) {
-    return `${hoursText}:${minutesText}:${secondsText}`;
-  }
-  return `${minutesText}:${secondsText}`;
-};
-
-const useTimer = () => {
-  const [started, setStarted] = React.useState<number>();
-
-  const start = () => {
-    setStarted(Date.now());
-  };
-
-  const end = () => {
-    setStarted(undefined);
-    return started ? timeDiff(started, Date.now()) : "00";
-  };
-
-  return { start, end, started };
-};
-
-const Timer = ({ started }: { started: number | undefined }) => {
-  const [time, setTime] = React.useState("");
-
-  const tick = useEvent(() => {
-    if (started) {
-      setTime(timeDiff(started, Date.now()));
-    }
-  });
-
-  React.useEffect(() => void tick(), [started]); // eslint-disable-line
-  usePooling(() => tick(), 400);
-
-  return <>{time}</>;
-};
-
-function shuffle(array: any[]) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}

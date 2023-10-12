@@ -7,24 +7,21 @@ import {
   Stack,
   Box,
   Header,
-  ActionIcon,
   Burger,
   ThemeIcon,
   Drawer,
   Container,
-  Menu,
-  Switch,
   useMantineTheme,
-  Center,
   Anchor,
 } from "@mantine/core";
-import { GiFlyingFlag } from "react-icons/gi";
-import { RiSettings2Line, RiHome2Line, RiHeart2Fill } from "react-icons/ri";
+import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { LangSelector, TranscriptDialog, Logo } from "~/components";
-import { useSpeechRecognition } from "react-speech-recognition";
-import { useUserConfig } from "~/hooks";
+import { Logo } from "~/components";
+
+import { LocalSettingsMenu } from "~/features/settings";
+import { LangSelectorMenu } from "~/features/i18n";
+import { TranscriptDialog } from "~/features/speech-recognition";
 
 const AppNavbar = () => {
   return (
@@ -39,17 +36,15 @@ const AppNavbar = () => {
 const AppHeader = () => {
   const theme = useMantineTheme();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
-  const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const { speech, setSpeech, timer, setTimer } = useUserConfig();
 
   return (
     <Box>
       <Header height={50}>
-        <Box sx={{ display: "flex", height: "100%", alignItems: "center" }}>
+        <Box sx={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
           <Box m={10}>
             <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
           </Box>
-          <NextLink href="/" passHref>
+          <NextLink href="/">
             <Box
               sx={{
                 display: "flex",
@@ -64,42 +59,14 @@ const AppHeader = () => {
                   transform: "scale(1.05)",
                 },
               }}
-              component="a"
             >
               <Logo size={40} />
             </Box>
           </NextLink>
           <Box m={10}>
             <Group ml="auto" spacing="xs">
-              <LangSelector />
-              <Menu shadow="md" width={200} position="bottom-end" withArrow>
-                <Menu.Target>
-                  <ActionIcon radius="xl" color="dark">
-                    <RiSettings2Line size={20} />
-                  </ActionIcon>
-                </Menu.Target>
-
-                <Menu.Dropdown>
-                  <Menu.Label>Settings</Menu.Label>
-                  <Group px={12} py={6} position="apart">
-                    <Switch
-                      size="sm"
-                      checked={speech}
-                      onChange={(ev) => setSpeech(ev.currentTarget.checked)}
-                      disabled={!browserSupportsSpeechRecognition}
-                      label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
-                    />
-                  </Group>
-                  <Group px={12} py={6} position="apart">
-                    <Switch
-                      size="sm"
-                      checked={timer}
-                      onChange={(ev) => setTimer(ev.currentTarget.checked)}
-                      label="Show timer"
-                    />
-                  </Group>
-                </Menu.Dropdown>
-              </Menu>
+              <LangSelectorMenu />
+              <LocalSettingsMenu />
             </Group>
           </Box>
         </Box>
@@ -144,39 +111,13 @@ const AppFooter = () => {
   );
 };
 
-export const QuizLayout = ({
-  children,
-  contained = true,
-  showFooter = true,
-}: {
-  children?: React.ReactNode;
-  contained?: boolean;
-  showFooter?: boolean;
-}) => {
-  const MainWrapper = contained ? Container : Box;
-
-  return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <AppHeader />
-      <TranscriptDialog />
-      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%" }}>
-        <Box component="main" sx={{ height: "100%" }}>
-          {children}
-        </Box>
-        {showFooter && <AppFooter />}
-      </MainWrapper>
-    </Box>
-  );
-};
-
 const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: React.ReactNode }) => {
   const router = useRouter();
   const selected = router.asPath === props.href;
 
   return (
-    <NextLink href={props.href} passHref>
+    <NextLink href={props.href}>
       <UnstyledButton
-        component="a"
         className={cn({ selected })}
         sx={(theme) => ({
           display: "block",
@@ -209,5 +150,34 @@ const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: Rea
         </Group>
       </UnstyledButton>
     </NextLink>
+  );
+};
+
+export const AppLayout = ({
+  children,
+  contained = true,
+  showFooter = true,
+  showTranscripter = true,
+  showHeader = true,
+}: {
+  children?: React.ReactNode;
+  contained?: boolean;
+  showFooter?: boolean;
+  showTranscripter?: boolean;
+  showHeader?: boolean;
+}) => {
+  const MainWrapper = contained ? Container : Box;
+
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      {showHeader && <AppHeader />}
+      {showTranscripter && <TranscriptDialog />}
+      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%" }}>
+        <Box component="main" sx={{ height: "100%" }}>
+          {children}
+        </Box>
+        {showFooter && <AppFooter />}
+      </MainWrapper>
+    </Box>
   );
 };

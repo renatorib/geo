@@ -1,11 +1,11 @@
 import React from "react";
 import NextImage from "next/image";
 import { AspectRatio, Center, Text } from "@mantine/core";
-import { useLang } from "~/hooks";
+import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
-import { DisplayProps } from "./types";
+import { useLang } from "~/features/i18n";
 
-export const FlagsDisplay = ({ data, checked }: DisplayProps<Country>) => {
+export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
   const { property } = useLang();
   const name = data.name[property];
 
@@ -14,10 +14,13 @@ export const FlagsDisplay = ({ data, checked }: DisplayProps<Country>) => {
       {data.flag ? (
         <NextImage
           src={data.flag}
-          alt={checked ? `Flag of ${name}` : "Flag of unknown"}
-          title={checked ? name : undefined}
-          objectFit="contain"
-          layout="fill"
+          alt={status !== "idle" ? `Flag of ${name}` : "Flag of unknown"}
+          title={status !== "idle" ? name : undefined}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "contain",
+          }}
         />
       ) : (
         <Center>

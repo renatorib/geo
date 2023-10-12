@@ -1,10 +1,9 @@
 import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { QuizLayout } from "~/components/QuizLayout";
-import { Quiz } from "~/components/Quiz";
-import { NoSSR, WorldMap } from "~/components";
+import { NoSSR, WorldMap, AppLayout, Quiz } from "~/components";
 import { games, findGameByUrl } from "~/games";
+import { QuizZen } from "~/components/QuizZen";
 
 type PageProps = { url: string };
 
@@ -27,6 +26,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 const Play = ({ url }: PageProps) => {
+  // <game_url>/<game_group>
+  // ex.: flags/world
   const game = findGameByUrl(url);
 
   if (!game) {
@@ -35,17 +36,27 @@ const Play = ({ url }: PageProps) => {
 
   if (game.type === "world-map") {
     return (
-      <QuizLayout contained={false} showFooter={false}>
-        <NoSSR>{() => <WorldMap countries={game.data} guess={game.guess} />}</NoSSR>
-      </QuizLayout>
+      <AppLayout contained={false} showFooter={false}>
+        <NoSSR>{() => <WorldMap countries={game.data} answer={game.answer} />}</NoSSR>
+      </AppLayout>
     );
   }
 
   if (game.type === "cards") {
     return (
-      <QuizLayout>
-        <NoSSR>{() => <Quiz title={game.title} data={game.data} display={game.display} guess={game.guess} />}</NoSSR>
-      </QuizLayout>
+      <AppLayout>
+        <NoSSR>{() => <Quiz title={game.title} data={game.data} display={game.display} answer={game.answer} />}</NoSSR>
+      </AppLayout>
+    );
+  }
+
+  if (game.type === "zen") {
+    return (
+      <AppLayout>
+        <NoSSR>
+          {() => <QuizZen title={game.title} data={game.data} display={game.display} answer={game.answer} />}
+        </NoSSR>
+      </AppLayout>
     );
   }
 };
