@@ -1,15 +1,18 @@
-import { upperFirstLetter } from "~/modules/string";
+import { upperFirstLetter } from "~/lib/string";
 import { countries, Country } from "../data-sources/countries";
 import * as countriesDisplay from "../data-sources/countries/display";
 import { footballClubs, FootballClub } from "~/data-sources/football-clubs";
 import { DisplayLogo } from "~/data-sources/football-clubs/display/DisplayLogo";
 import { Region } from "../data-sources/countries/enums";
-import { RiCommunityFill, RiFlag2Fill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
+import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
 import { GiBrazil, GiSoccerBall } from "react-icons/gi";
-import { Property } from "~/hooks/useLang";
+import { Property } from "~/features/i18n";
+import { Display } from "~/data-sources";
+
+export type Entity = { id: string };
+export type Answer<T> = (data: T, langProp: Property) => { value: string; aliases: string[] };
 
 type Query<T> = (data: T) => boolean;
-type Guess<T> = (data: T, p: Property) => { value: string; aliases: string[] };
 
 type Group<T> = {
   url: string;
@@ -24,11 +27,15 @@ type Game<T> = {
   data: T[];
   query: Query<T>;
   groups: Group<T>[];
-  guess: Guess<T>;
+  answer: Answer<T>;
 } & (
   | {
+      type: "zen";
+      display: Display<T>;
+    }
+  | {
       type: "cards";
-      display: (props: { data: T; checked: "correct" | "spoiler" | false }) => JSX.Element;
+      display: Display<T>;
     }
   | {
       type: "world-map";
@@ -36,9 +43,12 @@ type Game<T> = {
 );
 
 const country = {
-  guess: {
-    name: (c: Country, p: Property) => ({ value: c.name[p], aliases: c.alias[p] }),
-    capital: (c: Country, p: Property) => ({ value: c.capital[p], aliases: c.capitalAlias[p] }),
+  answer: {
+    name: (c: Country, p: Property) => ({ value: c.name[p], aliases: [...c.alias[p], c.name["en"], ...c.alias["en"]] }),
+    capital: (c: Country, p: Property) => ({
+      value: c.capital[p],
+      aliases: [...c.capitalAlias[p], c.capital["en"], ...c.capitalAlias["en"]],
+    }),
   },
   select: {
     all: (c: Country) => true,
@@ -60,14 +70,11 @@ const country = {
   },
 };
 
-export type Entity = {
-  id: string;
-};
-
 const game = <T extends Entity>(options: Game<T>) => ({
   ...options,
 });
 
+// TODO: use satisfies
 export const games: Game<any>[] = [
   game<Country>({
     name: "Flags",
@@ -78,7 +85,28 @@ export const games: Game<any>[] = [
     data: countries,
     query: country.have.flag,
     display: countriesDisplay.FlagsDisplay,
-    guess: country.guess.name,
+    answer: country.answer.name,
+    groups: [
+      { url: "world", query: country.select.independent },
+      { url: "africa", query: country.from.africa },
+      { url: "america", query: country.from.america },
+      { url: "asia", query: country.from.asia },
+      { url: "europe", query: country.from.europe },
+      { url: "oceania", query: country.from.oceania },
+      { url: "others", query: country.from.noRegion },
+    ],
+  }),
+
+  game<Country>({
+    name: "Flags Zen",
+    description: "Guess countries by their flags",
+    url: "flags-zen",
+    icon: <RiFlagFill />,
+    type: "zen",
+    data: countries,
+    query: country.have.flag,
+    display: countriesDisplay.FlagsDisplay,
+    answer: country.answer.name,
     groups: [
       { url: "world", query: country.select.independent },
       { url: "africa", query: country.from.africa },
@@ -98,7 +126,7 @@ export const games: Game<any>[] = [
     type: "world-map",
     data: countries,
     query: country.select.all,
-    guess: country.guess.name,
+    answer: country.answer.name,
     groups: [
       { url: "world", query: country.select.all },
       { url: "africa", query: country.from.africa },
@@ -118,7 +146,7 @@ export const games: Game<any>[] = [
     data: countries,
     query: country.have.shape,
     display: countriesDisplay.ShapesDisplay,
-    guess: country.guess.name,
+    answer: country.answer.name,
     groups: [
       { url: "world", query: country.select.independent },
       { url: "africa", query: country.from.africa },
@@ -131,7 +159,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Capitals 1",
+    name: "Capitals",
     description: "Guess countries by their capitals",
     url: "capitals",
     icon: <RiCommunityFill />,
@@ -139,7 +167,7 @@ export const games: Game<any>[] = [
     data: countries,
     query: country.have.capital,
     display: countriesDisplay.CapitalsDisplay,
-    guess: country.guess.name,
+    answer: country.answer.name,
     groups: [
       { url: "world", query: country.select.independent },
       { url: "africa", query: country.from.africa },
@@ -152,15 +180,15 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Capitals 2",
+    name: "Capitals Reversed",
     description: "Guess capitals by country names",
     url: "capitals-2",
-    icon: <RiCommunityFill />,
+    icon: <RiCommunityLine />,
     type: "cards",
     data: countries,
     query: country.have.capital,
     display: countriesDisplay.NamesDisplay,
-    guess: country.guess.capital,
+    answer: country.answer.capital,
     groups: [
       { url: "world", query: country.select.independent },
       { url: "africa", query: country.from.africa },
@@ -181,7 +209,7 @@ export const games: Game<any>[] = [
     data: countries,
     query: country.have.domain,
     display: countriesDisplay.DomainsDisplay,
-    guess: country.guess.name,
+    answer: country.answer.name,
     groups: [
       { url: "world", query: country.select.independent },
       { url: "africa", query: country.from.africa },
@@ -202,7 +230,7 @@ export const games: Game<any>[] = [
     data: footballClubs,
     query: () => true,
     display: DisplayLogo,
-    guess: ({ name }) => ({ value: name, aliases: [] }),
+    answer: ({ name }) => ({ value: name, aliases: [] }),
     groups: [{ url: "all", query: () => true }],
   }), */
 ];
@@ -228,7 +256,7 @@ export const findGameByUrl = (url: string /* <game_url>/<group_url> - ex.: flags
     name: game.name,
     description: game.description,
     type: game.type,
-    guess: game.guess,
+    answer: game.answer,
     data: queriedData,
     title: `${upperFirstLetter(game.name)} (${upperFirstLetter(group.url)})`,
     display: "display" in game ? game.display : undefined,

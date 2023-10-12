@@ -1,11 +1,11 @@
 import React from "react";
 import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
+import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
-import { DisplayProps } from "./types";
 
-export const DomainsDisplay = ({ data, checked }: DisplayProps<Country>) => {
+export const DomainsDisplay = ({ data, status }: DisplayProps<Country>) => {
   const theme = useMantineTheme();
-  const color = checked === "correct" ? "green" : checked === "spoiler" ? "red" : theme.colors.dark[4];
+  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : theme.colors.dark[4];
 
   return (
     <Box>

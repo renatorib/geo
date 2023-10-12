@@ -2,10 +2,12 @@ import React from "react";
 
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import { Country } from "~/data-sources/countries";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { useLang, useThrottledEvent, usePooling } from "~/hooks";
-import { useViewportSize } from "@mantine/hooks";
+import { useThrottledEvent, usePooling } from "~/hooks";
+import { Answer } from "~/games";
+import { useLang } from "~/features/i18n";
 
 const useStyles = createStyles((t) => ({
   path: {
@@ -20,7 +22,7 @@ const useStyles = createStyles((t) => ({
 
 type WorldMapProps = {
   countries: Country[];
-  guess: (c: Country, p: "en" | "pt") => { value: string; aliases: string[] };
+  answer: Answer<Country>;
 };
 
 export const WorldMap = (props: WorldMapProps) => {
@@ -61,7 +63,7 @@ export const WorldMap = (props: WorldMapProps) => {
 
     for (const country of countriesToPlay) {
       if (!checked[country.id]) {
-        const { value, aliases } = props.guess(country, property);
+        const { value, aliases } = props.answer(country, property);
         const answers = [value, ...aliases].map(normalize);
         const guess = normalize(_guess);
         if (answers.includes(guess)) {

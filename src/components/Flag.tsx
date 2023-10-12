@@ -1,6 +1,6 @@
 import React from "react";
-import NextImage from "next/legacy/image";
-import { StaticImageData } from "next/legacy/image";
+import NextImage from "next/image";
+import { StaticImageData } from "next/image";
 import { AspectRatio } from "@mantine/core";
 
 type FlagProps = {
@@ -12,7 +12,7 @@ type FlagProps = {
 export const Flag = ({ src, width = "100%", fit = "contain" }: FlagProps) => {
   return (
     <AspectRatio ratio={45 / 30} style={{ width, overflow: "hidden" }}>
-      <NextImage src={src} layout="fill" style={{ objectFit: fit }} alt="" />
+      <NextImage src={src} alt="" fill sizes="100vw" />
     </AspectRatio>
   );
 };

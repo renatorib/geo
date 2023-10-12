@@ -1,11 +1,11 @@
 import React from "react";
-import NextImage from "next/legacy/image";
+import NextImage from "next/image";
 import { AspectRatio, Center, Text } from "@mantine/core";
-import { DisplayProps } from "~/data-sources/countries/display";
+import { DisplayProps } from "~/data-sources";
 import { FootballClub } from "..";
 
 const Img = "img";
-export const DisplayLogo = ({ data, checked }: DisplayProps<FootballClub>) => {
+export const DisplayLogo = ({ data, status }: DisplayProps<FootballClub>) => {
   const name = data.name;
 
   // eslint-disable-next-line
@@ -14,8 +14,8 @@ export const DisplayLogo = ({ data, checked }: DisplayProps<FootballClub>) => {
       {data.logo ? (
         <Img
           src={data.logo}
-          alt={checked ? `Logo of ${name}` : "Logo of unknown"}
-          title={checked ? name : undefined}
+          alt={status !== "idle" ? `Logo of ${name}` : "Logo of unknown"}
+          title={status !== "idle" ? name : undefined}
           style={{ padding: 10, objectFit: "contain" }}
         />
       ) : (

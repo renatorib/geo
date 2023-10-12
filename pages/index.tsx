@@ -1,9 +1,9 @@
-import { Box, Button, Card, Grid, Group, Modal, Text, ThemeIcon, useMantineTheme } from "@mantine/core";
+import { Box, Button, Card, Grid, Modal, Text, ThemeIcon, useMantineTheme } from "@mantine/core";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { upperFirstLetter } from "~/modules/string";
-import { QuizLayout } from "~/components/QuizLayout";
+import { upperFirstLetter } from "~/lib/string";
+import { AppLayout } from "~/components";
 import { games } from "~/games";
 
 const Index = () => {
@@ -13,7 +13,7 @@ const Index = () => {
   const [gameUrl, setGameUrl] = React.useState<string>();
 
   return (
-    <QuizLayout>
+    <AppLayout>
       <Modal opened={opened} onClose={() => setOpened(false)} title="Choose the group">
         <Grid gutter="xs">
           {games
@@ -46,8 +46,8 @@ const Index = () => {
                 component="a"
                 sx={{
                   cursor: "pointer",
-                  "&:hover": { background: theme.colors.violet[0] },
-                  "&:active": { background: theme.colors.violet[1] },
+                  "&:hover": { background: theme.colors.gray[0] },
+                  "&:active": { background: theme.colors.gray[1] },
                 }}
                 onClick={() => {
                   setGameUrl(game.url);
@@ -55,13 +55,9 @@ const Index = () => {
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                  <Box sx={{ fontSize: "40px", color: theme.colors.violet[4], display: "flex" }}>{game.icon}</Box>
                   <Box>
-                    <ThemeIcon color="violet" variant="light">
-                      {game.icon}
-                    </ThemeIcon>
-                  </Box>
-                  <Box>
-                    <Text color="violet" weight={700}>
+                    <Text color={theme.colors.gray[7]} weight={700}>
                       {game.name}
                     </Text>
                     <Text color="gray" size={"0.8em" as any}>
@@ -74,7 +70,7 @@ const Index = () => {
           ))}
         </Grid>
       </Box>
-    </QuizLayout>
+    </AppLayout>
   );
 };
 

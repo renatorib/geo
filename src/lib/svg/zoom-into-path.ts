@@ -1,4 +1,4 @@
-import { parsePathData } from "../path";
+import { parsePathData } from "./path";
 
 export const zoomIntoPath = (pathData: string, aspectRatio = 45 / 30) => {
   const data = parsePathData(pathData);

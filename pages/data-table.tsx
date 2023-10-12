@@ -1,9 +1,9 @@
 import React from "react";
-import NextImage from "next/legacy/image";
+import NextImage from "next/image";
 import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
 import { countries } from "~/data-sources/countries";
-import { useLang } from "~/hooks";
-import { LangSelector, NoSSR, QuizLayout } from "~/components";
+import { NoSSR, AppLayout } from "~/components";
+import { LangSelectorMenu, useLang } from "~/features/i18n";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
@@ -51,7 +51,7 @@ const DataTablePage = () => {
   const { property } = useLang();
 
   return (
-    <QuizLayout contained={false}>
+    <AppLayout contained={false}>
       <Box p="md">
         <NoSSR fallback={<span>Loading...</span>}>
           {() => (
@@ -65,10 +65,10 @@ const DataTablePage = () => {
                       <Th width={60}>Emoji</Th>
                       <Th width={50}>ID</Th>
                       <Th width={300}>
-                        Name <LangSelector />
+                        Name <LangSelectorMenu />
                       </Th>
                       <Th width={200}>
-                        Capital <LangSelector />
+                        Capital <LangSelectorMenu />
                       </Th>
                       <Th width={80}>Domain</Th>
                       <Th width={100}>Region</Th>
@@ -95,7 +95,15 @@ const DataTablePage = () => {
                           <td>
                             <AspectRatio ratio={45 / 30}>
                               {c.flag ? (
-                                <NextImage src={c.flag} objectFit="contain" layout="fill" alt="" />
+                                <NextImage
+                                  src={c.flag}
+                                  alt=""
+                                  fill
+                                  sizes="100vw"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                />
                               ) : (
                                 <Box sx={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
                               )}
@@ -143,7 +151,7 @@ const DataTablePage = () => {
           )}
         </NoSSR>
       </Box>
-    </QuizLayout>
+    </AppLayout>
   );
 };
 

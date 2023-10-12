@@ -1,6 +1,6 @@
 export type DisplayProps<T> = {
   data: T;
-  checked: "correct" | "spoiler" | false;
+  status: "correct" | "spoiler" | "idle";
 };
 
 export type Display<T> = (props: DisplayProps<T>) => JSX.Element;
