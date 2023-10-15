@@ -2,8 +2,8 @@ import React from "react";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { NoSSR, WorldMap, AppLayout, Quiz } from "~/components";
-import { QuizZen } from "~/components/QuizZen";
+import { AppLayout, NoSSR } from "~/components";
+import { Cards, Cards1x1, WorldMap } from "~/components/game-types";
 import { games, findGameByUrl } from "~/games";
 
 type PageProps = { url: string };
@@ -46,16 +46,16 @@ const Play = ({ url }: PageProps) => {
   if (game.type === "cards") {
     return (
       <AppLayout>
-        <NoSSR>{() => <Quiz title={game.title} data={game.data} display={game.display} answer={game.answer} />}</NoSSR>
+        <NoSSR>{() => <Cards title={game.title} data={game.data} display={game.display} answer={game.answer} />}</NoSSR>
       </AppLayout>
     );
   }
 
-  if (game.type === "zen") {
+  if (game.type === "cards-1x1") {
     return (
       <AppLayout>
         <NoSSR>
-          {() => <QuizZen title={game.title} data={game.data} display={game.display} answer={game.answer} />}
+          {() => <Cards1x1 title={game.title} data={game.data} display={game.display} answer={game.answer} />}
         </NoSSR>
       </AppLayout>
     );

@@ -19,7 +19,7 @@ import {
 import cn from "classnames";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 
-import { Logo } from "~/components";
+import { RouterTransition } from "~/components";
 import { SettingsMenu, LangSelectorMenu } from "~/features/settings";
 import { TranscriptDialog } from "~/features/speech-recognition";
 
@@ -39,6 +39,7 @@ const AppHeader = () => {
 
   return (
     <Box>
+      <RouterTransition />
       <Header height={50}>
         <Box sx={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
           <Box m={10}>

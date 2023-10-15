@@ -9,7 +9,7 @@ import { pop } from "~/styles/keyframes";
 
 type Props = {
   guesses: number;
-  name: string;
+  name?: string;
   time: string;
 };
 
@@ -26,7 +26,8 @@ export const CongratulationsModal = (props: Props) => {
         <>
           <strong>Congratulations!</strong>
           <br />
-          You have completed {props.guesses} guesses of {props.name} in <strong>{props.time}</strong>
+          You have completed {props.guesses} guesses {props.name && <>of {props.name}</>} in{" "}
+          <strong>{props.time}</strong>
         </>
       </Text>
     </Box>

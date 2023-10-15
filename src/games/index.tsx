@@ -34,7 +34,7 @@ type Game<T> = {
   answer: Answer<T>;
 } & (
   | {
-      type: "zen";
+      type: "cards-1x1";
       display: Display<T>;
     }
   | {
@@ -109,7 +109,7 @@ export const games: Game<any>[] = [
     description: "Guess countries by their flags",
     url: "flags-zen",
     icon: <RiFlagFill />,
-    type: "zen",
+    type: "cards-1x1",
     data: countries,
     query: country.have.flag,
     display: countriesDisplay.FlagsDisplay,

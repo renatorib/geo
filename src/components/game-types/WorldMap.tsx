@@ -49,7 +49,6 @@ export const WorldMap = (props: WorldMapProps) => {
       (window as any).viewer = Viewer.current;
       if (!loaded) {
         onNextPaint(() => {
-          console.log(vb);
           const x = vb.viewboxX + vb.viewboxWidth / 2;
           const y = vb.viewboxY + vb.viewboxHeight / 2;
           const zoomY = (height - 50) / vb.viewboxHeight;

@@ -10,12 +10,13 @@ export type QuizCardProps = {
   id: string;
   name: string;
   status: "correct" | "spoiler" | "idle";
-  listening?: boolean;
   children?: React.ReactNode;
   onGuess: (text: string) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement, Element>) => any;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => any;
 };
 
-export const QuizCard = ({ id, name, status, onGuess, children }: QuizCardProps) => {
+export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur }: QuizCardProps) => {
   const theme = useMantineTheme();
   const { lang } = useSettings();
   const [focused, setFocused] = React.useState(false);
@@ -30,7 +31,7 @@ export const QuizCard = ({ id, name, status, onGuess, children }: QuizCardProps)
   const censored = status === "idle";
 
   const icon =
-    transcripter.listening && focused ? (
+    transcripter.listening && transcripter.meta === id ? (
       <MicOn />
     ) : status === "correct" ? (
       <RiCheckLine />
@@ -40,7 +41,7 @@ export const QuizCard = ({ id, name, status, onGuess, children }: QuizCardProps)
 
   return (
     <Box sx={{ position: "relative", width: "100%" }}>
-      {transcripter.shouldUseSpeech && (
+      {transcripter.shouldUseSpeech && status !== "correct" && (
         <Box sx={{ position: "absolute", right: 12, bottom: 12, zIndex: 20 }}>
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
@@ -76,8 +77,16 @@ export const QuizCard = ({ id, name, status, onGuess, children }: QuizCardProps)
               onChange={(e) => onGuess(e.target.value)}
               readOnly={!censored}
               disabled={!censored}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
+              onFocus={(e) => {
+                console.log("ON FOCUS");
+                setFocused(true);
+                onFocus?.(e);
+              }}
+              onBlur={(e) => {
+                console.log("ON BLUR");
+                setFocused(false);
+                onBlur?.(e);
+              }}
               styles={{
                 icon: {
                   color: color[9],

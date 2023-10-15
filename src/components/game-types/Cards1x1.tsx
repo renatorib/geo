@@ -12,43 +12,29 @@ import {
 } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
-import { useGuesser, openCongratulationsModal } from "~/features/guesser";
+import { useGuesser } from "~/features/guesser";
 import { useSettings } from "~/features/settings";
-import { TimerControl, useTimer } from "~/features/timer";
+import { TimerControl } from "~/features/timer";
 import { Entity, Answer } from "~/games";
 
-import { ProgressBar } from "./ProgressBar";
-import { QuizCard } from "./QuizCard";
+import { ProgressBar } from "../ProgressBar";
+import { QuizCard } from "../QuizCard";
 
-type QuizProps<T extends Entity> = {
+type Cards1x1Props<T extends Entity> = {
   data: T[];
   answer: Answer<T>;
   title: string;
   display?: Display<T>;
 };
 
-export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
+export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
   const settings = useSettings();
-  const timer = useTimer();
 
   const guesser = useGuesser({
-    initial: props.data,
+    data: props.data,
     answer: props.answer,
-    onGuess({ correct }) {
-      if (!timer.started) timer.start();
-      if (correct) guesser.selectNextNode();
-    },
-    onComplete() {
-      openCongratulationsModal({
-        guesses: guesser.data.length,
-        name: props.title,
-        time: timer.end(),
-      });
-    },
+    title: props.title,
   });
-
-  const { value: currentNodeValue } = guesser.answer(guesser.selectedNode);
-  const currentNodeStatus = guesser.getNodeStatus(guesser.selectedNode);
 
   return (
     <Box pt="sm" sx={{ width: "100%", position: "relative" }}>
@@ -63,7 +49,7 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
                     {guesser.totalChecked} / {guesser.data.length}
                   </Text>
                 </Box>
-                {settings.timer && <TimerControl timer={timer} />}
+                {settings.timer && <TimerControl timer={guesser.timer} />}
               </Group>
 
               <Group ml="auto" spacing="xs">
@@ -83,13 +69,7 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
                     >
                       Shuffle
                     </Menu.Item>
-                    <Menu.Item
-                      icon={<RiRestartLine />}
-                      onClick={() => {
-                        guesser.reset();
-                        timer.end();
-                      }}
-                    >
+                    <Menu.Item icon={<RiRestartLine />} onClick={() => guesser.reset()}>
                       Reset
                     </Menu.Item>
                     <Menu.Item icon={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
@@ -116,12 +96,13 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
         <QuizCard
           key={guesser.selectedNode.id}
           id={guesser.selectedNode.id}
-          name={currentNodeValue}
-          // listening={transcripter.listening}
+          name={guesser.answer(guesser.selectedNode).value}
           status={guesser.getNodeStatus(guesser.selectedNode)}
           onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
         >
-          {props.display ? props.display({ data: guesser.selectedNode.entity, status: currentNodeStatus }) : null}
+          {props.display
+            ? props.display({ data: guesser.selectedNode.entity, status: guesser.getNodeStatus(guesser.selectedNode) })
+            : null}
         </QuizCard>
 
         <Box pt={30} sx={{ display: "flex", justifyContent: "center", gap: 12 }}>

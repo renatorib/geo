@@ -10,9 +10,10 @@ export const getSoundAudio = (name: Sound) => {
   return new Audio(SOUNDS_FOLDER + "/" + SOUNDS[name]);
 };
 
-export const playSound = (name: Sound) => {
+export const playSound = (name: Sound, volume = 1) => {
   if (localStorage.getItem("gtf:sound") !== "false") {
     const audio = getSoundAudio(name);
+    audio.volume = volume;
     audio.play();
   }
 };
