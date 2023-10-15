@@ -1,9 +1,10 @@
 import React from "react";
 
-import { useLang } from "~/features/i18n";
+import { useSettings } from "~/features/settings";
 import { Answer, Entity } from "~/games";
 import { useRerender } from "~/hooks";
 import { shuffle as shuffleArray } from "~/lib/array";
+import { onNextPaint } from "~/lib/dom";
 
 export type Node<T extends Entity> = {
   entity: T;
@@ -21,17 +22,23 @@ type UseGuesserProps<T extends Entity> = {
 
 export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   const { initial, initialShuffled = true, onComplete, onGuess } = props;
-  const { property } = useLang();
-  const [spoiler, setSpoiler] = React.useState(false);
+  const { lang } = useSettings();
   const rerender = useRerender();
 
   const [data, setData] = React.useState<Node<T>[]>(() => {
     const initialNodes = initial.map((entity) => ({ entity, id: entity.id, checked: false }));
     return initialShuffled ? shuffleArray(initialNodes) : initialNodes;
   });
+  const [spoiler, setSpoiler] = React.useState(false);
+  const [selectedNode, setSelectedNode] = React.useState<Node<T>>(data[0]);
 
   const shuffle = () => {
-    setData((c) => shuffleArray(c));
+    setData((data) => {
+      const newData = shuffleArray(data);
+      const firstUnchecked = newData.find((node) => node.checked === false);
+      setSelectedNode(firstUnchecked ?? newData[0]);
+      return newData;
+    });
     rerender();
   };
 
@@ -43,7 +50,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
 
   const toggleSpoiler = () => setSpoiler((s) => !s);
 
-  const answer = (node: Node<T>) => props.answer(node.entity, property);
+  const answer = (node: Node<T>) => props.answer(node.entity, lang.property);
 
   const guess = (node: Node<T>, text: string) => {
     const { value, aliases } = answer(node);
@@ -51,7 +58,6 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     const correct = answers.includes(normalizeGuess(text));
 
     if (correct) {
-      console.log("correct", node.id, value);
       setData((data) =>
         data.map((_node) => {
           if (node.id !== _node.id) return _node;
@@ -76,6 +82,19 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return lookup.find((nd) => nd.checked === false);
   };
 
+  const selectNextNode = ({ focus = true }: { focus?: boolean } = {}) => {
+    const next = getNextUnchecked(selectedNode);
+    if (next) {
+      setSelectedNode(next);
+      if (focus) {
+        onNextPaint(() => {
+          const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${next.entity.id}"] input`);
+          nextInput?.focus();
+        });
+      }
+    }
+  };
+
   const isCompleted = !data.some((node) => node.checked === false);
   const totalChecked = data.filter((node) => node.checked === true).length;
 
@@ -91,10 +110,16 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     toggleSpoiler,
     answer,
     guess,
+
     isCompleted,
     totalChecked,
+
     getNodeStatus,
     getNextUnchecked,
+
+    selectedNode,
+    setSelectedNode,
+    selectNextNode,
   };
 };
 

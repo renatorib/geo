@@ -37,8 +37,10 @@ export const openCongratulationsModal = (props: Props) => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   openModal({
     size: "xs",
-    overlayColor: "rgba(200, 200, 200, 0.7)",
-    overlayBlur: 2,
+    overlayProps: {
+      color: "rgba(200, 200, 200, 0.7)",
+      blur: 2,
+    },
     centered: true,
     withCloseButton: false,
     children: <CongratulationsModal {...props} />,

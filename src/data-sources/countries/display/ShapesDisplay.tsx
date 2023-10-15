@@ -4,15 +4,15 @@ import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
 
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
-import { zoomIntoPath } from "~/lib/svg";
+import { getViewboxOfPath } from "~/lib/svg";
 
 export const ShapesDisplay = ({ data, status }: DisplayProps<Country>) => {
   const theme = useMantineTheme();
 
   const shapeViewbox = React.useMemo(() => {
-    const zoom = zoomIntoPath(data.shape);
-    const size = Math.max(zoom.viewboxWidth, zoom.viewboxHeight);
-    return { viewbox: zoom.viewbox, size: size };
+    const vb = getViewboxOfPath(data.shape, { aspectRatio: 45 / 30, margin: 0.5 });
+    const size = Math.max(vb.viewboxWidth, vb.viewboxHeight);
+    return { viewbox: vb.viewbox, size: size };
   }, [data.shape]);
 
   return (

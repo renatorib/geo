@@ -3,14 +3,15 @@ import React from "react";
 import { Menu, UnstyledButton } from "@mantine/core";
 import { RiCheckLine } from "react-icons/ri";
 
-import { useLang } from "~/features/i18n";
+import { Chevron } from "~/components/Chevron";
+import { Flag } from "~/components/Flag";
+import { NoSSR } from "~/components/NoSSR";
 
-import { Chevron } from "../../components/Chevron";
-import { Flag } from "../../components/Flag";
-import { NoSSR } from "../../components/NoSSR";
+import { languages } from "./languages";
+import { useSettings } from "./useSettings";
 
 export const LangSelectorMenu = () => {
-  const { lang, setLang, langs } = useLang();
+  const { lang, setLang } = useSettings();
   const [opened, setOpened] = React.useState(false);
 
   return (
@@ -29,19 +30,19 @@ export const LangSelectorMenu = () => {
                 "&:active": { transform: "translateY(1px)" },
               })}
             >
-              <Flag src={langs[lang].flag} width={18} />
+              <Flag src={lang.flag} width={18} />
               <Chevron opened={opened} size={14} />
             </UnstyledButton>
           </Menu.Target>
 
           <Menu.Dropdown>
-            {Object.values(langs).map((l) => {
+            {Object.values(languages).map((l) => {
               return (
                 <Menu.Item
                   key={l.code}
                   icon={<Flag src={l.flag} width={20} />}
                   onClick={() => setLang(l.code)}
-                  rightSection={l.code === lang ? <RiCheckLine size={16} /> : null}
+                  rightSection={l.code === lang.code ? <RiCheckLine size={16} /> : null}
                 >
                   {l.name}
                 </Menu.Item>

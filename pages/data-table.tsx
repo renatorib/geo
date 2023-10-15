@@ -5,7 +5,7 @@ import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
 
 import { NoSSR, AppLayout } from "~/components";
 import { countries } from "~/data-sources/countries";
-import { LangSelectorMenu, useLang } from "~/features/i18n";
+import { LangSelectorMenu, useSettings } from "~/features/settings";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
@@ -51,7 +51,7 @@ const WikiLink = ({
 };
 
 const DataTablePage = () => {
-  const { property } = useLang();
+  const { lang } = useSettings();
 
   return (
     <AppLayout contained={false}>
@@ -115,12 +115,12 @@ const DataTablePage = () => {
                           <td>{c.emoji}</td>
                           <td>{c.id}</td>
                           <td>
-                            <strong>{c.name[property]}</strong>
-                            {aliasText(c.alias[property])}
+                            <strong>{c.name[lang.property]}</strong>
+                            {aliasText(c.alias[lang.property])}
                           </td>
                           <td>
-                            <strong>{c.capital[property]}</strong>
-                            {aliasText(c.capitalAlias[property])}
+                            <strong>{c.capital[lang.property]}</strong>
+                            {aliasText(c.capitalAlias[lang.property])}
                           </td>
                           <td>{c.domain}</td>
                           <td>{c.region}</td>

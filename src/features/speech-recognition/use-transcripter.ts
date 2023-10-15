@@ -2,67 +2,56 @@ import React from "react";
 
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
-import { useLang } from "~/features/i18n";
-import { usePooling } from "~/hooks";
+import { useSettings } from "~/features/settings";
+import { createStore } from "~/lib/react";
 
 type UseTranscripterProps = {
   /**
    * Language to help speech recognition identifies the transcript
+   * @default settings.lang.code
    */
-  lang?: string;
+  language?: string;
   /**
    * Disable transcripter by setting to false.
    * @default true
    */
   enabled?: boolean;
   /**
-   * Toggle listening by changing active from false to true and vice-versa.
-   * @default false
-   */
-  active?: boolean;
-  /**
    * Callback fired when a new transcript was captured (transcript changes).
    */
   onTranscript?: (t: string) => any;
 };
 
-/**
- * Toggle start and stop listening based on `active` prop and fires `onTrascript` every time transcript changes.
- * Disable it entirely passing `enabled=false`
- */
-export function useTranscripter(props: UseTranscripterProps) {
-  const { lang: currentLang } = useLang();
-  const { lang = currentLang, enabled = true, active = false, onTranscript } = props;
+const metaStore = createStore<string | number | undefined>(undefined);
 
+export function useTranscripter(props: UseTranscripterProps) {
+  const meta = metaStore.useState();
+  const settings = useSettings();
+
+  const { language = settings.lang.code, enabled = settings.speech, onTranscript } = props;
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
   const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && enabled;
 
-  const startListening = () => {
-    if (shouldUseSpeech && !listening) {
-      SpeechRecognition.startListening({ language: lang });
+  const start = (id?: string | number) => {
+    if (shouldUseSpeech) {
+      SpeechRecognition.startListening({ language });
+      metaStore.setState(id);
     }
   };
 
-  const stopListening = () => {
-    if (shouldUseSpeech || listening) {
+  const stop = () => {
+    if (shouldUseSpeech) {
       SpeechRecognition.stopListening();
+      metaStore.setState(undefined);
     }
   };
-
-  usePooling(() => {
-    if (shouldUseSpeech && active && !listening) {
-      startListening();
-    } else if (shouldUseSpeech && listening && !active) {
-      stopListening();
-    }
-  }, 100);
 
   React.useEffect(() => {
-    if (shouldUseSpeech && transcript && active) {
+    if (shouldUseSpeech && transcript) {
       onTranscript?.(transcript);
     }
-  }, [transcript, active, shouldUseSpeech]); // eslint-disable-line
+  }, [transcript, shouldUseSpeech]); // eslint-disable-line
 
-  return { shouldUseSpeech, startListening, stopListening, transcript, listening };
+  return { meta, shouldUseSpeech, start, stop, transcript, listening };
 }

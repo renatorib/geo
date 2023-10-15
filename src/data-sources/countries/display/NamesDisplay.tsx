@@ -4,14 +4,14 @@ import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
 
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
-import { useLang } from "~/features/i18n";
+import { useSettings } from "~/features/settings";
 
 export const NamesDisplay = ({ data, status }: DisplayProps<Country>) => {
-  const { property } = useLang();
+  const { lang } = useSettings();
   const theme = useMantineTheme();
   const color =
     status === "correct" ? theme.colors.green[8] : status === "spoiler" ? theme.colors.red[8] : theme.colors.dark[4];
-  const name = data.name[property];
+  const name = data.name[lang.property];
   const nameEn = data.name.en;
 
   return (

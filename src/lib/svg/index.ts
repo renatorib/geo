@@ -1,2 +1,2 @@
 export * from "./path";
-export * from "./zoom-into-path";
+export * from "./viewbox";

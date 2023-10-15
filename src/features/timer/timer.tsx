@@ -17,7 +17,11 @@ export const useTimer = () => {
     return started ? timeDiff(started, Date.now()) : "00";
   };
 
-  return { start, end, started };
+  const reset = () => {
+    setStarted(undefined);
+  };
+
+  return { started, start, end, reset };
 };
 
 export type Timer = ReturnType<typeof useTimer>;

@@ -6,9 +6,12 @@ import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 
 import { Country } from "~/data-sources/countries";
-import { useLang } from "~/features/i18n";
+import { useSettings } from "~/features/settings";
+import { playSound } from "~/features/sounds";
 import { Answer } from "~/games";
 import { useThrottledEvent, usePooling } from "~/hooks";
+import { onNextPaint } from "~/lib/dom";
+import { getViewboxOfPath } from "~/lib/svg";
 
 const useStyles = createStyles((t) => ({
   path: {
@@ -33,17 +36,30 @@ export const WorldMap = (props: WorldMapProps) => {
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
   const { width, height } = useViewportSize();
   const [strokeWidth, setStrokeWidth] = React.useState(0.7);
-  const { property } = useLang();
+  const { lang } = useSettings();
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
 
   const countriesToRender = props.countries;
   const countriesToPlay = props.countries.filter((c) => c.independent === true);
+  const vb = React.useMemo(() => getViewboxOfPath(countriesToRender.map((c) => c.shape)), []);
 
   React.useEffect(() => {
-    Viewer.current?.setPointOnViewerCenter(1010 / 2, 660 / 2, 1.2);
-    setLoaded(true);
-  }, []);
+    if (Viewer.current) {
+      (window as any).viewer = Viewer.current;
+      if (!loaded) {
+        onNextPaint(() => {
+          console.log(vb);
+          const x = vb.viewboxX + vb.viewboxWidth / 2;
+          const y = vb.viewboxY + vb.viewboxHeight / 2;
+          const zoomY = (height - 50) / vb.viewboxHeight;
+          const zoomX = width / vb.viewboxWidth;
+          Viewer.current?.setPointOnViewerCenter(x, y, Math.min(zoomY, zoomX));
+          setLoaded(true);
+        });
+      }
+    }
+  }, [Viewer.current]);
 
   const fixStrokeWidth = (value?: Value | null) => {
     const zoom = value?.a ?? 1;
@@ -51,7 +67,7 @@ export const WorldMap = (props: WorldMapProps) => {
   };
 
   const handleZoom = useThrottledEvent(fixStrokeWidth, 200);
-  usePooling(() => fixStrokeWidth(Viewer?.current?.props?.value), 2000);
+  usePooling(() => fixStrokeWidth(Viewer?.current?.props?.value), 1000);
 
   const handleGuess = (_guess: string) => {
     const normalize = (input: string) =>
@@ -64,11 +80,12 @@ export const WorldMap = (props: WorldMapProps) => {
 
     for (const country of countriesToPlay) {
       if (!checked[country.id]) {
-        const { value, aliases } = props.answer(country, property);
+        const { value, aliases } = props.answer(country, lang.property);
         const answers = [value, ...aliases].map(normalize);
         const guess = normalize(_guess);
         if (answers.includes(guess)) {
           setChecked((c) => ({ ...c, [country.id]: true }));
+          playSound("correct");
           return true;
         }
       }
@@ -143,12 +160,12 @@ export const WorldMap = (props: WorldMapProps) => {
         scaleFactorOnWheel={1.15}
         onPan={handleZoom as any}
         onZoom={handleZoom as any}
-        customToolbar={() => null}
         background="#f9f9f9"
         SVGBackground="#f9f9f9"
+        customToolbar={() => null}
         customMiniature={() => null}
       >
-        <svg viewBox="0 0 1010 666">
+        <svg viewBox="0 0 1100 666">
           {countriesToRender.map((c) => {
             const isChecked = c.independent ? checked[c.id] : c.sovereignty ? checked[c.sovereignty] : false;
 
@@ -164,6 +181,13 @@ export const WorldMap = (props: WorldMapProps) => {
               </React.Fragment>
             );
           })}
+          {/* <rect
+            width={vb.viewboxWidth}
+            height={vb.viewboxHeight}
+            x={vb.viewboxX}
+            y={vb.viewboxY}
+            style={{ fill: "rgba(0,0,255,0.01)" }}
+           /> */}
         </svg>
       </ReactSVGPanZoom>
     </Box>

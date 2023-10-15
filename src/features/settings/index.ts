@@ -1,2 +1,4 @@
-export * from "./useLocalSettings";
-export * from "./LocalSettingsMenu";
+export * from "./useSettings";
+export * from "./SettingsMenu";
+export * from "./languages";
+export * from "./LangSelectorMenu";

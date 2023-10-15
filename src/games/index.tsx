@@ -6,7 +6,7 @@ import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, 
 import { Display } from "~/data-sources";
 // import { footballClubs, FootballClub } from "~/data-sources/football-clubs";
 // import { DisplayLogo } from "~/data-sources/football-clubs/display/DisplayLogo";
-import { Property } from "~/features/i18n";
+import { LanguageProperty } from "~/features/settings";
 import { upperFirstLetter } from "~/lib/string";
 
 import { countries, Country } from "../data-sources/countries";
@@ -14,7 +14,7 @@ import * as countriesDisplay from "../data-sources/countries/display";
 import { Region } from "../data-sources/countries/enums";
 
 export type Entity = { id: string };
-export type Answer<T> = (data: T, langProp: Property) => { value: string; aliases: string[] };
+export type Answer<T> = (data: T, langProp: LanguageProperty) => { value: string; aliases: string[] };
 
 type Query<T> = (data: T) => boolean;
 
@@ -48,8 +48,11 @@ type Game<T> = {
 
 const country = {
   answer: {
-    name: (c: Country, p: Property) => ({ value: c.name[p], aliases: [...c.alias[p], c.name["en"], ...c.alias["en"]] }),
-    capital: (c: Country, p: Property) => ({
+    name: (c: Country, p: LanguageProperty) => ({
+      value: c.name[p],
+      aliases: [...c.alias[p], c.name["en"], ...c.alias["en"]],
+    }),
+    capital: (c: Country, p: LanguageProperty) => ({
       value: c.capital[p],
       aliases: [...c.capitalAlias[p], c.capital["en"], ...c.capitalAlias["en"]],
     }),
@@ -123,7 +126,7 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Map",
+    name: "World Map",
     description: "Guess countries in the map",
     url: "map",
     icon: <RiMap2Fill />,

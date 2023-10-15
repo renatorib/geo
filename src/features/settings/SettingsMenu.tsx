@@ -5,14 +5,14 @@ import { RiSettings2Line } from "react-icons/ri";
 
 import { useSpeechRecognition } from "../speech-recognition";
 
-import { useLocalSettings } from "./useLocalSettings";
+import { useSettings } from "./useSettings";
 
-export const LocalSettingsMenu = () => {
+export const SettingsMenu = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  const settings = useLocalSettings();
+  const settings = useSettings();
 
   return (
-    <Menu shadow="md" width={200} position="bottom-end" withArrow>
+    <Menu shadow="md" width={250} position="bottom-end" withArrow>
       <Menu.Target>
         <ActionIcon radius="xl" color="dark">
           <RiSettings2Line size={20} />
@@ -36,6 +36,14 @@ export const LocalSettingsMenu = () => {
             checked={settings.timer}
             onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
             label="Show timer"
+          />
+        </Group>
+        <Group px={12} py={6} position="apart">
+          <Switch
+            size="sm"
+            checked={settings.sound}
+            onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
+            label="Enable sound effects"
           />
         </Group>
       </Menu.Dropdown>

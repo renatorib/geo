@@ -34,42 +34,44 @@ const Index = () => {
         </Grid>
       </Modal>
 
-      <Box py="md" sx={{ width: "100%" }}>
-        <Text mb={10} size="sm" weight={700}>
-          Select a quiz to play
-        </Text>
-        <Grid>
-          {games.map((game) => (
-            <Grid.Col key={game.name} span={12} md={4}>
-              <Card
-                withBorder
-                shadow="sm"
-                component="a"
-                sx={{
-                  cursor: "pointer",
-                  "&:hover": { background: theme.colors.gray[0] },
-                  "&:active": { background: theme.colors.gray[1] },
-                }}
-                onClick={() => {
-                  setGameUrl(game.url);
-                  setOpened(true);
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                  <Box sx={{ fontSize: "40px", color: theme.colors.violet[4], display: "flex" }}>{game.icon}</Box>
-                  <Box>
-                    <Text color={theme.colors.gray[7]} weight={700}>
-                      {game.name}
-                    </Text>
-                    <Text color="gray" size={"0.8em" as any}>
-                      {game.description}
-                    </Text>
+      <Box sx={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center" }}>
+        <Box py="md">
+          <Text mb={25} size="lg" weight={700}>
+            Select a quiz to play
+          </Text>
+          <Grid>
+            {games.map((game) => (
+              <Grid.Col key={game.name} span={12} md={4}>
+                <Card
+                  withBorder
+                  shadow="sm"
+                  component="a"
+                  sx={{
+                    cursor: "pointer",
+                    "&:hover": { background: theme.colors.gray[0] },
+                    "&:active": { background: theme.colors.gray[1] },
+                  }}
+                  onClick={() => {
+                    setGameUrl(game.url);
+                    setOpened(true);
+                  }}
+                >
+                  <Box sx={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                    <Box sx={{ fontSize: "40px", color: theme.colors.violet[6], display: "flex" }}>{game.icon}</Box>
+                    <Box>
+                      <Text color={theme.colors.gray[9]} weight={700}>
+                        {game.name}
+                      </Text>
+                      <Text color={theme.colors.gray[7]} size={"0.8em" as any}>
+                        {game.description}
+                      </Text>
+                    </Box>
                   </Box>
-                </Box>
-              </Card>
-            </Grid.Col>
-          ))}
-        </Grid>
+                </Card>
+              </Grid.Col>
+            ))}
+          </Grid>
+        </Box>
       </Box>
     </AppLayout>
   );

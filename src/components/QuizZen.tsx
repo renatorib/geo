@@ -1,7 +1,6 @@
-import dynamic from "next/dynamic";
 import React from "react";
 
-import { Text, Group, Box, Stack, ActionIcon, Menu, Transition, Button } from "@mantine/core";
+import { Text, Group, Box, Stack, ActionIcon, Menu, Button } from "@mantine/core";
 import {
   RiShuffleFill,
   RiEyeLine,
@@ -13,12 +12,10 @@ import {
 } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
-import { useGuesser, Node, openCongratulationsModal } from "~/features/guesser";
-import { useLocalSettings } from "~/features/settings";
-import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
+import { useGuesser, openCongratulationsModal } from "~/features/guesser";
+import { useSettings } from "~/features/settings";
 import { TimerControl, useTimer } from "~/features/timer";
 import { Entity, Answer } from "~/games";
-import { onNextPaint } from "~/lib/dom";
 
 import { ProgressBar } from "./ProgressBar";
 import { QuizCard } from "./QuizCard";
@@ -31,15 +28,15 @@ type QuizProps<T extends Entity> = {
 };
 
 export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
-  const settings = useLocalSettings();
+  const settings = useSettings();
   const timer = useTimer();
 
   const guesser = useGuesser({
     initial: props.data,
     answer: props.answer,
-    onGuess({ correct, node }) {
+    onGuess({ correct }) {
       if (!timer.started) timer.start();
-      if (correct) selectNextOf(node);
+      if (correct) guesser.selectNextNode();
     },
     onComplete() {
       openCongratulationsModal({
@@ -50,53 +47,24 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
     },
   });
 
-  const [currentNode, setCurrentNode] = React.useState<Node<T>>(guesser.data[0]);
-  const { value: currentNodeValue } = guesser.answer(currentNode);
-  const currentNodeStatus = guesser.getNodeStatus(currentNode);
-
-  const transcripter = useTranscripter({
-    enabled: settings.speech,
-    active: !!currentNode,
-    onTranscript: (transcript) => guesser.guess(currentNode, transcript),
-  });
-
-  const selectNextOf = (node: Node<T>) => {
-    const next = guesser.getNextUnchecked(node);
-    if (next) {
-      setCurrentNode(next);
-      onNextPaint(() => {
-        const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${next.entity.id}"] input`);
-        nextInput?.focus();
-      });
-    }
-  };
+  const { value: currentNodeValue } = guesser.answer(guesser.selectedNode);
+  const currentNodeStatus = guesser.getNodeStatus(guesser.selectedNode);
 
   return (
-    <Stack pt="sm">
-      <Transition mounted={settings.speech} transition="fade" duration={200}>
-        {(styles) => (
-          <Box style={{ ...styles }}>
-            <SpeechAlert />
-          </Box>
-        )}
-      </Transition>
-
-      <div>
-        <Box sx={{ maxWidth: 500, margin: "0 auto" }} py={100}>
-          <Box py="xs" mx="-md" px="md">
+    <Box pt="sm" sx={{ width: "100%", position: "relative" }}>
+      <Box sx={{ maxWidth: 500, margin: "0 auto", display: "grid", placeItems: "center" }}>
+        <Box py="xs" sx={{ width: "100%" }}>
+          <Stack justify="stretch" align="stretch" sx={{ flexGrow: 1 }}>
             <Group spacing="xl">
-              <Stack justify="stretch" align="stretch" sx={{ flexGrow: 1 }}>
-                <Group spacing="xl">
-                  <Text weight={700}>{props.title}</Text>
-                  <Box>
-                    <Text>
-                      {guesser.totalChecked} / {guesser.data.length}
-                    </Text>
-                  </Box>
-                  {settings.timer && <TimerControl timer={timer} />}
-                </Group>
-                <ProgressBar progress={guesser.totalChecked / guesser.data.length} />
-              </Stack>
+              <Group spacing="xl">
+                <Text weight={700}>{props.title}</Text>
+                <Box>
+                  <Text>
+                    {guesser.totalChecked} / {guesser.data.length}
+                  </Text>
+                </Box>
+                {settings.timer && <TimerControl timer={timer} />}
+              </Group>
 
               <Group ml="auto" spacing="xs">
                 <Menu shadow="md" width={200} position="bottom-end" withArrow>
@@ -111,7 +79,6 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
                       icon={<RiShuffleFill />}
                       onClick={() => {
                         guesser.shuffle();
-                        setCurrentNode(guesser.data[0]);
                       }}
                     >
                       Shuffle
@@ -140,49 +107,50 @@ export const QuizZen = <T extends Entity>(props: QuizProps<T>) => {
                 </Menu>
               </Group>
             </Group>
-          </Box>
-
-          <QuizCard
-            key={currentNode.entity.id}
-            id={currentNode.entity.id}
-            name={currentNodeValue}
-            listening={transcripter.listening}
-            status={guesser.getNodeStatus(currentNode)}
-            onGuess={(text) => guesser.guess(currentNode, text)}
-          >
-            {props.display ? props.display({ data: currentNode.entity, status: currentNodeStatus }) : null}
-          </QuizCard>
-
-          <Box pt={30} sx={{ display: "flex", justifyContent: "center", gap: 12 }}>
-            {guesser.isCompleted ? (
-              <Button color="violet" variant="filled" onClick={guesser.reset} leftIcon={<RiRestartLine />}>
-                Restart
-              </Button>
-            ) : (
-              <>
-                <Button
-                  color="red"
-                  variant="light"
-                  onClick={guesser.toggleSpoiler}
-                  leftIcon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
-                >
-                  Spoiler
-                </Button>
-                <Button
-                  color="violet"
-                  variant="filled"
-                  onClick={() => selectNextOf(currentNode)}
-                  leftIcon={<RiSkipForwardFill />}
-                >
-                  Skip
-                </Button>
-              </>
-            )}
-          </Box>
+            <Box>
+              <ProgressBar progress={guesser.totalChecked / guesser.data.length} />
+            </Box>
+          </Stack>
         </Box>
-      </div>
-    </Stack>
+
+        <QuizCard
+          key={guesser.selectedNode.id}
+          id={guesser.selectedNode.id}
+          name={currentNodeValue}
+          // listening={transcripter.listening}
+          status={guesser.getNodeStatus(guesser.selectedNode)}
+          onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
+        >
+          {props.display ? props.display({ data: guesser.selectedNode.entity, status: currentNodeStatus }) : null}
+        </QuizCard>
+
+        <Box pt={30} sx={{ display: "flex", justifyContent: "center", gap: 12 }}>
+          {guesser.isCompleted ? (
+            <Button color="violet" variant="filled" onClick={guesser.reset} leftIcon={<RiRestartLine />}>
+              Restart
+            </Button>
+          ) : (
+            <>
+              <Button
+                color="red"
+                variant="outline"
+                onClick={guesser.toggleSpoiler}
+                leftIcon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
+              >
+                Spoiler
+              </Button>
+              <Button
+                color="violet"
+                variant="filled"
+                onClick={() => guesser.selectNextNode()}
+                leftIcon={<RiSkipForwardFill />}
+              >
+                Skip
+              </Button>
+            </>
+          )}
+        </Box>
+      </Box>
+    </Box>
   );
 };
-
-export const QuizZenNoSSR = dynamic(() => Promise.resolve(QuizZen), { ssr: false });

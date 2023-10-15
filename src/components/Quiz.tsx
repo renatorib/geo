@@ -1,13 +1,11 @@
-import dynamic from "next/dynamic";
 import React from "react";
 
-import { Text, Group, Box, Stack, Grid, ActionIcon, Menu, Transition } from "@mantine/core";
+import { Text, Group, Box, Stack, Grid, ActionIcon, Menu } from "@mantine/core";
 import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
 import { openCongratulationsModal, useGuesser } from "~/features/guesser";
-import { useLocalSettings } from "~/features/settings";
-import { SpeechAlert, useTranscripter } from "~/features/speech-recognition";
+import { useSettings } from "~/features/settings";
 import { TimerControl, useTimer } from "~/features/timer";
 import { Entity, Answer } from "~/games";
 import { onNextPaint } from "~/lib/dom";
@@ -22,7 +20,7 @@ type QuizProps<T extends Entity> = {
 };
 
 export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
-  const settings = useLocalSettings();
+  const settings = useSettings();
   const timer = useTimer();
 
   const guesser = useGuesser({
@@ -55,17 +53,6 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
     currInput?.blur();
     onNextPaint(() => nextInput?.focus());
   };
-
-  const [focusedId, setFocusedId] = React.useState<string>();
-  const currentNode = guesser.data.find((c) => c.id === focusedId);
-
-  const { listening } = useTranscripter({
-    enabled: settings.speech,
-    active: !!focusedId,
-    onTranscript: (transcript) => {
-      if (currentNode) guesser.guess(currentNode, transcript);
-    },
-  });
 
   return (
     <Stack pt="sm">
@@ -118,14 +105,6 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
         </Group>
       </Box>
 
-      <Transition mounted={settings.speech} transition="fade" duration={200}>
-        {(styles) => (
-          <Box style={{ ...styles }}>
-            <SpeechAlert />
-          </Box>
-        )}
-      </Transition>
-
       <form>
         <Grid>
           {guesser.data.map((node) => {
@@ -134,14 +113,10 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
 
             return (
               <Grid.Col span={6} md={4} key={node.id}>
-                <div
-                  onFocusCapture={() => setFocusedId(node.entity.id)}
-                  onBlurCapture={() => setFocusedId((id) => (id === node.entity.id ? undefined : id))}
-                >
+                <div>
                   <QuizCard
                     id={node.entity.id}
                     name={value}
-                    listening={listening}
                     status={status}
                     onGuess={(text) => guesser.guess(node, text)}
                   >
@@ -156,5 +131,3 @@ export const Quiz = <T extends Entity>(props: QuizProps<T>) => {
     </Stack>
   );
 };
-
-export const QuizNoSSR = dynamic(() => Promise.resolve(Quiz), { ssr: false });

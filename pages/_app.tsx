@@ -7,7 +7,7 @@ import React from "react";
 
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,11 +24,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <ModalsProvider>
-          <NotificationsProvider>
-            <div className={`${inter.className} ${inter.variable}`}>
-              <Component {...pageProps} />
-            </div>
-          </NotificationsProvider>
+          <Notifications />
+          <div className={`${inter.className} ${inter.variable}`}>
+            <Component {...pageProps} />
+          </div>
         </ModalsProvider>
       </MantineProvider>
     </>

@@ -5,11 +5,11 @@ import { AspectRatio, Center, Text } from "@mantine/core";
 
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
-import { useLang } from "~/features/i18n";
+import { useSettings } from "~/features/settings";
 
 export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
-  const { property } = useLang();
-  const name = data.name[property];
+  const { lang } = useSettings();
+  const name = data.name[lang.property];
 
   return (
     <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>

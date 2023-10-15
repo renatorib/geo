@@ -20,8 +20,7 @@ import cn from "classnames";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 
 import { Logo } from "~/components";
-import { LangSelectorMenu } from "~/features/i18n";
-import { LocalSettingsMenu } from "~/features/settings";
+import { SettingsMenu, LangSelectorMenu } from "~/features/settings";
 import { TranscriptDialog } from "~/features/speech-recognition";
 
 const AppNavbar = () => {
@@ -48,16 +47,15 @@ const AppHeader = () => {
           <NextLink href="/">
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                margin: "auto",
+                position: "absolute",
+                left: "50%",
+                top: 3,
+                transform: "translateX(-50%)",
                 color: theme.colors.dark[9],
                 transition: "all 200ms ease-in-out",
                 "&:hover": {
                   color: theme.colors.violet[5],
-                  transform: "scale(1.05)",
+                  transform: "translateX(-50%) scale(1.15) rotate(-2deg)",
                 },
               }}
             >
@@ -67,7 +65,7 @@ const AppHeader = () => {
           <Box m={10}>
             <Group ml="auto" spacing="xs">
               <LangSelectorMenu />
-              <LocalSettingsMenu />
+              <SettingsMenu />
             </Group>
           </Box>
         </Box>
@@ -78,9 +76,11 @@ const AppHeader = () => {
         opened={navbarOpened}
         onClose={() => setNavbarOpened(false)}
         padding="md"
-        overlayOpacity={0.55}
-        overlayBlur={3}
-        overlayColor={theme.colors.gray[2]}
+        overlayProps={{
+          opacity: 0.55,
+          blur: 3,
+          color: theme.colors.gray[2],
+        }}
       >
         <Box style={{ height: "calc(100vh - 70px)", overflowY: "auto" }}>
           <AppNavbar />
@@ -173,8 +173,8 @@ export const AppLayout = ({
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {showHeader && <AppHeader />}
       {showTranscripter && <TranscriptDialog />}
-      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%" }}>
-        <Box component="main" sx={{ height: "100%" }}>
+      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%", display: "flex", flexDirection: "column" }}>
+        <Box component="main" sx={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
           {children}
         </Box>
         {showFooter && <AppFooter />}

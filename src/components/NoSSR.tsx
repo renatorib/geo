@@ -2,12 +2,11 @@ import React from "react";
 
 import { useIsMounted } from "~/hooks";
 
-export const NoSSR = ({
-  children,
-  fallback = null,
-}: {
-  children: () => React.ReactNode | JSX.Element;
+type NoSSRProps = {
+  children: (() => React.ReactNode) | React.ReactNode;
   fallback?: React.ReactNode;
-}) => {
-  return <>{useIsMounted() ? children() : fallback}</>;
 };
+
+export const NoSSR = ({ children, fallback = null }: NoSSRProps) => (
+  <>{useIsMounted() ? (typeof children === "function" ? children() : children) : fallback}</>
+);
