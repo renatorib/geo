@@ -59,7 +59,9 @@ const AppHeader = () => {
                 },
               }}
             >
-              <Logo size={40} />
+              <div className="text-[1.8rem] h-11 flex flex-col justify-center">
+                <div>geo</div>
+              </div>
             </Box>
           </NextLink>
           <Box m={10}>
