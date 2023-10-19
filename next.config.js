@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["upload.wikimedia.org", "rena.to", "geo.rena.to", "geomemo.rena.to"],
+    domains: ["upload.wikimedia.org", "rena.to", "geo.rena.to"],
   },
 
   async redirects() {
