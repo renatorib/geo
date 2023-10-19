@@ -13,12 +13,13 @@ export const Recorder = fr<typeof ActionIcon<"button">, { recording?: boolean }>
       size="lg"
       color="red"
       {...props}
-      sx={{ userSelect: "none", ...props.sx }}
       variant={props.recording ? "filled" : "default"}
       className={props.recording ? "animate-pulse" : ""}
       style={{
+        userSelect: "none",
         transition: "all 150ms ease-out",
         ...(props.recording && { transform: "scale(1.15)" }),
+        ...props.style,
       }}
     >
       <RiMicFill />

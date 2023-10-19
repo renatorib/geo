@@ -10,7 +10,7 @@ import { LangSelectorMenu, useSettings } from "~/features/settings";
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
     <th style={{ width }}>
-      <Box sx={{ display: "flex", gap: 5, alignItems: "center" }}>{children}</Box>
+      <Box style={{ display: "flex", gap: 5, alignItems: "center" }}>{children}</Box>
     </th>
   );
 };
@@ -59,7 +59,7 @@ const DataTablePage = () => {
         <NoSSR fallback={<span>Loading...</span>}>
           {() => (
             <>
-              <Box sx={{ maxWidth: "100%", overflowX: "auto", margin: "0 auto" }}>
+              <Box style={{ maxWidth: "100%", overflowX: "auto", margin: "0 auto" }}>
                 <Table striped={true}>
                   <thead>
                     <tr>
@@ -108,7 +108,7 @@ const DataTablePage = () => {
                                   }}
                                 />
                               ) : (
-                                <Box sx={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
+                                <Box style={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
                               )}
                             </AspectRatio>
                           </td>
@@ -136,7 +136,7 @@ const DataTablePage = () => {
                               </>
                             ) : null}
                           </td>
-                          <td>{c.shape ? "Yes" : <Box sx={{ background: "red", color: "white" }}>No</Box>}</td>
+                          <td>{c.shape ? "Yes" : <Box style={{ background: "red", color: "white" }}>No</Box>}</td>
                           <td>{c.alpha2}</td>
                           <td>{c.alpha3}</td>
                           <td>

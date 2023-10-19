@@ -15,7 +15,7 @@ export const DomainsDisplay = ({ data, status }: DisplayProps<Country>) => {
         <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
           <Center>
             <Box>
-              <Text color={color} size={38} align="center" weight={500}>
+              <Text c={color} fz={38} ta="center" w={500}>
                 {data.domain}
               </Text>
             </Box>
@@ -24,7 +24,7 @@ export const DomainsDisplay = ({ data, status }: DisplayProps<Country>) => {
       ) : (
         <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
           <Center>
-            <Text color="red" size="xs">
+            <Text c="red" size="xs">
               ?
             </Text>
           </Center>

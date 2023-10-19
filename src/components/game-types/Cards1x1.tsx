@@ -37,13 +37,13 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
   });
 
   return (
-    <Box pt="sm" sx={{ width: "100%", position: "relative" }}>
-      <Box sx={{ maxWidth: 500, margin: "0 auto", display: "grid", placeItems: "center" }}>
-        <Box py="xs" sx={{ width: "100%" }}>
-          <Stack justify="stretch" align="stretch" sx={{ flexGrow: 1 }}>
-            <Group spacing="xl">
-              <Group spacing="xl">
-                <Text weight={700}>{props.title}</Text>
+    <Box pt="sm" style={{ width: "100%", position: "relative" }}>
+      <Box style={{ maxWidth: 500, margin: "0 auto", display: "grid", placeItems: "center" }}>
+        <Box py="xs" style={{ width: "100%" }}>
+          <Stack justify="stretch" align="stretch" style={{ flexGrow: 1 }}>
+            <Group gap="xl">
+              <Group gap="xl">
+                <Text fw={700}>{props.title}</Text>
                 <Box>
                   <Text>
                     {guesser.totalChecked} / {guesser.data.length}
@@ -52,7 +52,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                 {settings.timer && <TimerControl timer={guesser.timer} />}
               </Group>
 
-              <Group ml="auto" spacing="xs">
+              <Group ml="auto" gap="xs">
                 <Menu shadow="md" width={200} position="bottom-end" withArrow>
                   <Menu.Target>
                     <ActionIcon radius="xl" color="dark">
@@ -62,23 +62,23 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
 
                   <Menu.Dropdown>
                     <Menu.Item
-                      icon={<RiShuffleFill />}
+                      leftSection={<RiShuffleFill />}
                       onClick={() => {
                         guesser.shuffle();
                       }}
                     >
                       Shuffle
                     </Menu.Item>
-                    <Menu.Item icon={<RiRestartLine />} onClick={() => guesser.reset()}>
+                    <Menu.Item leftSection={<RiRestartLine />} onClick={() => guesser.reset()}>
                       Reset
                     </Menu.Item>
-                    <Menu.Item icon={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
+                    <Menu.Item leftSection={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
                       {settings.timer ? "Hide timer" : "Show timer"}
                     </Menu.Item>
                     <Menu.Divider />
                     <Menu.Item
                       color="red"
-                      icon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
+                      leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
                       onClick={guesser.toggleSpoiler}
                     >
                       {guesser.spoiler ? "Hide" : "Show"} answers
@@ -105,9 +105,9 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
             : null}
         </QuizCard>
 
-        <Box pt={30} sx={{ display: "flex", justifyContent: "center", gap: 12 }}>
+        <Box pt={30} style={{ display: "flex", justifyContent: "center", gap: 12 }}>
           {guesser.isCompleted ? (
-            <Button color="violet" variant="filled" onClick={guesser.reset} leftIcon={<RiRestartLine />}>
+            <Button color="violet" variant="filled" onClick={guesser.reset} leftSection={<RiRestartLine />}>
               Restart
             </Button>
           ) : (
@@ -116,7 +116,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                 color="red"
                 variant="outline"
                 onClick={guesser.toggleSpoiler}
-                leftIcon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
+                leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
               >
                 Spoiler
               </Button>
@@ -124,7 +124,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                 color="violet"
                 variant="filled"
                 onClick={() => guesser.selectNextNode()}
-                leftIcon={<RiSkipForwardFill />}
+                leftSection={<RiSkipForwardFill />}
               >
                 Skip
               </Button>

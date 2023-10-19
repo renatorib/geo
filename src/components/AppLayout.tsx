@@ -8,7 +8,6 @@ import {
   UnstyledButton,
   Stack,
   Box,
-  Header,
   Burger,
   ThemeIcon,
   Drawer,
@@ -16,12 +15,12 @@ import {
   useMantineTheme,
   Anchor,
 } from "@mantine/core";
-import cn from "classnames";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 
-import { RouterTransition } from "~/components";
+import { Logo, RouterTransition } from "~/components";
 import { SettingsMenu, LangSelectorMenu } from "~/features/settings";
 import { TranscriptDialog } from "~/features/speech-recognition";
+import { cn } from "~/styles";
 
 const AppNavbar = () => {
   return (
@@ -40,39 +39,32 @@ const AppHeader = () => {
   return (
     <Box>
       <RouterTransition />
-      <Header height={50}>
-        <Box sx={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
+      <header style={{ height: 50 }}>
+        <Box style={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
           <Box m={10}>
             <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
           </Box>
           <NextLink href="/">
             <Box
-              sx={{
+              style={{
                 position: "absolute",
                 left: "50%",
-                top: 3,
+                top: 13,
                 transform: "translateX(-50%)",
                 color: theme.colors.dark[9],
-                transition: "all 200ms ease-in-out",
-                "&:hover": {
-                  color: theme.colors.violet[5],
-                  transform: "translateX(-50%) scale(1.15) rotate(-2deg)",
-                },
               }}
             >
-              <div className="text-[1.8rem] h-11 flex flex-col justify-center">
-                <div>geo</div>
-              </div>
+              <Logo size={25} />
             </Box>
           </NextLink>
           <Box m={10}>
-            <Group ml="auto" spacing="xs">
+            <Group ml="auto" gap="xs">
               <LangSelectorMenu />
               <SettingsMenu />
             </Group>
           </Box>
         </Box>
-      </Header>
+      </header>
 
       <Drawer
         title="Menu"
@@ -98,9 +90,9 @@ const AppFooter = () => {
     <Box py="xl">
       <Text
         size="xs"
-        color="gray"
-        align="center"
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
+        c="gray"
+        ta="center"
+        style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
       >
         <span>Made with</span>
         <span style={{ verticalAlign: "middle" }}>
@@ -122,33 +114,20 @@ const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: Rea
   return (
     <NextLink href={props.href}>
       <UnstyledButton
-        className={cn({ selected })}
-        sx={(theme) => ({
-          display: "block",
-          width: "100%",
-          padding: theme.spacing.xs,
-          borderRadius: theme.radius.sm,
-          color: theme.colors.dark[9],
-
-          "&:hover": {
-            backgroundColor: theme.colors.blue[0],
-            color: theme.colors.blue[6],
-          },
-          "&.selected": {
-            backgroundColor: theme.colors.violet[0],
-            color: theme.colors.violet[6],
-          },
-        })}
+        className={cn(
+          "block w-full p-1 rounded text-gray-800 hover:bg-blue-100 hover:text-blue-600",
+          selected && "bg-violet-100 text-violet-600",
+        )}
       >
-        <Group align="center" spacing="xs">
-          <Text color="violet">
+        <Group align="center" gap="xs">
+          <Text c="violet">
             <Group align="center">
               <ThemeIcon variant="light" color={selected ? "violet" : "blue"}>
                 {props.icon}
               </ThemeIcon>
             </Group>
           </Text>
-          <Text size="sm" color="#333">
+          <Text size="sm" c="#333">
             {props.children}
           </Text>
         </Group>
@@ -173,11 +152,11 @@ export const AppLayout = ({
   const MainWrapper = contained ? Container : Box;
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box style={{ display: "flex", flexDirection: "column" }}>
       {showHeader && <AppHeader />}
       {showTranscripter && <TranscriptDialog />}
-      <MainWrapper sx={{ minHeight: "calc(100vh - 50px)", width: "100%", display: "flex", flexDirection: "column" }}>
-        <Box component="main" sx={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
+      <MainWrapper style={{ minHeight: "calc(100vh - 53px)", width: "100%", display: "flex", flexDirection: "column" }}>
+        <Box component="main" style={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
           {children}
         </Box>
         {showFooter && <AppFooter />}

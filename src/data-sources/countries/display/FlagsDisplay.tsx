@@ -26,7 +26,7 @@ export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
         />
       ) : (
         <Center>
-          <Text color="red" size="xs">
+          <Text c="red" size="xs">
             Flag not found
           </Text>
         </Center>

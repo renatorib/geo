@@ -1,10 +1,11 @@
 import React from "react";
 
-import { Box, Card, Input, useMantineTheme } from "@mantine/core";
+import { Box, Card, Input } from "@mantine/core";
 import { RiCheckLine, RiEyeLine } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
 import { MicOn, Recorder, useTranscripter } from "~/features/speech-recognition";
+import { cn } from "~/styles";
 
 export type QuizCardProps = {
   id: string;
@@ -17,7 +18,6 @@ export type QuizCardProps = {
 };
 
 export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur }: QuizCardProps) => {
-  const theme = useMantineTheme();
   const { lang } = useSettings();
   const [focused, setFocused] = React.useState(false);
 
@@ -27,7 +27,8 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
     },
   });
 
-  const color = status === "correct" ? theme.colors.green : status === "spoiler" ? theme.colors.red : [];
+  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : "gray";
+  const getColor = (level: number) => `var(--mantine-color-${color}-${level})`;
   const censored = status === "idle";
 
   const icon =
@@ -40,9 +41,9 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
     ) : null;
 
   return (
-    <Box sx={{ position: "relative", width: "100%" }}>
+    <Box style={{ position: "relative", width: "100%" }}>
       {transcripter.shouldUseSpeech && status !== "correct" && (
-        <Box sx={{ position: "absolute", right: 12, bottom: 12, zIndex: 20 }}>
+        <Box style={{ position: "absolute", right: 12, bottom: 12, zIndex: 20 }}>
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
             disabled={transcripter.listening && transcripter.meta !== id}
@@ -55,22 +56,22 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
         component={status !== "idle" ? "div" : "label"}
         data-quiz-card-id={id}
         data-quiz-card-status={status}
-        sx={{ width: "100%" }}
+        style={{ width: "100%" }}
       >
         <Card
           withBorder
           p="lg"
           radius="md"
           shadow={focused ? "lg" : undefined}
-          sx={(t) => ({
-            outline: focused ? `1px solid ${t.colors.blue[9]}` : undefined,
-          })}
+          style={{
+            outline: focused ? `1px solid var(--mantine-color-blue-9)` : undefined,
+          }}
         >
-          {children && <Card.Section sx={{ backgroundColor: color[2] }}>{children}</Card.Section>}
+          {children && <Card.Section style={{ backgroundColor: getColor(2) }}>{children}</Card.Section>}
 
-          <Card.Section sx={{ backgroundColor: color[2] }}>
+          <Card.Section style={{ backgroundColor: getColor(2) }}>
             <Input<"input">
-              icon={icon}
+              leftSection={icon}
               value={censored ? undefined : name}
               title={censored ? undefined : name}
               placeholder={`Type your guess in ${lang.name}...`}
@@ -78,32 +79,24 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
               readOnly={!censored}
               disabled={!censored}
               onFocus={(e) => {
-                console.log("ON FOCUS");
                 setFocused(true);
                 onFocus?.(e);
               }}
               onBlur={(e) => {
-                console.log("ON BLUR");
                 setFocused(false);
                 onBlur?.(e);
               }}
-              styles={{
-                icon: {
-                  color: color[9],
-                  fontSize: "1.33em",
-                },
-                input: {
-                  width: `100%`,
-                  border: "none",
-                  textOverflow: "ellipsis",
-                  "&:disabled": {
-                    color: color[9],
-                    background: "none",
-                    border: "none",
-                    opacity: 1,
-                    cursor: "default",
-                  },
-                },
+              style={{
+                "--color-2": getColor(2),
+                "--color-9": getColor(9),
+              }}
+              classNames={{
+                section: cn("text-[var(--color-9)] text-[1.33em]"),
+                input: cn(
+                  "w-full border-0 text-ellipsis",
+                  "disabled:text-[var(--color-9)] disabled:bg-transparent",
+                  "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
+                ),
               }}
             />
           </Card.Section>

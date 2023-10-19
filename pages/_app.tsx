@@ -1,5 +1,6 @@
 import "regenerator-runtime/runtime";
 import "../src/styles/globals.css";
+import "@mantine/core/styles.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Head from "next/head";
@@ -19,10 +20,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>guess.li</title>
+        <title>GeoMemo - rena.to</title>
       </Head>
 
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider>
         <ModalsProvider>
           <Notifications />
           <div className={`${inter.className} ${inter.variable}`}>

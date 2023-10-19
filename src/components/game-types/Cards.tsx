@@ -33,15 +33,15 @@ export const Cards = <T extends Entity>(props: CardsProps<T>) => {
         py="xs"
         mx="-md"
         px="md"
-        sx={{
+        style={{
           position: "sticky",
           top: 0,
           zIndex: 2,
           background: "#ffffff",
         }}
       >
-        <Group spacing="xl">
-          <Text weight={700}>{props.title}</Text>
+        <Group gap="xl">
+          <Text fw={700}>{props.title}</Text>
           <Box>
             <Text>
               {guesser.totalChecked} / {guesser.data.length}
@@ -50,7 +50,7 @@ export const Cards = <T extends Entity>(props: CardsProps<T>) => {
 
           {settings.timer && <TimerControl timer={guesser.timer} />}
 
-          <Group ml="auto" spacing="xs">
+          <Group ml="auto" gap="xs">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
                 <ActionIcon radius="xl" color="dark">
@@ -59,15 +59,15 @@ export const Cards = <T extends Entity>(props: CardsProps<T>) => {
               </Menu.Target>
 
               <Menu.Dropdown>
-                <Menu.Item icon={<RiShuffleFill />} onClick={guesser.shuffle}>
+                <Menu.Item leftSection={<RiShuffleFill />} onClick={guesser.shuffle}>
                   Shuffle
                 </Menu.Item>
-                <Menu.Item icon={<RiRestartLine />} onClick={guesser.reset}>
+                <Menu.Item leftSection={<RiRestartLine />} onClick={guesser.reset}>
                   Reset
                 </Menu.Item>
                 <Menu.Item
                   color="red"
-                  icon={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
+                  leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
                   onClick={guesser.toggleSpoiler}
                 >
                   {guesser.spoiler ? "Hide" : "Show"} answers
@@ -84,7 +84,7 @@ export const Cards = <T extends Entity>(props: CardsProps<T>) => {
           const status = guesser.getNodeStatus(node);
 
           return (
-            <Grid.Col span={6} md={4} key={node.id}>
+            <Grid.Col key={node.id} span={{ base: 6, md: 4 }}>
               <QuizCard
                 id={node.entity.id}
                 name={value}

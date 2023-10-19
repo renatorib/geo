@@ -5,8 +5,6 @@ import { openModal } from "@mantine/modals";
 import Confetti from "react-confetti";
 import { GiPartyPopper } from "react-icons/gi";
 
-import { pop } from "~/styles/keyframes";
-
 type Props = {
   guesses: number;
   name?: string;
@@ -15,14 +13,14 @@ type Props = {
 
 export const CongratulationsModal = (props: Props) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
+    <Box style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
       <Portal>
         <Confetti />
       </Portal>
-      <Text color="violet" sx={{ animation: `${pop} 500ms ease-in` }}>
+      <Text c="violet" style={{ animation: "pop 500ms ease-in" }}>
         <GiPartyPopper size={120} />
       </Text>
-      <Text color="dark" align="center">
+      <Text c="dark" ta="center">
         <>
           <strong>Congratulations!</strong>
           <br />

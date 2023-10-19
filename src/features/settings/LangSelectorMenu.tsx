@@ -6,6 +6,7 @@ import { RiCheckLine } from "react-icons/ri";
 import { Chevron } from "~/components/Chevron";
 import { Flag } from "~/components/Flag";
 import { NoSSR } from "~/components/NoSSR";
+import { cn } from "~/styles";
 
 import { languages } from "./languages";
 import { useSettings } from "./useSettings";
@@ -20,15 +21,10 @@ export const LangSelectorMenu = () => {
         <Menu opened={opened} onChange={setOpened} shadow="md" width={200} position="bottom-end" withArrow>
           <Menu.Target>
             <UnstyledButton
-              sx={(t) => ({
-                display: "flex",
-                alignItems: "center",
-                color: t.colors.dark[9],
-                padding: "2px",
-                borderRadius: 3,
-                "&:hover": { background: t.colors.gray[2] },
-                "&:active": { transform: "translateY(1px)" },
-              })}
+              className={cn(
+                "flex items-center text-gray-900 p-0.5 rounded-sm",
+                "hover:bg-gray-200 active:translate-y-0.5",
+              )}
             >
               <Flag src={lang.flag} width={18} />
               <Chevron opened={opened} size={14} />
@@ -40,8 +36,8 @@ export const LangSelectorMenu = () => {
               return (
                 <Menu.Item
                   key={l.code}
-                  icon={<Flag src={l.flag} width={20} />}
                   onClick={() => setLang(l.code)}
+                  leftSection={<Flag src={l.flag} width={20} />}
                   rightSection={l.code === lang.code ? <RiCheckLine size={16} /> : null}
                 >
                   {l.name}

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-import { Box, Button, Card, Grid, Modal, Text, useMantineTheme } from "@mantine/core";
+import { Box, Button, Card, Grid, Modal, Text } from "@mantine/core";
 
 import { AppLayout } from "~/components";
 import { games } from "~/games";
@@ -9,7 +9,6 @@ import { upperFirstLetter } from "~/lib/string";
 
 const Index = () => {
   const router = useRouter();
-  const theme = useMantineTheme();
   const [opened, setOpened] = React.useState(false);
   const [gameUrl, setGameUrl] = React.useState<string>();
 
@@ -20,7 +19,7 @@ const Index = () => {
           {games
             .find((g) => g.url === gameUrl)
             ?.groups.map((group) => (
-              <Grid.Col key={group.url} span={6} xs={4}>
+              <Grid.Col key={group.url} span={{ base: 6, x: 4 }}>
                 <Button
                   color="violet"
                   variant="light"
@@ -34,35 +33,33 @@ const Index = () => {
         </Grid>
       </Modal>
 
-      <Box sx={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center" }}>
+      <Box style={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center" }}>
         <Box py="md">
-          <Text mb={25} size="lg" weight={700}>
+          <Text mb={25} size="lg" fw={700}>
             Select a quiz to play
           </Text>
           <Grid>
             {games.map((game) => (
-              <Grid.Col key={game.name} span={12} md={4}>
+              <Grid.Col key={game.name} span={{ base: 12, md: 4 }}>
                 <Card
                   withBorder
                   shadow="sm"
                   component="a"
-                  sx={{
-                    cursor: "pointer",
-                    "&:hover": { background: theme.colors.gray[0] },
-                    "&:active": { background: theme.colors.gray[1] },
-                  }}
+                  className="cursor-pointer select-none hover:bg-gray-200 active:bg-gray-300"
                   onClick={() => {
                     setGameUrl(game.url);
                     setOpened(true);
                   }}
                 >
-                  <Box sx={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                    <Box sx={{ fontSize: "40px", color: theme.colors.violet[6], display: "flex" }}>{game.icon}</Box>
+                  <Box style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                    <Box style={{ fontSize: "40px", color: "var(--mantine-color-violet-6)", display: "flex" }}>
+                      {game.icon}
+                    </Box>
                     <Box>
-                      <Text color={theme.colors.gray[9]} weight={700}>
+                      <Text c="gray.9" fw={700}>
                         {game.name}
                       </Text>
-                      <Text color={theme.colors.gray[7]} size={"0.8em" as any}>
+                      <Text c="gray.7" fz="0.8em">
                         {game.description}
                       </Text>
                     </Box>

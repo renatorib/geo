@@ -43,8 +43,8 @@ export const TimerClock = ({ started }: { started: number | undefined }) => {
 
 export const TimerControl = ({ timer }: { timer: Timer }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
-      <Text color={timer.started ? "orange" : "gray"} weight={700}>
+    <Box style={{ display: "flex", alignItems: "center", gap: 5 }}>
+      <Text c={timer.started ? "orange" : "gray"} fw={700}>
         <TimerClock started={timer.started} />
       </Text>
       {!timer.started && (

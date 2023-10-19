@@ -1,1 +1,1 @@
-Source code of [guess.li](https://guess.li)
+Source code of [geo](https://geo.rena.to)

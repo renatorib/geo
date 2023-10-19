@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ActionIcon, Text, Box, Center, createStyles, Menu, TextInput, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Text, Box, Center, Menu, TextInput, useMantineTheme } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
@@ -12,17 +12,7 @@ import { Answer } from "~/games";
 import { useThrottledEvent, usePooling } from "~/hooks";
 import { onNextPaint } from "~/lib/dom";
 import { getViewboxOfPath } from "~/lib/svg";
-
-const useStyles = createStyles((t) => ({
-  path: {
-    fill: t.colors.gray[3],
-    stroke: t.colors.gray[6],
-    "&.checked": {
-      fill: t.colors.green[4],
-      stroke: t.colors.green[7],
-    },
-  },
-}));
+import { cn } from "~/styles";
 
 type WorldMapProps = {
   countries: Country[];
@@ -37,7 +27,6 @@ export const WorldMap = (props: WorldMapProps) => {
   const { width, height } = useViewportSize();
   const [strokeWidth, setStrokeWidth] = React.useState(0.7);
   const { lang } = useSettings();
-  const { classes, cx } = useStyles();
   const theme = useMantineTheme();
 
   const countriesToRender = props.countries;
@@ -94,12 +83,12 @@ export const WorldMap = (props: WorldMapProps) => {
   };
 
   return (
-    <Box sx={{ position: "relative" }}>
-      <Center sx={{ position: "absolute", width: "100%", zIndex: 1, top: 0 }}>
+    <Box style={{ position: "relative" }}>
+      <Center style={{ position: "absolute", width: "100%", zIndex: 1, top: 0 }}>
         <Box
           p="sm"
           m="sm"
-          sx={{
+          style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -116,12 +105,12 @@ export const WorldMap = (props: WorldMapProps) => {
             willChange: "all",
           }}
         >
-          <Box sx={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Text pl={8} size="sm" color={theme.colors.dark[2]} weight={400}>
+          <Box style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
+            <Text pl={8} size="sm" c={theme.colors.dark[2]} w={400}>
               {Object.keys(checked).length} / {countriesToPlay.length}
             </Text>
           </Box>
-          <Box sx={{ flexGrow: 1 }}>
+          <Box style={{ flexGrow: 1 }}>
             <TextInput
               placeholder="Type country names..."
               onChange={(e) => {
@@ -138,7 +127,7 @@ export const WorldMap = (props: WorldMapProps) => {
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item onClick={() => setChecked({})} icon={<RiRefreshLine />}>
+              <Menu.Item onClick={() => setChecked({})} leftSection={<RiRefreshLine />}>
                 Reset
               </Menu.Item>
             </Menu.Dropdown>
@@ -172,7 +161,7 @@ export const WorldMap = (props: WorldMapProps) => {
               <React.Fragment key={c.id}>
                 <path
                   id={`path-${c.id}`}
-                  className={cx(classes.path, { checked: isChecked })}
+                  className={cn("fill-gray-300 stroke-gray-600", isChecked && "fill-green-400 stroke-green-700")}
                   strokeWidth={strokeWidth}
                   strokeDasharray={c.disputed ? strokeWidth * 10 : undefined}
                   d={c.shape}

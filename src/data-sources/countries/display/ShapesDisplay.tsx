@@ -29,7 +29,7 @@ export const ShapesDisplay = ({ data, status }: DisplayProps<Country>) => {
       ) : (
         <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
           <Center>
-            <Text color="red" size="xs">
+            <Text c="red" size="xs">
               Country shape not found
             </Text>
           </Center>

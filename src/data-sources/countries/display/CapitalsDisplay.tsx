@@ -20,12 +20,12 @@ export const CapitalsDisplay = ({ data, status }: DisplayProps<Country>) => {
         <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
           <Center>
             <Box>
-              <Text color={color} size={16} align="center" weight={700}>
+              <Text c={color} fz={16} ta="center" fw={700}>
                 {name}
               </Text>
               {name !== nameEn && (
                 <div style={{ opacity: 0.5, fontSize: 14 }}>
-                  <Text color={color} align="center">
+                  <Text c={color} ta="center">
                     ({nameEn})
                   </Text>
                 </div>
@@ -36,7 +36,7 @@ export const CapitalsDisplay = ({ data, status }: DisplayProps<Country>) => {
       ) : (
         <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
           <Center>
-            <Text color="red" size="xs">
+            <Text c="red" size="xs">
               ?
             </Text>
           </Center>

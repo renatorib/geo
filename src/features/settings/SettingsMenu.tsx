@@ -21,7 +21,7 @@ export const SettingsMenu = () => {
 
       <Menu.Dropdown>
         <Menu.Label>Settings</Menu.Label>
-        <Group px={12} py={6} position="apart">
+        <Group px={12} py={6} justify="space-between">
           <Switch
             size="sm"
             checked={settings.speech}
@@ -30,7 +30,7 @@ export const SettingsMenu = () => {
             label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
           />
         </Group>
-        <Group px={12} py={6} position="apart">
+        <Group px={12} py={6} justify="space-between">
           <Switch
             size="sm"
             checked={settings.timer}
@@ -38,7 +38,7 @@ export const SettingsMenu = () => {
             label="Show timer"
           />
         </Group>
-        <Group px={12} py={6} position="apart">
+        <Group px={12} py={6} justify="space-between">
           <Switch
             size="sm"
             checked={settings.sound}

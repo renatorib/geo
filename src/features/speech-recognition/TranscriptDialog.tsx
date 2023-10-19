@@ -24,7 +24,7 @@ export const TranscriptDialog = () => {
     <Dialog
       opened={show && !!message}
       position={{ top: 20, left: "calc(50vw - 150px)" }}
-      transition="slide-down"
+      transitionProps={{ transition: "slide-down" }}
       styles={{
         root: {
           width: 300,
@@ -36,7 +36,7 @@ export const TranscriptDialog = () => {
         },
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <Box style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <RiVolumeUpLine style={{ flexShrink: "0" }} />
         <Text size="lg">{message}</Text>
       </Box>
