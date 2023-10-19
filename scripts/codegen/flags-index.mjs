@@ -2,10 +2,11 @@ import "zx/globals";
 $.verbose = false;
 
 import fs from "node:fs";
-import prettier from "prettier";
-import chalk from "chalk";
 
-const ls = await $`ls src/countries/flags`;
+import chalk from "chalk";
+import prettier from "prettier";
+
+const ls = await $`ls src/data-sources/countries/flags`;
 
 const files = ls.stdout
   .split("\n")
@@ -16,6 +17,7 @@ const files = ls.stdout
 const template = `
   // THIS FILE IS AUTO GENERATED
   // DO NOT EDIT MANUALLY
+  // BY scripts/codegen/flags-index.mjs
 
   ${files.map((file) => `import ${file} from "./${file}.png";`).join("\n")}
 
@@ -23,5 +25,5 @@ const template = `
 `;
 
 const code = prettier.format(template, { parser: "typescript" });
-fs.writeFileSync("src/countries/flags/index.ts", code);
-console.log(chalk.green(`${chalk.bold("Generated:")} src/countries/flags/index.ts`));
+fs.writeFileSync("src/data-sources/countries/flags/index.ts", code);
+console.log(chalk.green(`${chalk.bold("Generated:")} src/data-sources/countries/flags/index.ts`));

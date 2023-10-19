@@ -4,8 +4,6 @@ import { GiBrazil } from "react-icons/gi";
 import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
-// import { footballClubs, FootballClub } from "~/data-sources/football-clubs";
-// import { DisplayLogo } from "~/data-sources/football-clubs/display/DisplayLogo";
 import { LanguageProperty } from "~/features/settings";
 import { upperFirstLetter } from "~/lib/string";
 
@@ -227,19 +225,6 @@ export const games: Game<any>[] = [
       { url: "others", query: country.from.noRegion },
     ],
   }),
-
-  /* game<FootballClub>({
-    name: "Football Clubs Logos",
-    description: "Guess football clubs by their logos",
-    url: "football-clubs-logos",
-    icon: <GiSoccerBall />,
-    type: "cards",
-    data: footballClubs,
-    query: () => true,
-    display: DisplayLogo,
-    answer: ({ name }) => ({ value: name, aliases: [] }),
-    groups: [{ url: "all", query: () => true }],
-  }), */
 ];
 
 export const findGameByUrl = (url: string /* <game_url>/<group_url> - ex.: flags/america */) => {

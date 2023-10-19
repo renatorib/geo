@@ -2,11 +2,13 @@ import "zx/globals";
 $.verbose = false;
 
 import fs from "node:fs";
-import prettier from "prettier";
-import parser from "node-html-parser";
-import data from "../../src/countries/data.json" assert { type: "json" };
 
-const world = parser.default(fs.readFileSync("src/countries/world.svg"));
+import parser from "node-html-parser";
+import prettier from "prettier";
+
+import data from "../../src/data-sources/countries/data.json" assert { type: "json" };
+
+const world = parser.default(fs.readFileSync("src/data-sources/countries/world.svg"));
 const paths = world.childNodes[0].childNodes.filter((n) => n.rawTagName === "path");
 
 for (const path of paths) {
@@ -33,4 +35,4 @@ for (const path of paths) {
 }
 
 const json = prettier.format(JSON.stringify(data), { parser: "json" });
-fs.writeFileSync("src/countries/data-tmp.json", json);
+fs.writeFileSync("src/data-sources/countries/data-tmp.json", json);

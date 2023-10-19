@@ -2,14 +2,16 @@ import "zx/globals";
 $.verbose = false;
 
 import fs from "node:fs";
-import prettier from "prettier";
-import parser from "node-html-parser";
-import data from "../../src/countries/data.json" assert { type: "json" };
 
-const iso = parser.default(fs.readFileSync("src/countries/iso3166.html"));
+import parser from "node-html-parser";
+import prettier from "prettier";
+
+import data from "../../src/data-sources/countries/data.json" assert { type: "json" };
+
+const iso = parser.default(fs.readFileSync("src/data-sources/countries/iso3166.html"));
 
 const trs = iso.childNodes[0].childNodes[1].childNodes.filter(
-  (n) => n.rawTagName === "tr" && n.childNodes.length === 16
+  (n) => n.rawTagName === "tr" && n.childNodes.length === 16,
 );
 
 const removeAnnotations = (name) => name.replace(/\[[^\]]*\]/g, "");
@@ -89,4 +91,4 @@ for (const tr of trs) {
 }
 
 const json = prettier.format(JSON.stringify(data), { parser: "json" });
-fs.writeFileSync("src/countries/data-tmp.json", json);
+fs.writeFileSync("src/data-sources/countries/data-tmp.json", json);

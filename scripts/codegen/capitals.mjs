@@ -2,13 +2,15 @@ import "zx/globals";
 $.verbose = false;
 
 import fs from "node:fs";
-import chalk from "chalk";
-import prettier from "prettier";
-import parser from "node-html-parser";
-import translate from "@vitalets/google-translate-api";
-import data from "../../src/countries/data.json" assert { type: "json" };
 
-const iso = parser.default(fs.readFileSync("src/countries/capitals.html"));
+import translate from "@vitalets/google-translate-api";
+import chalk from "chalk";
+import parser from "node-html-parser";
+import prettier from "prettier";
+
+import data from "../../src/data-sources/countries/data.json" assert { type: "json" };
+
+const iso = parser.default(fs.readFileSync("src/data-sources/countries/capitals.html"));
 
 const countryFound = (name) => {
   const property = "en";
@@ -75,4 +77,4 @@ for (const tr of trs) {
 }
 
 const json = prettier.format(JSON.stringify(data), { parser: "json" });
-fs.writeFileSync("src/countries/data-tmp.json", json);
+fs.writeFileSync("src/data-sources/countries/data-tmp.json", json);

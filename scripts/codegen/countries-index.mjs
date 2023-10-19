@@ -2,8 +2,10 @@ import "zx/globals";
 $.verbose = false;
 
 import fs from "node:fs";
-import prettier from "prettier";
+
 import chalk from "chalk";
+import prettier from "prettier";
+
 import data from "../../src/data-sources/countries/data.json" assert { type: "json" };
 
 const stg = JSON.stringify;
@@ -12,6 +14,7 @@ const normalizeIdToFile = (id) => id.toUpperCase().replace(/-/g, "");
 const template = `
 // THIS FILE IS AUTO GENERATED
 // DO NOT EDIT MANUALLY
+// BY scripts/codegen/countries-index.mjs
 
 import * as flags from "./flags";
 import * as enums from "./enums";
