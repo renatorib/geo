@@ -14,7 +14,7 @@ export const SettingsMenu = () => {
   return (
     <Menu shadow="md" width={250} position="bottom-end" withArrow>
       <Menu.Target>
-        <ActionIcon radius="xl" color="dark">
+        <ActionIcon radius="xl" variant="default">
           <RiSettings2Line size={20} />
         </ActionIcon>
       </Menu.Target>

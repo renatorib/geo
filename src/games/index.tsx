@@ -105,9 +105,9 @@ export const games: Game<any>[] = [
   }),
 
   game<Country>({
-    name: "Flags Zen",
+    name: "Flags x1",
     description: "Guess countries by their flags",
-    url: "flags-zen",
+    url: "flags-x1",
     icon: <RiFlagFill />,
     type: "cards-1x1",
     data: countries,

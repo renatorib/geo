@@ -73,7 +73,7 @@ export const WorldMap = (props: WorldMapProps) => {
         const guess = normalize(_guess);
         if (answers.includes(guess)) {
           setChecked((c) => ({ ...c, [country.id]: true }));
-          playSound("correct");
+          playSound("correct", 0.1);
           return true;
         }
       }
@@ -106,7 +106,7 @@ export const WorldMap = (props: WorldMapProps) => {
           }}
         >
           <Box style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Text pl={8} size="sm" c={theme.colors.dark[2]} w={400}>
+            <Text pl={8} size="sm" c={theme.colors.dark[2]} fw={400}>
               {Object.keys(checked).length} / {countriesToPlay.length}
             </Text>
           </Box>
@@ -122,7 +122,7 @@ export const WorldMap = (props: WorldMapProps) => {
           </Box>
           <Menu withinPortal withArrow width={200} position="bottom-end">
             <Menu.Target>
-              <ActionIcon color="dark" radius="xl">
+              <ActionIcon variant="default" radius="xl">
                 <RiMore2Fill size={18} />
               </ActionIcon>
             </Menu.Target>

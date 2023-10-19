@@ -27,7 +27,7 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
     },
   });
 
-  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : "gray";
+  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : focused ? "violet" : "gray";
   const getColor = (level: number) => `var(--mantine-color-${color}-${level})`;
   const censored = status === "idle";
 
@@ -42,7 +42,7 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
 
   return (
     <Box style={{ position: "relative", width: "100%" }}>
-      {transcripter.shouldUseSpeech && status !== "correct" && (
+      {transcripter.shouldUseSpeech && status === "idle" && (
         <Box style={{ position: "absolute", right: 12, bottom: 12, zIndex: 20 }}>
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
@@ -62,14 +62,16 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
           withBorder
           p="lg"
           radius="md"
-          shadow={focused ? "lg" : undefined}
+          shadow={focused ? "xl" : undefined}
           style={{
-            outline: focused ? `1px solid var(--mantine-color-blue-9)` : undefined,
+            backgroundColor: status === "correct" ? getColor(3) : getColor(1),
+            borderColor: status === "correct" ? getColor(6) : getColor(3),
+            transition: "all 150ms ease-out",
           }}
         >
-          {children && <Card.Section style={{ backgroundColor: getColor(2) }}>{children}</Card.Section>}
+          {children && <Card.Section>{children}</Card.Section>}
 
-          <Card.Section style={{ backgroundColor: getColor(2) }}>
+          <Card.Section pt={4}>
             <Input<"input">
               leftSection={icon}
               value={censored ? undefined : name}
@@ -87,14 +89,13 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
                 onBlur?.(e);
               }}
               style={{
-                "--color-2": getColor(2),
                 "--color-9": getColor(9),
               }}
               classNames={{
                 section: cn("text-[var(--color-9)] text-[1.33em]"),
                 input: cn(
                   "w-full border-0 text-ellipsis",
-                  "disabled:text-[var(--color-9)] disabled:bg-transparent",
+                  "disabled:text-black disabled:bg-transparent",
                   "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
                 ),
               }}

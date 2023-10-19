@@ -37,8 +37,8 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
   });
 
   return (
-    <Box pt="sm" style={{ width: "100%", position: "relative" }}>
-      <Box style={{ maxWidth: 500, margin: "0 auto", display: "grid", placeItems: "center" }}>
+    <Box style={{ maxWidth: 500, width: "100%", display: "grid", placeItems: "center", margin: "0 auto" }}>
+      <Box style={{ width: "100%" }}>
         <Box py="xs" style={{ width: "100%" }}>
           <Stack justify="stretch" align="stretch" style={{ flexGrow: 1 }}>
             <Group gap="xl">
@@ -55,7 +55,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
               <Group ml="auto" gap="xs">
                 <Menu shadow="md" width={200} position="bottom-end" withArrow>
                   <Menu.Target>
-                    <ActionIcon radius="xl" color="dark">
+                    <ActionIcon radius="xl" variant="default">
                       <RiMore2Fill size={20} />
                     </ActionIcon>
                   </Menu.Target>

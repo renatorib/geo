@@ -53,7 +53,7 @@ export const Cards = <T extends Entity>(props: CardsProps<T>) => {
           <Group ml="auto" gap="xs">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
-                <ActionIcon radius="xl" color="dark">
+                <ActionIcon radius="xl" variant="default">
                   <RiMore2Fill size={20} />
                 </ActionIcon>
               </Menu.Target>
