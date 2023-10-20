@@ -1,3 +1,4 @@
+import "@mantine/nprogress/styles.css";
 import { useRouter } from "next/router";
 import React from "react";
 

@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import React from "react";
 
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, createTheme } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 
@@ -17,6 +17,10 @@ const inter = Inter({
   variable: "--inter",
 });
 
+const theme = createTheme({
+  fontFamily: `${inter.style.fontFamily}, sans-serif`,
+});
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -24,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Geo - rena.to</title>
       </Head>
 
-      <MantineProvider>
+      <MantineProvider theme={theme} defaultColorScheme="light">
         <ModalsProvider>
           <Notifications />
           <div className={`${inter.className} ${inter.variable}`}>

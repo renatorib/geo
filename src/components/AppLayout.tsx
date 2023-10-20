@@ -38,7 +38,6 @@ const AppHeader = () => {
 
   return (
     <Box>
-      <RouterTransition />
       <header style={{ height: 50 }}>
         <Box style={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
           <Box m={10}>
@@ -65,6 +64,8 @@ const AppHeader = () => {
           </Box>
         </Box>
       </header>
+
+      <RouterTransition />
 
       <Drawer
         title="Menu"

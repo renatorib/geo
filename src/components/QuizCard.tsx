@@ -43,7 +43,7 @@ export const QuizCard = ({ id, name, status, children, onGuess, onFocus, onBlur 
   return (
     <Box style={{ position: "relative", width: "100%" }}>
       {transcripter.shouldUseSpeech && status === "idle" && (
-        <Box style={{ position: "absolute", right: 12, bottom: 12, zIndex: 20 }}>
+        <Box style={{ position: "absolute", right: 12, bottom: 12, zIndex: 1 }}>
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
             disabled={transcripter.listening && transcripter.meta !== id}
