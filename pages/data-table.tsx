@@ -9,9 +9,9 @@ import { LangSelectorMenu, useSettings } from "~/features/settings";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
-    <th style={{ width }}>
+    <Table.Th style={{ width }}>
       <Box style={{ display: "flex", gap: 5, alignItems: "center" }}>{children}</Box>
-    </th>
+    </Table.Th>
   );
 };
 
@@ -35,7 +35,7 @@ const WikiLink = ({
       withArrow
       onOpen={() => setOpened(true)}
       onClose={() => setOpened(false)}
-      openDelay={1000}
+      openDelay={0}
       closeDelay={500}
     >
       <HoverCard.Target>
@@ -55,14 +55,14 @@ const DataTablePage = () => {
 
   return (
     <AppLayout contained={false}>
-      <Box p="md">
+      <Box p="md" style={{ margin: "0 auto" }}>
         <NoSSR fallback={<span>Loading...</span>}>
           {() => (
             <>
               <Box style={{ maxWidth: "100%", overflowX: "auto", margin: "0 auto" }}>
                 <Table striped={true}>
-                  <thead>
-                    <tr>
+                  <Table.Thead>
+                    <Table.Tr>
                       <Th width={30}>N</Th>
                       <Th width={80}>Flag</Th>
                       <Th width={60}>Emoji</Th>
@@ -76,13 +76,13 @@ const DataTablePage = () => {
                       <Th width={80}>Domain</Th>
                       <Th width={100}>Region</Th>
                       <Th width={100}>Independent</Th>
-                      <Th width={40}>Shape</Th>
+                      <Th width={60}>Shape</Th>
                       <Th width={100}>ISO Alpha2</Th>
                       <Th width={100}>ISO Alpha3</Th>
                       <Th>Links</Th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                    </Table.Tr>
+                  </Table.Thead>
+                  <Table.Tbody>
                     {countries.map((c, index) => {
                       const aliasText = (a: string[]) =>
                         a.length ? (
@@ -93,9 +93,9 @@ const DataTablePage = () => {
                         ) : null;
 
                       return (
-                        <tr key={c.id} id={`row-of-${c.id}`}>
-                          <td>{index + 1}</td>
-                          <td>
+                        <Table.Tr key={c.id} id={`row-of-${c.id}`}>
+                          <Table.Td>{index + 1}</Table.Td>
+                          <Table.Td>
                             <AspectRatio ratio={45 / 30}>
                               {c.flag ? (
                                 <NextImage
@@ -111,20 +111,20 @@ const DataTablePage = () => {
                                 <Box style={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
                               )}
                             </AspectRatio>
-                          </td>
-                          <td>{c.emoji}</td>
-                          <td>{c.id}</td>
-                          <td>
+                          </Table.Td>
+                          <Table.Td>{c.emoji}</Table.Td>
+                          <Table.Td>{c.id}</Table.Td>
+                          <Table.Td>
                             <strong>{c.name[lang.property]}</strong>
                             {aliasText(c.alias[lang.property])}
-                          </td>
-                          <td>
+                          </Table.Td>
+                          <Table.Td>
                             <strong>{c.capital[lang.property]}</strong>
                             {aliasText(c.capitalAlias[lang.property])}
-                          </td>
-                          <td>{c.domain}</td>
-                          <td>{c.region}</td>
-                          <td>
+                          </Table.Td>
+                          <Table.Td>{c.domain}</Table.Td>
+                          <Table.Td>{c.region}</Table.Td>
+                          <Table.Td>
                             {c.independent ? "Yes" : "No"}
                             {c.disputed ? " (Disputed)" : null}
                             {c.sovereignty ? (
@@ -135,19 +135,21 @@ const DataTablePage = () => {
                                 </em>
                               </>
                             ) : null}
-                          </td>
-                          <td>{c.shape ? "Yes" : <Box style={{ background: "red", color: "white" }}>No</Box>}</td>
-                          <td>{c.alpha2}</td>
-                          <td>{c.alpha3}</td>
-                          <td>
+                          </Table.Td>
+                          <Table.Td>
+                            {c.shape ? "Yes" : <Box style={{ background: "red", color: "white" }}>No</Box>}
+                          </Table.Td>
+                          <Table.Td>{c.alpha2}</Table.Td>
+                          <Table.Td>{c.alpha3}</Table.Td>
+                          <Table.Td>
                             <WikiLink href={`https://en.wikipedia.org/wiki/${c.name.en}`} name={c.name.en} lang="en">
                               Wiki
                             </WikiLink>
-                          </td>
-                        </tr>
+                          </Table.Td>
+                        </Table.Tr>
                       );
                     })}
-                  </tbody>
+                  </Table.Tbody>
                 </Table>
               </Box>
             </>
