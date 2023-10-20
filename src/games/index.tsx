@@ -13,24 +13,12 @@ import { Region } from "../data-sources/countries/enums";
 
 export type Entity = { id: string };
 export type Answer<T> = (data: T, langProp: LanguageProperty) => { value: string; aliases: string[] };
+export type Filter<T> = (data: T) => boolean;
+export type Selector<T> = ((data: T) => boolean) | { [k: string]: Selector<T> };
+export type Group<T> = { id: string; filter: Filter<T> };
+export type DataSourceHelper<T> = { answer: { [k: string]: Answer<T> }; selectors: { [k: string]: Selector<T> } };
 
-type Query<T> = (data: T) => boolean;
-
-type Group<T> = {
-  url: string;
-  query: Query<T>;
-};
-
-type Game<T> = {
-  name: string;
-  icon: React.ReactNode;
-  description: string;
-  url: string;
-  data: T[];
-  query: Query<T>;
-  groups: Group<T>[];
-  answer: Answer<T>;
-} & (
+export type GameTypesProps<T> =
   | {
       type: "cards-1x1";
       display: Display<T>;
@@ -41,216 +29,217 @@ type Game<T> = {
     }
   | {
       type: "world-map";
-    }
-);
+    };
+
+export type GameType = GameTypesProps<any>["type"];
+
+export type Game<T> = GameTypesProps<T> & {
+  name: string;
+  id: string;
+  icon: React.ReactNode;
+  description: string;
+  data: T[];
+  filter: Filter<T>;
+  groups: Group<T>[];
+  answer: Answer<T>;
+};
 
 const country = {
   answer: {
-    name: (c: Country, p: LanguageProperty) => ({
+    name: (c, p) => ({
       value: c.name[p],
       aliases: [...c.alias[p], c.name["en"], ...c.alias["en"]],
     }),
-    capital: (c: Country, p: LanguageProperty) => ({
+    capital: (c, p) => ({
       value: c.capital[p],
       aliases: [...c.capitalAlias[p], c.capital["en"], ...c.capitalAlias["en"]],
     }),
   },
-  select: {
+  selectors: {
     all: () => true,
-    independent: (c: Country) => c.independent === true,
+    independent: (c) => c.independent === true,
+    fromAfrica: (c) => c.region === Region.Africa,
+    fromAmerica: (c) => c.region === Region.America,
+    fromAsia: (c) => c.region === Region.Asia,
+    fromEurope: (c) => c.region === Region.Europe,
+    fromOceania: (c) => c.region === Region.Oceania,
+    fromNoRegion: (c) => c.region === null,
+    haveFlag: (c) => c.flag != null,
+    haveShape: (c) => c.shape != null,
+    haveDomain: (c) => c.domain != null && c.domain != "",
+    haveCapital: (c) => c.capital != null && c.capital.en != "",
   },
-  from: {
-    africa: (c: Country) => c.region === Region.Africa,
-    america: (c: Country) => c.region === Region.America,
-    asia: (c: Country) => c.region === Region.Asia,
-    europe: (c: Country) => c.region === Region.Europe,
-    oceania: (c: Country) => c.region === Region.Oceania,
-    noRegion: (c: Country) => c.region === null,
-  },
-  have: {
-    flag: (c: Country) => c.flag != null,
-    shape: (c: Country) => c.shape != null,
-    domain: (c: Country) => c.domain != null && c.domain != "",
-    capital: (c: Country) => c.capital != null && c.capital.en != "",
-  },
-};
+} satisfies DataSourceHelper<Country>;
 
-const game = <T extends Entity>(options: Game<T>) => ({
-  ...options,
-});
-
-// TODO: use satisfies
-export const games: Game<any>[] = [
-  game<Country>({
+export const games = [
+  {
     name: "Flags",
     description: "Guess countries by their flags",
-    url: "flags",
+    id: "flags",
     icon: <RiFlag2Fill />,
     type: "cards",
     data: countries,
-    query: country.have.flag,
+    filter: country.selectors.haveFlag,
     display: countriesDisplay.FlagsDisplay,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "Flags x1",
     description: "Guess countries by their flags",
-    url: "flags-x1",
+    id: "flags-x1",
     icon: <RiFlagFill />,
     type: "cards-1x1",
     data: countries,
-    query: country.have.flag,
+    filter: country.selectors.haveFlag,
     display: countriesDisplay.FlagsDisplay,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "World Map",
     description: "Guess countries in the map",
-    url: "map",
+    id: "map",
     icon: <RiMap2Fill />,
     type: "world-map",
     data: countries,
-    query: country.select.all,
+    filter: country.selectors.all,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.all },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
+      { id: "world", filter: country.selectors.all },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "Shapes",
     description: "Guess countries by their shapes",
-    url: "shapes",
+    id: "shapes",
     icon: <GiBrazil />,
     type: "cards",
     data: countries,
-    query: country.have.shape,
+    filter: country.selectors.haveShape,
     display: countriesDisplay.ShapesDisplay,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "Capitals",
     description: "Guess countries by their capitals",
-    url: "capitals",
+    id: "capitals",
     icon: <RiCommunityFill />,
     type: "cards",
     data: countries,
-    query: country.have.capital,
+    filter: country.selectors.haveCapital,
     display: countriesDisplay.CapitalsDisplay,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "Capitals Reversed",
     description: "Guess capitals by country names",
-    url: "capitals-2",
+    id: "capitals-2",
     icon: <RiCommunityLine />,
     type: "cards",
     data: countries,
-    query: country.have.capital,
+    filter: country.selectors.haveCapital,
     display: countriesDisplay.NamesDisplay,
     answer: country.answer.capital,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
+  } satisfies Game<Country>,
 
-  game<Country>({
+  {
     name: "Domains",
     description: "Guess countries by their domains",
-    url: "domains",
+    id: "domains",
     icon: <RiWindow2Fill />,
     type: "cards",
     data: countries,
-    query: country.have.domain,
+    filter: country.selectors.haveDomain,
     display: countriesDisplay.DomainsDisplay,
     answer: country.answer.name,
     groups: [
-      { url: "world", query: country.select.independent },
-      { url: "africa", query: country.from.africa },
-      { url: "america", query: country.from.america },
-      { url: "asia", query: country.from.asia },
-      { url: "europe", query: country.from.europe },
-      { url: "oceania", query: country.from.oceania },
-      { url: "others", query: country.from.noRegion },
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
     ],
-  }),
-];
+  } satisfies Game<Country>,
+] satisfies Game<any>[];
 
 export const findGameByUrl = (url: string /* <game_url>/<group_url> - ex.: flags/america */) => {
   const [gameUrl, groupUrl] = url.split("/");
 
-  const game = games.find((g) => g.url === gameUrl);
+  const game = games.find((g) => g.id === gameUrl);
 
-  if (!game) {
-    return false;
-  }
+  if (!game) return false;
 
-  const group = game.groups.find((g) => g.url === groupUrl);
+  const group = game.groups.find((g) => g.id === groupUrl);
 
-  if (!group) {
-    return false;
-  }
+  if (!group) return false;
 
-  const queriedData = game.data.filter(game.query).filter(group.query);
+  const filteredData = game.data.filter(game.filter).filter(group.filter);
 
   return {
     name: game.name,
     description: game.description,
     type: game.type,
     answer: game.answer,
-    data: queriedData,
-    title: `${upperFirstLetter(game.name)} (${upperFirstLetter(group.url)})`,
+    data: game.data,
+    filters: { game: game.filter, group: group.filter },
+    filteredData: filteredData,
+    title: `${upperFirstLetter(group.id)} - ${upperFirstLetter(game.name)}`,
     display: "display" in game ? game.display : undefined,
   };
 };

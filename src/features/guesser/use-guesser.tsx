@@ -23,10 +23,19 @@ type UseGuesserProps<T extends Entity> = {
   openCongratulations?: boolean;
   onComplete?: () => void;
   onGuess?: (props: { correct: boolean; text: string; node: Node<T> }) => void;
+  onCorrectGuess?: (node: Node<T>) => void;
 };
 
 export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
-  const { data: initialData, initialShuffled = true, openCongratulations = true, onComplete, onGuess } = props;
+  const {
+    data: initialData,
+    initialShuffled = true,
+    openCongratulations = true,
+    onComplete,
+    onGuess,
+    onCorrectGuess,
+  } = props;
+
   const { lang } = useSettings();
   const timer = useTimer();
 
@@ -73,6 +82,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
       );
       playSound("correct", 0.1);
       selectNextNode();
+      onCorrectGuess?.(node);
     }
 
     onGuess?.({ node, text, correct });

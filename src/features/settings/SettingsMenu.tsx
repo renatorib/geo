@@ -27,7 +27,7 @@ export const SettingsMenu = () => {
             checked={settings.speech}
             onChange={(ev) => settings.setSpeech(ev.currentTarget.checked)}
             disabled={!browserSupportsSpeechRecognition}
-            label={`Enable speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
+            label={`Speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
           />
         </Group>
         <Group px={12} py={6} justify="space-between">
@@ -35,7 +35,7 @@ export const SettingsMenu = () => {
             size="sm"
             checked={settings.timer}
             onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
-            label="Show timer"
+            label="Timer"
           />
         </Group>
         <Group px={12} py={6} justify="space-between">
@@ -43,7 +43,7 @@ export const SettingsMenu = () => {
             size="sm"
             checked={settings.sound}
             onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
-            label="Enable sound effects"
+            label="Sound effects"
           />
         </Group>
       </Menu.Dropdown>

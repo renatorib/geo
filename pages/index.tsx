@@ -17,16 +17,16 @@ const Index = () => {
       <Modal opened={opened} onClose={() => setOpened(false)} title="Choose the group">
         <Grid gutter="xs">
           {games
-            .find((g) => g.url === gameUrl)
+            .find((g) => g.id === gameUrl)
             ?.groups.map((group) => (
-              <Grid.Col key={group.url} span={{ base: 6, x: 4 }}>
+              <Grid.Col key={group.id} span={{ base: 6, x: 4 }}>
                 <Button
                   color="violet"
                   variant="light"
-                  onClick={() => router.push(`/play/${gameUrl}/${group.url}`)}
+                  onClick={() => router.push(`/play/${gameUrl}/${group.id}`)}
                   fullWidth
                 >
-                  {upperFirstLetter(group.url)}
+                  {upperFirstLetter(group.id)}
                 </Button>
               </Grid.Col>
             ))}
@@ -47,7 +47,7 @@ const Index = () => {
                   component="a"
                   className="cursor-pointer select-none hover:bg-gray-200 active:bg-gray-300"
                   onClick={() => {
-                    setGameUrl(game.url);
+                    setGameUrl(game.id);
                     setOpened(true);
                   }}
                 >
