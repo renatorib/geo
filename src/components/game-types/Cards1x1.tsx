@@ -1,15 +1,7 @@
 import React from "react";
 
 import { Text, Group, Box, Stack, ActionIcon, Menu, Button } from "@mantine/core";
-import {
-  RiShuffleFill,
-  RiEyeLine,
-  RiMore2Fill,
-  RiEyeCloseLine,
-  RiRestartLine,
-  RiSkipForwardFill,
-  RiTimerFill,
-} from "react-icons/ri";
+import { RiMore2Fill, RiRestartLine, RiSkipForwardFill, RiTimerFill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
 import { useGuesser } from "~/features/guesser";
@@ -73,14 +65,6 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                     <Menu.Item leftSection={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
                       {settings.timer ? "Hide timer" : "Show timer"}
                     </Menu.Item>
-                    {/* <Menu.Divider /> */}
-                    {/* <Menu.Item
-                      color="red"
-                      leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
-                      onClick={guesser.toggleSpoiler}
-                    >
-                      {guesser.spoiler ? "Hide" : "Show"} answers
-                    </Menu.Item> */}
                   </Menu.Dropdown>
                 </Menu>
               </Group>
@@ -121,22 +105,6 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
             </Button>
           ) : (
             <>
-              {/* <Button
-                color="red"
-                variant="outline"
-                onClick={guesser.toggleSpoiler}
-                leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
-              >
-                Spoiler
-              </Button> */}
-              {/* <Button
-                color="green"
-                variant="outline"
-                onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
-                leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
-              >
-                Fill
-          </Button> */}
               <Button
                 color="violet"
                 variant="filled"
