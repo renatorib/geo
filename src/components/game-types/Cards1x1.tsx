@@ -78,12 +78,14 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
         <Box pos="relative">
           {!guesser.isCompleted && (
             <>
-              {props.display
-                ? props.display({
-                    data: guesser.selectedNode.entity,
-                    status: guesser.getNodeStatus(guesser.selectedNode),
-                  })
-                : null}
+              <Box key={guesser.selectedNode.id}>
+                {props.display
+                  ? props.display({
+                      data: guesser.selectedNode.entity,
+                      status: guesser.getNodeStatus(guesser.selectedNode),
+                    })
+                  : null}
+              </Box>
 
               <Box className="shadow-lg rounded-md px-2 py-1 mt-2">
                 <QuizInput
