@@ -21,6 +21,7 @@ type UseGuesserProps<T extends Entity> = {
   title?: string;
   initialShuffled?: boolean;
   openCongratulations?: boolean;
+  refocus?: boolean;
   onComplete?: () => void;
   onGuess?: (props: { correct: boolean; text: string; node: Node<T> }) => void;
   onCorrectGuess?: (node: Node<T>) => void;
@@ -31,6 +32,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     data: initialData,
     initialShuffled = true,
     openCongratulations = true,
+    refocus = true,
     onComplete,
     onGuess,
     onCorrectGuess,
@@ -100,11 +102,11 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return lookup.find((nd) => nd.checked === false);
   };
 
-  const selectNextNode = ({ focus = true }: { focus?: boolean } = {}) => {
+  const selectNextNode = () => {
     const current = selectedNode;
     const next = getNextUnchecked(selectedNode);
     if (next) {
-      if (focus) {
+      if (refocus) {
         const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${current.id}"]`);
         currInput?.blur();
         onNextPaint(() => {

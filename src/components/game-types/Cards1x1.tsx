@@ -26,6 +26,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
     data: props.data,
     answer: props.answer,
     title: props.title,
+    refocus: false,
     onCorrectGuess(node) {
       const input = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${node.id}"]`);
       if (input) {
