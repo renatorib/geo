@@ -36,7 +36,7 @@ export const TimerClock = ({ started }: { started: number | undefined }) => {
   });
 
   React.useEffect(() => void tick(), [started]); // eslint-disable-line
-  usePooling(() => tick(), 400);
+  usePooling(() => tick(), 300);
 
   return <>{time}</>;
 };

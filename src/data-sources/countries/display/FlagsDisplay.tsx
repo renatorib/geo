@@ -16,8 +16,8 @@ export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
       {data.flag ? (
         <NextImage
           src={data.flag}
-          alt={status !== "idle" ? `Flag of ${name}` : "Flag of unknown"}
-          title={status !== "idle" ? name : undefined}
+          alt={status !== "hidden" ? `Flag of ${name}` : "Flag of unknown"}
+          title={status !== "hidden" ? name : undefined}
           fill
           sizes="100vw"
           style={{

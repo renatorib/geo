@@ -21,8 +21,8 @@ export const ShapesDisplay = ({ data, status }: DisplayProps<Country>) => {
         <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
           <path
             d={data.shape}
-            stroke={status !== "idle" ? theme.colors.green[7] : theme.colors.gray[5]}
-            fill={status !== "idle" ? theme.colors.green[4] : theme.colors.gray[3]}
+            stroke={status !== "hidden" ? theme.colors.green[7] : theme.colors.gray[5]}
+            fill={status !== "hidden" ? theme.colors.green[4] : theme.colors.gray[3]}
             strokeWidth={shapeViewbox.size * 0.006}
           />
         </svg>

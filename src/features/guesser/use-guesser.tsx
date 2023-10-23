@@ -91,7 +91,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   };
 
   const getNodeStatus = (node: Node<T>) => {
-    return node.checked ? "correct" : spoiler ? "spoiler" : "idle";
+    return node.checked ? "correct" : spoiler ? "spoiler" : "hidden";
   };
 
   const getNextUnchecked = (node: Node<T>) => {
@@ -105,10 +105,10 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     const next = getNextUnchecked(selectedNode);
     if (next) {
       if (focus) {
-        const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${current.id}"] input`);
+        const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${current.id}"]`);
         currInput?.blur();
         onNextPaint(() => {
-          const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-card-id="${next.id}"] input`);
+          const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${next.id}"]`);
           nextInput?.focus();
         });
       }

@@ -16,10 +16,9 @@ import { useGuesser } from "~/features/guesser";
 import { useSettings } from "~/features/settings";
 import { TimerControl } from "~/features/timer";
 import { Entity, Answer } from "~/games";
-import { useAnimateEffect } from "~/hooks/use-animate-effect";
 
 import { ProgressBar } from "../ProgressBar";
-import { QuizCard } from "../QuizCard";
+import { QuizInput } from "../QuizInput";
 
 type Cards1x1Props<T extends Entity> = {
   data: T[];
@@ -31,23 +30,15 @@ type Cards1x1Props<T extends Entity> = {
 export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
   const settings = useSettings();
 
-  const [correctText, setCorrectText] = React.useState("");
-  const effect = useAnimateEffect(
-    [
-      { opacity: 0, transform: "scale(1.5)" },
-      { opacity: 0.5, transform: "scale(1.8)" },
-      { opacity: 0, transform: "scale(1.5)" },
-    ],
-    { duration: 1000, easing: "ease-out" },
-  );
-
   const guesser = useGuesser({
     data: props.data,
     answer: props.answer,
     title: props.title,
-    onCorrectGuess: (node) => {
-      setCorrectText(guesser.answer(node).value);
-      effect.animate();
+    onCorrectGuess(node) {
+      const input = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${node.id}"]`);
+      if (input) {
+        input.value = "";
+      }
     },
   });
 
@@ -76,28 +67,20 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                   </Menu.Target>
 
                   <Menu.Dropdown>
-                    <Menu.Item
-                      leftSection={<RiShuffleFill />}
-                      onClick={() => {
-                        guesser.shuffle();
-                      }}
-                    >
-                      Shuffle
-                    </Menu.Item>
                     <Menu.Item leftSection={<RiRestartLine />} onClick={() => guesser.reset()}>
                       Reset
                     </Menu.Item>
                     <Menu.Item leftSection={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
                       {settings.timer ? "Hide timer" : "Show timer"}
                     </Menu.Item>
-                    <Menu.Divider />
-                    <Menu.Item
+                    {/* <Menu.Divider /> */}
+                    {/* <Menu.Item
                       color="red"
                       leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
                       onClick={guesser.toggleSpoiler}
                     >
                       {guesser.spoiler ? "Hide" : "Show"} answers
-                    </Menu.Item>
+                    </Menu.Item> */}
                   </Menu.Dropdown>
                 </Menu>
               </Group>
@@ -109,43 +92,25 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
         </Box>
 
         <Box pos="relative">
-          <div
-            ref={effect.ref}
-            style={{
-              position: "absolute",
-              inset: 0,
-              pointerEvents: "none",
-              opacity: 0,
-              zIndex: 2,
-              display: "grid",
-              placeItems: "center",
-            }}
-          >
-            <Box
-              fz={correctText.length > 15 ? 30 : 50}
-              fw={700}
-              c="#99FF99"
-              ta="center"
-              style={{ textShadow: "0 1px 8px rgba(0, 0, 0, 0.8)" }}
-            >
-              {correctText}
-            </Box>
-          </div>
           {!guesser.isCompleted && (
-            <QuizCard
-              key={guesser.selectedNode.id}
-              id={guesser.selectedNode.id}
-              name={guesser.answer(guesser.selectedNode).value}
-              status={guesser.getNodeStatus(guesser.selectedNode)}
-              onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
-            >
+            <>
               {props.display
                 ? props.display({
                     data: guesser.selectedNode.entity,
                     status: guesser.getNodeStatus(guesser.selectedNode),
                   })
                 : null}
-            </QuizCard>
+
+              <Box className="shadow-lg rounded-md px-2 py-1 mt-2">
+                <QuizInput
+                  // key={guesser.selectedNode.id}
+                  id={guesser.selectedNode.id}
+                  name={guesser.answer(guesser.selectedNode).value}
+                  status={guesser.getNodeStatus(guesser.selectedNode)}
+                  onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
+                />
+              </Box>
+            </>
           )}
         </Box>
 
@@ -156,22 +121,22 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
             </Button>
           ) : (
             <>
-              <Button
+              {/* <Button
                 color="red"
                 variant="outline"
                 onClick={guesser.toggleSpoiler}
                 leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
               >
                 Spoiler
-              </Button>
-              <Button
+              </Button> */}
+              {/* <Button
                 color="green"
                 variant="outline"
                 onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
                 leftSection={guesser.spoiler ? <RiEyeCloseLine /> : <RiEyeLine />}
               >
                 Fill
-              </Button>
+          </Button> */}
               <Button
                 color="violet"
                 variant="filled"
