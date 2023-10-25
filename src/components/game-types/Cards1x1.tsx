@@ -134,14 +134,16 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                 Skip
               </Button>
 
-              <Button
-                color="violet"
-                variant="filled"
-                onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
-                leftSection={<RiSkipForwardFill />}
-              >
-                Fill
-              </Button>
+              {process.env.NODE_ENV === "development" && (
+                <Button
+                  color="green"
+                  variant="filled"
+                  onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
+                  leftSection={<RiCheckDoubleFill />}
+                >
+                  Fill
+                </Button>
+              )}
             </>
           )}
         </Box>
