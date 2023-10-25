@@ -1,7 +1,7 @@
 import React from "react";
 
 import { GiBrazil } from "react-icons/gi";
-import { RiCommunityFill, RiCommunityLine, RiFlag2Fill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
+import { RiCommunityFill, RiCommunityLine, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
 import { LanguageProperty } from "~/features/settings";
@@ -75,9 +75,9 @@ export const games = [
   {
     name: "Flags",
     description: "Guess countries by their flags",
-    id: "flags",
-    icon: <RiFlag2Fill />,
-    type: "cards",
+    id: "flags-x1",
+    icon: <RiFlagFill />,
+    type: "cards-1x1",
     data: countries,
     filter: country.selectors.haveFlag,
     display: countriesDisplay.FlagsDisplay,
@@ -94,11 +94,11 @@ export const games = [
   } satisfies Game<Country>,
 
   {
-    name: "Flags x1",
+    name: "Flags Grid",
     description: "Guess countries by their flags",
-    id: "flags-x1",
+    id: "flags",
     icon: <RiFlagFill />,
-    type: "cards-1x1",
+    type: "cards",
     data: countries,
     filter: country.selectors.haveFlag,
     display: countriesDisplay.FlagsDisplay,
@@ -136,6 +136,27 @@ export const games = [
   {
     name: "Shapes",
     description: "Guess countries by their shapes",
+    id: "shapes-x1",
+    icon: <GiBrazil />,
+    type: "cards-1x1",
+    data: countries,
+    filter: country.selectors.haveShape,
+    display: countriesDisplay.ShapesDisplay,
+    answer: country.answer.name,
+    groups: [
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
+    ],
+  } satisfies Game<Country>,
+
+  {
+    name: "Shapes Grid",
+    description: "Guess countries by their shapes",
     id: "shapes",
     icon: <GiBrazil />,
     type: "cards",
@@ -157,6 +178,27 @@ export const games = [
   {
     name: "Capitals",
     description: "Guess countries by their capitals",
+    id: "capitals-x1",
+    icon: <RiCommunityFill />,
+    type: "cards-1x1",
+    data: countries,
+    filter: country.selectors.haveCapital,
+    display: countriesDisplay.CapitalsDisplay,
+    answer: country.answer.name,
+    groups: [
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
+    ],
+  } satisfies Game<Country>,
+
+  {
+    name: "Capitals Grid",
+    description: "Guess countries by their capitals",
     id: "capitals",
     icon: <RiCommunityFill />,
     type: "cards",
@@ -176,7 +218,7 @@ export const games = [
   } satisfies Game<Country>,
 
   {
-    name: "Capitals Reversed",
+    name: "Capitals Reversed Grid",
     description: "Guess capitals by country names",
     id: "capitals-2",
     icon: <RiCommunityLine />,
@@ -198,6 +240,27 @@ export const games = [
 
   {
     name: "Domains",
+    description: "Guess countries by their domains",
+    id: "domains-x1",
+    icon: <RiWindow2Fill />,
+    type: "cards-1x1",
+    data: countries,
+    filter: country.selectors.haveDomain,
+    display: countriesDisplay.DomainsDisplay,
+    answer: country.answer.name,
+    groups: [
+      { id: "world", filter: country.selectors.independent },
+      { id: "africa", filter: country.selectors.fromAfrica },
+      { id: "america", filter: country.selectors.fromAmerica },
+      { id: "asia", filter: country.selectors.fromAsia },
+      { id: "europe", filter: country.selectors.fromEurope },
+      { id: "oceania", filter: country.selectors.fromOceania },
+      { id: "others", filter: country.selectors.fromNoRegion },
+    ],
+  } satisfies Game<Country>,
+
+  {
+    name: "Domains Grid",
     description: "Guess countries by their domains",
     id: "domains",
     icon: <RiWindow2Fill />,

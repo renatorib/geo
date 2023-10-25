@@ -82,7 +82,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
           return { ...node, checked: true };
         }),
       );
-      playSound("correct", 0.1);
+      playSound("correct", { volume: 0.1 });
       selectNextNode();
       onCorrectGuess?.(node);
     }

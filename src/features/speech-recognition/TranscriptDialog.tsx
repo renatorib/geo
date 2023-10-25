@@ -16,7 +16,7 @@ export const TranscriptDialog = () => {
   React.useEffect(() => {
     setShow(true);
     clearTimeout(dismissTimeout.current);
-    dismissTimeout.current = setTimeout(() => setShow(false), 3000);
+    dismissTimeout.current = setTimeout(() => setShow(false), 2200);
     return () => clearTimeout(dismissTimeout.current);
   }, [transcript]);
 

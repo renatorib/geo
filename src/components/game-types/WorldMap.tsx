@@ -73,7 +73,7 @@ export const WorldMap = (props: WorldMapProps) => {
         const guess = normalize(_guess);
         if (answers.includes(guess)) {
           setChecked((c) => ({ ...c, [country.id]: true }));
-          playSound("correct", 0.1);
+          playSound("correct", { volume: 0.1 });
           return true;
         }
       }

@@ -1,5 +1,6 @@
 import "regenerator-runtime/runtime";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import "../src/styles/globals.css";
 
 import type { AppProps } from "next/app";
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <MantineProvider theme={theme} defaultColorScheme="light">
         <ModalsProvider>
-          <Notifications />
+          <Notifications position="bottom-center" />
           <div className={`${inter.className} ${inter.variable}`}>
             <Component {...pageProps} />
           </div>

@@ -15,6 +15,9 @@ type QuizInputProps = {
   onGuess: (text: string) => void;
 } & React.ComponentProps<typeof Input<"input">>;
 
+export const QUIZ_INPUT_ID_PROP = "data-quiz-input-id";
+export const QUIZ_INPUT_STATUS_PROP = "data-quiz-input-status";
+
 export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...props }: QuizInputProps) => {
   const { lang } = useSettings();
 
@@ -49,8 +52,10 @@ export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...p
       )}
 
       <Input<"input">
-        data-quiz-input-id={id}
-        data-quiz-input-status={status}
+        {...{
+          [QUIZ_INPUT_ID_PROP]: id,
+          [QUIZ_INPUT_STATUS_PROP]: status,
+        }}
         leftSection={icon}
         rightSection={showRecorder && <Box style={{ width: 34 }} />}
         value={status === "hidden" ? undefined : name}
@@ -78,4 +83,12 @@ export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...p
       />
     </Box>
   );
+};
+
+QuizInput.getInputById = (id: string | number) => {
+  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_ID_PROP}="${id}"]`);
+};
+
+QuizInput.getInputByStatus = (status: string) => {
+  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_STATUS_PROP}="${status}"]`);
 };
