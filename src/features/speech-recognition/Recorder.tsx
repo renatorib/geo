@@ -10,7 +10,7 @@ export const Recorder = fr<typeof ActionIcon<"button">, { recording?: boolean }>
     <ActionIcon
       ref={ref}
       radius="xl"
-      size="lg"
+      size="md"
       color="red"
       {...props}
       variant={props.recording ? "filled" : "default"}

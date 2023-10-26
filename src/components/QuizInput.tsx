@@ -10,15 +10,15 @@ import { cn } from "~/styles";
 type QuizInputProps = {
   id: string;
   name: string;
-  status: "correct" | "spoiler" | "hidden";
-  transcriptor?: boolean;
   onGuess: (text: string) => void;
+  status?: "correct" | "spoiler" | "hidden";
+  transcriptor?: boolean;
 } & React.ComponentProps<typeof Input<"input">>;
 
 export const QUIZ_INPUT_ID_PROP = "data-quiz-input-id";
 export const QUIZ_INPUT_STATUS_PROP = "data-quiz-input-status";
 
-export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...props }: QuizInputProps) => {
+export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, onGuess, ...props }: QuizInputProps) => {
   const { lang } = useSettings();
 
   const transcripter = useTranscripter({
@@ -42,7 +42,7 @@ export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...p
   return (
     <Box className="relative w-full">
       {showRecorder && (
-        <Box style={{ position: "absolute", right: 1, bottom: 1, zIndex: 1 }}>
+        <Box style={{ position: "absolute", right: 3, bottom: 3, zIndex: 1 }}>
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
             disabled={transcripter.listening && transcripter.meta !== id}
@@ -77,6 +77,7 @@ export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...p
             "w-full border-0 text-ellipsis",
             "disabled:text-black disabled:bg-transparent",
             "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
+
             typeof props.classNames !== "function" && props.classNames?.input,
           ),
         }}
@@ -87,6 +88,13 @@ export const QuizInput = ({ id, name, status, transcriptor = true, onGuess, ...p
 
 QuizInput.getInputById = (id: string | number) => {
   return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_ID_PROP}="${id}"]`);
+};
+
+QuizInput.clearInputById = (id: string | number) => {
+  const input = QuizInput.getInputById(id);
+  if (input) {
+    input.value = "";
+  }
 };
 
 QuizInput.getInputByStatus = (status: string) => {

@@ -18,7 +18,7 @@ type CardsProps<T extends Entity> = {
   display?: Display<T>;
 };
 
-export const Cards = <T extends Entity>(props: CardsProps<T>) => {
+export const CardsGrid = <T extends Entity>(props: CardsProps<T>) => {
   const settings = useSettings();
 
   const guesser = useGuesser({

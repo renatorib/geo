@@ -187,3 +187,5 @@ export const getViewboxOfPath = (
     viewbox,
   };
 };
+
+export type Viewbox = ReturnType<typeof getViewboxOfPath>;

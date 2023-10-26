@@ -40,6 +40,7 @@
     "react-speech-recognition": "^3.10.0",
     "react-svg-pan-zoom": "^3.12.1",
     "regenerator-runtime": "^0.13.9",
+    "valtio": "^1.11.3",
     "wikipedia": "^1.1.9",
     "zx": "^7.2.3"
   },

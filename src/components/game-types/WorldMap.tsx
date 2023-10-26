@@ -1,85 +1,45 @@
 import React from "react";
 
-import { ActionIcon, Text, Box, Center, Menu, TextInput, useMantineTheme } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
-import { RiMore2Fill, RiRefreshLine } from "react-icons/ri";
-import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
+import { ActionIcon, Box, Center, Menu } from "@mantine/core";
+import { RiMore2Fill, RiRefreshLine, RiZoomInFill } from "react-icons/ri";
 
 import { Country } from "~/data-sources/countries";
-import { useSettings } from "~/features/settings";
-import { playSound } from "~/features/sounds";
+import { useGuesser } from "~/features/guesser";
 import { Answer } from "~/games";
-import { useThrottledEvent, usePooling } from "~/hooks";
 import { onNextPaint } from "~/lib/dom";
-import { getViewboxOfPath } from "~/lib/svg";
+import { getViewboxOfPath, Viewbox } from "~/lib/svg";
 import { cn } from "~/styles";
 
+import { QuizInput } from "../QuizInput";
+import { SvgPanZoom, ReactSVGPanZoom, Value } from "../SvgPanZoom";
+
 type WorldMapProps = {
-  countries: Country[];
+  data: Country[];
+  dataToRender: Country[];
   answer: Answer<Country>;
+  title: string;
 };
 
+const MAX_ZOOM = 40;
+const MIN_ZOOM = 0.3;
+
 export const WorldMap = (props: WorldMapProps) => {
-  const Viewer = React.useRef<ReactSVGPanZoom | null>(null);
-  const [loaded, setLoaded] = React.useState(false);
+  const [viewer, setViewer] = React.useState<ReactSVGPanZoom>();
   const [value, setValue] = React.useState<Value>();
-  const [checked, setChecked] = React.useState<Record<string, boolean>>({});
-  const { width, height } = useViewportSize();
-  const [strokeWidth, setStrokeWidth] = React.useState(0.7);
-  const { lang } = useSettings();
-  const theme = useMantineTheme();
 
-  const countriesToRender = props.countries;
-  const countriesToPlay = props.countries.filter((c) => c.independent === true);
-  const vb = React.useMemo(() => getViewboxOfPath(countriesToRender.map((c) => c.shape)), []);
+  const guesser = useGuesser({
+    data: props.data,
+    answer: props.answer,
+    title: props.title,
+    refocus: false,
+    onCorrectGuess() {
+      QuizInput.clearInputById("world-map");
+    },
+  });
 
-  React.useEffect(() => {
-    if (Viewer.current) {
-      (window as any).viewer = Viewer.current;
-      if (!loaded) {
-        onNextPaint(() => {
-          const x = vb.viewboxX + vb.viewboxWidth / 2;
-          const y = vb.viewboxY + vb.viewboxHeight / 2;
-          const zoomY = (height - 50) / vb.viewboxHeight;
-          const zoomX = width / vb.viewboxWidth;
-          Viewer.current?.setPointOnViewerCenter(x, y, Math.min(zoomY, zoomX));
-          setLoaded(true);
-        });
-      }
-    }
-  }, [Viewer.current]);
-
-  const fixStrokeWidth = (value?: Value | null) => {
-    const zoom = value?.a ?? 1;
-    setStrokeWidth(0.7 / zoom);
-  };
-
-  const handleZoom = useThrottledEvent(fixStrokeWidth, 200);
-  usePooling(() => fixStrokeWidth(Viewer?.current?.props?.value), 1000);
-
-  const handleGuess = (_guess: string) => {
-    const normalize = (input: string) =>
-      input
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "")
-        .replace(/-/gu, " ")
-        .toLowerCase()
-        .trim();
-
-    for (const country of countriesToPlay) {
-      if (!checked[country.id]) {
-        const { value, aliases } = props.answer(country, lang.property);
-        const answers = [value, ...aliases].map(normalize);
-        const guess = normalize(_guess);
-        if (answers.includes(guess)) {
-          setChecked((c) => ({ ...c, [country.id]: true }));
-          playSound("correct", { volume: 0.1 });
-          return true;
-        }
-      }
-    }
-
-    return false;
+  const zoomOnViewbox = (viewer: ReactSVGPanZoom, vb: Viewbox) => {
+    const { x, y, zoom } = getZoomCoordinates(vb, window.innerWidth, window.innerHeight);
+    viewer.setPointOnViewerCenter(x, y, zoom);
   };
 
   return (
@@ -99,27 +59,28 @@ export const WorldMap = (props: WorldMapProps) => {
             borderRadius: 8,
             maxWidth: 400,
             width: "100%",
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(-50px)",
+            opacity: value ? 1 : 0,
+            transform: value ? "translateY(0)" : "translateY(-50px)",
             transition: "all 300ms ease-in-out",
             willChange: "all",
           }}
         >
           <Box style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Text pl={8} size="sm" c={theme.colors.dark[2]} fw={400}>
-              {Object.keys(checked).length} / {countriesToPlay.length}
-            </Text>
+            <span className="text-sm text-gray-400">
+              {guesser.totalChecked} / {guesser.data.length}
+            </span>
           </Box>
+
           <Box style={{ flexGrow: 1 }}>
-            <TextInput
+            <QuizInput
+              id="world-map"
+              name="world-map"
               placeholder="Type country names..."
-              onChange={(e) => {
-                if (handleGuess(e.target.value)) {
-                  e.target.value = "";
-                }
-              }}
+              onGuess={(text) => guesser.guessAll(text)}
+              classNames={{ input: "!border !border-gray-200" }}
             />
           </Box>
+
           <Menu withinPortal withArrow width={200} position="bottom-end">
             <Menu.Target>
               <ActionIcon variant="default" radius="xl">
@@ -127,57 +88,97 @@ export const WorldMap = (props: WorldMapProps) => {
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item onClick={() => setChecked({})} leftSection={<RiRefreshLine />}>
+              <Menu.Item onClick={guesser.reset} leftSection={<RiRefreshLine />}>
                 Reset
               </Menu.Item>
+              {viewer && !guesser.isCompleted && (
+                <Menu.Item
+                  onClick={() => {
+                    guesser.selectNextNode();
+                    zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape));
+                  }}
+                  leftSection={<RiZoomInFill />}
+                >
+                  Zoom on next
+                </Menu.Item>
+              )}
             </Menu.Dropdown>
           </Menu>
         </Box>
       </Center>
-      <ReactSVGPanZoom
-        style={{ opacity: loaded ? 1 : 0, transition: "opacity 300ms ease-in-out", willChange: "opacity" }}
-        ref={Viewer}
-        width={width}
-        height={height - 50}
-        value={value ?? ({} as any)}
+
+      <SvgPanZoom
+        scaleFactorMax={MAX_ZOOM}
+        scaleFactorMin={MIN_ZOOM}
         onChangeValue={setValue}
-        tool={TOOL_PAN}
-        onChangeTool={() => {}}
-        scaleFactorMin={0.3}
-        scaleFactorMax={25}
-        scaleFactorOnWheel={1.15}
-        onPan={handleZoom as any}
-        onZoom={handleZoom as any}
-        background="#f9f9f9"
-        SVGBackground="#f9f9f9"
-        customToolbar={() => null}
-        customMiniature={() => null}
+        onRef={setViewer}
+        onLoad={(viewer) => {
+          onNextPaint(() => {
+            zoomOnViewbox(viewer, getViewboxOfPath(props.data.map((c) => c.shape)));
+          });
+        }}
       >
         <svg viewBox="0 0 1100 666">
-          {countriesToRender.map((c) => {
-            const isChecked = c.independent ? checked[c.id] : c.sovereignty ? checked[c.sovereignty] : false;
+          {props.dataToRender.map((c) => {
+            const node = guesser.data.find((n) => n.id === c.id);
+
+            if (!node) {
+              const isChecked = c.sovereignty && (guesser.data.find((n) => n.id === c.sovereignty)?.checked || false);
+              return (
+                <React.Fragment key={c.id}>
+                  <path
+                    id={`path-${c.id}`}
+                    d={c.shape}
+                    className={cn("stroke-transparent", isChecked ? "fill-green-400" : "fill-gray-200")}
+                  />
+                </React.Fragment>
+              );
+            }
+
+            const strokeWidth = 0.7 / (value?.a ?? 1);
+            const isChecked = node.entity.independent
+              ? node.checked
+              : node.entity.sovereignty
+              ? guesser.data.find((n) => n.id === node.entity.sovereignty)?.checked || false
+              : false;
 
             return (
-              <React.Fragment key={c.id}>
+              <React.Fragment key={node.id}>
                 <path
-                  id={`path-${c.id}`}
+                  id={`path-${node.id}`}
                   className={cn("fill-gray-300 stroke-gray-600", isChecked && "fill-green-400 stroke-green-700")}
                   strokeWidth={strokeWidth}
-                  strokeDasharray={c.disputed ? strokeWidth * 10 : undefined}
-                  d={c.shape}
-                ></path>
+                  strokeDasharray={node.entity.disputed ? strokeWidth * 10 : undefined}
+                  d={node.entity.shape}
+                />
               </React.Fragment>
             );
           })}
-          {/* <rect
-            width={vb.viewboxWidth}
-            height={vb.viewboxHeight}
-            x={vb.viewboxX}
-            y={vb.viewboxY}
-            style={{ fill: "rgba(0,0,255,0.01)" }}
-           /> */}
         </svg>
-      </ReactSVGPanZoom>
+      </SvgPanZoom>
     </Box>
   );
 };
+
+function getZoomCoordinates(vb: Viewbox, width: number, height: number) {
+  const x = vb.viewboxX + vb.viewboxWidth / 2;
+  const y = vb.viewboxY + vb.viewboxHeight / 2;
+  const zoomY = (height - 50) / vb.viewboxHeight;
+  const zoomX = width / vb.viewboxWidth;
+  const zoom = Math.min(zoomY, zoomX, MAX_ZOOM);
+
+  return { x, y, zoom };
+}
+
+// eslint-disable-next-line
+function ViewportRectDebug(vb: Viewbox) {
+  return (
+    <rect
+      width={vb.viewboxWidth}
+      height={vb.viewboxHeight}
+      x={vb.viewboxX}
+      y={vb.viewboxY}
+      style={{ fill: "rgba(0,0,255,0.01)" }}
+    />
+  );
+}

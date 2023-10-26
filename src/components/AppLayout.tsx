@@ -14,23 +14,21 @@ import {
   Container,
   useMantineTheme,
   Anchor,
+  Modal,
+  Grid,
+  Button,
 } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
+import { useSnapshot } from "valtio";
 
 import { Logo, RouterTransition } from "~/components";
 import { SettingsMenu, LangSelectorMenu } from "~/features/settings";
 import { TranscriptDialog } from "~/features/speech-recognition";
+import { games } from "~/games";
+import { fr } from "~/lib/react";
+import { upperFirstLetter } from "~/lib/string";
+import { store, storeActions } from "~/stores/store";
 import { cn } from "~/styles";
-
-const AppNavbar = () => {
-  return (
-    <Stack>
-      <NavbarLink href="/" icon={<RiHome2Line />}>
-        Home
-      </NavbarLink>
-    </Stack>
-  );
-};
 
 const AppHeader = () => {
   const theme = useMantineTheme();
@@ -53,7 +51,7 @@ const AppHeader = () => {
                 color: theme.colors.dark[9],
               }}
             >
-              <Logo size={30} color="#2D8D0C" />
+              <Logo size={25} color="#449966" />
             </Box>
           </NextLink>
           <Box m={10}>
@@ -67,19 +65,48 @@ const AppHeader = () => {
 
       <RouterTransition />
 
-      <Drawer
-        title="Menu"
-        opened={navbarOpened}
-        onClose={() => setNavbarOpened(false)}
-        padding="md"
-        overlayProps={{
-          opacity: 0.55,
-          blur: 3,
-          color: theme.colors.gray[2],
-        }}
-      >
-        <Box style={{ height: "calc(100vh - 70px)", overflowY: "auto" }}>
-          <AppNavbar />
+      <Drawer title="Menu" opened={navbarOpened} onClose={() => setNavbarOpened(false)} padding="md" size="xs">
+        <Box>
+          <Stack>
+            <NavbarLink href="/" icon={<RiHome2Line />} color="green">
+              Home
+            </NavbarLink>
+
+            <div>Games</div>
+
+            {games
+              .filter((g) => g.training === false)
+              .map((game) => (
+                <NavbarLink
+                  key={game.id}
+                  icon={game.icon}
+                  color="violet"
+                  onClick={() => {
+                    storeActions.setSelectedGame(game);
+                    setNavbarOpened(false);
+                  }}
+                >
+                  {game.name}
+                </NavbarLink>
+              ))}
+
+            <div>Learn</div>
+
+            {games
+              .filter((g) => g.training === true)
+              .map((game) => (
+                <NavbarLink
+                  key={game.id}
+                  icon={game.icon}
+                  onClick={() => {
+                    storeActions.setSelectedGame(game);
+                    setNavbarOpened(false);
+                  }}
+                >
+                  {game.name}
+                </NavbarLink>
+              ))}
+          </Stack>
         </Box>
       </Drawer>
     </Box>
@@ -108,23 +135,26 @@ const AppFooter = () => {
   );
 };
 
-const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: React.ReactNode }) => {
-  const router = useRouter();
-  const selected = router.asPath === props.href;
+const NavbarLink = fr<typeof UnstyledButton<"button">, { href?: string; icon?: React.ReactNode }>(
+  ({ href, icon, ...props }, ref) => {
+    const router = useRouter();
+    const selected = router.asPath === href;
 
-  return (
-    <NextLink href={props.href}>
+    let button = (
       <UnstyledButton
+        {...props}
+        ref={ref}
         className={cn(
-          "block w-full p-1 rounded text-gray-800 hover:bg-blue-100 hover:text-blue-600",
-          selected && "bg-violet-100 text-violet-600",
+          "block w-full p-1 rounded text-gray-800 hover:bg-gray-100 hover:text-gray-900",
+          selected && "bg-gray-100 text-gray-900",
+          props.className,
         )}
       >
         <Group align="center" gap="xs">
           <Text c="violet">
             <Group align="center">
-              <ThemeIcon variant="light" color={selected ? "violet" : "blue"}>
-                {props.icon}
+              <ThemeIcon variant={selected ? "filled" : "light"} color={props.color}>
+                {icon}
               </ThemeIcon>
             </Group>
           </Text>
@@ -133,7 +163,50 @@ const NavbarLink = (props: { href: string; children: React.ReactNode; icon?: Rea
           </Text>
         </Group>
       </UnstyledButton>
-    </NextLink>
+    );
+
+    if (href) {
+      button = (
+        <NextLink href={href} className="no-underline">
+          {button}
+        </NextLink>
+      );
+    }
+
+    return button;
+  },
+);
+
+const GroupsModal = () => {
+  const state = useSnapshot(store);
+
+  return (
+    <Modal
+      opened={!!state.selectedGame}
+      onClose={() => storeActions.setSelectedGame(null)}
+      title={<div className="font-bold">Play {state.selectedGame?.name}</div>}
+      transitionProps={{
+        exitDuration: 1,
+        duration: 150,
+      }}
+    >
+      <div className="mb-4 text-sm text-gray-700">Choose the group</div>
+      <Grid gutter="xs">
+        {state.selectedGame &&
+          state.selectedGame.groups.map((group) => (
+            <Grid.Col key={group.id} span={{ base: 6, x: 4 }}>
+              <NextLink
+                href={`/play/${state.selectedGame?.id}/${group.id}`}
+                onClick={() => storeActions.setSelectedGame(null)}
+              >
+                <Button color="violet" variant="light" fullWidth>
+                  {upperFirstLetter(group.id)}
+                </Button>
+              </NextLink>
+            </Grid.Col>
+          ))}
+      </Grid>
+    </Modal>
   );
 };
 
@@ -156,6 +229,8 @@ export const AppLayout = ({
     <Box style={{ display: "flex", flexDirection: "column" }}>
       {showHeader && <AppHeader />}
       {showTranscripter && <TranscriptDialog />}
+      <GroupsModal />
+
       <MainWrapper style={{ minHeight: "calc(100vh - 53px)", width: "100%", display: "flex", flexDirection: "column" }}>
         <Box component="main" style={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
           {children}

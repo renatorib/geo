@@ -1,8 +1,6 @@
-import Image from "next/image";
 import React from "react";
 
 import { Text, Group, Box, Stack, ActionIcon, Menu, Button } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
 import { RiCheckDoubleFill, RiMore2Fill, RiRestartLine, RiSkipForwardFill, RiTimerFill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
@@ -11,7 +9,7 @@ import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
 import { TimerControl } from "~/features/timer";
 import { Entity, Answer } from "~/games";
-import trophyImage from "~/images/trophy.png";
+// import trophyImage from "~/images/trophy.png";
 
 import { ProgressBar } from "../ProgressBar";
 import { QuizInput } from "../QuizInput";
@@ -32,21 +30,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
     title: props.title,
     refocus: false,
     onCorrectGuess(node) {
-      const input = QuizInput.getInputById(node.id);
-      if (!input) return;
-      input.value = "";
-      notifications.show({
-        icon: <RiCheckDoubleFill size={25} />,
-        message: <div className="font-bold text-lg">{guesser.answer(node).value}</div>,
-        color: "green",
-        autoClose: 1500,
-        withCloseButton: false,
-        classNames: {
-          root: "bg-green-500 items-center text-center",
-          description: "text-white",
-          icon: "bg-transparent",
-        },
-      });
+      QuizInput.clearInputById(node.id);
     },
   });
 

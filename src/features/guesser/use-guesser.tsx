@@ -1,5 +1,8 @@
 import React from "react";
 
+import { notifications } from "@mantine/notifications";
+import { RiCheckDoubleFill } from "react-icons/ri";
+
 import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
 import { useTimer } from "~/features/timer";
@@ -76,20 +79,47 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     const correct = answers.includes(normalizeGuess(text));
 
     if (correct) {
-      setData((data) =>
-        data.map((_node) => {
+      const newSavedData = (data: Node<T>[]) => {
+        return data.map((_node) => {
           if (node.id !== _node.id) return _node;
           return { ...node, checked: true };
-        }),
-      );
+        });
+      };
+
+      const isCompleted = !newSavedData(data).some((node) => node.checked === false);
+      setData(newSavedData);
       playSound("correct", { volume: 0.1 });
+      notifyCorrectAnswer(answer(node).value);
       selectNextNode();
       onCorrectGuess?.(node);
+
+      if (isCompleted) {
+        onComplete?.();
+        if (openCongratulations) {
+          const totalTime = timer.end();
+          openCongratulationsModal({
+            guesses: data.length,
+            name: props.title,
+            time: totalTime,
+          });
+        }
+      }
     }
 
     onGuess?.({ node, text, correct });
 
     return correct;
+  };
+
+  const guessAll = (text: string) => {
+    for (const node of data) {
+      if (!node.checked) {
+        const correct = guess(node, text);
+        if (correct) return true;
+      }
+    }
+
+    return false;
   };
 
   const getNodeStatus = (node: Node<T>) => {
@@ -121,20 +151,6 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   const isCompleted = !data.some((node) => node.checked === false);
   const totalChecked = data.filter((node) => node.checked === true).length;
 
-  React.useEffect(() => {
-    if (isCompleted) {
-      onComplete?.();
-      if (openCongratulations) {
-        const totalTime = timer.end();
-        openCongratulationsModal({
-          guesses: data.length,
-          name: props.title,
-          time: totalTime,
-        });
-      }
-    }
-  }, [openCongratulations, isCompleted]); // eslint-disable-line
-
   return {
     data,
     shuffle,
@@ -143,6 +159,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     toggleSpoiler,
     answer,
     guess,
+    guessAll,
     timer,
 
     isCompleted,
@@ -164,4 +181,19 @@ function normalizeGuess(input: string) {
     .replace(/-/gu, " ")
     .toLowerCase()
     .trim();
+}
+
+function notifyCorrectAnswer(text: string) {
+  return notifications.show({
+    icon: <RiCheckDoubleFill size={25} />,
+    message: <div className="font-bold text-lg">{text}</div>,
+    color: "green",
+    autoClose: 1500,
+    withCloseButton: false,
+    classNames: {
+      root: "bg-green-500",
+      description: "text-white",
+      icon: "bg-transparent",
+    },
+  });
 }

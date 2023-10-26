@@ -6,3 +6,4 @@ export * from "./ProgressBar";
 export * from "./QuizCard";
 export * from "./AppLayout";
 export * from "./RouterTransition";
+export * from "./SvgPanZoom";
