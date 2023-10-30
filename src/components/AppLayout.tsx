@@ -51,7 +51,7 @@ const AppHeader = () => {
                 color: theme.colors.dark[9],
               }}
             >
-              <Logo size={25} color="#449966" />
+              <Logo size={22} color="#449966" />
             </Box>
           </NextLink>
           <Box m={10}>

@@ -21,6 +21,7 @@ export const Recorder = fr<typeof ActionIcon<"button">, { recording?: boolean }>
         ...(props.recording && { transform: "scale(1.15)" }),
         ...props.style,
       }}
+      type="button"
     >
       <RiMicFill />
     </ActionIcon>

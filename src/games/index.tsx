@@ -273,7 +273,7 @@ export const games = [
     id: "domains",
     icon: <RiWindow2Fill />,
     type: "cards-grid",
-    training: false,
+    training: true,
     ...collections.domains,
   },
 ] satisfies Game<Country>[];

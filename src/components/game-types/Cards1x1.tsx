@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, Group, Box, Stack, ActionIcon, Menu, Button } from "@mantine/core";
+import { Text, Group, Box, Stack, ActionIcon, Menu, Button, Flex } from "@mantine/core";
 import { RiCheckDoubleFill, RiMore2Fill, RiRestartLine, RiSkipForwardFill, RiTimerFill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
@@ -38,7 +38,7 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
     <Box style={{ maxWidth: 500, width: "100%", display: "grid", placeItems: "center", margin: "0 auto" }}>
       <Box style={{ width: "100%" }}>
         <Box py="xs" style={{ width: "100%" }}>
-          <Stack justify="stretch" align="stretch" style={{ flexGrow: 1 }}>
+          <Stack gap="xs" justify="stretch" align="stretch" className="grow">
             <Group gap="xl">
               <Group gap="xl">
                 <Text fw={700}>{props.title}</Text>
@@ -76,17 +76,17 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
         </Box>
 
         <Box pos="relative">
-          <>
-            <Box key={guesser.selectedNode.id}>
-              {props.display
-                ? props.display({
-                    data: guesser.selectedNode.entity,
-                    status: guesser.getNodeStatus(guesser.selectedNode),
-                  })
-                : null}
-            </Box>
+          <Box key={guesser.selectedNode.id} className="shadow rounded-lg overflow-hidden bg-gray-50">
+            {props.display
+              ? props.display({
+                  data: guesser.selectedNode.entity,
+                  status: guesser.getNodeStatus(guesser.selectedNode),
+                })
+              : null}
+          </Box>
 
-            <Box className="shadow-lg rounded-md px-2 py-1 mt-2">
+          <Flex align="stretch" gap="sm" className="mt-2">
+            <Box className="shadow-lg rounded-md grow">
               <QuizInput
                 // key={guesser.selectedNode.id}
                 id={guesser.selectedNode.id}
@@ -96,41 +96,39 @@ export const Cards1x1 = <T extends Entity>(props: Cards1x1Props<T>) => {
                 disabled={guesser.isCompleted}
               />
             </Box>
-          </>
+
+            <Button
+              color="violet"
+              variant="filled"
+              onClick={() => {
+                guesser.selectNextNode();
+                playSound("wind", { volume: 0.4, playbackRate: 3 });
+              }}
+              leftSection={<RiSkipForwardFill />}
+            >
+              Skip
+            </Button>
+
+            {process.env.NODE_ENV === "development" && (
+              <Button
+                color="green"
+                variant="filled"
+                onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
+                leftSection={<RiCheckDoubleFill />}
+              >
+                Fill
+              </Button>
+            )}
+          </Flex>
         </Box>
 
-        <Box pt={30} style={{ display: "flex", justifyContent: "center", gap: 12 }}>
-          {guesser.isCompleted ? (
+        {guesser.isCompleted && (
+          <Box pt={30} style={{ display: "flex", justifyContent: "center", gap: 12 }}>
             <Button color="violet" variant="filled" onClick={guesser.reset} leftSection={<RiRestartLine />}>
               Restart
             </Button>
-          ) : (
-            <>
-              <Button
-                color="violet"
-                variant="filled"
-                onClick={() => {
-                  guesser.selectNextNode();
-                  playSound("wind", { volume: 0.4, playbackRate: 3 });
-                }}
-                leftSection={<RiSkipForwardFill />}
-              >
-                Skip
-              </Button>
-
-              {process.env.NODE_ENV === "development" && (
-                <Button
-                  color="green"
-                  variant="filled"
-                  onClick={() => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value)}
-                  leftSection={<RiCheckDoubleFill />}
-                >
-                  Fill
-                </Button>
-              )}
-            </>
-          )}
-        </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );

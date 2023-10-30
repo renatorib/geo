@@ -9,7 +9,7 @@ import { storeActions } from "~/stores/store";
 const Index = () => {
   return (
     <AppLayout>
-      <Box style={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center" }}>
+      <Box style={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center", margin: "2rem 0" }}>
         <Stack gap={36}>
           <Stack gap={12}>
             <Text size="lg" fw={700}>

@@ -75,6 +75,7 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
           ),
           input: cn(
             "w-full border-0 text-ellipsis",
+            "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
             "disabled:text-black disabled:bg-transparent",
             "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
 
@@ -84,6 +85,10 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
       />
     </Box>
   );
+};
+
+QuizInput.getInputByStatus = (status: string) => {
+  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_STATUS_PROP}="${status}"]`);
 };
 
 QuizInput.getInputById = (id: string | number) => {
@@ -97,6 +102,6 @@ QuizInput.clearInputById = (id: string | number) => {
   }
 };
 
-QuizInput.getInputByStatus = (status: string) => {
-  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_STATUS_PROP}="${status}"]`);
+QuizInput.focusInputById = (id: string | number) => {
+  QuizInput.getInputById(id)?.focus();
 };

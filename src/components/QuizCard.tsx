@@ -24,9 +24,9 @@ export const QuizCard = ({ id, name, status, showInput = true, children, onGuess
   return (
     <Box style={{ position: "relative", width: "100%" }}>
       <Box
-        component={status !== "hidden" ? "div" : "label"}
         data-quiz-card-id={id}
         data-quiz-card-status={status}
+        onClick={() => QuizInput.focusInputById(id)}
         style={{ width: "100%" }}
       >
         <Card
@@ -40,7 +40,7 @@ export const QuizCard = ({ id, name, status, showInput = true, children, onGuess
             transition: "all 150ms ease-out",
           }}
         >
-          {children && <Card.Section>{children}</Card.Section>}
+          {children && <Card.Section className="rounded overflow-hidden">{children}</Card.Section>}
 
           {showInput && (
             <Card.Section pt={4}>

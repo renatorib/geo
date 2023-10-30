@@ -90,7 +90,7 @@ export const CardsGrid = <T extends Entity>(props: CardsProps<T>) => {
                 name={value}
                 status={status}
                 onGuess={(text) => guesser.guess(node, text)}
-                onFocus={() => guesser.setSelectedNode(node)}
+                // onFocus={() => guesser.setSelectedNode(node)}
               >
                 {props.display ? props.display({ data: node.entity, status }) : null}
               </QuizCard>

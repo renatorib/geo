@@ -90,7 +90,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
       setData(newSavedData);
       playSound("correct", { volume: 0.1 });
       notifyCorrectAnswer(answer(node).value);
-      selectNextNode();
+      selectNextNode(node);
       onCorrectGuess?.(node);
 
       if (isCompleted) {
@@ -132,9 +132,8 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return lookup.find((nd) => nd.checked === false);
   };
 
-  const selectNextNode = () => {
-    const current = selectedNode;
-    const next = getNextUnchecked(selectedNode);
+  const selectNextNode = (current: Node<T> = selectedNode) => {
+    const next = getNextUnchecked(current);
     if (next) {
       if (refocus) {
         const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${current.id}"]`);

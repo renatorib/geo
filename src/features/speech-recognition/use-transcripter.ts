@@ -28,10 +28,10 @@ export function useTranscripter(props: UseTranscripterProps) {
   const meta = metaStore.useState();
   const settings = useSettings();
 
-  const { language = settings.lang.code, enabled = settings.speech, onTranscript } = props;
+  const { language = settings.lang.code, enabled = true, onTranscript } = props;
   const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
-  const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && enabled;
+  const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && enabled && settings.speech;
 
   const start = (id?: string | number) => {
     if (shouldUseSpeech) {
