@@ -15,7 +15,7 @@ type GetViewboxOfPathProps = {
  */
 export const getViewboxOfPath = (
   pathData: string | string[],
-  { aspectRatio = false, fit = "contain", margin = 0 }: GetViewboxOfPathProps = {},
+  { aspectRatio = false, fit = "contain", margin = 0.5 }: GetViewboxOfPathProps = {},
 ) => {
   const points = { x: new Set<number>(), y: new Set<number>() };
 
@@ -167,9 +167,8 @@ export const getViewboxOfPath = (
 
   // Add margins
   if (margin !== 0) {
-    const MARGIN = 0.5;
-    const offsetWidth = viewboxWidth * MARGIN;
-    const offsetHeight = viewboxHeight * MARGIN;
+    const offsetWidth = viewboxWidth * margin;
+    const offsetHeight = viewboxHeight * margin;
     viewboxX -= offsetWidth / 2;
     viewboxY -= offsetHeight / 2;
     viewboxWidth += offsetWidth;

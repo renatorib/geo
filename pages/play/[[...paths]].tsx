@@ -3,7 +3,7 @@ import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import { AppLayout, NoSSR } from "~/components";
-import { CardsGrid, Cards1x1, WorldMap } from "~/components/game-types";
+import { CardsGrid, Cards1x1, WorldMap, WorldMap1x1 } from "~/components/game-types";
 import { games, findGameByUrl } from "~/games";
 
 type PageProps = { url: string };
@@ -40,6 +40,18 @@ const Play = ({ url }: PageProps) => {
       <AppLayout contained={false} showFooter={false}>
         <NoSSR>
           {() => <WorldMap title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />}
+        </NoSSR>
+      </AppLayout>
+    );
+  }
+
+  if (game.type === "world-map-1x1") {
+    return (
+      <AppLayout contained={false} showFooter={false}>
+        <NoSSR>
+          {() => (
+            <WorldMap1x1 title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />
+          )}
         </NoSSR>
       </AppLayout>
     );

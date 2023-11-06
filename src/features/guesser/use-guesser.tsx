@@ -27,7 +27,8 @@ type UseGuesserProps<T extends Entity> = {
   refocus?: boolean;
   onComplete?: () => void;
   onGuess?: (props: { correct: boolean; text: string; node: Node<T> }) => void;
-  onCorrectGuess?: (node: Node<T>) => void;
+  onCorrectGuess?: (node: Node<T>, next: Node<T> | undefined) => void;
+  onSelectNode?: (node: Node<T>) => void;
 };
 
 export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
@@ -39,6 +40,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     onComplete,
     onGuess,
     onCorrectGuess,
+    onSelectNode,
   } = props;
 
   const { lang } = useSettings();
@@ -49,7 +51,11 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return initialShuffled ? shuffleArray(initialNodes) : initialNodes;
   });
   const [spoiler, setSpoiler] = React.useState(false);
-  const [selectedNode, setSelectedNode] = React.useState<Node<T>>(data[0]);
+  const [selectedNode, _setSelectedNode] = React.useState<Node<T>>(data[0]);
+  const setSelectedNode = (node: Node<T>) => {
+    _setSelectedNode(node);
+    onSelectNode?.(node);
+  };
 
   const shuffle = () => {
     setData((data) => {
@@ -90,8 +96,8 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
       setData(newSavedData);
       playSound("correct", { volume: 0.1 });
       notifyCorrectAnswer(answer(node).value);
-      selectNextNode(node);
-      onCorrectGuess?.(node);
+      const next = selectNextNode(node);
+      onCorrectGuess?.(node, next);
 
       if (isCompleted) {
         onComplete?.();
@@ -144,6 +150,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
         });
       }
       setSelectedNode(next);
+      return next;
     }
   };
 

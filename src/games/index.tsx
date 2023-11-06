@@ -1,3 +1,4 @@
+import { Truculenta } from "next/font/google";
 import React from "react";
 
 import { GiBrazil } from "react-icons/gi";
@@ -29,6 +30,9 @@ export type GameTypesProps<T> =
     }
   | {
       type: "world-map";
+    }
+  | {
+      type: "world-map-1x1";
     };
 
 export type GameType = GameTypesProps<any>["type"];
@@ -198,11 +202,21 @@ export const games = [
   },
 
   {
-    name: "World Map",
+    name: "World Map All",
     description: "Guess countries in the map",
     id: "map",
     icon: <RiEarthFill />,
     type: "world-map",
+    training: true,
+    ...collections.worldMap,
+  },
+
+  {
+    name: "World Map",
+    description: "Guess countries in the map",
+    id: "map-1x1",
+    icon: <RiEarthFill />,
+    type: "world-map-1x1",
     training: false,
     ...collections.worldMap,
   },
