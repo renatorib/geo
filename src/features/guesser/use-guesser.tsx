@@ -9,6 +9,7 @@ import { useTimer } from "~/features/timer";
 import { Answer, Entity } from "~/games";
 import { shuffle as shuffleArray } from "~/lib/array";
 import { onNextPaint } from "~/lib/dom";
+import { normalizeString } from "~/lib/string";
 
 import { openCongratulationsModal } from "./CongratulationsModal";
 
@@ -75,14 +76,21 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
 
   const toggleSpoiler = () => setSpoiler((s) => !s);
 
+  /** @deprecated use getAnswer instead */
   const answer = (node: Node<T>) => props.answer(node.entity, lang.property);
+
+  const getAnswer = (node: Node<T>) => props.answer(node.entity, lang.property);
+
+  const getAllAnswers = (node: Node<T>) => {
+    const { value, aliases } = getAnswer(node);
+    return [value, ...aliases].map(normalizeString);
+  };
 
   const guess = (node: Node<T>, text: string) => {
     if (!timer.started) timer.start();
 
-    const { value, aliases } = answer(node);
-    const answers = [value, ...aliases].map(normalizeGuess);
-    const correct = answers.includes(normalizeGuess(text));
+    const answers = getAllAnswers(node);
+    const correct = answers.includes(normalizeString(text));
 
     if (correct) {
       const newSavedData = (data: Node<T>[]) => {
@@ -132,6 +140,14 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return node.checked ? "correct" : spoiler ? "spoiler" : "hidden";
   };
 
+  const getNodeValue = (node: Node<T>) => {
+    return getAnswer(node).value;
+  };
+
+  const getNodeAliases = (node: Node<T>) => {
+    return getAnswer(node).aliases;
+  };
+
   const getNextUnchecked = (node: Node<T>) => {
     const index = data.findIndex((n) => node.id === n.id);
     const lookup = [...data.slice(index + 1, data.length), ...data.slice(0, index + 1)];
@@ -154,6 +170,11 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     }
   };
 
+  const getNode = <E extends { id: T["id"] }>(entity: E) => {
+    const node = data.find((node) => node.id === entity.id);
+    return node;
+  };
+
   const isCompleted = !data.some((node) => node.checked === false);
   const totalChecked = data.filter((node) => node.checked === true).length;
 
@@ -164,6 +185,8 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     spoiler,
     toggleSpoiler,
     answer,
+    getAnswer,
+    getAllAnswers,
     guess,
     guessAll,
     timer,
@@ -171,7 +194,10 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     isCompleted,
     totalChecked,
 
+    getNode,
     getNodeStatus,
+    getNodeValue,
+    getNodeAliases,
     getNextUnchecked,
 
     selectedNode,
@@ -179,15 +205,6 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     selectNextNode,
   };
 };
-
-function normalizeGuess(input: string) {
-  return input
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .replace(/-/gu, " ")
-    .toLowerCase()
-    .trim();
-}
 
 function notifyCorrectAnswer(text: string) {
   return notifications.show({

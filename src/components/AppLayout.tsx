@@ -19,6 +19,7 @@ import {
   Button,
 } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
+import useVH from "react-vh";
 import { useSnapshot } from "valtio";
 
 import { Logo, RouterTransition } from "~/components";
@@ -31,6 +32,7 @@ import { store, storeActions } from "~/stores/store";
 import { cn } from "~/styles";
 
 const AppHeader = () => {
+  useVH();
   const theme = useMantineTheme();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
 
@@ -229,9 +231,18 @@ export const AppLayout = ({
     <Box style={{ display: "flex", flexDirection: "column" }}>
       {showHeader && <AppHeader />}
       {showTranscripter && <TranscriptDialog />}
+
       <GroupsModal />
 
-      <MainWrapper style={{ minHeight: "calc(100vh - 53px)", width: "100%", display: "flex", flexDirection: "column" }}>
+      <MainWrapper
+        className="min-100dvh"
+        style={{
+          "--offset-height": "53px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Box component="main" style={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
           {children}
         </Box>

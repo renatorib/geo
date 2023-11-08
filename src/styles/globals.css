@@ -26,3 +26,7 @@
 a {
   text-decoration: none;
 }
+
+.min-100dvh {
+  min-height: calc(var(--vh, 1vh) * 100 - var(--offset-height, 0px));
+}

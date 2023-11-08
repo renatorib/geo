@@ -39,12 +39,14 @@
     "react-icons": "^4.11.0",
     "react-speech-recognition": "^3.10.0",
     "react-svg-pan-zoom": "^3.12.1",
+    "react-vh": "^1.1.1",
     "regenerator-runtime": "^0.13.9",
     "valtio": "^1.11.3",
     "wikipedia": "^1.1.9",
     "zx": "^7.2.3"
   },
   "devDependencies": {
+    "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^18.6.1",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",

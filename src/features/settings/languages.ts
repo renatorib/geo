@@ -6,12 +6,14 @@ export const languages = {
     property: "en",
     name: "English (US)",
     flag: flags.US,
+    emoji: "🇺🇸",
   },
   "pt-BR": {
     code: "pt-BR",
     property: "pt",
     name: "Português (BR)",
     flag: flags.BR,
+    emoji: "🇧🇷",
   },
 } as const;
 

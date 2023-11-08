@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ActionIcon, Box, Center, Menu, Tooltip } from "@mantine/core";
-import { RiFocus2Line, RiMore2Fill, RiRefreshLine, RiSkipForwardLine, RiZoomInFill } from "react-icons/ri";
+import { RiFocus2Line, RiMore2Fill, RiRefreshLine, RiSkipForwardLine } from "react-icons/ri";
 
 import { Country } from "~/data-sources/countries";
 import { useGuesser, Node } from "~/features/guesser";
@@ -43,9 +43,10 @@ export const WorldMap1x1 = (props: WorldMapProps) => {
   const zoomOnViewbox = (node: Node<Country>, _viewer?: ReactSVGPanZoom) => {
     const v = viewer || _viewer;
     if (v) {
-      const vb = getViewboxOfPath(node.entity.shape, { margin: 0.5 });
+      const vb = getViewboxOfPath(node.entity.shape, { margin: 4 });
+      console.log(vb);
       const { x, y, zoom } = getZoomCoordinates(vb, window.innerWidth, window.innerHeight);
-      v.setPointOnViewerCenter(x, y, zoom);
+      v.setPointOnViewerCenter(x, y, Math.max(zoom, 2));
     }
   };
 
@@ -85,6 +86,10 @@ export const WorldMap1x1 = (props: WorldMapProps) => {
               placeholder="Type country name..."
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               classNames={{ input: "!border !border-gray-200" }}
+              autoComplete={props.dataToRender
+                .map((entity) => guesser.getNode(entity))
+                .filter(Boolean)
+                .map((data) => guesser.getNodeValue(data))}
             />
           </Box>
 
@@ -145,50 +150,69 @@ export const WorldMap1x1 = (props: WorldMapProps) => {
         onLoad={(viewer) => onNextPaint(() => zoomOnViewbox(guesser.selectedNode, viewer))}
       >
         <svg viewBox="0 0 1100 666">
-          {props.dataToRender.map((c) => {
-            const node = guesser.data.find((n) => n.id === c.id);
+          {props.dataToRender
+            .map((c) => {
+              const node = guesser.data.find((n) => n.id === c.id);
 
-            if (!node) {
-              const isChecked = c.sovereignty && (guesser.data.find((n) => n.id === c.sovereignty)?.checked || false);
-              return (
-                <React.Fragment key={c.id}>
-                  <path
-                    id={`path-${c.id}`}
-                    d={c.shape}
-                    className={cn("stroke-transparent", isChecked ? "fill-green-400" : "fill-gray-200")}
-                  />
-                </React.Fragment>
-              );
-            }
+              if (!node) {
+                const isChecked = c.sovereignty && (guesser.data.find((n) => n.id === c.sovereignty)?.checked || false);
+                return {
+                  isChecked,
+                  isFocused: false,
+                  path: (
+                    <React.Fragment key={c.id}>
+                      <path
+                        id={`path-${c.id}`}
+                        d={c.shape}
+                        className={cn("stroke-transparent", isChecked ? "fill-green-400" : "fill-gray-200")}
+                      />
+                    </React.Fragment>
+                  ),
+                };
+              }
 
-            const strokeWidth = 0.7 / (value?.a ?? 1);
-            const isChecked = node.entity.independent
-              ? node.checked
-              : node.entity.sovereignty
-              ? guesser.data.find((n) => n.id === node.entity.sovereignty)?.checked || false
-              : false;
+              const strokeWidth = 0.7 / (value?.a ?? 1);
+              const focusedStrokeWidth = 2.5 / (value?.a ?? 1);
 
-            const isFocused =
-              guesser.selectedNode.id === node.id ||
-              (node.entity.sovereignty &&
-                guesser.data.find((n) => n.id === node.entity.sovereignty)?.id === guesser.selectedNode.id);
+              const isChecked = node.entity.independent
+                ? node.checked
+                : node.entity.sovereignty
+                ? guesser.data.find((n) => n.id === node.entity.sovereignty)?.checked || false
+                : false;
 
-            return (
-              <React.Fragment key={node.id}>
-                <path
-                  id={`path-${node.id}`}
-                  className={cn(
-                    "fill-gray-300 stroke-gray-600",
-                    isChecked && "fill-green-400 stroke-green-700",
-                    isFocused && !isChecked && "fill-violet-400 stroke-violet-700",
-                  )}
-                  strokeWidth={strokeWidth}
-                  strokeDasharray={node.entity.disputed ? strokeWidth * 10 : undefined}
-                  d={node.entity.shape}
-                />
-              </React.Fragment>
-            );
-          })}
+              const isFocused =
+                guesser.selectedNode.id === node.id ||
+                (node.entity.sovereignty &&
+                  guesser.data.find((n) => n.id === node.entity.sovereignty)?.id === guesser.selectedNode.id);
+
+              return {
+                isFocused,
+                isChecked,
+                path: (
+                  <React.Fragment key={node.id}>
+                    <path
+                      id={`path-${node.id}`}
+                      className={cn(
+                        "fill-gray-300 stroke-gray-600",
+                        isChecked && "fill-green-400 stroke-green-700",
+                        isFocused && !isChecked && "fill-violet-400 stroke-violet-700",
+                      )}
+                      strokeWidth={isFocused ? focusedStrokeWidth : strokeWidth}
+                      strokeDasharray={node.entity.disputed ? strokeWidth * 10 : undefined}
+                      filter={isFocused ? "drop-shadow(0px 0px 1px rgba(109, 40, 217, 0.5)" : ""}
+                      d={node.entity.shape}
+                    />
+                  </React.Fragment>
+                ),
+              };
+            })
+            .sort((a, b) => {
+              // ensure focused path is always rendered last
+              // so its collapsing borders are always visible
+              const z = (i: typeof a) => (i.isFocused ? 1 : 0);
+              return z(a) - z(b);
+            })
+            .map((item) => item.path)}
         </svg>
       </SvgPanZoom>
     </Box>
@@ -200,7 +224,7 @@ function getZoomCoordinates(vb: Viewbox, width: number, height: number) {
   const y = vb.viewboxY + vb.viewboxHeight / 2;
   const zoomY = (height - 50) / vb.viewboxHeight;
   const zoomX = width / vb.viewboxWidth;
-  const zoom = Math.min(zoomY, zoomX, MAX_ZOOM);
+  const zoom = Math.max(Math.min(zoomY, zoomX, MAX_ZOOM), MIN_ZOOM);
 
   return { x, y, zoom };
 }

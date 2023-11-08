@@ -1,10 +1,12 @@
 import React from "react";
 
-import { Box, Input } from "@mantine/core";
+import { Autocomplete, Box, ComboboxItem, Input, useCombobox } from "@mantine/core";
 import { RiCheckLine, RiEyeLine } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
 import { MicOn, Recorder, useTranscripter } from "~/features/speech-recognition";
+import { onNextPaint, setInputValue } from "~/lib/dom";
+import { normalizeString } from "~/lib/string";
 import { cn } from "~/styles";
 
 type QuizInputProps = {
@@ -13,13 +15,18 @@ type QuizInputProps = {
   onGuess: (text: string) => void;
   status?: "correct" | "spoiler" | "hidden";
   transcriptor?: boolean;
-} & React.ComponentProps<typeof Input<"input">>;
+  autoComplete?: string[];
+  onChange?: (value: string) => any;
+} & Omit<React.ComponentProps<typeof Input<"input">>, "autoComplete" | "onChange">;
 
 export const QUIZ_INPUT_ID_PROP = "data-quiz-input-id";
 export const QUIZ_INPUT_STATUS_PROP = "data-quiz-input-status";
 
 export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, onGuess, ...props }: QuizInputProps) => {
   const { lang } = useSettings();
+
+  // const [comboboxOpened, setComboboxOpened] = React.useState(false);
+  const combobox = useCombobox();
 
   const transcripter = useTranscripter({
     enabled: transcriptor,
@@ -39,6 +46,48 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
 
   const showRecorder = transcripter.shouldUseSpeech && status === "hidden";
 
+  const handleChange = (value: string) => {
+    if (value.length < 2) {
+      combobox.closeDropdown();
+      return;
+    }
+    combobox.openDropdown();
+    onNextPaint(() => combobox.selectFirstOption());
+    onGuess(value);
+    props.onChange?.(value);
+  };
+
+  const inputProps = {
+    [QUIZ_INPUT_ID_PROP]: id,
+    [QUIZ_INPUT_STATUS_PROP]: status,
+    leftSection: icon,
+    rightSection: showRecorder && <Box style={{ width: 34 }} />,
+    title: status === "hidden" ? undefined : name,
+    placeholder: `Type your guess in ${lang.emoji} (${lang.code})`,
+
+    value: status === "hidden" ? undefined : name,
+    readOnly: status !== "hidden",
+    disabled: status !== "hidden",
+
+    onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => {
+      handleChange(typeof e === "string" ? e : e.target.value);
+    },
+    classNames: {
+      section: cn(
+        "text-[var(--mantine-color-gray-9)] text-[1.33em]",
+        typeof props.classNames !== "function" && props.classNames?.section,
+      ),
+      input: cn(
+        "w-full border-0 text-ellipsis",
+        "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
+        "disabled:text-black disabled:bg-transparent",
+        "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
+
+        typeof props.classNames !== "function" && props.classNames?.input,
+      ),
+    },
+  };
+
   return (
     <Box className="relative w-full">
       {showRecorder && (
@@ -51,38 +100,20 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
         </Box>
       )}
 
-      <Input<"input">
-        {...{
-          [QUIZ_INPUT_ID_PROP]: id,
-          [QUIZ_INPUT_STATUS_PROP]: status,
-        }}
-        leftSection={icon}
-        rightSection={showRecorder && <Box style={{ width: 34 }} />}
-        value={status === "hidden" ? undefined : name}
-        title={status === "hidden" ? undefined : name}
-        placeholder={`Type your guess in ${lang.name}...`}
-        readOnly={status !== "hidden"}
-        disabled={status !== "hidden"}
-        {...props}
-        onChange={(e) => {
-          onGuess(e.target.value);
-          props.onChange?.(e);
-        }}
-        classNames={{
-          section: cn(
-            "text-[var(--mantine-color-gray-9)] text-[1.33em]",
-            typeof props.classNames !== "function" && props.classNames?.section,
-          ),
-          input: cn(
-            "w-full border-0 text-ellipsis",
-            "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
-            "disabled:text-black disabled:bg-transparent",
-            "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
-
-            typeof props.classNames !== "function" && props.classNames?.input,
-          ),
-        }}
-      />
+      {props.autoComplete ? (
+        <Autocomplete
+          data={props.autoComplete}
+          {...inputProps}
+          comboboxProps={{ store: combobox }}
+          filter={(input) =>
+            (input.options as ComboboxItem[]).filter((option) =>
+              normalizeString(option.value).startsWith(normalizeString(input.search)),
+            )
+          }
+        />
+      ) : (
+        <Input<"input"> {...inputProps} />
+      )}
     </Box>
   );
 };
@@ -96,10 +127,7 @@ QuizInput.getInputById = (id: string | number) => {
 };
 
 QuizInput.clearInputById = (id: string | number) => {
-  const input = QuizInput.getInputById(id);
-  if (input) {
-    input.value = "";
-  }
+  return setInputValue(QuizInput.getInputById(id), "");
 };
 
 QuizInput.focusInputById = (id: string | number) => {
