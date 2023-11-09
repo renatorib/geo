@@ -7,8 +7,8 @@ import { Country } from "~/data-sources/countries";
 import { useGuesser, Node } from "~/features/guesser";
 import { Answer } from "~/games";
 import { onNextPaint } from "~/lib/dom";
+import { cn } from "~/lib/styles";
 import { getViewboxOfPath, Viewbox } from "~/lib/svg";
-import { cn } from "~/styles";
 
 import { QuizInput } from "../QuizInput";
 import { SvgPanZoom, ReactSVGPanZoom, Value } from "../SvgPanZoom";
@@ -31,13 +31,8 @@ export const WorldMap1x1 = (props: WorldMapProps) => {
     data: props.data,
     answer: props.answer,
     title: props.title,
-    refocus: false,
-    onCorrectGuess() {
-      QuizInput.clearInputById("world-map");
-    },
-    onSelectNode(node) {
-      if (viewer) zoomOnViewbox(node);
-    },
+    onCorrectGuess: () => QuizInput.clearById("world-map"),
+    onSelectNode: (node) => viewer && zoomOnViewbox(node),
   });
 
   const zoomOnViewbox = (node: Node<Country>, _viewer?: ReactSVGPanZoom) => {

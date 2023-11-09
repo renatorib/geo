@@ -7,8 +7,8 @@ import { Country } from "~/data-sources/countries";
 import { useGuesser } from "~/features/guesser";
 import { Answer } from "~/games";
 import { onNextPaint } from "~/lib/dom";
+import { cn } from "~/lib/styles";
 import { getViewboxOfPath, Viewbox } from "~/lib/svg";
-import { cn } from "~/styles";
 
 import { QuizInput } from "../QuizInput";
 import { SvgPanZoom, ReactSVGPanZoom, Value } from "../SvgPanZoom";
@@ -31,10 +31,7 @@ export const WorldMap = (props: WorldMapProps) => {
     data: props.data,
     answer: props.answer,
     title: props.title,
-    refocus: false,
-    onCorrectGuess() {
-      QuizInput.clearInputById("world-map");
-    },
+    onCorrectGuess: () => QuizInput.clearById("world-map"),
   });
 
   const zoomOnViewbox = (viewer: ReactSVGPanZoom, vb: Viewbox) => {

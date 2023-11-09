@@ -2,22 +2,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-import {
-  Group,
-  Text,
-  UnstyledButton,
-  Stack,
-  Box,
-  Burger,
-  ThemeIcon,
-  Drawer,
-  Container,
-  useMantineTheme,
-  Anchor,
-  Modal,
-  Grid,
-  Button,
-} from "@mantine/core";
+import { Group, Stack, Box, Burger, Drawer, Container, useMantineTheme, Modal, Grid, Button } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import useVH from "react-vh";
 import { useSnapshot } from "valtio";
@@ -28,8 +13,10 @@ import { TranscriptDialog } from "~/features/speech-recognition";
 import { games } from "~/games";
 import { fr } from "~/lib/react";
 import { upperFirstLetter } from "~/lib/string";
+import { cn, contextColors } from "~/lib/styles";
 import { store, storeActions } from "~/stores/store";
-import { cn } from "~/styles";
+
+import { ThemedIcon } from "./ui/ThemedIcon";
 
 const AppHeader = () => {
   useVH();
@@ -37,14 +24,14 @@ const AppHeader = () => {
   const [navbarOpened, setNavbarOpened] = React.useState(false);
 
   return (
-    <Box>
+    <div>
       <header style={{ height: 50 }}>
-        <Box style={{ display: "flex", height: "100%", alignItems: "center", justifyContent: "space-between" }}>
-          <Box m={10}>
+        <div className="flex h-full items-center justify-between">
+          <div className="m-3">
             <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
-          </Box>
+          </div>
           <NextLink href="/">
-            <Box
+            <div
               style={{
                 position: "absolute",
                 left: "50%",
@@ -54,27 +41,27 @@ const AppHeader = () => {
               }}
             >
               <Logo size={22} color="#449966" />
-            </Box>
+            </div>
           </NextLink>
-          <Box m={10}>
-            <Group ml="auto" gap="xs">
+          <div className="m-3">
+            <div className="flex items-center gap-2 ml-auto">
               <LangSelectorMenu />
               <SettingsMenu />
-            </Group>
-          </Box>
-        </Box>
+            </div>
+          </div>
+        </div>
       </header>
 
       <RouterTransition />
 
       <Drawer title="Menu" opened={navbarOpened} onClose={() => setNavbarOpened(false)} padding="md" size="xs">
-        <Box>
-          <Stack>
+        <div>
+          <div className="flex flex-col gap-2">
             <NavbarLink href="/" icon={<RiHome2Line />} color="green">
               Home
             </NavbarLink>
 
-            <div>Games</div>
+            <div className="mt-3">Games</div>
 
             {games
               .filter((g) => g.training === false)
@@ -83,6 +70,7 @@ const AppHeader = () => {
                   key={game.id}
                   icon={game.icon}
                   color="violet"
+                  startsWith={`/play/${game.id}/`}
                   onClick={() => {
                     storeActions.setSelectedGame(game);
                     setNavbarOpened(false);
@@ -92,7 +80,7 @@ const AppHeader = () => {
                 </NavbarLink>
               ))}
 
-            <div>Learn</div>
+            <div className="mt-3">Learn</div>
 
             {games
               .filter((g) => g.training === true)
@@ -100,6 +88,8 @@ const AppHeader = () => {
                 <NavbarLink
                   key={game.id}
                   icon={game.icon}
+                  color="blue"
+                  startsWith={`/play/${game.id}/`}
                   onClick={() => {
                     storeActions.setSelectedGame(game);
                     setNavbarOpened(false);
@@ -108,76 +98,71 @@ const AppHeader = () => {
                   {game.name}
                 </NavbarLink>
               ))}
-          </Stack>
-        </Box>
+          </div>
+        </div>
       </Drawer>
-    </Box>
+    </div>
   );
 };
 
 const AppFooter = () => {
   return (
-    <Box py="xl">
-      <Text
-        size="xs"
-        c="gray"
-        ta="center"
-        style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
-      >
+    <div className="py-6">
+      <div className="text-sm text-gray-600 text-center flex items-center justify-center gap-1">
         <span>Made with</span>
         <span style={{ verticalAlign: "middle" }}>
           <RiHeart2Fill size={10} color="red" />
         </span>
         <span>by</span>
-        <Anchor color="violet" href="https://rena.to" target="_blank" rel="noreferrer">
+        <a className="text-violet-700" href="https://rena.to" target="_blank" rel="noreferrer">
           rena.to
-        </Anchor>
-      </Text>
-    </Box>
+        </a>
+      </div>
+    </div>
   );
 };
 
-const NavbarLink = fr<typeof UnstyledButton<"button">, { href?: string; icon?: React.ReactNode }>(
-  ({ href, icon, ...props }, ref) => {
-    const router = useRouter();
-    const selected = router.asPath === href;
+const NavbarLink = fr<
+  { href?: string; startsWith?: string; icon?: React.ReactNode; color?: keyof typeof contextColors },
+  "button"
+>(({ href, startsWith, icon, color, ...props }, ref) => {
+  const router = useRouter();
+  const selected = (startsWith && router.asPath.startsWith(startsWith)) || router.asPath === href;
 
-    let button = (
-      <UnstyledButton
-        {...props}
-        ref={ref}
-        className={cn(
-          "block w-full p-1 rounded text-gray-800 hover:bg-gray-100 hover:text-gray-900",
-          selected && "bg-gray-100 text-gray-900",
-          props.className,
-        )}
-      >
-        <Group align="center" gap="xs">
-          <Text c="violet">
-            <Group align="center">
-              <ThemeIcon variant={selected ? "filled" : "light"} color={props.color}>
-                {icon}
-              </ThemeIcon>
-            </Group>
-          </Text>
-          <Text size="sm" c="#333">
-            {props.children}
-          </Text>
-        </Group>
-      </UnstyledButton>
+  let button = (
+    <button
+      {...props}
+      ref={ref}
+      className={cn(
+        contextColors[color ?? "slate"],
+        "block cursor-pointer border-none w-full px-2 py-1.5 rounded",
+        selected
+          ? "bg-context-800 hover:bg-context-900 text-context-100"
+          : "text-gray-800 bg-gray-50 hover:bg-gray-200 hover:text-gray-900",
+        props.className,
+      )}
+    >
+      <div className={cn("flex items-center gap-1")}>
+        <span className="text-violet-500">
+          <ThemedIcon variant={selected ? "transparent-light" : "transparent"} color={color}>
+            {icon}
+          </ThemedIcon>
+        </span>
+        <span className="text-sm">{props.children}</span>
+      </div>
+    </button>
+  );
+
+  if (href) {
+    button = (
+      <NextLink href={href} className="no-underline">
+        {button}
+      </NextLink>
     );
+  }
 
-    if (href) {
-      button = (
-        <NextLink href={href} className="no-underline">
-          {button}
-        </NextLink>
-      );
-    }
-
-    return button;
-  },
-);
+  return button;
+});
 
 const GroupsModal = () => {
   const state = useSnapshot(store);
@@ -193,10 +178,10 @@ const GroupsModal = () => {
       }}
     >
       <div className="mb-4 text-sm text-gray-700">Choose the group</div>
-      <Grid gutter="xs">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {state.selectedGame &&
           state.selectedGame.groups.map((group) => (
-            <Grid.Col key={group.id} span={{ base: 6, x: 4 }}>
+            <div key={group.id}>
               <NextLink
                 href={`/play/${state.selectedGame?.id}/${group.id}`}
                 onClick={() => storeActions.setSelectedGame(null)}
@@ -205,9 +190,9 @@ const GroupsModal = () => {
                   {upperFirstLetter(group.id)}
                 </Button>
               </NextLink>
-            </Grid.Col>
+            </div>
           ))}
-      </Grid>
+      </div>
     </Modal>
   );
 };

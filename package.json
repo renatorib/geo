@@ -41,6 +41,7 @@
     "react-svg-pan-zoom": "^3.12.1",
     "react-vh": "^1.1.1",
     "regenerator-runtime": "^0.13.9",
+    "tailwind-merge": "^2.0.0",
     "valtio": "^1.11.3",
     "wikipedia": "^1.1.9",
     "zx": "^7.2.3"

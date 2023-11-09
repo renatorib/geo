@@ -5,7 +5,7 @@ import { RiCheckDoubleFill } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
-import { useTimer } from "~/features/timer";
+import { readableTime, useTimer } from "~/features/timer";
 import { Answer, Entity } from "~/games";
 import { shuffle as shuffleArray } from "~/lib/array";
 import { onNextPaint } from "~/lib/dom";
@@ -25,11 +25,10 @@ type UseGuesserProps<T extends Entity> = {
   title?: string;
   initialShuffled?: boolean;
   openCongratulations?: boolean;
-  refocus?: boolean;
   onComplete?: () => void;
   onGuess?: (props: { correct: boolean; text: string; node: Node<T> }) => void;
   onCorrectGuess?: (node: Node<T>, next: Node<T> | undefined) => void;
-  onSelectNode?: (node: Node<T>) => void;
+  onSelectNode?: (node: Node<T>, previous: Node<T>) => void;
 };
 
 export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
@@ -37,7 +36,6 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     data: initialData,
     initialShuffled = true,
     openCongratulations = true,
-    refocus = true,
     onComplete,
     onGuess,
     onCorrectGuess,
@@ -55,7 +53,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   const [selectedNode, _setSelectedNode] = React.useState<Node<T>>(data[0]);
   const setSelectedNode = (node: Node<T>) => {
     _setSelectedNode(node);
-    onSelectNode?.(node);
+    onSelectNode?.(node, selectedNode);
   };
 
   const shuffle = () => {
@@ -103,7 +101,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
       const isCompleted = !newSavedData(data).some((node) => node.checked === false);
       setData(newSavedData);
       playSound("correct", { volume: 0.1 });
-      notifyCorrectAnswer(answer(node).value);
+      notifyCorrectAnswer(getAnswer(node).value);
       const next = selectNextNode(node);
       onCorrectGuess?.(node, next);
 
@@ -114,7 +112,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
           openCongratulationsModal({
             guesses: data.length,
             name: props.title,
-            time: totalTime,
+            time: readableTime(totalTime),
           });
         }
       }
@@ -157,14 +155,6 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   const selectNextNode = (current: Node<T> = selectedNode) => {
     const next = getNextUnchecked(current);
     if (next) {
-      if (refocus) {
-        const currInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${current.id}"]`);
-        currInput?.blur();
-        onNextPaint(() => {
-          const nextInput = document.querySelector<HTMLInputElement>(`[data-quiz-input-id="${next.id}"]`);
-          nextInput?.focus();
-        });
-      }
       setSelectedNode(next);
       return next;
     }

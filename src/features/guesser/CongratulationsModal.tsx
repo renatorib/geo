@@ -1,9 +1,11 @@
 import React from "react";
 
-import { Box, Portal, Text } from "@mantine/core";
+import { Portal } from "@mantine/core";
 import { openModal } from "@mantine/modals";
 import Confetti from "react-confetti";
 import { GiPartyPopper } from "react-icons/gi";
+
+import { Text } from "~/components/ui/Text";
 
 type Props = {
   guesses: number;
@@ -13,14 +15,14 @@ type Props = {
 
 export const CongratulationsModal = (props: Props) => {
   return (
-    <Box style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
+    <div className="flex flex-col items-center gap-4">
       <Portal>
         <Confetti />
       </Portal>
-      <Text c="violet" style={{ animation: "pop 500ms ease-in" }}>
+      <Text color="violet" style={{ animation: "pop 500ms ease-in" }}>
         <GiPartyPopper size={120} />
       </Text>
-      <Text c="dark" ta="center">
+      <Text color="gray" className="text-center">
         <>
           <strong>Congratulations!</strong>
           <br />
@@ -28,7 +30,7 @@ export const CongratulationsModal = (props: Props) => {
           <strong>{props.time}</strong>
         </>
       </Text>
-    </Box>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ type Ref<T extends React.ElementType> = React.ComponentRef<T>;
 type Props<T extends React.ElementType, P = {}> = Omit<React.ComponentProps<T>, keyof P> & P;
 type Render<T extends React.ElementType, P = {}> = React.ForwardRefRenderFunction<Ref<T>, Props<T, P>>;
 
-export function fr<T extends React.ElementType, P = {}>(render: Render<T, P>) {
+export function fr<P = {}, T extends React.ElementType = "div">(render: Render<T, P>) {
   return React.forwardRef<Ref<T>, Props<T, P>>(render);
 }
 

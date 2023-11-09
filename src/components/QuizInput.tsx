@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Autocomplete, Box, ComboboxItem, Input, useCombobox } from "@mantine/core";
+import { Autocomplete, ComboboxItem, Input, useCombobox } from "@mantine/core";
 import { RiCheckLine, RiEyeLine } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
 import { MicOn, Recorder, useTranscripter } from "~/features/speech-recognition";
 import { onNextPaint, setInputValue } from "~/lib/dom";
 import { normalizeString } from "~/lib/string";
-import { cn } from "~/styles";
+import { cn } from "~/lib/styles";
 
 type QuizInputProps = {
   id: string;
@@ -24,9 +24,8 @@ export const QUIZ_INPUT_STATUS_PROP = "data-quiz-input-status";
 
 export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, onGuess, ...props }: QuizInputProps) => {
   const { lang } = useSettings();
-
-  // const [comboboxOpened, setComboboxOpened] = React.useState(false);
   const combobox = useCombobox();
+  (window as any).combobox = combobox;
 
   const transcripter = useTranscripter({
     enabled: transcriptor,
@@ -61,7 +60,7 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
     [QUIZ_INPUT_ID_PROP]: id,
     [QUIZ_INPUT_STATUS_PROP]: status,
     leftSection: icon,
-    rightSection: showRecorder && <Box style={{ width: 34 }} />,
+    rightSection: showRecorder && <div style={{ width: 34 }} />,
     title: status === "hidden" ? undefined : name,
     placeholder: `Type your guess in ${lang.emoji} (${lang.code})`,
 
@@ -89,47 +88,59 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
   };
 
   return (
-    <Box className="relative w-full">
+    <div className="relative w-full">
       {showRecorder && (
-        <Box style={{ position: "absolute", right: 3, bottom: 3, zIndex: 1 }}>
+        <div className="absolute right-1 bottom-1 z-10">
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
             disabled={transcripter.listening && transcripter.meta !== id}
             onClick={transcripter.listening ? () => transcripter.stop() : () => transcripter.start(id)}
           />
-        </Box>
+        </div>
       )}
 
       {props.autoComplete ? (
-        <Autocomplete
-          data={props.autoComplete}
-          {...inputProps}
-          comboboxProps={{ store: combobox }}
-          filter={(input) =>
-            (input.options as ComboboxItem[]).filter((option) =>
-              normalizeString(option.value).startsWith(normalizeString(input.search)),
-            )
-          }
-        />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            combobox.clickSelectedOption();
+          }}
+        >
+          <Autocomplete
+            data={props.autoComplete}
+            {...inputProps}
+            comboboxProps={{ store: combobox }}
+            filter={(input) =>
+              (input.options as ComboboxItem[]).filter((option) =>
+                normalizeString(option.value).startsWith(normalizeString(input.search)),
+              )
+            }
+          />
+        </form>
       ) : (
-        <Input<"input"> {...inputProps} />
+        <Input<"input"> key={status} {...inputProps} />
       )}
-    </Box>
+    </div>
   );
 };
 
-QuizInput.getInputByStatus = (status: string) => {
+QuizInput.getByStatus = (status: string) => {
   return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_STATUS_PROP}="${status}"]`);
 };
 
-QuizInput.getInputById = (id: string | number) => {
+QuizInput.getById = (id: string | number) => {
   return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_ID_PROP}="${id}"]`);
 };
 
-QuizInput.clearInputById = (id: string | number) => {
-  return setInputValue(QuizInput.getInputById(id), "");
+QuizInput.clearById = (id: string | number) => {
+  return setInputValue(QuizInput.getById(id), "");
 };
 
-QuizInput.focusInputById = (id: string | number) => {
-  QuizInput.getInputById(id)?.focus();
+QuizInput.focusById = (id: string | number) => {
+  QuizInput.getById(id)?.focus();
+};
+
+QuizInput.blurById = (id: string | number) => {
+  QuizInput.getById(id)?.blur();
 };

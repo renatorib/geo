@@ -37,7 +37,7 @@ const Play = ({ url }: PageProps) => {
 
   if (game.type === "world-map") {
     return (
-      <AppLayout contained={false} showFooter={false}>
+      <AppLayout contained={false} showFooter={false} key={url}>
         <NoSSR>
           {() => <WorldMap title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />}
         </NoSSR>
@@ -47,7 +47,7 @@ const Play = ({ url }: PageProps) => {
 
   if (game.type === "world-map-1x1") {
     return (
-      <AppLayout contained={false} showFooter={false}>
+      <AppLayout contained={false} showFooter={false} key={url}>
         <NoSSR>
           {() => (
             <WorldMap1x1 title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />
@@ -59,20 +59,16 @@ const Play = ({ url }: PageProps) => {
 
   if (game.type === "cards-grid") {
     return (
-      <AppLayout>
-        <NoSSR>
-          {() => <CardsGrid title={game.title} data={game.filteredData} display={game.display} answer={game.answer} />}
-        </NoSSR>
+      <AppLayout key={url}>
+        <NoSSR>{() => <CardsGrid game={game} />}</NoSSR>
       </AppLayout>
     );
   }
 
   if (game.type === "cards-1x1") {
     return (
-      <AppLayout>
-        <NoSSR>
-          {() => <Cards1x1 title={game.title} data={game.filteredData} display={game.display} answer={game.answer} />}
-        </NoSSR>
+      <AppLayout key={url}>
+        <NoSSR>{() => <Cards1x1 game={game} />}</NoSSR>
       </AppLayout>
     );
   }

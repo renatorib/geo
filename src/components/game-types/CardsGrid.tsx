@@ -1,56 +1,44 @@
 import React from "react";
 
-import { Text, Group, Box, Stack, Grid, ActionIcon, Menu } from "@mantine/core";
+import { ActionIcon, Menu } from "@mantine/core";
 import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
 
-import { Display } from "~/data-sources";
 import { useGuesser } from "~/features/guesser";
 import { useSettings } from "~/features/settings";
 import { TimerControl } from "~/features/timer";
-import { Entity, Answer } from "~/games";
+import { GameProps } from "~/games";
 
 import { QuizCard } from "../QuizCard";
+import { QuizInput } from "../QuizInput";
+import { Text } from "../ui/Text";
 
-type CardsProps<T extends Entity> = {
-  data: T[];
-  answer: Answer<T>;
-  title: string;
-  display?: Display<T>;
+type CardsGridProps = {
+  game: GameProps;
 };
 
-export const CardsGrid = <T extends Entity>(props: CardsProps<T>) => {
+export const CardsGrid = ({ game }: CardsGridProps) => {
   const settings = useSettings();
 
   const guesser = useGuesser({
-    data: props.data,
-    answer: props.answer,
-    title: props.title,
+    data: game.filteredData,
+    answer: game.answer,
+    title: game.title,
+    onSelectNode: (node) => QuizInput.focusById(node.id),
   });
 
   return (
-    <Stack pt="sm">
-      <Box
-        py="xs"
-        mx="-md"
-        px="md"
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 2,
-          background: "#ffffff",
-        }}
-      >
-        <Group gap="xl">
-          <Text fw={700}>{props.title}</Text>
-          <Box>
-            <Text>
-              {guesser.totalChecked} / {guesser.data.length}
-            </Text>
-          </Box>
+    <div className="flex flex-col gap-2 w-full pt-4">
+      <div className="py-4 -mx-2 px-2 sticky top-0 z-10 bg-white">
+        <div className="flex items-center gap-6">
+          <Text weight={700}>{game.title}</Text>
+
+          <Text muted>
+            {guesser.totalChecked} / {guesser.data.length}
+          </Text>
 
           {settings.timer && <TimerControl timer={guesser.timer} />}
 
-          <Group ml="auto" gap="xs">
+          <div className="flex items-center ml-auto gap-1">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
                 <ActionIcon radius="xl" variant="default">
@@ -74,30 +62,30 @@ export const CardsGrid = <T extends Entity>(props: CardsProps<T>) => {
                 </Menu.Item>
               </Menu.Dropdown>
             </Menu>
-          </Group>
-        </Group>
-      </Box>
+          </div>
+        </div>
+      </div>
 
-      <Grid>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
         {guesser.data.map((node) => {
-          const { value } = guesser.answer(node);
+          const value = guesser.getNodeValue(node);
           const status = guesser.getNodeStatus(node);
 
           return (
-            <Grid.Col key={node.id} span={{ base: 6, md: 4 }}>
-              <QuizCard
-                id={node.entity.id}
-                name={value}
-                status={status}
-                onGuess={(text) => guesser.guess(node, text)}
-                // onFocus={() => guesser.setSelectedNode(node)}
-              >
-                {props.display ? props.display({ data: node.entity, status }) : null}
+            <div key={node.id}>
+              <QuizCard status={status} onClick={() => QuizInput.focusById(node.id)}>
+                {game.display ? game.display({ data: node.entity, status }) : null}
+                <QuizInput
+                  id={node.entity.id}
+                  name={value}
+                  status={status}
+                  onGuess={(text) => guesser.guess(node, text)}
+                />
               </QuizCard>
-            </Grid.Col>
+            </div>
           );
         })}
-      </Grid>
-    </Stack>
+      </div>
+    </div>
   );
 };

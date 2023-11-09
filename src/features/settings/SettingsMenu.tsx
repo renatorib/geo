@@ -5,7 +5,7 @@ import { RiSettings2Line } from "react-icons/ri";
 
 import { useSpeechRecognition } from "../speech-recognition";
 
-import { useSettings } from "./useSettings";
+import { useSettings } from "./use-settings";
 
 export const SettingsMenu = () => {
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();

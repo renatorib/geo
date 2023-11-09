@@ -5,7 +5,7 @@ import { RiMicFill } from "react-icons/ri";
 
 import { fr } from "~/lib/react";
 
-export const Recorder = fr<typeof ActionIcon<"button">, { recording?: boolean }>((props, ref) => {
+export const Recorder = fr<{ recording?: boolean }, typeof ActionIcon<"button">>((props, ref) => {
   return (
     <ActionIcon
       ref={ref}
