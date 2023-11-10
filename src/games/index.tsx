@@ -252,6 +252,16 @@ export const games = [
   },
 
   {
+    name: "Capitals Reversed",
+    description: "Guess capitals by countries",
+    id: "capitals-2-1x1",
+    icon: <RiCommunityLine />,
+    type: "cards-1x1",
+    training: false,
+    ...collections.byCapitals,
+  },
+
+  {
     name: "Capitals Grid",
     description: "Guess countries by their capitals",
     id: "capitals",
