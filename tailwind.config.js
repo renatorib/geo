@@ -8,6 +8,19 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        ".inset-center": {
+          "@apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2": {},
+        },
+        ".inset-y-center": {
+          "@apply top-1/2 -translate-y-1/2": {},
+        },
+        ".inset-x-center": {
+          "@apply left-1/2 -translate-x-1/2": {},
+        },
+      });
+    }),
     plugin(
       ({ matchUtilities, theme }) => {
         matchUtilities(

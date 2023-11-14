@@ -10,7 +10,7 @@ import { LangSelectorMenu, useSettings } from "~/features/settings";
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
     <Table.Th style={{ width }}>
-      <Box style={{ display: "flex", gap: 5, alignItems: "center" }}>{children}</Box>
+      <div className="flex items-center gap-1">{children}</div>
     </Table.Th>
   );
 };
@@ -55,11 +55,11 @@ const DataTablePage = () => {
 
   return (
     <AppLayout contained={false}>
-      <Box p="md" style={{ margin: "0 auto" }}>
+      <div className="p-3 mx-auto">
         <NoSSR fallback={<span>Loading...</span>}>
           {() => (
             <>
-              <Box style={{ maxWidth: "100%", overflowX: "auto", margin: "0 auto" }}>
+              <div className="max-w-full overflow-x-auto mx-auto">
                 <Table striped={true}>
                   <Table.Thead>
                     <Table.Tr>
@@ -136,9 +136,7 @@ const DataTablePage = () => {
                               </>
                             ) : null}
                           </Table.Td>
-                          <Table.Td>
-                            {c.shape ? "Yes" : <Box style={{ background: "red", color: "white" }}>No</Box>}
-                          </Table.Td>
+                          <Table.Td>{c.shape ? "Yes" : <div className="bg-red-500 text-white">No</div>}</Table.Td>
                           <Table.Td>{c.alpha2}</Table.Td>
                           <Table.Td>{c.alpha3}</Table.Td>
                           <Table.Td>
@@ -151,11 +149,11 @@ const DataTablePage = () => {
                     })}
                   </Table.Tbody>
                 </Table>
-              </Box>
+              </div>
             </>
           )}
         </NoSSR>
-      </Box>
+      </div>
     </AppLayout>
   );
 };

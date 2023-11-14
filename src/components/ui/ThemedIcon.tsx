@@ -23,8 +23,8 @@ export const ThemedIcon = fr<{ variant?: keyof typeof variants; color?: keyof ty
     const classes = cn(contextColors[color], variants[variant].root);
 
     return (
-      <div ref={ref} {...props} className={cn("w-[1.5em] h-[1.5em] rounded", classes, props.className)}>
-        <span className="text-lg align-middle">{props.children}</span>
+      <div ref={ref} {...props} className={cn("inline-flex text-xl rounded", classes, props.className)}>
+        {props.children}
       </div>
     );
   },

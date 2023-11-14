@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Box, Dialog, Text } from "@mantine/core";
+import { Dialog } from "@mantine/core";
 import { RiVolumeUpLine } from "react-icons/ri";
 import { useSpeechRecognition } from "react-speech-recognition";
 
+import { Text } from "~/components/ui/Text";
 import { usePrevious } from "~/hooks";
 
 export const TranscriptDialog = () => {
@@ -25,21 +26,14 @@ export const TranscriptDialog = () => {
       opened={show && !!message}
       position={{ top: 20, left: "calc(50vw - 150px)" }}
       transitionProps={{ transition: "slide-down" }}
-      styles={{
-        root: {
-          width: 300,
-          textAlign: "center",
-          boxShadow: "none",
-          background: "rgba(0, 0, 0, 0.5)",
-          color: "white",
-          border: "none",
-        },
+      classNames={{
+        root: "w-[300px] text-ce shadow-none text-white border-none bg-black/50",
       }}
     >
-      <Box style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <RiVolumeUpLine style={{ flexShrink: "0" }} />
+      <div className="flex items-center gap-2">
+        <RiVolumeUpLine className="shrink-0" />
         <Text size="lg">{message}</Text>
-      </Box>
+      </div>
     </Dialog>
   );
 };

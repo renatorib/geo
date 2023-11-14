@@ -27,20 +27,13 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 const Play = ({ url }: PageProps) => {
-  // <game_url>/<game_group>
-  // ex.: flags/world
   const game = findGameByUrl(url);
-
-  if (!game) {
-    return null;
-  }
+  if (!game) return null;
 
   if (game.type === "world-map") {
     return (
       <AppLayout contained={false} showFooter={false} key={url}>
-        <NoSSR>
-          {() => <WorldMap title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />}
-        </NoSSR>
+        <NoSSR>{() => <WorldMap game={game} />}</NoSSR>
       </AppLayout>
     );
   }
@@ -48,11 +41,7 @@ const Play = ({ url }: PageProps) => {
   if (game.type === "world-map-1x1") {
     return (
       <AppLayout contained={false} showFooter={false} key={url}>
-        <NoSSR>
-          {() => (
-            <WorldMap1x1 title={game.title} data={game.filteredData} dataToRender={game.data} answer={game.answer} />
-          )}
-        </NoSSR>
+        <NoSSR>{() => <WorldMap1x1 game={game} />}</NoSSR>
       </AppLayout>
     );
   }

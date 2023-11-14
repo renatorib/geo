@@ -18,3 +18,9 @@ export const setInputValue = <T extends HTMLInputElement | HTMLTextAreaElement>(
     input.dispatchEvent(event);
   }
 };
+
+export const setStyle = (el: HTMLElement, style: object) => {
+  Object.entries(style).forEach(([prop, value]) => {
+    el.style.setProperty(prop, value);
+  });
+};

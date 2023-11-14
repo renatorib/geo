@@ -1,37 +1,31 @@
 import React from "react";
 
-import { ActionIcon, Box, Center, Menu } from "@mantine/core";
+import { ActionIcon, Menu } from "@mantine/core";
 import { RiMore2Fill, RiRefreshLine, RiZoomInFill } from "react-icons/ri";
 
-import { Country } from "~/data-sources/countries";
-import { useGuesser } from "~/features/guesser";
-import { Answer } from "~/games";
+import { GuessInput, useGuesser } from "~/features/guesser";
+import { GameProps } from "~/games";
 import { onNextPaint } from "~/lib/dom";
 import { cn } from "~/lib/styles";
 import { getViewboxOfPath, Viewbox } from "~/lib/svg";
 
-import { QuizInput } from "../QuizInput";
-import { SvgPanZoom, ReactSVGPanZoom, Value } from "../SvgPanZoom";
+import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
 
 type WorldMapProps = {
-  data: Country[];
-  dataToRender: Country[];
-  answer: Answer<Country>;
-  title: string;
+  game: GameProps;
 };
 
 const MAX_ZOOM = 40;
 const MIN_ZOOM = 0.3;
 
-export const WorldMap = (props: WorldMapProps) => {
+export const WorldMap = ({ game }: WorldMapProps) => {
   const [viewer, setViewer] = React.useState<ReactSVGPanZoom>();
-  const [value, setValue] = React.useState<Value>();
 
   const guesser = useGuesser({
-    data: props.data,
-    answer: props.answer,
-    title: props.title,
-    onCorrectGuess: () => QuizInput.clearById("world-map"),
+    data: game.filteredData,
+    answer: game.answer,
+    title: game.title,
+    onCorrectGuess: () => GuessInput.clearById("world-map"),
   });
 
   const zoomOnViewbox = (viewer: ReactSVGPanZoom, vb: Viewbox) => {
@@ -40,43 +34,31 @@ export const WorldMap = (props: WorldMapProps) => {
   };
 
   return (
-    <Box style={{ position: "relative" }}>
-      <Center style={{ position: "absolute", width: "100%", zIndex: 1, top: 0 }}>
-        <Box
-          p="sm"
-          m="sm"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-            border: "1px solid rgba(200, 200, 200, 0.4)",
-            background: "rgba(255, 255, 255, 0.4)",
-            backdropFilter: "blur(2px)",
-            borderRadius: 8,
-            maxWidth: 400,
-            width: "100%",
-            opacity: value ? 1 : 0,
-            transform: value ? "translateY(0)" : "translateY(-50px)",
-            transition: "all 300ms ease-in-out",
-            willChange: "all",
-          }}
+    <div className="relative">
+      <div className="absolute inset-x-center z-10">
+        <div
+          className={cn(
+            "p-2 m-2 flex items-center justify-between gap-3 border border-solid border-slate-400/20 bg-white/70",
+            "backdrop-blur-sm rounded-lg max-w-sm w-full transition-all",
+            !!viewer ? "opacity-100 translateY(0)" : "opacity-0 translateY(-50px)",
+            "opacity-100 translateY(0)",
+          )}
         >
-          <Box style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
+          <div className="flex items-center shrink-0">
             <span className="text-sm text-gray-400">
               {guesser.totalChecked} / {guesser.data.length}
             </span>
-          </Box>
+          </div>
 
-          <Box style={{ flexGrow: 1 }}>
-            <QuizInput
+          <div className="grow">
+            <GuessInput
               id="world-map"
               name="world-map"
               placeholder="Type country names..."
               onGuess={(text) => guesser.guessAll(text)}
               classNames={{ input: "!border !border-gray-200" }}
             />
-          </Box>
+          </div>
 
           <Menu withinPortal withArrow width={200} position="bottom-end">
             <Menu.Target>
@@ -101,22 +83,21 @@ export const WorldMap = (props: WorldMapProps) => {
               )}
             </Menu.Dropdown>
           </Menu>
-        </Box>
-      </Center>
+        </div>
+      </div>
 
       <SvgPanZoom
         scaleFactorMax={MAX_ZOOM}
         scaleFactorMin={MIN_ZOOM}
-        onChangeValue={setValue}
         onRef={setViewer}
         onLoad={(viewer) => {
           onNextPaint(() => {
-            zoomOnViewbox(viewer, getViewboxOfPath(props.data.map((c) => c.shape)));
+            zoomOnViewbox(viewer, getViewboxOfPath(game.data.map((c) => c.shape)));
           });
         }}
       >
         <svg viewBox="0 0 1100 666">
-          {props.dataToRender.map((c) => {
+          {game.data.map((c) => {
             const node = guesser.data.find((n) => n.id === c.id);
 
             if (!node) {
@@ -132,7 +113,6 @@ export const WorldMap = (props: WorldMapProps) => {
               );
             }
 
-            const strokeWidth = 0.7 / (value?.a ?? 1);
             const isChecked = node.entity.independent
               ? node.checked
               : node.entity.sovereignty
@@ -144,16 +124,18 @@ export const WorldMap = (props: WorldMapProps) => {
                 <path
                   id={`path-${node.id}`}
                   className={cn("fill-gray-300 stroke-gray-600", isChecked && "fill-green-400 stroke-green-700")}
-                  strokeWidth={strokeWidth}
-                  strokeDasharray={node.entity.disputed ? strokeWidth * 10 : undefined}
                   d={node.entity.shape}
+                  style={{
+                    strokeWidth: "calc(0.7 / var(--viewer-zoom, 1))",
+                    strokeDasharray: node.entity.disputed ? "calc((0.7 / var(--viewer-zoom, 1)) * 10)" : undefined,
+                  }}
                 />
               </React.Fragment>
             );
           })}
         </svg>
       </SvgPanZoom>
-    </Box>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
+import { AspectRatio, Text, useMantineTheme } from "@mantine/core";
 
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
@@ -16,7 +16,7 @@ export const ShapesDisplay = ({ data, status }: DisplayProps<Country>) => {
   }, [data.shape]);
 
   return (
-    <Box>
+    <div>
       {data.shape && shapeViewbox.viewbox ? (
         <svg viewBox={shapeViewbox.viewbox} width="100%" height="100%">
           <path
@@ -27,14 +27,14 @@ export const ShapesDisplay = ({ data, status }: DisplayProps<Country>) => {
           />
         </svg>
       ) : (
-        <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
-          <Center>
+        <AspectRatio ratio={45 / 30} className="w-full">
+          <div className="grid place-content-center w-full h-full">
             <Text c="red" size="xs">
               Country shape not found
             </Text>
-          </Center>
+          </div>
         </AspectRatio>
       )}
-    </Box>
+    </div>
   );
 };

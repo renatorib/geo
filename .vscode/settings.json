@@ -24,9 +24,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "tailwindCSS.experimental.classRegex": [
-    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["twMerge\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // const foo = cn("...")
+    // const foo = cx("...")
+    // const foo = classnames("...")
+    ["cn|cx|classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // <Component classNames={{ foo: "..." }} />
+    ["classNames=\\{([^}]*)\\}", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // const foo = /* tw */ "..."
     ["/\\* tw \\*/ ?(.*)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // const foo = /* tw */ { bar: "...", baz: "..." }
     ["/\\* tw \\*/ ?\\{([^}]*)\\}", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ]
 }

@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { Group, Stack, Box, Burger, Drawer, Container, useMantineTheme, Modal, Grid, Button } from "@mantine/core";
+import { Box, Burger, Drawer, Container, Modal } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
 import useVH from "react-vh";
 import { useSnapshot } from "valtio";
@@ -16,11 +16,11 @@ import { upperFirstLetter } from "~/lib/string";
 import { cn, contextColors } from "~/lib/styles";
 import { store, storeActions } from "~/stores/store";
 
-import { ThemedIcon } from "./ui/ThemedIcon";
+import { Button } from "./ui/Button";
+import { InlineIcon } from "./ui/InlineIcon";
 
 const AppHeader = () => {
   useVH();
-  const theme = useMantineTheme();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
 
   return (
@@ -31,15 +31,7 @@ const AppHeader = () => {
             <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
           </div>
           <NextLink href="/">
-            <div
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: 13,
-                transform: "translateX(-50%)",
-                color: theme.colors.dark[9],
-              }}
-            >
+            <div className="absolute left-1/2 -translate-x-1/2 top-[13px]">
               <Logo size={22} color="#449966" />
             </div>
           </NextLink>
@@ -69,7 +61,7 @@ const AppHeader = () => {
                 <NavbarLink
                   key={game.id}
                   icon={game.icon}
-                  color="violet"
+                  color="yellow"
                   startsWith={`/play/${game.id}/`}
                   onClick={() => {
                     storeActions.setSelectedGame(game);
@@ -88,7 +80,7 @@ const AppHeader = () => {
                 <NavbarLink
                   key={game.id}
                   icon={game.icon}
-                  color="blue"
+                  color="slate"
                   startsWith={`/play/${game.id}/`}
                   onClick={() => {
                     storeActions.setSelectedGame(game);
@@ -133,23 +125,20 @@ const NavbarLink = fr<
     <button
       {...props}
       ref={ref}
+      aria-pressed={Boolean(selected)}
       className={cn(
         contextColors[color ?? "slate"],
-        "block cursor-pointer border-none w-full px-2 py-1.5 rounded",
-        selected
-          ? "bg-context-800 hover:bg-context-900 text-context-100"
-          : "text-gray-800 bg-gray-50 hover:bg-gray-200 hover:text-gray-900",
+        "group flex items-center p-2.5 gap-2 cursor-pointer border-none w-full rounded",
+        "bg-slate-50 aria-pressed:bg-context-900 hover:bg-context-900 transition",
         props.className,
       )}
     >
-      <div className={cn("flex items-center gap-1")}>
-        <span className="text-violet-500">
-          <ThemedIcon variant={selected ? "transparent-light" : "transparent"} color={color}>
-            {icon}
-          </ThemedIcon>
-        </span>
-        <span className="text-sm">{props.children}</span>
-      </div>
+      <InlineIcon className="text-context-600 group-aria-pressed:text-context-200 group-hover:text-context-200 transition">
+        {icon}
+      </InlineIcon>
+      <span className="text-sm text-context-900 group-aria-pressed:text-context-50 group-hover:text-context-50 transition">
+        {props.children}
+      </span>
     </button>
   );
 
@@ -180,18 +169,26 @@ const GroupsModal = () => {
       <div className="mb-4 text-sm text-gray-700">Choose the group</div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {state.selectedGame &&
-          state.selectedGame.groups.map((group) => (
-            <div key={group.id}>
-              <NextLink
-                href={`/play/${state.selectedGame?.id}/${group.id}`}
-                onClick={() => storeActions.setSelectedGame(null)}
-              >
-                <Button color="violet" variant="light" fullWidth>
-                  {upperFirstLetter(group.id)}
-                </Button>
-              </NextLink>
-            </div>
-          ))}
+          state.selectedGame.groups.map((group) => {
+            const isWorld = group.id === "world";
+            return (
+              <div key={group.id}>
+                <NextLink
+                  href={`/play/${state.selectedGame?.id}/${group.id}`}
+                  onClick={() => storeActions.setSelectedGame(null)}
+                >
+                  <Button
+                    color={isWorld ? "yellow" : "slate"}
+                    variant={isWorld ? "filled" : "light"}
+                    className="justify-center"
+                    full
+                  >
+                    {upperFirstLetter(group.id)}
+                  </Button>
+                </NextLink>
+              </div>
+            );
+          })}
       </div>
     </Modal>
   );
@@ -213,26 +210,16 @@ export const AppLayout = ({
   const MainWrapper = contained ? Container : Box;
 
   return (
-    <Box style={{ display: "flex", flexDirection: "column" }}>
+    <div className="flex flex-col">
       {showHeader && <AppHeader />}
       {showTranscripter && <TranscriptDialog />}
 
       <GroupsModal />
 
-      <MainWrapper
-        className="min-100dvh"
-        style={{
-          "--offset-height": "53px",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Box component="main" style={{ height: "100%", flexGrow: 1, display: "flex", alignItems: "stretch" }}>
-          {children}
-        </Box>
+      <MainWrapper className="flex flex-col w-full min-100dvh" style={{ "--offset-height": "53px" }}>
+        <main className="flex grow h-full">{children}</main>
         {showFooter && <AppFooter />}
       </MainWrapper>
-    </Box>
+    </div>
   );
 };

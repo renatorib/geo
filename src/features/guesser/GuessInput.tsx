@@ -9,7 +9,7 @@ import { onNextPaint, setInputValue } from "~/lib/dom";
 import { normalizeString } from "~/lib/string";
 import { cn } from "~/lib/styles";
 
-type QuizInputProps = {
+type GuessInputProps = {
   id: string;
   name: string;
   onGuess: (text: string) => void;
@@ -19,10 +19,17 @@ type QuizInputProps = {
   onChange?: (value: string) => any;
 } & Omit<React.ComponentProps<typeof Input<"input">>, "autoComplete" | "onChange">;
 
-export const QUIZ_INPUT_ID_PROP = "data-quiz-input-id";
-export const QUIZ_INPUT_STATUS_PROP = "data-quiz-input-status";
+export const GUESS_INPUT_ID_PROP = "data-guess-input-id";
+export const GUESS_INPUT_STATUS_PROP = "data-guess-input-status";
 
-export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, onGuess, ...props }: QuizInputProps) => {
+export const GuessInput = ({
+  id,
+  name,
+  status = "hidden",
+  transcriptor = true,
+  onGuess,
+  ...props
+}: GuessInputProps) => {
   const { lang } = useSettings();
   const combobox = useCombobox();
   (window as any).combobox = combobox;
@@ -57,8 +64,8 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
   };
 
   const inputProps = {
-    [QUIZ_INPUT_ID_PROP]: id,
-    [QUIZ_INPUT_STATUS_PROP]: status,
+    [GUESS_INPUT_ID_PROP]: id,
+    [GUESS_INPUT_STATUS_PROP]: status,
     leftSection: icon,
     rightSection: showRecorder && <div style={{ width: 34 }} />,
     title: status === "hidden" ? undefined : name,
@@ -125,22 +132,22 @@ export const QuizInput = ({ id, name, status = "hidden", transcriptor = true, on
   );
 };
 
-QuizInput.getByStatus = (status: string) => {
-  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_STATUS_PROP}="${status}"]`);
+GuessInput.getByStatus = (status: string) => {
+  return document.querySelector<HTMLInputElement>(`[${GUESS_INPUT_STATUS_PROP}="${status}"]`);
 };
 
-QuizInput.getById = (id: string | number) => {
-  return document.querySelector<HTMLInputElement>(`[${QUIZ_INPUT_ID_PROP}="${id}"]`);
+GuessInput.getById = (id: string | number) => {
+  return document.querySelector<HTMLInputElement>(`[${GUESS_INPUT_ID_PROP}="${id}"]`);
 };
 
-QuizInput.clearById = (id: string | number) => {
-  return setInputValue(QuizInput.getById(id), "");
+GuessInput.clearById = (id: string | number) => {
+  return setInputValue(GuessInput.getById(id), "");
 };
 
-QuizInput.focusById = (id: string | number) => {
-  QuizInput.getById(id)?.focus();
+GuessInput.focusById = (id: string | number) => {
+  GuessInput.getById(id)?.focus();
 };
 
-QuizInput.blurById = (id: string | number) => {
-  QuizInput.getById(id)?.blur();
+GuessInput.blurById = (id: string | number) => {
+  GuessInput.getById(id)?.blur();
 };

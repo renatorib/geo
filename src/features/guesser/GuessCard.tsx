@@ -3,11 +3,11 @@ import React from "react";
 import { fr } from "~/lib/react";
 import { cn, contextColors } from "~/lib/styles";
 
-export type QuizCardProps = {
+export type GuessCardProps = {
   status?: "correct" | "spoiler" | "hidden";
 };
 
-export const QuizCard = fr<QuizCardProps, "div">((_props, ref) => {
+export const GuessCard = fr<GuessCardProps, "div">((_props, ref) => {
   const { status, children, ...props } = _props;
 
   const color: keyof typeof contextColors = status === "correct" ? "green" : status === "spoiler" ? "red" : "gray";

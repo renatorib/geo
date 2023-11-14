@@ -1,7 +1,9 @@
 import React from "react";
 
-import { ActionIcon, Group, Menu, Switch } from "@mantine/core";
+import { Group, Menu, Switch } from "@mantine/core";
 import { RiSettings2Line } from "react-icons/ri";
+
+import { ButtonIcon } from "~/components/ui/ButtonIcon";
 
 import { useSpeechRecognition } from "../speech-recognition";
 
@@ -14,9 +16,9 @@ export const SettingsMenu = () => {
   return (
     <Menu shadow="md" width={250} position="bottom-end" withArrow>
       <Menu.Target>
-        <ActionIcon radius="xl" variant="default">
+        <ButtonIcon radius="full" variant="outline">
           <RiSettings2Line size={20} />
-        </ActionIcon>
+        </ButtonIcon>
       </Menu.Target>
 
       <Menu.Dropdown>

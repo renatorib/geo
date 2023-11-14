@@ -3,13 +3,11 @@ import React from "react";
 import { ActionIcon, Menu } from "@mantine/core";
 import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
 
-import { useGuesser } from "~/features/guesser";
+import { GuessCard, GuessInput, useGuesser } from "~/features/guesser";
 import { useSettings } from "~/features/settings";
 import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 
-import { QuizCard } from "../QuizCard";
-import { QuizInput } from "../QuizInput";
 import { Text } from "../ui/Text";
 
 type CardsGridProps = {
@@ -23,7 +21,7 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
-    onSelectNode: (node) => QuizInput.focusById(node.id),
+    onSelectNode: (node) => GuessInput.focusById(node.id),
   });
 
   return (
@@ -73,15 +71,15 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
 
           return (
             <div key={node.id}>
-              <QuizCard status={status} onClick={() => QuizInput.focusById(node.id)}>
+              <GuessCard status={status} onClick={() => GuessInput.focusById(node.id)}>
                 {game.display ? game.display({ data: node.entity, status }) : null}
-                <QuizInput
+                <GuessInput
                   id={node.entity.id}
                   name={value}
                   status={status}
                   onGuess={(text) => guesser.guess(node, text)}
                 />
-              </QuizCard>
+              </GuessCard>
             </div>
           );
         })}

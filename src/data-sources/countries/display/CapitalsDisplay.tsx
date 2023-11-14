@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AspectRatio, Box, Center, Text, useMantineTheme } from "@mantine/core";
+import { AspectRatio, Text, useMantineTheme } from "@mantine/core";
 
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
@@ -15,11 +15,11 @@ export const CapitalsDisplay = ({ data, status }: DisplayProps<Country>) => {
   const nameEn = data.capital.en;
 
   return (
-    <Box>
+    <div>
       {name ? (
-        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
-          <Center>
-            <Box>
+        <AspectRatio ratio={5 / 2} className="w-full">
+          <div className="grid place-items-center">
+            <div>
               <Text c={color} fz={16} ta="center" fw={700}>
                 {name}
               </Text>
@@ -30,18 +30,18 @@ export const CapitalsDisplay = ({ data, status }: DisplayProps<Country>) => {
                   </Text>
                 </div>
               )}
-            </Box>
-          </Center>
+            </div>
+          </div>
         </AspectRatio>
       ) : (
-        <AspectRatio ratio={5 / 2} style={{ width: "100%" }}>
-          <Center>
+        <AspectRatio ratio={5 / 2} className="w-full">
+          <div className="grid place-items-center">
             <Text c="red" size="xs">
               ?
             </Text>
-          </Center>
+          </div>
         </AspectRatio>
       )}
-    </Box>
+    </div>
   );
 };

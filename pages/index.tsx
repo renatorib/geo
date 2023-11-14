@@ -1,72 +1,71 @@
 import React from "react";
 
-import { Box, Card, Grid, Stack, Text } from "@mantine/core";
-
 import { AppLayout } from "~/components";
+import { Text } from "~/components/ui/Text";
 import { Game, games } from "~/games";
+import { cn, contextColors } from "~/lib/styles";
 import { storeActions } from "~/stores/store";
 
 const Index = () => {
   return (
     <AppLayout>
-      <Box style={{ width: "100%", maxHeight: "1000px", display: "grid", placeItems: "center", margin: "2rem 0" }}>
-        <Stack gap={36}>
-          <Stack gap={12}>
-            <Text size="lg" fw={700}>
+      <div className="w-full grid place-items-center my-8">
+        <div className="flex flex-col gap-9">
+          <div className="flex flex-col gap-3">
+            <Text size="lg" weight={700}>
               Select a quiz to play
             </Text>
-            <Grid>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
               {games
                 .filter((g) => g.training === false)
                 .map((game) => (
-                  <Grid.Col key={game.name} span={{ base: 12, md: 4 }}>
-                    <GameCard game={game} color="violet" />
-                  </Grid.Col>
+                  <GameCard key={game.name} game={game} color="yellow" />
                 ))}
-            </Grid>
-          </Stack>
+            </div>
+          </div>
 
-          <Stack gap={12}>
-            <Text size="lg" fw={700}>
+          <div className="flex flex-col gap-3">
+            <Text size="lg" weight={700}>
               To play and learn
             </Text>
-            <Grid>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
               {games
                 .filter((g) => g.training === true)
                 .map((game) => (
-                  <Grid.Col key={game.name} span={{ base: 12, md: 4 }}>
-                    <GameCard game={game} color="blue" />
-                  </Grid.Col>
+                  <GameCard key={game.name} game={game} color="slate" />
                 ))}
-            </Grid>
-          </Stack>
-        </Stack>
-      </Box>
+            </div>
+          </div>
+        </div>
+      </div>
     </AppLayout>
   );
 };
 
-const GameCard = ({ game, color }: { game: Game<any>; color?: string }) => {
+const GameCard = ({ game, color }: { game: Game<any>; color?: keyof typeof contextColors }) => {
   return (
-    <Card
-      withBorder
-      shadow="sm"
-      component="a"
-      className="cursor-pointer select-none hover:bg-gray-200 active:bg-gray-300"
+    <button
       onClick={() => storeActions.setSelectedGame(game)}
+      className={cn(
+        "group flex items-center gap-3 w-full p-4 rounded",
+        "cursor-pointer border border-slate-300 select-none transition-all",
+        "bg-slate-50 hover:bg-context-900 hover:shadow-md active:bg-slate-200 active:shadow-inner",
+        contextColors[color ?? "slate"],
+      )}
     >
-      <Box style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-        <Box style={{ fontSize: "40px", color: `var(--mantine-color-${color}-6)`, display: "flex" }}>{game.icon}</Box>
-        <Box>
-          <Text c="gray.9" fw={700}>
-            {game.name}
-          </Text>
-          <Text c="gray.7" fz="0.8em">
-            {game.description}
-          </Text>
-        </Box>
-      </Box>
-    </Card>
+      <div
+        className={cn(
+          "flex text-5xl text-context-600 group-hover:text-context-200 transition",
+          "group-hover:-translate-x-1 group-hover:-translate-y-1 g group-hover:drop-shadow-lg",
+        )}
+      >
+        {game.icon}
+      </div>
+      <div className="flex flex-col gap-1 text-left">
+        <div className="font-bold text-context-800 group-hover:text-context-100 transition">{game.name}</div>
+        <div className="text-sm text-slate-600 group-hover:text-slate-400 transition">{game.description}</div>
+      </div>
+    </button>
   );
 };
 
