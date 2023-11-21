@@ -111,7 +111,9 @@ export const GuessInput = ({
           onSubmit={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            combobox.clickSelectedOption();
+            if (combobox.dropdownOpened) {
+              combobox.clickSelectedOption();
+            }
           }}
         >
           <Autocomplete
