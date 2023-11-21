@@ -3,7 +3,8 @@ import React from "react";
 import { useViewportSize } from "@mantine/hooks";
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 
-import { setStyle } from "~/lib/dom";
+import { onNextPaint, setStyle } from "~/lib/dom";
+import { Viewbox } from "~/lib/svg";
 
 export type { Value, ReactSVGPanZoom };
 
@@ -24,8 +25,10 @@ export const SvgPanZoom = (props: SvgPanZoomProps) => {
 
   React.useEffect(() => {
     if (Viewer.current && !loaded) {
-      props.onLoad?.(Viewer.current);
-      setLoaded(true);
+      onNextPaint(() => {
+        props.onLoad?.(Viewer.current!);
+        setLoaded(true);
+      });
     }
   }, [Viewer.current]);
 
@@ -46,6 +49,8 @@ export const SvgPanZoom = (props: SvgPanZoomProps) => {
         SVGBackground="#f9f9f9"
         customToolbar={() => null}
         customMiniature={() => null}
+        scaleFactorMax={40}
+        scaleFactorMin={0.3}
         {...props}
         onChangeValue={(value) => {
           setValue(value);
@@ -65,4 +70,19 @@ export const SvgPanZoom = (props: SvgPanZoomProps) => {
       />
     </div>
   );
+};
+
+SvgPanZoom.getZoomCoordinates = (vb: Viewbox, width: number, height: number, maxZoom = 40, minZoom = 2) => {
+  const x = vb.viewboxX + vb.viewboxWidth / 2;
+  const y = vb.viewboxY + vb.viewboxHeight / 2;
+  const zoomY = (height - 50) / vb.viewboxHeight;
+  const zoomX = width / vb.viewboxWidth;
+  const zoom = Math.max(Math.min(zoomY, zoomX, maxZoom), minZoom);
+
+  return { x, y, zoom };
+};
+
+SvgPanZoom.zoomOnViewbox = (viewer: ReactSVGPanZoom, vb: Viewbox, maxZoom = 40, minZoom = 2) => {
+  const { x, y, zoom } = SvgPanZoom.getZoomCoordinates(vb, window.innerWidth, window.innerHeight, maxZoom, minZoom);
+  viewer.setPointOnViewerCenter(x, y, zoom);
 };

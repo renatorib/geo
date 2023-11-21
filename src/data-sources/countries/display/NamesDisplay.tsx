@@ -1,47 +1,12 @@
 import React from "react";
 
-import { AspectRatio, Text, useMantineTheme } from "@mantine/core";
-
 import { DisplayProps } from "~/data-sources";
 import { Country } from "~/data-sources/countries";
 import { useSettings } from "~/features/settings";
 
+import { BaseDisplay } from "./BaseDisplay";
+
 export const NamesDisplay = ({ data, status }: DisplayProps<Country>) => {
   const { lang } = useSettings();
-  const theme = useMantineTheme();
-  const color =
-    status === "correct" ? theme.colors.green[8] : status === "spoiler" ? theme.colors.red[8] : theme.colors.dark[4];
-  const name = data.name[lang.property];
-  const nameEn = data.name.en;
-
-  return (
-    <div>
-      {name ? (
-        <AspectRatio ratio={5 / 2} className="w-full">
-          <div className="grid place-content-center w-full h-full">
-            <div>
-              <Text c={color} fz={16} ta="center" fw={700}>
-                {name}
-              </Text>
-              {name !== nameEn && (
-                <div style={{ opacity: 0.5, fontSize: 14 }}>
-                  <Text c={color} ta="center">
-                    ({nameEn})
-                  </Text>
-                </div>
-              )}
-            </div>
-          </div>
-        </AspectRatio>
-      ) : (
-        <AspectRatio ratio={5 / 2} className="w-full">
-          <div className="grid place-content-center w-full h-full">
-            <Text c="red" size="xs">
-              ?
-            </Text>
-          </div>
-        </AspectRatio>
-      )}
-    </div>
-  );
+  return <BaseDisplay status={status} value={data.name[lang.property]} valueEn={data.name.en} />;
 };

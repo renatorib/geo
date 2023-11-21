@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Group, Menu, Switch } from "@mantine/core";
+import { Menu, Switch } from "@mantine/core";
 import { RiSettings2Line } from "react-icons/ri";
 
 import { ButtonIcon } from "~/components/ui/ButtonIcon";
@@ -23,7 +23,7 @@ export const SettingsMenu = () => {
 
       <Menu.Dropdown>
         <Menu.Label>Settings</Menu.Label>
-        <Group px={12} py={6} justify="space-between">
+        <div className="flex items-center w-full justify-between px-3 py-1">
           <Switch
             size="sm"
             checked={settings.speech}
@@ -31,23 +31,23 @@ export const SettingsMenu = () => {
             disabled={!browserSupportsSpeechRecognition}
             label={`Speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
           />
-        </Group>
-        <Group px={12} py={6} justify="space-between">
+        </div>
+        <div className="flex items-center w-full justify-between px-3 py-1">
           <Switch
             size="sm"
             checked={settings.timer}
             onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
             label="Timer"
           />
-        </Group>
-        <Group px={12} py={6} justify="space-between">
+        </div>
+        <div className="flex items-center w-full justify-between px-3 py-1">
           <Switch
             size="sm"
             checked={settings.sound}
             onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
             label="Sound effects"
           />
-        </Group>
+        </div>
       </Menu.Dropdown>
     </Menu>
   );

@@ -2,9 +2,9 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { Box, Burger, Drawer, Container, Modal } from "@mantine/core";
-import { RiHome2Line, RiHeart2Fill } from "react-icons/ri";
-import useVH from "react-vh";
+import { Drawer, Modal } from "@mantine/core";
+import { RiHome2Line, RiHeart2Fill, RiMenuFill } from "react-icons/ri";
+import { TrackViewportUnits } from "react-use-vars";
 import { useSnapshot } from "valtio";
 
 import { Logo, RouterTransition } from "~/components";
@@ -17,10 +17,10 @@ import { cn, contextColors } from "~/lib/styles";
 import { store, storeActions } from "~/stores/store";
 
 import { Button } from "./ui/Button";
+import { ButtonIcon } from "./ui/ButtonIcon";
 import { InlineIcon } from "./ui/InlineIcon";
 
 const AppHeader = () => {
-  useVH();
   const [navbarOpened, setNavbarOpened] = React.useState(false);
 
   return (
@@ -28,7 +28,9 @@ const AppHeader = () => {
       <header style={{ height: 50 }}>
         <div className="flex h-full items-center justify-between">
           <div className="m-3">
-            <Burger opened={navbarOpened} onClick={() => setNavbarOpened((op) => !op)} size={18} />
+            <ButtonIcon variant="ghost" onClick={() => setNavbarOpened((op) => !op)}>
+              <RiMenuFill />
+            </ButtonIcon>
           </div>
           <NextLink href="/">
             <div className="absolute left-1/2 -translate-x-1/2 top-[13px]">
@@ -207,19 +209,24 @@ export const AppLayout = ({
   showTranscripter?: boolean;
   showHeader?: boolean;
 }) => {
-  const MainWrapper = contained ? Container : Box;
-
   return (
-    <div className="flex flex-col">
-      {showHeader && <AppHeader />}
-      {showTranscripter && <TranscriptDialog />}
+    <>
+      <TrackViewportUnits />
 
-      <GroupsModal />
+      <div className="flex flex-col">
+        {showHeader && <AppHeader />}
+        {showTranscripter && <TranscriptDialog />}
 
-      <MainWrapper className="flex flex-col w-full min-100dvh" style={{ "--offset-height": "53px" }}>
-        <main className="flex grow h-full">{children}</main>
-        {showFooter && <AppFooter />}
-      </MainWrapper>
-    </div>
+        <GroupsModal />
+
+        <div
+          className={cn("flex flex-col w-full min-100dvh", contained && "mx-auto px-4 max-w-5xl w-full")}
+          style={{ "--offset-height": "53px" } as React.CSSProperties}
+        >
+          <main className="flex grow h-full">{children}</main>
+          {showFooter && <AppFooter />}
+        </div>
+      </div>
+    </>
   );
 };

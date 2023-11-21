@@ -2074,6 +2074,11 @@ globby@^13.1.4:
     merge2 "^1.4.1"
     slash "^4.0.0"
 
+goober@^2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.1.13.tgz#e3c06d5578486212a76c9eba860cbc3232ff6d7c"
+  integrity sha512-jFj3BQeleOoy7t93E9rZ2de+ScC4lQICLwiAQmKMg9F6roKGaLSHoCDYKkWlSafg138jejvq/mTdvmnwDQgqoQ==
+
 gopd@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.0.1.tgz#29ff76de69dac7489b7c0918a5788e56477c332c"
@@ -3321,6 +3326,14 @@ react-transition-group@4.4.5:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-use-vars@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-use-vars/-/react-use-vars-0.0.3.tgz#9b6f5c4c4107e4cb85a576204fdb8234311b4a53"
+  integrity sha512-GUUXm2zYIlV2OztfzNZWGquCPpBXnUebFNCQ57nAJF6Du5joHYEgeuzIniEvU0cgp3bJV0ZDKDkqso7kVdKN/Q==
+  dependencies:
+    classnames "^2.3.2"
+    goober "^2.1.13"
 
 react-vh@^1.1.1:
   version "1.1.1"

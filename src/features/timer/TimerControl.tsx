@@ -1,8 +1,8 @@
 import React from "react";
 
-import { ActionIcon } from "@mantine/core";
 import { RiPlayCircleFill } from "react-icons/ri";
 
+import { ButtonIcon } from "~/components/ui/ButtonIcon";
 import { Text } from "~/components/ui/Text";
 
 import { TimerClock } from "./TimerClock";
@@ -15,16 +15,16 @@ export const TimerControl = ({ timer }: { timer: Timer }) => {
         <TimerClock started={timer.started} />
       </Text>
       {!timer.started && (
-        <ActionIcon
+        <ButtonIcon
           onClick={() => timer.start()}
           color="green"
-          radius="xl"
-          variant="subtle"
+          radius="full"
+          variant="ghost"
           size="md"
           style={{ marginTop: -2 }}
         >
           <RiPlayCircleFill size={20} />
-        </ActionIcon>
+        </ButtonIcon>
       )}
     </div>
   );

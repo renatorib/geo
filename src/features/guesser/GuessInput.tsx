@@ -97,7 +97,7 @@ export const GuessInput = ({
   return (
     <div className="relative w-full">
       {showRecorder && (
-        <div className="absolute right-1 bottom-1 z-10">
+        <div className="absolute top-1 right-1 z-10">
           <Recorder
             recording={transcripter.listening && transcripter.meta === id}
             disabled={transcripter.listening && transcripter.meta !== id}
@@ -117,12 +117,16 @@ export const GuessInput = ({
           }}
         >
           <Autocomplete
-            data={props.autoComplete}
+            data={[...new Set(props.autoComplete)]}
             {...inputProps}
             comboboxProps={{ store: combobox }}
             filter={(input) =>
-              (input.options as ComboboxItem[]).filter((option) =>
-                normalizeString(option.value).startsWith(normalizeString(input.search)),
+              (input.options as ComboboxItem[]).filter(
+                (option) =>
+                  normalizeString(option.value).startsWith(normalizeString(input.search)) ||
+                  normalizeString(option.value)
+                    .split(" ")
+                    .some((part) => part.startsWith(normalizeString(input.search))),
               )
             }
           />

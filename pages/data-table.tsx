@@ -1,17 +1,37 @@
 import NextImage from "next/image";
 import React from "react";
 
-import { AspectRatio, Box, Table, HoverCard } from "@mantine/core";
-
 import { NoSSR, AppLayout } from "~/components";
+import { AspectRatio } from "~/components/ui/AspectRatio";
 import { countries } from "~/data-sources/countries";
 import { LangSelectorMenu, useSettings } from "~/features/settings";
+import { cn } from "~/lib/styles";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
-    <Table.Th style={{ width }}>
+    <th style={{ width }} className="border-b border-slate-200 text-sm px-2 py-2">
       <div className="flex items-center gap-1">{children}</div>
-    </Table.Th>
+    </th>
+  );
+};
+
+const Td = ({ width, children }: { width?: number; children: React.ReactNode }) => {
+  return (
+    <td style={{ width }} className="border-b border-slate-200 text-sm px-2 py-0.5">
+      {children}
+    </td>
+  );
+};
+
+const Tr = ({
+  children,
+  striped,
+  ...props
+}: { children: React.ReactNode; striped?: boolean } & React.ComponentProps<"tr">) => {
+  return (
+    <tr {...props} className={cn("hover:bg-gray-100", striped && "odd:bg-gray-50")}>
+      {children}
+    </tr>
   );
 };
 
@@ -27,26 +47,14 @@ const WikiLink = ({
   lang: string;
 }) => {
   lang;
-  const [opened, setOpened] = React.useState(false);
+  name;
+  // const [opened, setOpened] = React.useState(false);
+  // <iframe src={`/api/wiki?name=${name}`} style={{ border: "none", width: 350, height: 400 }} />
 
   return (
-    <HoverCard
-      withinPortal
-      withArrow
-      onOpen={() => setOpened(true)}
-      onClose={() => setOpened(false)}
-      openDelay={0}
-      closeDelay={500}
-    >
-      <HoverCard.Target>
-        <a href={href} target="_blank" rel="noreferrer">
-          {children}
-        </a>
-      </HoverCard.Target>
-      <HoverCard.Dropdown>
-        {opened ? <iframe src={`/api/wiki?name=${name}`} style={{ border: "none", width: 350, height: 400 }} /> : null}
-      </HoverCard.Dropdown>
-    </HoverCard>
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
   );
 };
 
@@ -60,9 +68,9 @@ const DataTablePage = () => {
           {() => (
             <>
               <div className="max-w-full overflow-x-auto mx-auto">
-                <Table striped={true}>
-                  <Table.Thead>
-                    <Table.Tr>
+                <table>
+                  <thead>
+                    <Tr>
                       <Th width={30}>N</Th>
                       <Th width={80}>Flag</Th>
                       <Th width={60}>Emoji</Th>
@@ -80,9 +88,9 @@ const DataTablePage = () => {
                       <Th width={100}>ISO Alpha2</Th>
                       <Th width={100}>ISO Alpha3</Th>
                       <Th>Links</Th>
-                    </Table.Tr>
-                  </Table.Thead>
-                  <Table.Tbody>
+                    </Tr>
+                  </thead>
+                  <tbody>
                     {countries.map((c, index) => {
                       const aliasText = (a: string[]) =>
                         a.length ? (
@@ -93,9 +101,9 @@ const DataTablePage = () => {
                         ) : null;
 
                       return (
-                        <Table.Tr key={c.id} id={`row-of-${c.id}`}>
-                          <Table.Td>{index + 1}</Table.Td>
-                          <Table.Td>
+                        <Tr key={c.id} id={`row-of-${c.id}`} striped={true}>
+                          <Td>{index + 1}</Td>
+                          <Td>
                             <AspectRatio ratio={45 / 30}>
                               {c.flag ? (
                                 <NextImage
@@ -108,23 +116,23 @@ const DataTablePage = () => {
                                   }}
                                 />
                               ) : (
-                                <Box style={{ border: "1px solid red", color: "red", fontSize: 30 }}>?</Box>
+                                <div className="text-red-400 text-xl">?</div>
                               )}
                             </AspectRatio>
-                          </Table.Td>
-                          <Table.Td>{c.emoji}</Table.Td>
-                          <Table.Td>{c.id}</Table.Td>
-                          <Table.Td>
+                          </Td>
+                          <Td>{c.emoji}</Td>
+                          <Td>{c.id}</Td>
+                          <Td>
                             <strong>{c.name[lang.property]}</strong>
                             {aliasText(c.alias[lang.property])}
-                          </Table.Td>
-                          <Table.Td>
+                          </Td>
+                          <Td>
                             <strong>{c.capital[lang.property]}</strong>
                             {aliasText(c.capitalAlias[lang.property])}
-                          </Table.Td>
-                          <Table.Td>{c.domain}</Table.Td>
-                          <Table.Td>{c.region}</Table.Td>
-                          <Table.Td>
+                          </Td>
+                          <Td>{c.domain}</Td>
+                          <Td>{c.region}</Td>
+                          <Td>
                             {c.independent ? "Yes" : "No"}
                             {c.disputed ? " (Disputed)" : null}
                             {c.sovereignty ? (
@@ -135,20 +143,20 @@ const DataTablePage = () => {
                                 </em>
                               </>
                             ) : null}
-                          </Table.Td>
-                          <Table.Td>{c.shape ? "Yes" : <div className="bg-red-500 text-white">No</div>}</Table.Td>
-                          <Table.Td>{c.alpha2}</Table.Td>
-                          <Table.Td>{c.alpha3}</Table.Td>
-                          <Table.Td>
+                          </Td>
+                          <Td>{c.shape ? "Yes" : <div className="bg-red-500 text-white">No</div>}</Td>
+                          <Td>{c.alpha2}</Td>
+                          <Td>{c.alpha3}</Td>
+                          <Td>
                             <WikiLink href={`https://en.wikipedia.org/wiki/${c.name.en}`} name={c.name.en} lang="en">
                               Wiki
                             </WikiLink>
-                          </Table.Td>
-                        </Table.Tr>
+                          </Td>
+                        </Tr>
                       );
                     })}
-                  </Table.Tbody>
-                </Table>
+                  </tbody>
+                </table>
               </div>
             </>
           )}

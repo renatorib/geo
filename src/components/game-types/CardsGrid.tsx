@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ActionIcon, Menu } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import { RiShuffleFill, RiEyeLine, RiMore2Fill, RiEyeCloseLine, RiRestartLine } from "react-icons/ri";
 
 import { GuessCard, GuessInput, useGuesser } from "~/features/guesser";
@@ -8,6 +8,7 @@ import { useSettings } from "~/features/settings";
 import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 
+import { ButtonIcon } from "../ui/ButtonIcon";
 import { Text } from "../ui/Text";
 
 type CardsGridProps = {
@@ -39,9 +40,9 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
           <div className="flex items-center ml-auto gap-1">
             <Menu shadow="md" width={200} position="bottom-end" withArrow>
               <Menu.Target>
-                <ActionIcon radius="xl" variant="default">
+                <ButtonIcon radius="full" variant="outline">
                   <RiMore2Fill size={20} />
-                </ActionIcon>
+                </ButtonIcon>
               </Menu.Target>
 
               <Menu.Dropdown>

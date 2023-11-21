@@ -2,7 +2,7 @@ import NextImage from "next/image";
 import { StaticImageData } from "next/image";
 import React from "react";
 
-import { AspectRatio } from "@mantine/core";
+import { AspectRatio } from "./AspectRatio";
 
 type FlagProps = {
   src: StaticImageData;

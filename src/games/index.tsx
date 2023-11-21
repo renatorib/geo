@@ -183,7 +183,7 @@ const collections = {
 export const games = [
   {
     name: "Flags",
-    description: "Guess countries by their flags",
+    description: "Guess countries by flags",
     id: "flags-1x1",
     icon: <RiFlagFill />,
     type: "cards-1x1",
@@ -193,7 +193,7 @@ export const games = [
 
   {
     name: "Flags Grid",
-    description: "Guess countries by their flags",
+    description: "Guess countries by flags",
     id: "flags",
     icon: <RiFlagFill />,
     type: "cards-grid",
@@ -223,7 +223,7 @@ export const games = [
 
   {
     name: "Shapes",
-    description: "Guess countries by their shapes",
+    description: "Guess countries by shapes",
     id: "shapes-1x1",
     icon: <GiBrazil />,
     type: "cards-1x1",
@@ -233,7 +233,7 @@ export const games = [
 
   {
     name: "Shapes Grid",
-    description: "Guess countries by their shapes",
+    description: "Guess countries by shapes",
     id: "shapes",
     icon: <GiBrazil />,
     type: "cards-grid",
@@ -243,7 +243,7 @@ export const games = [
 
   {
     name: "Capitals",
-    description: "Guess countries by their capitals",
+    description: "Guess countries by capitals",
     id: "capitals-1x1",
     icon: <RiCommunityFill />,
     type: "cards-1x1",
@@ -263,7 +263,7 @@ export const games = [
 
   {
     name: "Capitals Grid",
-    description: "Guess countries by their capitals",
+    description: "Guess countries by capitals",
     id: "capitals",
     icon: <RiCommunityFill />,
     type: "cards-grid",
@@ -283,7 +283,7 @@ export const games = [
 
   {
     name: "Domains",
-    description: "Guess countries by their domains",
+    description: "Guess countries by domains",
     id: "domains-1x1",
     icon: <RiWindow2Fill />,
     type: "cards-1x1",
@@ -293,7 +293,7 @@ export const games = [
 
   {
     name: "Domains Grid",
-    description: "Guess countries by their domains",
+    description: "Guess countries by domains",
     id: "domains",
     icon: <RiWindow2Fill />,
     type: "cards-grid",

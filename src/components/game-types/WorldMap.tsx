@@ -1,24 +1,23 @@
 import React from "react";
 
-import { ActionIcon, Menu } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import { RiMore2Fill, RiRefreshLine, RiZoomInFill } from "react-icons/ri";
 
 import { GuessInput, useGuesser } from "~/features/guesser";
 import { GameProps } from "~/games";
-import { onNextPaint } from "~/lib/dom";
 import { cn } from "~/lib/styles";
 import { getViewboxOfPath, Viewbox } from "~/lib/svg";
 
 import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
+import { ButtonIcon } from "../ui/ButtonIcon";
+import { FloatingGuessBar } from "../ui/FloatingGuessBar";
 
 type WorldMapProps = {
   game: GameProps;
 };
 
-const MAX_ZOOM = 40;
-const MIN_ZOOM = 0.3;
-
 export const WorldMap = ({ game }: WorldMapProps) => {
+  const [loaded, setLoaded] = React.useState(false);
   const [viewer, setViewer] = React.useState<ReactSVGPanZoom>();
 
   const guesser = useGuesser({
@@ -28,72 +27,53 @@ export const WorldMap = ({ game }: WorldMapProps) => {
     onCorrectGuess: () => GuessInput.clearById("world-map"),
   });
 
-  const zoomOnViewbox = (viewer: ReactSVGPanZoom, vb: Viewbox) => {
-    const { x, y, zoom } = getZoomCoordinates(vb, window.innerWidth, window.innerHeight);
-    viewer.setPointOnViewerCenter(x, y, zoom);
-  };
-
   return (
     <div className="relative">
-      <div className="absolute inset-x-center z-10">
-        <div
-          className={cn(
-            "p-2 m-2 flex items-center justify-between gap-3 border border-solid border-slate-400/20 bg-white/70",
-            "backdrop-blur-sm rounded-lg max-w-sm w-full transition-all",
-            !!viewer ? "opacity-100 translateY(0)" : "opacity-0 translateY(-50px)",
-            "opacity-100 translateY(0)",
-          )}
-        >
-          <div className="flex items-center shrink-0">
-            <span className="text-sm text-gray-400">
-              {guesser.totalChecked} / {guesser.data.length}
-            </span>
-          </div>
-
-          <div className="grow">
-            <GuessInput
-              id="world-map"
-              name="world-map"
-              placeholder="Type country names..."
-              onGuess={(text) => guesser.guessAll(text)}
-              classNames={{ input: "!border !border-gray-200" }}
-            />
-          </div>
-
-          <Menu withinPortal withArrow width={200} position="bottom-end">
-            <Menu.Target>
-              <ActionIcon variant="default" radius="xl">
-                <RiMore2Fill size={18} />
-              </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Item onClick={guesser.reset} leftSection={<RiRefreshLine />}>
-                Reset
-              </Menu.Item>
-              {viewer && !guesser.isCompleted && (
-                <Menu.Item
-                  onClick={() => {
-                    guesser.selectNextNode();
-                    zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape));
-                  }}
-                  leftSection={<RiZoomInFill />}
-                >
-                  Zoom on next
-                </Menu.Item>
-              )}
-            </Menu.Dropdown>
-          </Menu>
+      <FloatingGuessBar hidden={!loaded}>
+        <div className="flex items-center shrink-0 text-sm text-gray-400">
+          {guesser.totalChecked} / {guesser.data.length}
         </div>
-      </div>
+
+        <div className="grow">
+          <GuessInput
+            id="world-map"
+            name="world-map"
+            placeholder="Type country names..."
+            onGuess={(text) => guesser.guessAll(text)}
+            classNames={{ input: "!border !border-gray-200" }}
+          />
+        </div>
+
+        <Menu withinPortal withArrow width={200} position="bottom-end">
+          <Menu.Target>
+            <ButtonIcon radius="full" variant="outline">
+              <RiMore2Fill size={18} />
+            </ButtonIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={guesser.reset} leftSection={<RiRefreshLine />}>
+              Reset
+            </Menu.Item>
+            {viewer && !guesser.isCompleted && (
+              <Menu.Item
+                leftSection={<RiZoomInFill />}
+                onClick={() => {
+                  guesser.selectNextNode();
+                  SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape));
+                }}
+              >
+                Zoom on next
+              </Menu.Item>
+            )}
+          </Menu.Dropdown>
+        </Menu>
+      </FloatingGuessBar>
 
       <SvgPanZoom
-        scaleFactorMax={MAX_ZOOM}
-        scaleFactorMin={MIN_ZOOM}
         onRef={setViewer}
         onLoad={(viewer) => {
-          onNextPaint(() => {
-            zoomOnViewbox(viewer, getViewboxOfPath(game.data.map((c) => c.shape)));
-          });
+          setLoaded(true);
+          SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(game.data.map((c) => c.shape)));
         }}
       >
         <svg viewBox="0 0 1100 666">
@@ -138,26 +118,3 @@ export const WorldMap = ({ game }: WorldMapProps) => {
     </div>
   );
 };
-
-function getZoomCoordinates(vb: Viewbox, width: number, height: number) {
-  const x = vb.viewboxX + vb.viewboxWidth / 2;
-  const y = vb.viewboxY + vb.viewboxHeight / 2;
-  const zoomY = (height - 50) / vb.viewboxHeight;
-  const zoomX = width / vb.viewboxWidth;
-  const zoom = Math.min(zoomY, zoomX, MAX_ZOOM);
-
-  return { x, y, zoom };
-}
-
-// eslint-disable-next-line
-function ViewportRectDebug(vb: Viewbox) {
-  return (
-    <rect
-      width={vb.viewboxWidth}
-      height={vb.viewboxHeight}
-      x={vb.viewboxX}
-      y={vb.viewboxY}
-      style={{ fill: "rgba(0,0,255,0.01)" }}
-    />
-  );
-}

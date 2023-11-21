@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, Group, ActionIcon, Menu } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import { RiCheckDoubleFill, RiMore2Fill, RiRestartLine, RiSkipForwardFill, RiTimerFill } from "react-icons/ri";
 
 import { GuessInput, useGuesser } from "~/features/guesser";
@@ -10,6 +10,7 @@ import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 
 import { Button } from "../ui/Button";
+import { ButtonIcon } from "../ui/ButtonIcon";
 import { ProgressBar } from "../ui/ProgressBar";
 
 type Cards1x1Props = {
@@ -32,23 +33,21 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
     <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
       <div className="flex flex-col gap-2 md:gap-4 w-full">
         <div className="flex flex-col gap-2 grow w-full">
-          <Group gap="xl">
-            <Group gap="xl">
-              <Text fw={700}>{game.title}</Text>
+          <div className="flex items-center gap-4 justify-between">
+            <div className="flex items-center gap-4">
+              <div className="font-bold">{game.title}</div>
               <div>
-                <Text>
-                  {guesser.totalChecked} / {guesser.data.length}
-                </Text>
+                {guesser.totalChecked} / {guesser.data.length}
               </div>
               {settings.timer && <TimerControl timer={guesser.timer} />}
-            </Group>
+            </div>
 
-            <Group ml="auto" gap="xs">
+            <div className="flex items-center gap-4">
               <Menu shadow="md" width={200} position="bottom-end" withArrow>
                 <Menu.Target>
-                  <ActionIcon radius="xl" variant="default">
-                    <RiMore2Fill size={20} />
-                  </ActionIcon>
+                  <ButtonIcon radius="full" variant="outline">
+                    <RiMore2Fill />
+                  </ButtonIcon>
                 </Menu.Target>
 
                 <Menu.Dropdown>
@@ -60,8 +59,8 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
-            </Group>
-          </Group>
+            </div>
+          </div>
           <div>
             <ProgressBar progress={guesser.totalChecked / guesser.data.length} />
           </div>

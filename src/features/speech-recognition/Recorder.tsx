@@ -1,29 +1,24 @@
 import React from "react";
 
-import { ActionIcon } from "@mantine/core";
 import { RiMicFill } from "react-icons/ri";
 
+import { ButtonIcon } from "~/components/ui/ButtonIcon";
 import { fr } from "~/lib/react";
+import { cn } from "~/lib/styles";
 
-export const Recorder = fr<{ recording?: boolean }, typeof ActionIcon<"button">>((props, ref) => {
+export const Recorder = fr<{ recording?: boolean }, typeof ButtonIcon>((props, ref) => {
   return (
-    <ActionIcon
+    <ButtonIcon
       ref={ref}
-      radius="xl"
-      size="md"
-      color="red"
-      {...props}
-      variant={props.recording ? "filled" : "default"}
-      className={props.recording ? "animate-pulse" : ""}
-      style={{
-        userSelect: "none",
-        transition: "all 150ms ease-out",
-        ...(props.recording && { transform: "scale(1.15)" }),
-        ...props.style,
-      }}
       type="button"
+      radius="full"
+      size="md"
+      color={props.recording ? "red" : "slate"}
+      {...props}
+      variant={props.recording ? "filled" : props.variant ?? "ghost"}
+      className={cn("select-none transition-all", props.recording ? "animate-pulse" : "")}
     >
       <RiMicFill />
-    </ActionIcon>
+    </ButtonIcon>
   );
 });
