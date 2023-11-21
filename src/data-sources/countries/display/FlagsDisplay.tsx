@@ -15,6 +15,7 @@ export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
     <AspectRatio ratio={45 / 30} style={{ width: "100%" }}>
       {data.flag ? (
         <NextImage
+          priority={true}
           src={data.flag}
           alt={status !== "hidden" ? `Flag of ${name}` : "Flag of unknown"}
           title={status !== "hidden" ? name : undefined}
