@@ -26,6 +26,8 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
     onCorrectGuess: (node) => GuessInput.clearById(node.id),
   });
 
+  const nextUnchecked = guesser.getNextUnchecked(guesser.selectedNode);
+
   return (
     <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
       <div className="flex flex-col gap-2 md:gap-4 w-full">
@@ -73,6 +75,18 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
               })
             : null}
         </div>
+
+        {nextUnchecked && (
+          // Pre-render next to prefetch image if have
+          <div className="hidden">
+            {game.display
+              ? game.display({
+                  data: nextUnchecked.entity,
+                  status: "hidden",
+                })
+              : null}
+          </div>
+        )}
 
         <div className="flex items-stretch gap-2 mt-2">
           <div className="shadow-lg rounded-md grow">
