@@ -1,8 +1,8 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { ReactElement } from "react";
 
-import { Drawer, Modal } from "@mantine/core";
+import { Drawer } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill, RiMenuFill } from "react-icons/ri";
 import { TrackViewportUnits } from "react-use-vars";
 import { useSnapshot } from "valtio";
@@ -18,6 +18,7 @@ import { store, storeActions } from "~/stores/store";
 
 import { Button } from "./ui/Button";
 import { ButtonIcon } from "./ui/ButtonIcon";
+import { Dialog } from "./ui/Dialog";
 import { InlineIcon } from "./ui/InlineIcon";
 
 const AppHeader = () => {
@@ -66,7 +67,7 @@ const AppHeader = () => {
                   color="yellow"
                   startsWith={`/play/${game.id}/`}
                   onClick={() => {
-                    storeActions.setSelectedGame(game);
+                    storeActions.open(game);
                     setNavbarOpened(false);
                   }}
                 >
@@ -85,7 +86,7 @@ const AppHeader = () => {
                   color="slate"
                   startsWith={`/play/${game.id}/`}
                   onClick={() => {
-                    storeActions.setSelectedGame(game);
+                    storeActions.open(game);
                     setNavbarOpened(false);
                   }}
                 >
@@ -156,29 +157,33 @@ const NavbarLink = fr<
 });
 
 const GroupsModal = () => {
-  const state = useSnapshot(store);
+  const snap = useSnapshot(store);
 
   return (
-    <Modal
-      opened={!!state.selectedGame}
-      onClose={() => storeActions.setSelectedGame(null)}
-      title={<div className="font-bold">Play {state.selectedGame?.name}</div>}
-      transitionProps={{
-        exitDuration: 1,
-        duration: 150,
-      }}
-    >
-      <div className="mb-4 text-sm text-gray-700">Choose the group</div>
+    <Dialog open={snap.open} onClose={() => storeActions.close()} width="md">
+      <Dialog.CloseButton />
+
+      <div className="flex items-center">
+        {snap.selectedGame && (
+          <div className="text-5xl pr-2 text-slate-600">
+            {React.cloneElement(snap.selectedGame.icon as ReactElement)}
+          </div>
+        )}
+        <div>
+          <Dialog.Title className="flex items-center gap-2">{snap.selectedGame?.name}</Dialog.Title>
+          <div className="text-sm text-gray-700">Choose a group to play</div>
+        </div>
+      </div>
+
+      <div className="mt-2" />
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-        {state.selectedGame &&
-          state.selectedGame.groups.map((group) => {
+        {snap.selectedGame &&
+          snap.selectedGame.groups.map((group) => {
             const isWorld = group.id === "world";
             return (
               <div key={group.id}>
-                <NextLink
-                  href={`/play/${state.selectedGame?.id}/${group.id}`}
-                  onClick={() => storeActions.setSelectedGame(null)}
-                >
+                <NextLink href={`/play/${snap.selectedGame?.id}/${group.id}`} onClick={() => storeActions.close()}>
                   <Button
                     color={isWorld ? "yellow" : "slate"}
                     variant={isWorld ? "filled" : "light"}
@@ -192,7 +197,7 @@ const GroupsModal = () => {
             );
           })}
       </div>
-    </Modal>
+    </Dialog>
   );
 };
 

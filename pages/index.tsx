@@ -45,7 +45,7 @@ const Index = () => {
 const GameCard = ({ game, color }: { game: Game<any>; color?: keyof typeof contextColors }) => {
   return (
     <button
-      onClick={() => storeActions.setSelectedGame(game)}
+      onClick={() => storeActions.open(game)}
       className={cn(
         "group flex items-center gap-3 w-full p-4 rounded",
         "cursor-pointer border border-slate-300 select-none transition-all",

@@ -7,6 +7,27 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@ariakit/core@0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@ariakit/core/-/core-0.3.5.tgz#5b27beec8a8ae1c24580c448f4dcd931c991f68a"
+  integrity sha512-aOf20RS7CDv9O4qzoTeI3ozz1l4El0hjsgXzfY2gVvv+1fvfgnHLCz46n8i2clwYCfGnP//201U4y73eGf9uvA==
+
+"@ariakit/react-core@0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@ariakit/react-core/-/react-core-0.3.6.tgz#a39f711efb26581a0d157eaf49af8c972b74038b"
+  integrity sha512-7j2oqdX3dF1cWBSVSZFtKZHyVRJnSIA0T5f31aF/UmYY+Brvxgt+DICire+kxsnqSgxwgzYbZqyLSoLpZaMS0w==
+  dependencies:
+    "@ariakit/core" "0.3.5"
+    "@floating-ui/dom" "^1.0.0"
+    use-sync-external-store "^1.2.0"
+
+"@ariakit/react@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@ariakit/react/-/react-0.3.6.tgz#d9af3550b772f8823f165ac1a94ba0f61dd9c0fa"
+  integrity sha512-u3lQKo5cC6pKHk80yQ6XVxRpBvY79xlFfYoonNTQ2rdVE5Hls1pqVUajxoSw+Ui2GcvaCDvfe1SvpPFDuUiXNw==
+  dependencies:
+    "@ariakit/react-core" "0.3.6"
+
 "@babel/runtime-corejs3@^7.10.2":
   version "7.18.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.18.9.tgz#7bacecd1cb2dd694eacd32a91fcf7021c20770ae"
@@ -63,7 +84,7 @@
   dependencies:
     "@floating-ui/utils" "^0.1.3"
 
-"@floating-ui/dom@^1.5.1":
+"@floating-ui/dom@^1.0.0", "@floating-ui/dom@^1.5.1":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.5.3.tgz#54e50efcb432c06c23cd33de2b575102005436fa"
   integrity sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==
@@ -4084,7 +4105,7 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-sync-external-store@1.2.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
