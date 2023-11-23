@@ -1,15 +1,15 @@
 import React from "react";
 
-import { Menu } from "@mantine/core";
-import { RiMore2Fill, RiRefreshLine, RiZoomInFill } from "react-icons/ri";
+import { RiFocus3Line, RiRefreshLine } from "react-icons/ri";
 
 import { GuessInput, useGuesser } from "~/features/guesser";
+import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 import { cn } from "~/lib/styles";
-import { getViewboxOfPath, Viewbox } from "~/lib/svg";
+import { getViewboxOfPath } from "~/lib/svg";
 
 import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
-import { ButtonIcon } from "../ui/ButtonIcon";
+import { ResponsiveActions } from "../ui/Actions";
 import { FloatingGuessBar } from "../ui/FloatingGuessBar";
 
 type WorldMapProps = {
@@ -26,6 +26,24 @@ export const WorldMap = ({ game }: WorldMapProps) => {
     title: game.title,
     onCorrectGuess: () => GuessInput.clearById("world-map"),
   });
+
+  const actions = [
+    {
+      name: "Reset",
+      icon: <RiRefreshLine />,
+      action: guesser.reset,
+      color: "red" as const,
+    },
+    {
+      name: "Re-position",
+      icon: <RiFocus3Line />,
+      disabled: !viewer || guesser.isCompleted,
+      action: () => {
+        guesser.selectNextNode();
+        viewer && SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(game.data.map((c) => c.shape)));
+      },
+    },
+  ];
 
   return (
     <div className="relative">
@@ -44,29 +62,9 @@ export const WorldMap = ({ game }: WorldMapProps) => {
           />
         </div>
 
-        <Menu withinPortal withArrow width={200} position="bottom-end">
-          <Menu.Target>
-            <ButtonIcon radius="full" variant="outline">
-              <RiMore2Fill size={18} />
-            </ButtonIcon>
-          </Menu.Target>
-          <Menu.Dropdown>
-            <Menu.Item onClick={guesser.reset} leftSection={<RiRefreshLine />}>
-              Reset
-            </Menu.Item>
-            {viewer && !guesser.isCompleted && (
-              <Menu.Item
-                leftSection={<RiZoomInFill />}
-                onClick={() => {
-                  guesser.selectNextNode();
-                  SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape));
-                }}
-              >
-                Zoom on next
-              </Menu.Item>
-            )}
-          </Menu.Dropdown>
-        </Menu>
+        <ResponsiveActions actions={actions} />
+
+        <TimerControl timer={guesser.timer} />
       </FloatingGuessBar>
 
       <SvgPanZoom

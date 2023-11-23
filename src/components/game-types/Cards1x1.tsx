@@ -1,16 +1,14 @@
 import React from "react";
 
-import { Menu } from "@mantine/core";
-import { RiCheckDoubleFill, RiMore2Fill, RiRestartLine, RiSkipForwardFill, RiTimerFill } from "react-icons/ri";
+import { RiCheckDoubleFill, RiRestartLine, RiSkipForwardFill } from "react-icons/ri";
 
 import { GuessInput, useGuesser } from "~/features/guesser";
-import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
 import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 
+import { ResponsiveActions } from "../ui/Actions";
 import { Button } from "../ui/Button";
-import { ButtonIcon } from "../ui/ButtonIcon";
 import { ProgressBar } from "../ui/ProgressBar";
 
 type Cards1x1Props = {
@@ -18,14 +16,21 @@ type Cards1x1Props = {
 };
 
 export const Cards1x1 = ({ game }: Cards1x1Props) => {
-  const settings = useSettings();
-
   const guesser = useGuesser({
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
     onCorrectGuess: (node) => GuessInput.clearById(node.id),
   });
+
+  const actions = [
+    {
+      name: "Reset",
+      icon: <RiRestartLine />,
+      action: guesser.reset,
+      color: "red" as const,
+    },
+  ];
 
   const nextUnchecked = guesser.getNextUnchecked(guesser.selectedNode);
 
@@ -39,27 +44,10 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
               <div>
                 {guesser.totalChecked} / {guesser.data.length}
               </div>
-              {settings.timer && <TimerControl timer={guesser.timer} />}
+              <TimerControl timer={guesser.timer} />
             </div>
 
-            <div className="flex items-center gap-4">
-              <Menu shadow="md" width={200} position="bottom-end" withArrow>
-                <Menu.Target>
-                  <ButtonIcon radius="full" variant="outline">
-                    <RiMore2Fill />
-                  </ButtonIcon>
-                </Menu.Target>
-
-                <Menu.Dropdown>
-                  <Menu.Item leftSection={<RiRestartLine />} onClick={() => guesser.reset()}>
-                    Reset
-                  </Menu.Item>
-                  <Menu.Item leftSection={<RiTimerFill />} onClick={() => settings.setTimer((v) => !v)}>
-                    {settings.timer ? "Hide timer" : "Show timer"}
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
-            </div>
+            <ResponsiveActions actions={actions} />
           </div>
           <div>
             <ProgressBar progress={guesser.totalChecked / guesser.data.length} />
@@ -68,7 +56,7 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
 
         <div key={guesser.selectedNode.id} className="shadow rounded-lg overflow-hidden bg-gray-50">
           {game.display
-            ? game.display({
+            ? React.createElement(game.display, {
                 data: guesser.selectedNode.entity,
                 status: guesser.getNodeStatus(guesser.selectedNode),
               })
@@ -79,7 +67,7 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
           // Pre-render next to prefetch image if have
           <div className="hidden">
             {game.display
-              ? game.display({
+              ? React.createElement(game.display, {
                   data: nextUnchecked.entity,
                   status: "hidden",
                 })

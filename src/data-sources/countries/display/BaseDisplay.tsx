@@ -1,6 +1,7 @@
 import React from "react";
 
 import { AspectRatio } from "~/components/ui/AspectRatio";
+import { fr } from "~/lib/react";
 import { cn, contextColors } from "~/lib/styles";
 
 type BaseDisplayProps = {
@@ -10,11 +11,19 @@ type BaseDisplayProps = {
   ratio?: number;
 };
 
-export const BaseDisplay = ({ status, ratio = 5 / 2, value, valueEn }: BaseDisplayProps) => {
+export const BaseDisplay = fr<BaseDisplayProps>(({ status, ratio = 5 / 2, value, valueEn, ...props }, ref) => {
   const color = status === "correct" ? "green" : status === "spoiler" ? "red" : "slate";
 
   return (
-    <div className={cn(contextColors[color])}>
+    <div
+      ref={ref}
+      {...props}
+      className={cn(
+        contextColors[color],
+        status === "correct" && "opacity-50 scale-75 transition-all",
+        props.className,
+      )}
+    >
       {value ? (
         <AspectRatio ratio={ratio} className="w-full">
           {typeof value === "string" ? (
@@ -41,4 +50,4 @@ export const BaseDisplay = ({ status, ratio = 5 / 2, value, valueEn }: BaseDispl
       )}
     </div>
   );
-};
+});

@@ -32,7 +32,6 @@ export const GuessInput = ({
 }: GuessInputProps) => {
   const { lang } = useSettings();
   const combobox = useCombobox();
-  (window as any).combobox = combobox;
 
   const transcripter = useTranscripter({
     enabled: transcriptor,

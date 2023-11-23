@@ -52,8 +52,9 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   const [spoiler, setSpoiler] = React.useState(false);
   const [selectedNode, _setSelectedNode] = React.useState<Node<T>>(data[0]);
   const setSelectedNode = (node: Node<T>) => {
+    const previous = selectedNode;
     _setSelectedNode(node);
-    onSelectNode?.(node, selectedNode);
+    onNextPaint(() => onSelectNode?.(node, previous));
   };
 
   const shuffle = () => {
@@ -152,6 +153,10 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return lookup.find((nd) => nd.checked === false);
   };
 
+  const isNodeSelected = (node: Node<T>) => {
+    return selectedNode.id === node.id;
+  };
+
   const selectNextNode = (current: Node<T> = selectedNode) => {
     const next = getNextUnchecked(current);
     if (next) {
@@ -193,6 +198,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     selectedNode,
     setSelectedNode,
     selectNextNode,
+    isNodeSelected,
   };
 };
 

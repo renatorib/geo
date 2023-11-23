@@ -1,15 +1,15 @@
 import React from "react";
 
-import { Menu, Tooltip } from "@mantine/core";
-import { RiFocus2Line, RiMore2Fill, RiRefreshLine, RiSkipForwardLine } from "react-icons/ri";
+import { RiFocus2Line, RiRefreshLine, RiSkipForwardLine } from "react-icons/ri";
 
 import { useGuesser, GuessInput } from "~/features/guesser";
+import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 import { cn } from "~/lib/styles";
 import { getViewboxOfPath } from "~/lib/svg";
 
 import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
-import { ButtonIcon } from "../ui/ButtonIcon";
+import { ResponsiveActions } from "../ui/Actions";
 import { FloatingGuessBar } from "../ui/FloatingGuessBar";
 
 type WorldMapProps = {
@@ -29,10 +29,32 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
       viewer && SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(node.entity.shape, { margin: 5 })),
   });
 
+  const actions = [
+    {
+      name: "Reset",
+      icon: <RiRefreshLine />,
+      action: guesser.reset,
+      color: "red" as const,
+    },
+    {
+      name: "Re-center",
+      icon: <RiFocus2Line />,
+      disabled: !viewer || guesser.isCompleted,
+      action: () =>
+        viewer && SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape, { margin: 5 })),
+    },
+    {
+      name: "Skip",
+      icon: <RiSkipForwardLine />,
+      disabled: guesser.isCompleted,
+      action: () => guesser.selectNextNode(),
+    },
+  ];
+
   return (
     <div className="relative">
       <FloatingGuessBar hidden={!loaded}>
-        <div className="flex items-center shrink-0 text-sm text-gray-500">
+        <div className="shrink-0 text-sm text-gray-500">
           {guesser.totalChecked} / {guesser.data.length}
         </div>
 
@@ -50,57 +72,9 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
           />
         </div>
 
-        <Menu withinPortal withArrow width={200} position="bottom-end">
-          <Menu.Target>
-            <ButtonIcon variant="outline" size="lg" radius="full">
-              <RiMore2Fill />
-            </ButtonIcon>
-          </Menu.Target>
-          <Menu.Dropdown>
-            <Menu.Item onClick={guesser.reset} leftSection={<RiRefreshLine />}>
-              Reset
-            </Menu.Item>
-            {!guesser.isCompleted && (
-              <Menu.Item onClick={() => guesser.selectNextNode()} leftSection={<RiSkipForwardLine />}>
-                Skip
-              </Menu.Item>
-            )}
-            {viewer && !guesser.isCompleted && (
-              <Menu.Item
-                leftSection={<RiFocus2Line />}
-                onClick={() =>
-                  SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape, { margin: 5 }))
-                }
-              >
-                Re-center
-              </Menu.Item>
-            )}
-          </Menu.Dropdown>
-        </Menu>
+        <ResponsiveActions actions={actions} />
 
-        {viewer && !guesser.isCompleted && (
-          <Tooltip label="Re-center">
-            <ButtonIcon
-              variant="filled"
-              color="violet"
-              size="lg"
-              radius="full"
-              onClick={() =>
-                SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(guesser.selectedNode.entity.shape, { margin: 5 }))
-              }
-            >
-              <RiFocus2Line size={18} />
-            </ButtonIcon>
-          </Tooltip>
-        )}
-
-        {!guesser.isCompleted && (
-          <Tooltip label="Skip">
-            <ButtonIcon variant="filled" size="lg" radius="full" onClick={() => guesser.selectNextNode()}>
-              <RiSkipForwardLine size={18} />
-            </ButtonIcon>
-          </Tooltip>
-        )}
+        <TimerControl timer={guesser.timer} />
       </FloatingGuessBar>
 
       <SvgPanZoom

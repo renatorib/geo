@@ -24,9 +24,7 @@ export const FlagsDisplay = ({ data, status }: DisplayProps<Country>) => {
             title={status !== "hidden" ? name : undefined}
             fill
             sizes="100vw"
-            style={{
-              objectFit: "contain",
-            }}
+            style={{ objectFit: "contain" }}
           />
         )
       }

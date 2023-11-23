@@ -37,7 +37,7 @@ export const SettingsMenu = () => {
             size="sm"
             checked={settings.timer}
             onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
-            label="Timer"
+            label="Show timer"
           />
         </div>
         <div className="flex items-center w-full justify-between px-3 py-1">
