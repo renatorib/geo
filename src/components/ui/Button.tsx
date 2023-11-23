@@ -103,7 +103,7 @@ export const Button = fr<ButtonProps, "button">(
         {...props}
         aria-disabled={props.disabled ?? false}
         className={cn(
-          "group/button relative inline-flex items-center justify-start gap-1 border border-solid border-transparent",
+          "group/button relative inline-flex items-center justify-start gap-1.5 border border-solid border-transparent",
           "outline-context-100 disabled:opacity-75 disabled:select-none",
           "[&>svg]:w-[1.2em] [&>svg]:h-[1.2em]",
           full && "w-full",

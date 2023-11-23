@@ -1,11 +1,12 @@
 import React from "react";
 
-import { Menu, Tooltip } from "@mantine/core";
+import { Tooltip } from "@mantine/core";
 import { RiMore2Fill } from "react-icons/ri";
 
 import { contextColors } from "~/lib/styles";
 
 import { ButtonIcon } from "./ButtonIcon";
+import { Menu } from "./Menu";
 
 export type Action = {
   name: string;
@@ -35,28 +36,23 @@ export const FlexActions = (props: { actions: Action[] }) => {
 
 export const MenuActions = (props: { actions: Action[] }) => {
   return (
-    <Menu withinPortal withArrow width={200} position="bottom-end">
-      <Menu.Target>
-        <ButtonIcon radius="full" variant="light" color="slate">
+    <Menu
+      target={
+        <ButtonIcon variant="light" color="slate">
           <RiMore2Fill />
         </ButtonIcon>
-      </Menu.Target>
-      <Menu.Dropdown>
-        {props.actions
-          .filter((act) => !act.disabled)
-          .map((act) => {
-            return (
-              <Menu.Item
-                key={act.name}
-                onClick={() => act.action()}
-                leftSection={act.icon}
-                className="hover:bg-gray-100 active:bg-gray-200"
-              >
-                {act.name}
-              </Menu.Item>
-            );
-          })}
-      </Menu.Dropdown>
+      }
+    >
+      <Menu.Label>Actions</Menu.Label>
+      {props.actions
+        .filter((act) => !act.disabled)
+        .map((act) => {
+          return (
+            <Menu.Item key={act.name} onClick={() => act.action()}>
+              {act.icon} {act.name}
+            </Menu.Item>
+          );
+        })}
     </Menu>
   );
 };
