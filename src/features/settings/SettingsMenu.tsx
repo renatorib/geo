@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Switch } from "@mantine/core";
 import { RiSettings2Line } from "react-icons/ri";
 
 import { ButtonIcon } from "~/components/ui/ButtonIcon";
 import { Menu } from "~/components/ui/Menu";
+import { Switch } from "~/components/ui/Switch";
 import { useIsMounted } from "~/hooks";
 
 import { useSpeechRecognition } from "../speech-recognition";
@@ -30,25 +30,34 @@ export const SettingsMenu = () => {
         }
       >
         <Menu.Label>Settings</Menu.Label>
-        <Switch
-          size="sm"
-          checked={settings.speech}
-          onChange={(ev) => settings.setSpeech(ev.currentTarget.checked)}
-          disabled={!browserSupportsSpeechRecognition}
-          label={`Speech ${!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}`}
-        />
-        <Switch
-          size="sm"
-          checked={settings.timer}
-          onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
-          label="Show timer"
-        />
-        <Switch
-          size="sm"
-          checked={settings.sound}
-          onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
-          label="Sound effects"
-        />
+        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+          <Switch
+            size="sm"
+            color="green"
+            checked={settings.speech}
+            onChange={(ev) => settings.setSpeech(ev.currentTarget.checked)}
+            disabled={!browserSupportsSpeechRecognition}
+          />
+          Speech {!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}
+        </label>
+        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+          <Switch
+            size="sm"
+            color="green"
+            checked={settings.timer}
+            onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
+          />{" "}
+          Show timer
+        </label>
+        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+          <Switch
+            size="sm"
+            color="green"
+            checked={settings.sound}
+            onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
+          />
+          Sound effects
+        </label>
       </Menu>
     </>
   );

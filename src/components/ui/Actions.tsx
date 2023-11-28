@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Tooltip } from "@mantine/core";
 import { RiMore2Fill } from "react-icons/ri";
 
 import { contextColors } from "~/lib/styles";
 
 import { ButtonIcon } from "./ButtonIcon";
 import { Menu } from "./Menu";
+import { Tooltip } from "./Tooltip";
 
 export type Action = {
   name: string;
@@ -23,7 +23,7 @@ export const FlexActions = (props: { actions: Action[] }) => {
         .filter((act) => !act.disabled)
         .map((act) => {
           return (
-            <Tooltip label={act.name} key={act.name}>
+            <Tooltip content={act.name} key={act.name}>
               <ButtonIcon variant="light" radius="sm" onClick={() => act.action()} color={act.color ?? "slate"}>
                 {act.icon}
               </ButtonIcon>
