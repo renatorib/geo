@@ -109,7 +109,7 @@ export const Dialog = ({
         {...props}
         data-variant={variant}
         className={cn(
-          "group fixed z-50 inset-3 m-auto h-fit max-h-[calc(100vh-2*0.75rem)]",
+          "group/dialog fixed z-50 inset-3 m-auto h-fit max-h-[calc(100vh-2*0.75rem)]",
           "overflow-auto max-w-[calc(100vw-1.5rem)]",
           animated && "scale-90 opacity-0 data-[enter]:scale-100 data-[enter]:opacity-100",
           variants[variant].root,

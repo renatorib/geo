@@ -182,6 +182,26 @@ const collections = {
 
 export const games = [
   {
+    name: "World Map",
+    description: "Guess countries in the map",
+    id: "map-1x1",
+    icon: <RiEarthFill />,
+    type: "world-map-1x1",
+    training: false,
+    ...collections.worldMap,
+  },
+
+  {
+    name: "World Map All",
+    description: "Guess countries in the map",
+    id: "map",
+    icon: <RiEarthFill />,
+    type: "world-map",
+    training: true,
+    ...collections.worldMap,
+  },
+
+  {
     name: "Flags",
     description: "Guess countries by flags",
     id: "flags-1x1",
@@ -199,26 +219,6 @@ export const games = [
     type: "cards-grid",
     training: true,
     ...collections.flags,
-  },
-
-  {
-    name: "World Map All",
-    description: "Guess countries in the map",
-    id: "map",
-    icon: <RiEarthFill />,
-    type: "world-map",
-    training: true,
-    ...collections.worldMap,
-  },
-
-  {
-    name: "World Map",
-    description: "Guess countries in the map",
-    id: "map-1x1",
-    icon: <RiEarthFill />,
-    type: "world-map-1x1",
-    training: false,
-    ...collections.worldMap,
   },
 
   {

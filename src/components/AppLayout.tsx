@@ -2,7 +2,6 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
-import { Drawer } from "@mantine/core";
 import { RiHome2Line, RiHeart2Fill, RiMenuFill } from "react-icons/ri";
 import { TrackViewportUnits } from "react-use-vars";
 import { useSnapshot } from "valtio";
@@ -49,7 +48,7 @@ const AppHeader = () => {
 
       <RouterTransition />
 
-      <Drawer title="Menu" opened={navbarOpened} onClose={() => setNavbarOpened(false)} padding="md" size="xs">
+      <Dialog title="Menu" open={navbarOpened} onClose={() => setNavbarOpened(false)} padding="md">
         <div>
           <div className="flex flex-col gap-2">
             <NavbarLink href="/" icon={<RiHome2Line />} color="green">
@@ -95,7 +94,7 @@ const AppHeader = () => {
               ))}
           </div>
         </div>
-      </Drawer>
+      </Dialog>
     </div>
   );
 };

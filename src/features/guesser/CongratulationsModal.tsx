@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Portal } from "@mantine/core";
 import { openModal } from "@mantine/modals";
 import Confetti from "react-confetti";
+import ReactDOM from "react-dom";
 import { GiPartyPopper } from "react-icons/gi";
 
 import { Text } from "~/components/ui/Text";
@@ -15,10 +15,8 @@ type Props = {
 
 export const CongratulationsModal = (props: Props) => {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <Portal>
-        <Confetti />
-      </Portal>
+    <div className="flex flex-col items-center gap-4 overflow-hidden">
+      {ReactDOM.createPortal(<Confetti />, document.body)}
       <Text color="violet" style={{ animation: "pop 500ms ease-in" }}>
         <GiPartyPopper size={120} />
       </Text>
@@ -39,8 +37,7 @@ export const openCongratulationsModal = (props: Props) => {
   openModal({
     size: "xs",
     overlayProps: {
-      color: "rgba(200, 200, 200, 0.7)",
-      blur: 2,
+      color: "rgba(255, 255, 255, 0)",
     },
     centered: true,
     withCloseButton: false,

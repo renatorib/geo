@@ -54,11 +54,10 @@ export const SvgPanZoom = (props: SvgPanZoomProps) => {
         {...props}
         onChangeValue={(value) => {
           setValue(value);
-          setStyle(wrapperRef!.current!, {
-            "--viewer-zoom": value.a,
-            // "--viewer-x": value.e,
-            // "--viewer-y": value.f,
-          });
+          wrapperRef.current &&
+            setStyle(wrapperRef.current, {
+              "--viewer-zoom": value.a,
+            });
           props.onChangeValue?.(value);
         }}
         style={{
