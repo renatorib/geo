@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <MantineProvider theme={theme} defaultColorScheme="light">
         <ModalsProvider>
-          <Notifications position="top-center" />
+          <Notifications position="bottom-center" />
           <div className={`${inter.className} ${inter.variable} color-context-slate`}>
             <Component {...pageProps} />
           </div>

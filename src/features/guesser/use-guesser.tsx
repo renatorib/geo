@@ -5,13 +5,11 @@ import { RiCheckDoubleFill } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
-import { readableTime, useTimer } from "~/features/timer";
+import { useTimer } from "~/features/timer";
 import { Answer, Entity } from "~/games";
 import { shuffle as shuffleArray } from "~/lib/array";
 import { onNextPaint } from "~/lib/dom";
 import { normalizeString } from "~/lib/string";
-
-import { openCongratulationsModal } from "./CongratulationsModal";
 
 export type Node<T extends Entity> = {
   entity: T;
@@ -24,7 +22,6 @@ type UseGuesserProps<T extends Entity> = {
   answer: Answer<T>;
   title?: string;
   initialShuffled?: boolean;
-  openCongratulations?: boolean;
   onComplete?: () => void;
   onGuess?: (props: { correct: boolean; text: string; node: Node<T> }) => void;
   onCorrectGuess?: (node: Node<T>, next: Node<T> | undefined) => void;
@@ -32,15 +29,7 @@ type UseGuesserProps<T extends Entity> = {
 };
 
 export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
-  const {
-    data: initialData,
-    initialShuffled = true,
-    openCongratulations = true,
-    onComplete,
-    onGuess,
-    onCorrectGuess,
-    onSelectNode,
-  } = props;
+  const { data: initialData, initialShuffled = true, onComplete, onGuess, onCorrectGuess, onSelectNode } = props;
 
   const { lang } = useSettings();
   const timer = useTimer();
@@ -51,6 +40,8 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   });
   const [spoiler, setSpoiler] = React.useState(false);
   const [selectedNode, _setSelectedNode] = React.useState<Node<T>>(data[0]);
+  const [totalTime, setTotalTime] = React.useState(0);
+
   const setSelectedNode = (node: Node<T>) => {
     const previous = selectedNode;
     _setSelectedNode(node);
@@ -108,14 +99,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
 
       if (isCompleted) {
         onComplete?.();
-        if (openCongratulations) {
-          const totalTime = timer.end();
-          openCongratulationsModal({
-            guesses: data.length,
-            name: props.title,
-            time: readableTime(totalTime),
-          });
-        }
+        setTotalTime(timer.end());
       }
     }
 
@@ -187,6 +171,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     timer,
 
     isCompleted,
+    totalTime,
     totalChecked,
 
     getNode,

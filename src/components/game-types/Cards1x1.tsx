@@ -1,10 +1,14 @@
+import Link from "next/link";
 import React from "react";
 
-import { RiCheckDoubleFill, RiRestartLine, RiSkipForwardFill } from "react-icons/ri";
+import Confetti from "react-confetti";
+import ReactDOM from "react-dom";
+import { GiPartyPopper } from "react-icons/gi";
+import { RiCheckDoubleFill, RiAddLine, RiRestartLine, RiSkipForwardFill } from "react-icons/ri";
 
 import { GuessInput, useGuesser } from "~/features/guesser";
 import { playSound } from "~/features/sounds";
-import { TimerControl } from "~/features/timer";
+import { TimerControl, readableTime } from "~/features/timer";
 import { GameProps } from "~/games";
 
 import { ResponsiveActions } from "../ui/Actions";
@@ -33,6 +37,23 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
   ];
 
   const nextUnchecked = guesser.getNextUnchecked(guesser.selectedNode);
+
+  if (guesser.isCompleted) {
+    return (
+      <Congratulations title={game.title} length={guesser.data.length} totalTime={guesser.totalTime}>
+        <div className="flex items-center gap-2">
+          <Button color="violet" size="xl" padding="xl" variant="light" onClick={guesser.reset}>
+            <RiRestartLine /> Restart
+          </Button>
+          <Link href="/">
+            <Button color="violet" size="xl" padding="xl" variant="outline">
+              <RiAddLine /> Play new game
+            </Button>
+          </Link>
+        </div>
+      </Congratulations>
+    );
+  }
 
   return (
     <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
@@ -111,14 +132,37 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
             </Button>
           )}
         </div>
+      </div>
+    </div>
+  );
+};
 
-        {guesser.isCompleted && (
-          <div className="flex justify-center gap-3 pt-7">
-            <Button color="violet" variant="filled" onClick={guesser.reset}>
-              <RiRestartLine /> Restart
-            </Button>
-          </div>
-        )}
+export const Congratulations = (props: {
+  length: number;
+  title: string;
+  totalTime: number;
+  children?: React.ReactNode;
+}) => {
+  const [confettis, setConfettis] = React.useState(150);
+
+  React.useEffect(() => {
+    setTimeout(() => setConfettis(10), 4000);
+  }, []);
+
+  return (
+    <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
+      <div className="flex flex-col items-center gap-4">
+        {ReactDOM.createPortal(<Confetti numberOfPieces={confettis} />, document.body)}
+        <div className="text-purple-500" style={{ animation: "pop 1000ms ease-in-out" }}>
+          <GiPartyPopper size={250} />
+        </div>
+        <div color="gray" className="text-center text-slate-500">
+          <div className="text-slate-800 text-4xl font-bold mb-2">Well done!</div>
+          You have completed <strong className="text-slate-600">{props.length}</strong> guesses of{" "}
+          <span>{'"' + props.title + '"'}</span> in{" "}
+          <strong className="text-slate-600">{readableTime(props.totalTime)}</strong>
+        </div>
+        <div className="my-4">{props.children}</div>
       </div>
     </div>
   );
