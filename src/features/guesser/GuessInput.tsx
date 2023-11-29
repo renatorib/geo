@@ -1,6 +1,8 @@
 import React from "react";
 
+import * as Ariakit from "@ariakit/react";
 import { Autocomplete, ComboboxItem, Input, useCombobox } from "@mantine/core";
+import { matchSorter } from "match-sorter";
 import { RiCheckLine, RiEyeLine } from "react-icons/ri";
 
 import { useSettings } from "~/features/settings";
@@ -106,34 +108,67 @@ export const GuessInput = ({
       )}
 
       {props.autoComplete ? (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (combobox.dropdownOpened) {
-              combobox.clickSelectedOption();
-            }
-          }}
-        >
-          <Autocomplete
-            data={[...new Set(props.autoComplete)]}
-            {...inputProps}
-            comboboxProps={{ store: combobox }}
-            filter={(input) =>
-              (input.options as ComboboxItem[]).filter(
-                (option) =>
-                  normalizeString(option.value).startsWith(normalizeString(input.search)) ||
-                  normalizeString(option.value)
-                    .split(" ")
-                    .some((part) => part.startsWith(normalizeString(input.search))),
-              )
-            }
-          />
-        </form>
+        <Autocomplet
+          list={[...new Set(props.autoComplete)]}
+          onChange={(value) => handleChange(normalizeString(value))}
+        />
       ) : (
         <Input<"input"> key={status} {...inputProps} />
       )}
     </div>
+  );
+};
+
+const Autocomplet = (props: { list: string[]; onChange: (value: string) => any }) => {
+  const [value, setValue] = React.useState("");
+  const shouldOpen = value.length > 1;
+
+  const store = Ariakit.useComboboxStore({
+    open: shouldOpen,
+    value,
+    setValue,
+  });
+
+  const matches = React.useMemo(() => matchSorter(props.list, value), [value]);
+
+  React.useEffect(() => {
+    value && props.onChange(value);
+  }, [value]);
+
+  const state = store.useState();
+  const first = store.first();
+  const activeId = state.activeId;
+  React.useEffect(() => {
+    if (state.open === true) {
+      store.move(first);
+    }
+  }, [state.open, first, activeId, value]);
+
+  return (
+    <>
+      <Ariakit.Combobox store={store} className={cn("p-2 w-full rounded")} placeholder="Type your guess" />
+      <Ariakit.ComboboxPopover
+        store={store}
+        gutter={8}
+        sameWidth
+        autoFocusOnShow={true}
+        className={cn(
+          "relative max-h-[min(var(--popover-available-height,_300px),_300px)]",
+          "flex flex-col overflow-auto overscroll-contain rounded p-2 bg-white",
+          "shadow border border-solid border-slate-300",
+        )}
+      >
+        {shouldOpen &&
+          matches.length &&
+          matches.map((value) => (
+            <Ariakit.ComboboxItem
+              key={value}
+              value={value}
+              className="flex items-center gap-2 rounded p-2 outline-none scroll-m-2 hover:bg-slate-200 data-[active-item]:bg-blue-200"
+            />
+          ))}
+      </Ariakit.ComboboxPopover>
+    </>
   );
 };
 
