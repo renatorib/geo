@@ -58,7 +58,7 @@ export const WorldMap = ({ game }: WorldMapProps) => {
             name="world-map"
             placeholder="Type country names..."
             onGuess={(text) => guesser.guessAll(text)}
-            classNames={{ input: "!border !border-gray-200" }}
+            className="!border !border-gray-200"
           />
         </div>
 

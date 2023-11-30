@@ -97,7 +97,7 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
             name="world-map"
             placeholder="Type country name..."
             onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
-            classNames={{ input: "!border !border-gray-200" }}
+            className="!border !border-gray-200"
             autoComplete={game.data
               .map((entity) => guesser.getNode(entity))
               .filter(Boolean)

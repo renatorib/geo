@@ -1,14 +1,13 @@
 import React from "react";
 
 import * as Ariakit from "@ariakit/react";
-import { Autocomplete, ComboboxItem, Input, useCombobox } from "@mantine/core";
 import { matchSorter } from "match-sorter";
-import { RiCheckLine, RiEyeLine } from "react-icons/ri";
 
+import { Input } from "~/components/ui/Input";
 import { useSettings } from "~/features/settings";
-import { MicOn, Recorder, useTranscripter } from "~/features/speech-recognition";
-import { onNextPaint, setInputValue } from "~/lib/dom";
-import { normalizeString } from "~/lib/string";
+import { Recorder, useTranscripter } from "~/features/speech-recognition";
+import { setInputValue } from "~/lib/dom";
+import { fr } from "~/lib/react";
 import { cn } from "~/lib/styles";
 
 type GuessInputProps = {
@@ -19,7 +18,7 @@ type GuessInputProps = {
   transcriptor?: boolean;
   autoComplete?: string[];
   onChange?: (value: string) => any;
-} & Omit<React.ComponentProps<typeof Input<"input">>, "autoComplete" | "onChange">;
+} & Omit<React.ComponentProps<typeof Input>, "autoComplete" | "onChange">;
 
 export const GUESS_INPUT_ID_PROP = "data-guess-input-id";
 export const GUESS_INPUT_STATUS_PROP = "data-guess-input-status";
@@ -33,7 +32,6 @@ export const GuessInput = ({
   ...props
 }: GuessInputProps) => {
   const { lang } = useSettings();
-  const combobox = useCombobox();
 
   const transcripter = useTranscripter({
     enabled: transcriptor,
@@ -42,111 +40,88 @@ export const GuessInput = ({
     },
   });
 
-  const icon =
-    transcripter.listening && transcripter.meta === id ? (
-      <MicOn />
-    ) : status === "correct" ? (
-      <RiCheckLine />
-    ) : status === "spoiler" ? (
-      <RiEyeLine />
-    ) : null;
-
   const showRecorder = transcripter.shouldUseSpeech && status === "hidden";
 
   const handleChange = (value: string) => {
-    if (value.length < 2) {
-      combobox.closeDropdown();
-      return;
-    }
-    combobox.openDropdown();
-    onNextPaint(() => combobox.selectFirstOption());
     onGuess(value);
     props.onChange?.(value);
   };
 
+  const right = showRecorder && (
+    <Recorder
+      recording={transcripter.listening && transcripter.meta === id}
+      disabled={transcripter.listening && transcripter.meta !== id}
+      onClick={transcripter.listening ? () => transcripter.stop() : () => transcripter.start(id)}
+    />
+  );
+
   const inputProps = {
     [GUESS_INPUT_ID_PROP]: id,
     [GUESS_INPUT_STATUS_PROP]: status,
-    leftSection: icon,
-    rightSection: showRecorder && <div style={{ width: 34 }} />,
-    title: status === "hidden" ? undefined : name,
+    // title: status === "hidden" ? undefined : name,
     placeholder: `Type your guess in ${lang.emoji} (${lang.code})`,
 
     value: status === "hidden" ? undefined : name,
     readOnly: status !== "hidden",
     disabled: status !== "hidden",
 
+    right,
+    className: cn(
+      "w-full border-0 text-ellipsis",
+      "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
+      "disabled:text-black disabled:bg-transparent",
+      "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
+    ),
     onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => {
       handleChange(typeof e === "string" ? e : e.target.value);
-    },
-    classNames: {
-      section: cn(
-        "text-[var(--mantine-color-gray-9)] text-[1.33em]",
-        typeof props.classNames !== "function" && props.classNames?.section,
-      ),
-      input: cn(
-        "w-full border-0 text-ellipsis",
-        "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
-        "disabled:text-black disabled:bg-transparent",
-        "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
-
-        typeof props.classNames !== "function" && props.classNames?.input,
-      ),
     },
   };
 
   return (
     <div className="relative w-full">
-      {showRecorder && (
-        <div className="absolute top-1 right-1 z-10">
-          <Recorder
-            recording={transcripter.listening && transcripter.meta === id}
-            disabled={transcripter.listening && transcripter.meta !== id}
-            onClick={transcripter.listening ? () => transcripter.stop() : () => transcripter.start(id)}
-          />
-        </div>
-      )}
-
       {props.autoComplete ? (
-        <Autocomplet
-          list={[...new Set(props.autoComplete)]}
-          onChange={(value) => handleChange(normalizeString(value))}
-        />
+        <Autocomplete items={[...new Set(props.autoComplete)]} {...inputProps} right={right} />
       ) : (
-        <Input<"input"> key={status} {...inputProps} />
+        <Input key={status} {...inputProps} right={right} />
       )}
     </div>
   );
 };
 
-const Autocomplet = (props: { list: string[]; onChange: (value: string) => any }) => {
+const Autocomplete = fr<
+  { items: string[]; onChange: (value: string) => any; left?: React.ReactNode; right?: React.ReactNode },
+  typeof Ariakit.Combobox
+>(({ items, onChange, left, right, ...comboboxProps }, ref) => {
   const [value, setValue] = React.useState("");
-  const shouldOpen = value.length > 1;
+  const matches = React.useMemo(() => (value.length >= 2 ? matchSorter(items, value) : []), [value]);
+  const open = matches.length >= 1;
 
   const store = Ariakit.useComboboxStore({
-    open: shouldOpen,
     value,
-    setValue,
+    open,
+    setValue: (value) => {
+      setValue(value);
+      onChange(value);
+    },
   });
 
-  const matches = React.useMemo(() => matchSorter(props.list, value), [value]);
-
-  React.useEffect(() => {
-    value && props.onChange(value);
-  }, [value]);
-
   const state = store.useState();
-  const first = store.first();
-  const activeId = state.activeId;
   React.useEffect(() => {
-    if (state.open === true) {
-      store.move(first);
-    }
-  }, [state.open, first, activeId, value]);
+    setTimeout(() => store.move(store.first()));
+  }, [state.value]);
 
   return (
     <>
-      <Ariakit.Combobox store={store} className={cn("p-2 w-full rounded")} placeholder="Type your guess" />
+      <div className="flex items-center">
+        {left && <div className="px-1">{left}</div>}
+        <Ariakit.Combobox
+          ref={ref}
+          store={store}
+          {...comboboxProps}
+          className={cn("p-2 w-full rounded", comboboxProps.className)}
+        />
+        {right && <div className="px-1">{right}</div>}
+      </div>
       <Ariakit.ComboboxPopover
         store={store}
         gutter={8}
@@ -158,8 +133,7 @@ const Autocomplet = (props: { list: string[]; onChange: (value: string) => any }
           "shadow border border-solid border-slate-300",
         )}
       >
-        {shouldOpen &&
-          matches.length &&
+        {open &&
           matches.map((value) => (
             <Ariakit.ComboboxItem
               key={value}
@@ -170,7 +144,7 @@ const Autocomplet = (props: { list: string[]; onChange: (value: string) => any }
       </Ariakit.ComboboxPopover>
     </>
   );
-};
+});
 
 GuessInput.getByStatus = (status: string) => {
   return document.querySelector<HTMLInputElement>(`[${GUESS_INPUT_STATUS_PROP}="${status}"]`);
