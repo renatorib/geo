@@ -24,7 +24,7 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
-    onCorrectGuess: (node) => GuessInput.clearById(node.id),
+    onCorrectGuess: () => GuessInput.clearById(),
   });
 
   const actions = [
@@ -99,12 +99,9 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
         <div className="flex items-stretch gap-2 mt-2">
           <div className="shadow-lg rounded-md grow">
             <GuessInput
-              id={guesser.selectedNode.id}
-              name={guesser.getNodeValue(guesser.selectedNode)}
-              status={guesser.getNodeStatus(guesser.selectedNode)}
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               disabled={guesser.isCompleted}
-              autoComplete={game.data
+              autocomplete={game.data
                 .map((entity) => guesser.getNode(entity))
                 .filter(Boolean)
                 .map((data) => guesser.getNodeValue(data))}

@@ -18,9 +18,9 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
-    onCorrectGuess: (node) => GuessInput.clearById(node.id),
+    onCorrectGuess: () => GuessInput.clearById(),
     onSelectNode: (node) => {
-      GuessInput.focusById(node.id);
+      GuessInput.focusById();
       GuessCard.scrollIntoView(node.id);
     },
   });
@@ -50,12 +50,9 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
           </div>
           <div className="grow">
             <GuessInput
-              id={guesser.selectedNode.id}
-              name={guesser.getNodeValue(guesser.selectedNode)}
-              status={guesser.getNodeStatus(guesser.selectedNode)}
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               disabled={guesser.isCompleted}
-              autoComplete={game.data
+              autocomplete={game.data
                 .map((entity) => guesser.getNode(entity))
                 .filter(Boolean)
                 .map((data) => guesser.getNodeValue(data))}

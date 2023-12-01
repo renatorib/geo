@@ -3,7 +3,6 @@ import React from "react";
 import * as Ariakit from "@ariakit/react";
 import { matchSorter } from "match-sorter";
 
-import { Input } from "~/components/ui/Input";
 import { useSettings } from "~/features/settings";
 import { Recorder, useTranscripter } from "~/features/speech-recognition";
 import { setInputValue } from "~/lib/dom";
@@ -11,25 +10,23 @@ import { fr } from "~/lib/react";
 import { cn } from "~/lib/styles";
 
 type GuessInputProps = {
-  id: string;
-  name: string;
   onGuess: (text: string) => void;
   status?: "correct" | "spoiler" | "hidden";
+  id?: string;
   transcriptor?: boolean;
-  autoComplete?: string[];
-  onChange?: (value: string) => any;
-} & Omit<React.ComponentProps<typeof Input>, "autoComplete" | "onChange">;
+  autocomplete?: string[];
+} & Partial<Omit<React.ComponentProps<typeof Autocomplete>, "autoComplete">>;
 
 export const GUESS_INPUT_ID_PROP = "data-guess-input-id";
 export const GUESS_INPUT_STATUS_PROP = "data-guess-input-status";
 
 export const GuessInput = ({
-  id,
-  name,
-  status = "hidden",
-  transcriptor = true,
   onGuess,
-  ...props
+  status = "hidden",
+  id = "guess-input",
+  transcriptor = true,
+  autocomplete,
+  ...restProps
 }: GuessInputProps) => {
   const { lang } = useSettings();
 
@@ -44,7 +41,7 @@ export const GuessInput = ({
 
   const handleChange = (value: string) => {
     onGuess(value);
-    props.onChange?.(value);
+    restProps.onChange?.(value);
   };
 
   const right = showRecorder && (
@@ -55,35 +52,29 @@ export const GuessInput = ({
     />
   );
 
-  const inputProps = {
+  const dataAttrs = {
     [GUESS_INPUT_ID_PROP]: id,
     [GUESS_INPUT_STATUS_PROP]: status,
-    // title: status === "hidden" ? undefined : name,
-    placeholder: `Type your guess in ${lang.emoji} (${lang.code})`,
-
-    value: status === "hidden" ? undefined : name,
-    readOnly: status !== "hidden",
-    disabled: status !== "hidden",
-
-    right,
-    className: cn(
-      "w-full border-0 text-ellipsis",
-      "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
-      "disabled:text-black disabled:bg-transparent",
-      "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
-    ),
-    onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => {
-      handleChange(typeof e === "string" ? e : e.target.value);
-    },
   };
 
   return (
     <div className="relative w-full">
-      {props.autoComplete ? (
-        <Autocomplete items={[...new Set(props.autoComplete)]} {...inputProps} right={right} />
-      ) : (
-        <Input key={status} {...inputProps} right={right} />
-      )}
+      <Autocomplete
+        {...dataAttrs}
+        right={right}
+        items={autocomplete ? [...new Set(autocomplete)] : []}
+        placeholder={`Type your guess in ${lang.emoji} (${lang.code})`}
+        disabled={status !== "hidden"}
+        readOnly={status !== "hidden"}
+        onChange={handleChange}
+        className={cn(
+          "w-full border-0 text-ellipsis",
+          "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-violet-400",
+          "disabled:text-black disabled:bg-transparent",
+          "disabled:border-0 disabled:opacity-1 disabled:cursor-default",
+        )}
+        {...restProps}
+      />
     </div>
   );
 };
@@ -93,40 +84,38 @@ const Autocomplete = fr<
   typeof Ariakit.Combobox
 >(({ items, onChange, left, right, ...comboboxProps }, ref) => {
   const [value, setValue] = React.useState("");
-  const matches = React.useMemo(() => (value.length >= 2 ? matchSorter(items, value) : []), [value]);
+  const matches = React.useMemo(
+    () =>
+      value.length >= 2
+        ? matchSorter(items, value, {
+            keys: [(item) => item.replace(/-/g, " ")],
+          })
+        : [],
+    [value],
+  );
   const open = matches.length >= 1;
 
-  const store = Ariakit.useComboboxStore({
-    value,
-    open,
-    setValue: (value) => {
-      setValue(value);
-      onChange(value);
-    },
-  });
-
-  const state = store.useState();
   React.useEffect(() => {
-    setTimeout(() => store.move(store.first()));
-  }, [state.value]);
+    onChange(value);
+  }, [value]);
 
   return (
-    <>
+    <Ariakit.ComboboxProvider open={open} value={value} setValue={setValue}>
       <div className="flex items-center">
         {left && <div className="px-1">{left}</div>}
         <Ariakit.Combobox
           ref={ref}
-          store={store}
+          autoSelect
           {...comboboxProps}
           className={cn("p-2 w-full rounded", comboboxProps.className)}
         />
         {right && <div className="px-1">{right}</div>}
       </div>
       <Ariakit.ComboboxPopover
-        store={store}
         gutter={8}
         sameWidth
         autoFocusOnShow={true}
+        flip={false}
         className={cn(
           "relative max-h-[min(var(--popover-available-height,_300px),_300px)]",
           "flex flex-col overflow-auto overscroll-contain rounded p-2 bg-white",
@@ -138,11 +127,15 @@ const Autocomplete = fr<
             <Ariakit.ComboboxItem
               key={value}
               value={value}
-              className="flex items-center gap-2 rounded p-2 outline-none scroll-m-2 hover:bg-slate-200 data-[active-item]:bg-blue-200"
+              className={cn(
+                "flex items-center gap-2 rounded p-2 outline-none scroll-m-2",
+                "cursor-pointer hover:bg-slate-200",
+                "data-[active-item]:bg-blue-500 data-[active-item]:text-white",
+              )}
             />
           ))}
       </Ariakit.ComboboxPopover>
-    </>
+    </Ariakit.ComboboxProvider>
   );
 });
 
@@ -150,18 +143,18 @@ GuessInput.getByStatus = (status: string) => {
   return document.querySelector<HTMLInputElement>(`[${GUESS_INPUT_STATUS_PROP}="${status}"]`);
 };
 
-GuessInput.getById = (id: string | number) => {
+GuessInput.getById = (id: string | number = "guess-input") => {
   return document.querySelector<HTMLInputElement>(`[${GUESS_INPUT_ID_PROP}="${id}"]`);
 };
 
-GuessInput.clearById = (id: string | number) => {
+GuessInput.clearById = (id: string | number = "guess-input") => {
   return setInputValue(GuessInput.getById(id), "");
 };
 
-GuessInput.focusById = (id: string | number) => {
+GuessInput.focusById = (id: string | number = "guess-input") => {
   GuessInput.getById(id)?.focus();
 };
 
-GuessInput.blurById = (id: string | number) => {
+GuessInput.blurById = (id: string | number = "guess-input") => {
   GuessInput.getById(id)?.blur();
 };

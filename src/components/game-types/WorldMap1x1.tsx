@@ -35,7 +35,7 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
-    onCorrectGuess: () => GuessInput.clearById("world-map"),
+    onCorrectGuess: () => GuessInput.clearById(),
     onSelectNode: (node) =>
       viewer && SvgPanZoom.zoomOnViewbox(viewer, getViewboxOfPath(node.entity.shape, { margin: 5 })),
   });
@@ -93,12 +93,10 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
 
         <div className="grow">
           <GuessInput
-            id="world-map"
-            name="world-map"
             placeholder="Type country name..."
             onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
             className="!border !border-gray-200"
-            autoComplete={game.data
+            autocomplete={game.data
               .map((entity) => guesser.getNode(entity))
               .filter(Boolean)
               .map((data) => guesser.getNodeValue(data))}

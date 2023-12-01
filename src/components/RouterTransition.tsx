@@ -1,8 +1,5 @@
-import "@mantine/nprogress/styles.css";
 import { useRouter } from "next/router";
 import React from "react";
-
-import { startNavigationProgress, resetNavigationProgress, NavigationProgress } from "@mantine/nprogress";
 
 export function RouterTransition() {
   const router = useRouter();
@@ -10,11 +7,11 @@ export function RouterTransition() {
   React.useEffect(() => {
     const handleStart = (url: string) => {
       if (url !== router.asPath) {
-        startNavigationProgress();
+        // startNavigationProgress();
       }
     };
     const handleComplete = () => {
-      resetNavigationProgress();
+      // resetNavigationProgress();
     };
 
     router.events.on("routeChangeStart", handleStart);
@@ -28,5 +25,5 @@ export function RouterTransition() {
     };
   }, [router.asPath]); // eslint-disable-line
 
-  return <NavigationProgress />;
+  return null;
 }

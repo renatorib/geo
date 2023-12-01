@@ -114,6 +114,7 @@ export const Tooltip = fr<TooltipProps, typeof Ariakit.Tooltip>(
           gutter={2}
           ref={ref}
           updatePosition={followCursor ? updatePosition : undefined}
+          portal={true}
           className={cn(
             contextColors[color],
             variants[variant],
@@ -122,7 +123,7 @@ export const Tooltip = fr<TooltipProps, typeof Ariakit.Tooltip>(
             radii[radius],
             paddingsSize[padding],
             transitions[transition],
-            "opacity-0 transform -translate-y-1 data-[enter]:opacity-100 data-[enter]:translate-y-0",
+            "z-50 opacity-0 transform -translate-y-1 data-[enter]:opacity-100 data-[enter]:translate-y-0",
             "max-h-[var(--popover-available-height,300px)] min-w-[var(--popover-anchor-width,auto)]",
           )}
         >

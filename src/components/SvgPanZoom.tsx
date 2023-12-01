@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useViewportSize } from "@mantine/hooks";
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 
+import { useViewportSize } from "~/hooks";
 import { onNextPaint, setStyle } from "~/lib/dom";
 import { Viewbox } from "~/lib/svg";
 

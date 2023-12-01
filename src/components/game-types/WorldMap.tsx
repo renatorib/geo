@@ -24,7 +24,7 @@ export const WorldMap = ({ game }: WorldMapProps) => {
     data: game.filteredData,
     answer: game.answer,
     title: game.title,
-    onCorrectGuess: () => GuessInput.clearById("world-map"),
+    onCorrectGuess: () => GuessInput.clearById(),
   });
 
   const actions = [
@@ -54,8 +54,6 @@ export const WorldMap = ({ game }: WorldMapProps) => {
 
         <div className="grow">
           <GuessInput
-            id="world-map"
-            name="world-map"
             placeholder="Type country names..."
             onGuess={(text) => guesser.guessAll(text)}
             className="!border !border-gray-200"

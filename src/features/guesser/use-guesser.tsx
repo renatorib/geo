@@ -1,8 +1,5 @@
 import React from "react";
 
-import { notifications } from "@mantine/notifications";
-import { RiCheckDoubleFill } from "react-icons/ri";
-
 import { useSettings } from "~/features/settings";
 import { playSound } from "~/features/sounds";
 import { useTimer } from "~/features/timer";
@@ -188,16 +185,5 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
 };
 
 function notifyCorrectAnswer(text: string) {
-  return notifications.show({
-    icon: <RiCheckDoubleFill size={25} />,
-    message: <div className="font-bold text-lg">{text}</div>,
-    color: "green",
-    autoClose: 1500,
-    withCloseButton: false,
-    classNames: {
-      root: "bg-green-500",
-      description: "text-white",
-      icon: "bg-transparent",
-    },
-  });
+  console.log(text);
 }

@@ -1,27 +1,22 @@
-import { useLocalStorage } from "@mantine/hooks";
+import { useLocalStorage, StorageProperties } from "~/hooks";
 
 import { languages, LanguageCode } from "./languages";
 
-const useBooleanLocalStorage = (key: string, defaultValue: boolean) =>
-  useLocalStorage<boolean>({
-    key,
-    defaultValue,
-    serialize: (b) => (b ? "true" : "false"),
-    deserialize: (b: "true" | "false") => (b === "true" ? true : false),
-  });
+const useSetting = <T>(key: string, defaultValue: T, options?: Omit<StorageProperties<T>, "key" | "defaultValue">) =>
+  useLocalStorage<T>({ key, defaultValue, ...options });
 
 export const useSettings = () => {
   /* speech */
-  const [speech, setSpeech] = useBooleanLocalStorage("gtf:speech", false);
+  const [speech, setSpeech] = useSetting("gtf:speech", false);
 
   /* timer */
-  const [timer, setTimer] = useBooleanLocalStorage("gtf:timer", false);
+  const [timer, setTimer] = useSetting("gtf:timer", false);
 
   /* sound */
-  const [sound, setSound] = useBooleanLocalStorage("gtf:sound", true);
+  const [sound, setSound] = useSetting("gtf:sound", true);
 
   /* lang(uage) */
-  const [_lang, setLang] = useLocalStorage<LanguageCode>({ key: "gtf:lang", defaultValue: "en-US" });
+  const [_lang, setLang] = useSetting<LanguageCode>("gtf:lang", "en-US");
   const langProps = Object.values(languages).find(({ code }) => code === _lang);
   const lang = langProps ?? languages["en-US"];
 

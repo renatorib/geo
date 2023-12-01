@@ -33,9 +33,7 @@ const AppHeader = () => {
             </ButtonIcon>
           </div>
           <NextLink href="/">
-            <div className="absolute left-1/2 -translate-x-1/2 top-[13px]">
-              <Logo size={22} color="#449966" />
-            </div>
+            <Logo size={22} color="#449966" />
           </NextLink>
           <div className="m-3">
             <div className="flex items-center gap-2 ml-auto">
