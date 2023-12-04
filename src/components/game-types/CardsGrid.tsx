@@ -6,6 +6,7 @@ import { GuessCard, GuessInput, useGuesser } from "~/features/guesser";
 import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
 
+import { Congratulations } from "../Congratulations";
 import { ResponsiveActions } from "../ui/Actions";
 import { FloatingGuessBar } from "../ui/FloatingGuessBar";
 
@@ -33,6 +34,17 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
       color: "red" as const,
     },
   ];
+
+  if (guesser.isCompleted) {
+    return (
+      <Congratulations
+        title={game.title}
+        length={guesser.data.length}
+        totalTime={guesser.totalTime}
+        onRestart={() => guesser.reset()}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-2 w-full pt-4">

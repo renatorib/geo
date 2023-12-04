@@ -8,6 +8,7 @@ import { GameProps } from "~/games";
 import { cn } from "~/lib/styles";
 import { getViewboxOfPath } from "~/lib/svg";
 
+import { Congratulations } from "../Congratulations";
 import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
 import { ResponsiveActions } from "../ui/Actions";
 import { FloatingGuessBar } from "../ui/FloatingGuessBar";
@@ -44,6 +45,17 @@ export const WorldMap = ({ game }: WorldMapProps) => {
       },
     },
   ];
+
+  if (guesser.isCompleted) {
+    return (
+      <Congratulations
+        title={game.title}
+        length={guesser.data.length}
+        totalTime={guesser.totalTime}
+        onRestart={() => guesser.reset()}
+      />
+    );
+  }
 
   return (
     <div className="relative">

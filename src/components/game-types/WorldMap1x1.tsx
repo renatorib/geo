@@ -1,14 +1,6 @@
-import Link from "next/link";
 import React from "react";
 
-import {
-  RiAddLine,
-  RiCheckDoubleFill,
-  RiFocus2Line,
-  RiRefreshLine,
-  RiRestartLine,
-  RiSkipForwardLine,
-} from "react-icons/ri";
+import { RiCheckDoubleFill, RiFocus2Line, RiRefreshLine, RiSkipForwardLine } from "react-icons/ri";
 
 import { useGuesser, GuessInput } from "~/features/guesser";
 import { TimerControl } from "~/features/timer";
@@ -16,12 +8,10 @@ import { GameProps } from "~/games";
 import { cn } from "~/lib/styles";
 import { getViewboxOfPath } from "~/lib/svg";
 
+import { Congratulations } from "../Congratulations";
 import { SvgPanZoom, ReactSVGPanZoom } from "../SvgPanZoom";
 import { ResponsiveActions } from "../ui/Actions";
-import { Button } from "../ui/Button";
 import { FloatingGuessBar } from "../ui/FloatingGuessBar";
-
-import { Congratulations } from "./Cards1x1";
 
 type WorldMapProps = {
   game: GameProps;
@@ -69,18 +59,12 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
 
   if (guesser.isCompleted) {
     return (
-      <Congratulations title={game.title} length={guesser.data.length} totalTime={guesser.totalTime}>
-        <div className="flex items-center gap-2">
-          <Button color="violet" size="xl" padding="xl" variant="light" onClick={guesser.reset}>
-            <RiRestartLine /> Play again
-          </Button>
-          <Link href="/">
-            <Button color="violet" size="xl" padding="xl" variant="outline">
-              <RiAddLine /> Play new game
-            </Button>
-          </Link>
-        </div>
-      </Congratulations>
+      <Congratulations
+        title={game.title}
+        length={guesser.data.length}
+        totalTime={guesser.totalTime}
+        onRestart={() => guesser.reset()}
+      />
     );
   }
 
