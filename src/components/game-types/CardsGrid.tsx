@@ -62,6 +62,8 @@ export const CardsGrid = ({ game }: CardsGridProps) => {
           </div>
           <div className="grow">
             <GuessInput
+              onPrev={() => guesser.selectPrevNode()}
+              onNext={() => guesser.selectNextNode()}
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               disabled={guesser.isCompleted}
               autocomplete={game.data

@@ -66,8 +66,10 @@ export const WorldMap = ({ game }: WorldMapProps) => {
 
         <div className="grow">
           <GuessInput
-            placeholder="Type country names..."
+            onPrev={() => guesser.selectPrevNode()}
+            onNext={() => guesser.selectNextNode()}
             onGuess={(text) => guesser.guessAll(text)}
+            placeholder="Type country names..."
             className="!border !border-gray-200"
           />
         </div>

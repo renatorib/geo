@@ -77,8 +77,10 @@ export const WorldMap1x1 = ({ game }: WorldMapProps) => {
 
         <div className="grow">
           <GuessInput
-            placeholder="Type country name..."
+            onPrev={() => guesser.selectPrevNode()}
+            onNext={() => guesser.selectNextNode()}
             onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
+            placeholder="Type country name..."
             className="!border !border-gray-200"
             autocomplete={game.data
               .map((entity) => guesser.getNode(entity))

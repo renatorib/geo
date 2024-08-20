@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 
-import { RiHome2Line, RiHeart2Fill, RiMenuFill } from "react-icons/ri";
+import { RiHome2Line, RiHeart2Fill, RiMenuFill, RiLayoutGridLine, RiSquareLine } from "react-icons/ri";
 import { TrackViewportUnits } from "react-use-vars";
 import { useSnapshot } from "valtio";
 
@@ -53,43 +53,51 @@ const AppHeader = () => {
               Home
             </NavbarLink>
 
-            <div className="mt-3">Games</div>
+            <div className="flex gap-2">
+              <div className="flex flex-col gap-2">
+                <div className="mt-3 flex items-center gap-2">
+                  <RiSquareLine /> One by one
+                </div>
+                {games
+                  .filter((g) => g.training === false)
+                  .map((game) => (
+                    <NavbarLink
+                      key={game.id}
+                      icon={game.icon}
+                      color="yellow"
+                      startsWith={`/play/${game.id}/`}
+                      onClick={() => {
+                        storeActions.open(game);
+                        setNavbarOpened(false);
+                      }}
+                    >
+                      {game.name}
+                    </NavbarLink>
+                  ))}
+              </div>
 
-            {games
-              .filter((g) => g.training === false)
-              .map((game) => (
-                <NavbarLink
-                  key={game.id}
-                  icon={game.icon}
-                  color="yellow"
-                  startsWith={`/play/${game.id}/`}
-                  onClick={() => {
-                    storeActions.open(game);
-                    setNavbarOpened(false);
-                  }}
-                >
-                  {game.name}
-                </NavbarLink>
-              ))}
-
-            <div className="mt-3">Learn</div>
-
-            {games
-              .filter((g) => g.training === true)
-              .map((game) => (
-                <NavbarLink
-                  key={game.id}
-                  icon={game.icon}
-                  color="slate"
-                  startsWith={`/play/${game.id}/`}
-                  onClick={() => {
-                    storeActions.open(game);
-                    setNavbarOpened(false);
-                  }}
-                >
-                  {game.name}
-                </NavbarLink>
-              ))}
+              <div className="flex flex-col gap-2">
+                <div className="mt-3 flex items-center gap-2">
+                  <RiLayoutGridLine /> Grid
+                </div>
+                {games
+                  .filter((g) => g.training === true)
+                  .map((game) => (
+                    <NavbarLink
+                      key={game.id}
+                      icon={game.icon}
+                      color="slate"
+                      startsWith={`/play/${game.id}/`}
+                      onClick={() => {
+                        storeActions.open(game);
+                        setNavbarOpened(false);
+                      }}
+                    >
+                      {game.name}
+                    </NavbarLink>
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
       </Dialog>

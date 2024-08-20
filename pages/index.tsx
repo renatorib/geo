@@ -1,7 +1,8 @@
 import React from "react";
 
+import { RiLayoutGridLine, RiSquareLine } from "react-icons/ri";
+
 import { AppLayout } from "~/components";
-import { Text } from "~/components/ui/Text";
 import { Game, games } from "~/games";
 import { cn, contextColors } from "~/lib/styles";
 import { storeActions } from "~/stores/store";
@@ -12,9 +13,9 @@ const Index = () => {
       <div className="w-full flex flex-col justify-center my-8">
         <div className="flex flex-col gap-9">
           <div className="flex flex-col gap-3">
-            <Text size="lg" weight={700}>
-              Select a quiz to play
-            </Text>
+            <div className="text-lg font-bold flex items-center gap-2">
+              <RiSquareLine /> One by one quiz
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
               {games
                 .filter((g) => g.training === false)
@@ -25,9 +26,9 @@ const Index = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <Text size="lg" weight={700}>
-              To play and learn
-            </Text>
+            <div className="text-lg font-bold flex items-center gap-2">
+              <RiLayoutGridLine /> Grid quiz
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
               {games
                 .filter((g) => g.training === true)

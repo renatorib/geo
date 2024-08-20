@@ -252,7 +252,7 @@ export const games = [
   },
 
   {
-    name: "Capitals Reversed",
+    name: "Capitals 2",
     description: "Guess capitals by countries",
     id: "capitals-2-1x1",
     icon: <RiCommunityLine />,
@@ -272,7 +272,7 @@ export const games = [
   },
 
   {
-    name: "Capitals Reversed Grid",
+    name: "Capitals 2 Grid",
     description: "Guess capitals by country names",
     id: "capitals-2",
     icon: <RiCommunityLine />,

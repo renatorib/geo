@@ -134,6 +134,12 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     return lookup.find((nd) => nd.checked === false);
   };
 
+  const getPrevUnchecked = (node: Node<T>) => {
+    const index = data.findIndex((n) => node.id === n.id);
+    const lookup = [...data.slice(index, data.length), ...data.slice(0, index)].reverse();
+    return lookup.find((nd) => nd.checked === false);
+  };
+
   const isNodeSelected = (node: Node<T>) => {
     return selectedNode.id === node.id;
   };
@@ -143,6 +149,14 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     if (next) {
       setSelectedNode(next);
       return next;
+    }
+  };
+
+  const selectPrevNode = (current: Node<T> = selectedNode) => {
+    const prev = getPrevUnchecked(current);
+    if (prev) {
+      setSelectedNode(prev);
+      return prev;
     }
   };
 
@@ -176,10 +190,12 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
     getNodeValue,
     getNodeAliases,
     getNextUnchecked,
+    getPrevUnchecked,
 
     selectedNode,
     setSelectedNode,
     selectNextNode,
+    selectPrevNode,
     isNodeSelected,
   };
 };

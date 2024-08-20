@@ -90,6 +90,8 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
         <div className="flex items-stretch gap-2 mt-2">
           <div className="shadow-lg rounded-md grow">
             <GuessInput
+              onPrev={() => guesser.selectPrevNode()}
+              onNext={() => guesser.selectNextNode()}
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               disabled={guesser.isCompleted}
               autocomplete={game.data

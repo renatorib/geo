@@ -23,8 +23,9 @@ export const TranscriptDialog = () => {
   return (
     <Dialog
       open={show && !!message}
+      modal={false}
       backdrop={false}
-      className="w-[300px] text-ce shadow-none text-white border-none bg-black/50"
+      className="w-[300px] shadow-none text-white border-none bg-black/100 inset-[none] bottom-10 left-3 right-3"
     >
       <div className="flex items-center gap-2">
         <RiVolumeUpLine className="shrink-0" />

@@ -1,9 +1,11 @@
 import React from "react";
 
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import SpeechRecognition, { SpeechRecognitionOptions, useSpeechRecognition } from "react-speech-recognition";
 
 import { useSettings } from "~/features/settings";
 import { createStore } from "~/lib/react";
+
+import { playSound } from "../sounds";
 
 type UseTranscripterProps = {
   /**
@@ -20,6 +22,8 @@ type UseTranscripterProps = {
    * Callback fired when a new transcript was captured (transcript changes).
    */
   onTranscript?: (t: string) => any;
+
+  commands?: SpeechRecognitionOptions["commands"];
 };
 
 const metaStore = createStore<string | number | undefined>(undefined);
@@ -27,16 +31,18 @@ const metaStore = createStore<string | number | undefined>(undefined);
 export function useTranscripter(props: UseTranscripterProps) {
   const meta = metaStore.useState();
   const settings = useSettings();
+  const [started, setStarted] = React.useState(false);
 
   const { language = settings.lang.code, enabled = true, onTranscript } = props;
-  const { transcript, listening, isMicrophoneAvailable, browserSupportsSpeechRecognition } = useSpeechRecognition();
+  const { transcript, listening, resetTranscript, isMicrophoneAvailable, browserSupportsSpeechRecognition } =
+    useSpeechRecognition({ commands: props.commands });
 
   const shouldUseSpeech = browserSupportsSpeechRecognition && isMicrophoneAvailable && enabled && settings.speech;
 
-  const start = (id?: string | number) => {
+  const start = (meta?: string | number) => {
     if (shouldUseSpeech) {
       SpeechRecognition.startListening({ language });
-      metaStore.setState(id);
+      metaStore.setState(meta);
     }
   };
 
@@ -48,10 +54,20 @@ export function useTranscripter(props: UseTranscripterProps) {
   };
 
   React.useEffect(() => {
+    if (listening) {
+      setStarted(true);
+      playSound("in", { volume: 0.5 });
+    } else if (listening === false && started === true) {
+      setStarted(false);
+      playSound("out", { volume: 0.5 });
+    }
+  }, [listening, started]);
+
+  React.useEffect(() => {
     if (shouldUseSpeech && transcript) {
       onTranscript?.(transcript);
     }
   }, [transcript, shouldUseSpeech]); // eslint-disable-line
 
-  return { meta, shouldUseSpeech, start, stop, transcript, listening };
+  return { meta, shouldUseSpeech, start, stop, transcript, resetTranscript, listening };
 }

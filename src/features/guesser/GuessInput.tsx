@@ -10,11 +10,13 @@ import { fr } from "~/lib/react";
 import { cn } from "~/lib/styles";
 
 type GuessInputProps = {
-  onGuess: (text: string) => void;
+  onGuess: (text: string) => boolean;
   status?: "correct" | "spoiler" | "hidden";
   id?: string;
   transcriptor?: boolean;
   autocomplete?: string[];
+  onNext?: () => any;
+  onPrev?: () => any;
 } & Partial<Omit<React.ComponentProps<typeof Autocomplete>, "autoComplete">>;
 
 export const GUESS_INPUT_ID_PROP = "data-guess-input-id";
@@ -26,6 +28,8 @@ export const GuessInput = ({
   id = "guess-input",
   transcriptor = true,
   autocomplete,
+  onNext,
+  onPrev,
   ...restProps
 }: GuessInputProps) => {
   const { lang } = useSettings();
@@ -33,7 +37,27 @@ export const GuessInput = ({
   const transcripter = useTranscripter({
     enabled: transcriptor,
     onTranscript: (text) => {
-      transcripter.meta === id && onGuess(text);
+      if (transcripter.meta === id) {
+        if (/(skip|next|pula|pr[óo]xim[oa])/gi.test(text) && onNext) {
+          onNext();
+          transcripter.resetTranscript();
+          setTimeout(() => transcripter.start(id), 50);
+        }
+
+        if (/(back|beck|previous|volta|anterior)/gi.test(text) && onPrev) {
+          onPrev();
+          transcripter.resetTranscript();
+          setTimeout(() => transcripter.start(id), 50);
+        }
+
+        if (onGuess(text)) {
+          transcripter.resetTranscript();
+          setTimeout(() => transcripter.start(id), 50);
+        } else {
+          transcripter.resetTranscript();
+          setTimeout(() => transcripter.start(id), 50);
+        }
+      }
     },
   });
 
@@ -48,7 +72,7 @@ export const GuessInput = ({
     <Recorder
       recording={transcripter.listening && transcripter.meta === id}
       disabled={transcripter.listening && transcripter.meta !== id}
-      onClick={transcripter.listening ? () => transcripter.stop() : () => transcripter.start(id)}
+      onRecord={transcripter.listening ? () => transcripter.stop() : () => transcripter.start(id)}
     />
   );
 
