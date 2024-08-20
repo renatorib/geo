@@ -5,9 +5,34 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        serif: ["var(--font-serif)", "ui-serif", "serif"],
+      },
+    },
   },
   plugins: [
+    plugin(({ addVariant }) => {
+      addVariant("dark", [":is(.dark &):not(.light &)"]);
+    }),
+    plugin(({ addVariant }) => {
+      const hover = ["&:hover:not(:disabled, [aria-disabled=true])"];
+      const groupHover = [".group:hover:not(:disabled, [aria-disabled=true]) &"];
+      const focus = ["&:focus-visible"];
+      const focusWithin = [...focus, "&:has(:focus-visible)"];
+      const intent = [...hover, ...focus];
+      const intentWithin = [...hover, ...focusWithin];
+      const disabled = ["&:disabled", "&[aria-disabled=true]"];
+
+      addVariant("hover", hover);
+      addVariant("group-hover", groupHover);
+      addVariant("focus", focus);
+      addVariant("focus-within", focusWithin);
+      addVariant("intent", intent);
+      addVariant("intent-within", intentWithin);
+      addVariant("disabled", disabled);
+    }),
     plugin(({ addUtilities }) => {
       addUtilities({
         ".inset-center": {
