@@ -14,25 +14,43 @@ import {
 
 export const variants = /* tw */ {
   filled: {
-    root: "text-context-50 bg-context-700 aria-[disabled=false]:hover:bg-context-800 aria-[disabled=false]:hover:white aria-[disabled=false]:active:bg-context-900",
+    root: cn(
+      "text-context-50 bg-context-700 hover:bg-context-800 hover:white active:bg-context-900",
+      "dark:bg-context-300 dark:text-context-900 dark:hover:bg-context-300",
+    ),
   },
   light: {
-    root: "text-context-800 bg-context-200 aria-[disabled=false]:hover:bg-context-300 aria-[disabled=false]:hover:text-context-900 aria-[disabled=false]:active:bg-context-400",
+    root: cn(
+      "text-context-800 bg-context-200 hover:bg-context-300 hover:text-context-900 active:bg-context-400",
+      "dark:text-context-400 dark:bg-context-800 dark:hover:bg-context-700 dark:hover:text-context-300 dark:active:text-context-200",
+    ),
   },
   outline: {
-    root: "text-context-800 border-context-300 aria-[disabled=false]:hover:border-context-400 aria-[disabled=false]:hover:text-context-900 aria-[disabled=false]:active:border-context-600",
+    root: cn(
+      "text-context-800 border-context-300",
+      "hover:border-context-400 hover:text-context-900 active:border-context-600",
+      "dark:text-context-400 dark:border-context-600",
+    ),
   },
   ghost: {
-    root: "text-context-800 bg-transparent aria-[disabled=false]:hover:bg-context-200 aria-[disabled=false]:active:bg-context-300",
+    root: cn(
+      "text-context-800 bg-transparent hover:bg-context-200 active:bg-context-300",
+      "dark:text-context-400 dark:hover:bg-context-800 dark:hover:text-context-200 dark:active:bg-context-900",
+    ),
   },
   muted: {
-    root: "text-context-400 bg-transparent aria-[disabled=false]:hover:text-context-800 aria-[disabled=false]:hover:bg-context-200 aria-[disabled=false]:active:bg-context-300",
+    root: "text-context-400 bg-transparent hover:text-context-800 hover:bg-context-200 active:bg-context-300",
   },
   white: {
-    root: "text-context-800 bg-white aria-[disabled=false]:hover:bg-context-200 aria-[disabled=false]:active:bg-context-300",
+    root: "text-context-800 bg-white hover:bg-context-200 active:bg-context-300",
   },
   link: {
-    root: "text-context-800 bg-transparent aria-[disabled=false]:hover:text-context-900 aria-[disabled=false]:hover:underline aria-[disabled=false]:active:text-context-950",
+    root: cn(
+      "text-context-800 bg-transparent",
+      "hover:text-context-900 hover:underline active:text-context-950",
+      "dark:text-context-400",
+      "dark:hover:text-context-500 hover:underline dark:active:text-context-600",
+    ),
   },
   none: {
     root: "",

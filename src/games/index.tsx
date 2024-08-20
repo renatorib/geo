@@ -1,8 +1,7 @@
-import { Truculenta } from "next/font/google";
 import React from "react";
 
 import { GiBrazil } from "react-icons/gi";
-import { RiCommunityFill, RiCommunityLine, RiEarthFill, RiFlagFill, RiMap2Fill, RiWindow2Fill } from "react-icons/ri";
+import { RiCommunityFill, RiCommunityLine, RiEarthFill, RiFlagFill, RiWindow2Fill } from "react-icons/ri";
 
 import { Display } from "~/data-sources";
 import { LanguageProperty } from "~/features/settings";
@@ -273,7 +272,7 @@ export const games = [
 
   {
     name: "Capitals Reversed Grid",
-    description: "Guess capitals by country names",
+    description: "Guess capitals by countries",
     id: "capitals-2",
     icon: <RiCommunityLine />,
     type: "cards-grid",
@@ -324,7 +323,7 @@ export const findGameByUrl = (url: string /* <game_url>/<group_url> - ex.: flags
     training: game.training,
     filters: { game: game.filter, group: group.filter },
     filteredData: filteredData,
-    title: `${upperFirstLetter(group.id)} - ${upperFirstLetter(game.name)}`,
+    title: `${upperFirstLetter(game.name)} of ${upperFirstLetter(group.id)}`,
     display: "display" in game ? game.display : undefined,
   };
 };

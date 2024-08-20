@@ -24,27 +24,27 @@ export const Congratulations = (props: {
   }, []);
 
   return (
-    <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
+    <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto dark">
       <div className="flex flex-col items-center gap-4">
         {ReactDOM.createPortal(<Confetti numberOfPieces={confettis} />, document.body)}
-        <div className="text-purple-500" style={{ animation: "pop 1000ms ease-in-out" }}>
+        <div className="text-lime-400" style={{ animation: "pop 1000ms ease-in-out" }}>
           <GiPartyPopper size={250} />
         </div>
-        <div color="gray" className="text-center text-slate-500">
-          <div className="text-slate-800 text-4xl font-bold mb-2">Well done!</div>
-          You have completed <strong className="text-slate-600">{props.length}</strong> guesses of{" "}
+        <div color="gray" className="text-center text-stone-400">
+          <div className="text-white text-4xl font-bold mb-2">Well done!</div>
+          You have completed <strong className="text-stone-200">{props.length}</strong> guesses of{" "}
           <span>{'"' + props.title + '"'}</span> in{" "}
-          <strong className="text-slate-600">{readableTime(props.totalTime)}</strong>
+          <strong className="text-stone-200">{readableTime(props.totalTime)}</strong>
         </div>
         <div className="my-4">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
             {props.onRestart && (
-              <Button color="violet" size="xl" padding="xl" variant="light" onClick={props.onRestart}>
+              <Button color="lime" size="xl" padding="xl" variant="outline" onClick={props.onRestart}>
                 <RiRestartLine /> Restart
               </Button>
             )}
             <Link href="/">
-              <Button color="violet" size="xl" padding="xl" variant="outline">
+              <Button color="lime" variant="link">
                 <RiAddLine /> Play new game
               </Button>
             </Link>

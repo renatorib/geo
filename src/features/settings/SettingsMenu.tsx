@@ -24,40 +24,40 @@ export const SettingsMenu = () => {
     <>
       <Menu
         target={
-          <ButtonIcon variant="ghost">
+          <ButtonIcon variant="ghost" color="stone">
             <RiSettings2Line />
           </ButtonIcon>
         }
       >
-        <Menu.Label>Settings</Menu.Label>
-        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+        <Menu.Title>Settings</Menu.Title>
+        <Menu.Label>
           <Switch
             size="sm"
-            color="green"
+            color="lime"
             checked={settings.speech}
             onChange={(ev) => settings.setSpeech(ev.currentTarget.checked)}
             disabled={!browserSupportsSpeechRecognition}
           />
           Speech {!browserSupportsSpeechRecognition ? "(Unsupported)" : ""}
-        </label>
-        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+        </Menu.Label>
+        <Menu.Label>
           <Switch
             size="sm"
-            color="green"
+            color="lime"
             checked={settings.timer}
             onChange={(ev) => settings.setTimer(ev.currentTarget.checked)}
-          />{" "}
+          />
           Show timer
-        </label>
-        <label className="flex items-center gap-2 px-0.5 py-1 rounded hover:bg-slate-100">
+        </Menu.Label>
+        <Menu.Label>
           <Switch
             size="sm"
-            color="green"
+            color="lime"
             checked={settings.sound}
             onChange={(ev) => settings.setSound(ev.currentTarget.checked)}
           />
           Sound effects
-        </label>
+        </Menu.Label>
       </Menu>
     </>
   );

@@ -2,7 +2,6 @@ import React from "react";
 
 import { ReactSVGPanZoom, Value, TOOL_PAN } from "react-svg-pan-zoom";
 
-import { useViewportSize } from "~/hooks";
 import { onNextPaint, setStyle } from "~/lib/dom";
 import { Viewbox } from "~/lib/svg";
 
@@ -14,14 +13,36 @@ type SvgPanZoomProps = {
   onLoad?: (instance: ReactSVGPanZoom) => any;
   onRef?: (instance: ReactSVGPanZoom) => any;
   children: ReactSVGPanZoomProps["children"];
+  background?: string;
 } & Partial<ReactSVGPanZoomProps>;
 
 export const SvgPanZoom = (props: SvgPanZoomProps) => {
   const Viewer = React.useRef<ReactSVGPanZoom | null>(null);
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState<Value>();
-  const { width, height } = useViewportSize();
   const [loaded, setLoaded] = React.useState(false);
+  const background = props.background ?? "#f9f9f9";
+
+  const [width, setWidth] = React.useState(0);
+  const [height, setHeight] = React.useState(0);
+
+  React.useEffect(() => {
+    if (wrapperRef.current) {
+      const setSizes = () => {
+        setWidth(wrapperRef.current?.clientWidth || 0);
+        setHeight(wrapperRef.current?.clientHeight || 0);
+      };
+      setSizes();
+      const interval = setInterval(setSizes, 100);
+      wrapperRef.current.addEventListener("resize", setSizes);
+      window.addEventListener("resize", setSizes);
+      return () => {
+        wrapperRef.current?.removeEventListener("resize", setSizes);
+        window?.removeEventListener("resize", setSizes);
+        clearInterval(interval);
+      };
+    }
+  }, [wrapperRef.current]);
 
   React.useEffect(() => {
     if (Viewer.current && !loaded) {
@@ -33,20 +54,20 @@ export const SvgPanZoom = (props: SvgPanZoomProps) => {
   }, [Viewer.current]);
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className="w-full h-full overflow-hidden">
       <ReactSVGPanZoom
         ref={(ref) => {
           Viewer.current = ref;
           if (ref) props.onRef?.(ref);
         }}
-        width={width}
-        height={height - 50}
         value={value ?? ({} as any)}
         tool={TOOL_PAN}
+        width={width}
+        height={height}
         onChangeTool={() => {}}
         scaleFactorOnWheel={1.15}
-        background="#f9f9f9"
-        SVGBackground="#f9f9f9"
+        background={background}
+        SVGBackground={background}
         customToolbar={() => null}
         customMiniature={() => null}
         scaleFactorMax={40}

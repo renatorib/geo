@@ -13,10 +13,14 @@ export const Recorder = fr<{ recording?: boolean }, typeof ButtonIcon>((props, r
       type="button"
       radius="full"
       size="md"
-      color={props.recording ? "red" : "slate"}
+      color={props.recording ? "red" : "stone"}
       {...props}
       variant={props.recording ? "filled" : props.variant ?? "ghost"}
-      className={cn("select-none transition-all", props.recording ? "animate-pulse" : "")}
+      className={cn(
+        "select-none transition-all",
+        props.recording ? "animate-pulse" : "text-context-500",
+        props.className,
+      )}
     >
       <RiMicFill />
     </ButtonIcon>

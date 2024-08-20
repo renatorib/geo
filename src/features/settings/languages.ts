@@ -3,6 +3,7 @@ import * as flags from "~/data-sources/countries/flags";
 export const languages = {
   "en-US": {
     code: "en-US",
+    shortCode: "US",
     property: "en",
     name: "English (US)",
     flag: flags.US,
@@ -10,6 +11,7 @@ export const languages = {
   },
   "pt-BR": {
     code: "pt-BR",
+    shortCode: "BR",
     property: "pt",
     name: "Português (BR)",
     flag: flags.BR,

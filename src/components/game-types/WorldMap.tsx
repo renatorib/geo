@@ -95,7 +95,7 @@ export const WorldMap = ({ game }: WorldMapProps) => {
                   <path
                     id={`path-${c.id}`}
                     d={c.shape}
-                    className={cn("stroke-transparent", isChecked ? "fill-green-400" : "fill-gray-200")}
+                    className={cn("stroke-transparent", isChecked ? "fill-green-400" : "fill-stone-100")}
                   />
                 </React.Fragment>
               );
@@ -111,7 +111,7 @@ export const WorldMap = ({ game }: WorldMapProps) => {
               <React.Fragment key={node.id}>
                 <path
                   id={`path-${node.id}`}
-                  className={cn("fill-gray-300 stroke-gray-600", isChecked && "fill-green-400 stroke-green-700")}
+                  className={cn("fill-stone-300 stroke-gray-600", isChecked && "fill-green-400 stroke-green-700")}
                   d={node.entity.shape}
                   style={{
                     strokeWidth: "calc(0.7 / var(--viewer-zoom, 1))",

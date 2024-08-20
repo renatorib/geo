@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RiCheckLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiCheckLine } from "react-icons/ri";
 
 import { NoSSR } from "~/components/NoSSR";
 import { ButtonIcon } from "~/components/ui/ButtonIcon";
@@ -19,21 +19,28 @@ export const LangSelectorMenu = () => {
         <Menu
           className="min-w-[200px]"
           target={
-            <ButtonIcon variant="ghost">
-              <div className="h-4 w-6 grid place-items-center">
-                <Flag src={lang.flag} width={20} />
+            <ButtonIcon
+              variant="light"
+              color="stone"
+              radius="sm"
+              className="text-sm bg-transparent text-context-500 px-2 transition-colors"
+              padding="lg"
+            >
+              <div className="flex items-center gap-0.5 font-mono">
+                {lang.shortCode} <RiArrowDownSLine />
               </div>
             </ButtonIcon>
           }
         >
+          <Menu.Title>Language to guess</Menu.Title>
           {Object.values(languages).map((l) => {
             const selected = l.code === lang.code;
             return (
-              <Menu.Item key={l.code} onClick={() => setLang(l.code)} selected={selected}>
+              <Menu.Button key={l.code} onClick={() => setLang(l.code)} selected={selected}>
                 <Flag src={l.flag} width={20} />
                 {l.name}
                 <span className="ml-auto">{selected ? <RiCheckLine size={16} /> : null}</span>
-              </Menu.Item>
+              </Menu.Button>
             );
           })}
         </Menu>

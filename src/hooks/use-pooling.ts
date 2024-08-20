@@ -1,8 +1,7 @@
 import React from "react";
 
-import { useInterval } from "@mantine/hooks";
-
 import { useEvent } from "./use-event";
+import { useInterval } from "./use-interval";
 
 export const usePooling = (tick: () => any, intervalMs: number) => {
   const interval = useInterval(useEvent(tick), intervalMs);

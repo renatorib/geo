@@ -2,6 +2,7 @@ import React from "react";
 
 import { RiMore2Fill } from "react-icons/ri";
 
+import { fr } from "~/lib/react";
 import { contextColors } from "~/lib/styles";
 
 import { ButtonIcon } from "./ButtonIcon";
@@ -16,10 +17,17 @@ export type Action = {
   color?: keyof typeof contextColors;
 };
 
-export const FlexActions = (props: { actions: Action[] }) => {
+export type ActionItem = Action | "divider" | false;
+
+const isDivider = (item: ActionItem): item is "divider" => item === "divider";
+const isAction = (item: ActionItem): item is Action => typeof item === "object" && "name" in item;
+
+export const FlexActions = (props: { actions: ActionItem[] }) => {
   return (
     <div className="flex items-center gap-1.5">
       {props.actions
+        .filter(Boolean)
+        .filter(isAction)
         .filter((act) => !act.disabled)
         .map((act) => {
           return (
@@ -34,30 +42,31 @@ export const FlexActions = (props: { actions: Action[] }) => {
   );
 };
 
-export const MenuActions = (props: { actions: Action[] }) => {
+export const MenuActions = fr<{ actions: ActionItem[] }, typeof ButtonIcon>((props, ref) => {
   return (
     <Menu
       target={
-        <ButtonIcon variant="light" color="slate">
+        <ButtonIcon ref={ref} variant="ghost" color="stone" {...props}>
           <RiMore2Fill />
         </ButtonIcon>
       }
     >
-      <Menu.Label>Actions</Menu.Label>
-      {props.actions
-        .filter((act) => !act.disabled)
-        .map((act) => {
-          return (
-            <Menu.Item key={act.name} onClick={() => act.action()}>
-              {act.icon} {act.name}
-            </Menu.Item>
-          );
-        })}
+      <Menu.Title>Actions</Menu.Title>
+      {props.actions.filter(Boolean).map((act, index) => {
+        if (isDivider(act)) return <Menu.Divider key={index} />;
+        if (act.disabled) return null;
+
+        return (
+          <Menu.Button key={act.name} onClick={() => act.action()}>
+            {act.icon} {act.name}
+          </Menu.Button>
+        );
+      })}
     </Menu>
   );
-};
+});
 
-export const ResponsiveActions = (props: { actions: Action[] }) => {
+export const ResponsiveActions = (props: { actions: ActionItem[] }) => {
   return (
     <>
       <div className="hidden sm:flex">

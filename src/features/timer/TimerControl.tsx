@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text } from "~/components/ui/Text";
+import { cn } from "~/lib/styles";
 
 import { useSettings } from "../settings";
 
@@ -11,10 +11,11 @@ export const TimerControl = ({ timer }: { timer: Timer }) => {
   const settings = useSettings();
   if (!settings.timer) return null;
   return (
-    <div className="flex items-center gap-1 font-mono">
-      <Text color={timer.started ? "violet" : "gray"} weight={700} size="lg">
+    <div className="flex items-center gap-2">
+      <div className={cn("w-1.5 h-1.5 rounded-full bg-stone-800", timer.started && "bg-lime-400 animate-pulse")} />
+      <div className={cn("font-mono", timer.started ? "text-lime-400" : "text-stone-600")}>
         <TimerClock started={timer.started} />
-      </Text>
+      </div>
     </div>
   );
 };

@@ -1,14 +1,16 @@
+import Image from "next/image";
 import React from "react";
 
 import { RiCheckDoubleFill, RiRestartLine, RiSkipForwardFill } from "react-icons/ri";
 
-import { GuessInput, useGuesser } from "~/features/guesser";
+import { GuessInput, GuessProgress, useGuesser } from "~/features/guesser";
 import { playSound } from "~/features/sounds";
 import { TimerControl } from "~/features/timer";
 import { GameProps } from "~/games";
+import { cn } from "~/lib/styles";
 
 import { Congratulations } from "../Congratulations";
-import { ResponsiveActions } from "../ui/Actions";
+import { MenuActions } from "../ui/Actions";
 import { Button } from "../ui/Button";
 import { ProgressBar } from "../ui/ProgressBar";
 
@@ -31,6 +33,22 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
       action: guesser.reset,
       color: "red" as const,
     },
+    {
+      name: "Skip",
+      icon: <RiSkipForwardFill />,
+      action: () => {
+        guesser.selectNextNode();
+        playSound("wind", { volume: 0.4, playbackRate: 3 });
+      },
+      color: "violet" as const,
+    },
+    {
+      name: "Fill",
+      icon: <RiCheckDoubleFill />,
+      action: () => guesser.guess(guesser.selectedNode, guesser.answer(guesser.selectedNode).value),
+      color: "green" as const,
+      disabled: process.env.NODE_ENV !== "development",
+    },
   ];
 
   const nextUnchecked = guesser.getNextUnchecked(guesser.selectedNode);
@@ -47,48 +65,26 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
   }
 
   return (
-    <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
-      <div className="flex flex-col gap-2 md:gap-4 w-full">
-        <div className="flex flex-col gap-2 grow w-full">
-          <div className="flex items-center gap-4 justify-between">
-            <div className="flex items-center gap-4">
-              <div className="font-bold">{game.title}</div>
-              <div>
-                {guesser.totalChecked} / {guesser.data.length}
-              </div>
-              <TimerControl timer={guesser.timer} />
-            </div>
-
-            <ResponsiveActions actions={actions} />
-          </div>
-          <div>
-            <ProgressBar progress={guesser.totalChecked / guesser.data.length} />
-          </div>
+    <>
+      {guesser.selectedNode.entity.flag && (
+        <div
+          className={cn(
+            "absolute w-full h-full p-2 overflow-hidden",
+            "transition-all opacity-10 blur-[100px] scale-75",
+            "select-none pointer-events-none",
+          )}
+        >
+          <Image src={guesser.selectedNode.entity.flag} fill alt="" />
         </div>
+      )}
 
-        <div key={guesser.selectedNode.id} className="shadow rounded-lg overflow-hidden bg-gray-50">
-          {game.display
-            ? React.createElement(game.display, {
-                data: guesser.selectedNode.entity,
-                status: guesser.getNodeStatus(guesser.selectedNode),
-              })
-            : null}
-        </div>
-
-        {nextUnchecked && (
-          // Pre-render next to prefetch image if have
-          <div className="hidden">
-            {game.display
-              ? React.createElement(game.display, {
-                  data: nextUnchecked.entity,
-                  status: "hidden",
-                })
-              : null}
+      <div className="max-w-lg px-2 md:px-0 w-full grid place-items-center mx-auto">
+        <div className="flex flex-col gap-2 md:gap-6 w-full">
+          <div className="flex flex-col gap-2 grow w-full">
+            <div className="font-serif text-6xl text-center text-lime-300 sm:mb-6">{game.title}</div>
           </div>
-        )}
 
-        <div className="flex items-stretch gap-2 mt-2">
-          <div className="shadow-lg rounded-md grow">
+          <div className="grow flex gap-1">
             <GuessInput
               onGuess={(text) => guesser.guess(guesser.selectedNode, text)}
               disabled={guesser.isCompleted}
@@ -99,7 +95,33 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
             />
           </div>
 
-          <Button
+          <div key={guesser.selectedNode.id} className="relative shadow rounded-lg overflow-hidden bg-stone-950">
+            <div className="absolute top-0 right-0 z-10">
+              <MenuActions actions={actions} variant="filled" color="stone" className="bg-transparent h-full" />
+            </div>
+            {game.display
+              ? React.createElement(game.display, {
+                  data: guesser.selectedNode.entity,
+                  status: guesser.getNodeStatus(guesser.selectedNode),
+                })
+              : null}
+          </div>
+
+          <GuessProgress guesser={guesser} />
+
+          {nextUnchecked && (
+            // Pre-render next to prefetch image if have
+            <div className="hidden">
+              {game.display
+                ? React.createElement(game.display, {
+                    data: nextUnchecked.entity,
+                    status: "hidden",
+                  })
+                : null}
+            </div>
+          )}
+
+          {/* <Button
             color="violet"
             variant="filled"
             onClick={() => {
@@ -108,9 +130,9 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
             }}
           >
             <RiSkipForwardFill /> Skip
-          </Button>
+          </Button> */}
 
-          {process.env.NODE_ENV === "development" && (
+          {/* process.env.NODE_ENV === "development" && (
             <Button
               color="green"
               variant="filled"
@@ -118,9 +140,9 @@ export const Cards1x1 = ({ game }: Cards1x1Props) => {
             >
               <RiCheckDoubleFill /> Fill
             </Button>
-          )}
+          ) */}
         </div>
       </div>
-    </div>
+    </>
   );
 };

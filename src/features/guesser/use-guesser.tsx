@@ -74,6 +74,7 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   };
 
   const guess = (node: Node<T>, text: string) => {
+    if (text === "") return;
     if (!timer.started) timer.start();
 
     const answers = getAllAnswers(node);
@@ -184,6 +185,8 @@ export const useGuesser = <T extends Entity>(props: UseGuesserProps<T>) => {
   };
 };
 
+export type Guesser<T extends Entity = Entity> = ReturnType<typeof useGuesser<T>>;
+
 function notifyCorrectAnswer(text: string) {
-  console.log(text);
+  console.log("Correct:", text);
 }

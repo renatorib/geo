@@ -12,7 +12,7 @@ type BaseDisplayProps = {
 };
 
 export const BaseDisplay = fr<BaseDisplayProps>(({ status, ratio = 5 / 2, value, valueEn, ...props }, ref) => {
-  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : "slate";
+  const color = status === "correct" ? "green" : status === "spoiler" ? "red" : "stone";
 
   return (
     <div
