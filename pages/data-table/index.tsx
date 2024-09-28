@@ -6,6 +6,7 @@ import { AspectRatio } from "~/components/ui/AspectRatio";
 import { countries } from "~/data-sources/countries";
 import { LangSelectorMenu, useSettings } from "~/features/settings";
 import { cn } from "~/lib/styles";
+import { getViewboxOfPath } from "~/lib/svg";
 
 const Th = ({ width, children }: { width?: number; children: React.ReactNode }) => {
   return (
@@ -73,6 +74,7 @@ const DataTablePage = () => {
                     <Tr>
                       <Th width={30}>N</Th>
                       <Th width={80}>Flag</Th>
+                      <Th width={80}>Shape</Th>
                       <Th width={60}>Emoji</Th>
                       <Th width={50}>ID</Th>
                       <Th width={300}>
@@ -84,7 +86,6 @@ const DataTablePage = () => {
                       <Th width={80}>Domain</Th>
                       <Th width={100}>Region</Th>
                       <Th width={100}>Independent</Th>
-                      <Th width={60}>Shape</Th>
                       <Th width={100}>ISO Alpha2</Th>
                       <Th width={100}>ISO Alpha3</Th>
                       <Th>Links</Th>
@@ -99,6 +100,11 @@ const DataTablePage = () => {
                             <em style={{ fontSize: 10 }}>Aliases: {a.join(", ")}</em>
                           </>
                         ) : null;
+
+                      const shapeViewbox = getViewboxOfPath(c.shape, {
+                        aspectRatio: 45 / 30,
+                        margin: 0.1,
+                      });
 
                       return (
                         <Tr key={c.id} id={`row-of-${c.id}`} striped={true}>
@@ -120,10 +126,23 @@ const DataTablePage = () => {
                               )}
                             </AspectRatio>
                           </Td>
+                          <Td>
+                            {c.shape && (
+                              <svg viewBox={shapeViewbox.viewbox}>
+                                <path d={c.shape} fill="#999" />
+                              </svg>
+                            )}
+                          </Td>
                           <Td>{c.emoji}</Td>
                           <Td>{c.id}</Td>
                           <Td>
-                            <strong>{c.name[lang.property]}</strong>
+                            <a
+                              href={`/data-table/${c.id.toLowerCase()}`}
+                              lang="en"
+                              className="text-sky-600 hover:underline"
+                            >
+                              <strong>{c.name[lang.property]}</strong>
+                            </a>
                             {aliasText(c.alias[lang.property])}
                           </Td>
                           <Td>
@@ -144,9 +163,9 @@ const DataTablePage = () => {
                               </>
                             ) : null}
                           </Td>
-                          <Td>{c.shape ? "Yes" : <div className="bg-red-500 text-white">No</div>}</Td>
                           <Td>{c.alpha2}</Td>
                           <Td>{c.alpha3}</Td>
+
                           <Td>
                             <WikiLink href={`https://en.wikipedia.org/wiki/${c.name.en}`} name={c.name.en} lang="en">
                               Wiki
